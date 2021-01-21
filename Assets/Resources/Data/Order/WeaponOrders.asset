@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b08113566274f7ab5090a6f5c3fcbf1, type: 3}
+  m_Name: WeaponOrders
+  m_EditorClassIdentifier: 
+  orders:
+  - key: order_weapon_1
+    group: 1
+    part:
+      data: {fileID: 11400000, guid: 085eb6f5d1df7284e9a1f92c342ba56c, type: 2}
+      star: 1
+      count: 2
+  - key: order_weapon_2
+    group: 1
+    part:
+      data: {fileID: 11400000, guid: 37a0f41212a8a8046a449a17449a83e7, type: 2}
+      star: 1
+      count: 2
+  - key: order_weapon_3
+    group: 1
+    part:
+      data: {fileID: 11400000, guid: 079413832538acc419e9ec647e11b153, type: 2}
+      star: 1
+      count: 2
+  - key: order_weapon_4
+    group: 1
+    part:
+      data: {fileID: 11400000, guid: 1d00c7671f19080448b6df97491692e2, type: 2}
+      star: 1
+      count: 2

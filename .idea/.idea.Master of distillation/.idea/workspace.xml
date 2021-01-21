@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="c710f76b-f79b-4481-8e42-124bd317a2e7" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/31.FBX" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/31.FBX.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Images/Sprite.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Images/Sprite/HeaderAtlas.spriteatlas" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Images/Sprite/HeaderAtlas.spriteatlas.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Images/Sprite/InfoIcon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Images/Sprite/InfoIcon.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Images/Sprite/Item.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Images/Sprite/Item/Product.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Images/Sprite/Item/Product/ArmorIcon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Images/Sprite/Item/Product/ArmorIcon.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Images/Sprite/Item/Product/EquipmentIcon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Images/Sprite/Item/Product/EquipmentIcon.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Images/Sprite/Item/Product/QuadrocopterIcon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Images/Sprite/Item/Product/QuadrocopterIcon.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Images/Sprite/Item/Product/SpecificationIcons.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Images/Sprite/Item/Product/SpecificationIcons.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Images/Sprite/Item/Product/TeamIcon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Images/Sprite/Item/Product/TeamIcon.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Images/Sprite/Item/Product/WeaponIcon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Images/Sprite/Item/Product/WeaponIcon.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Images/Sprite/Item/QualityIcon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Images/Sprite/Item/QualityIcon.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Images/Sprite/Item/Raw.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Images/Sprite/Item/Raw/ClothesRawIcon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Images/Sprite/Item/Raw/ClothesRawIcon.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Images/Sprite/Item/Raw/WeaponRawIcon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Images/Sprite/Item/Raw/WeaponRawIcon.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Images/Sprite/LanguageAtlas.spriteatlas" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Images/Sprite/LanguageAtlas.spriteatlas.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Images/Sprite/LanguageIcon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Images/Sprite/LanguageIcon.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Images/Sprite/Lock.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Images/Sprite/Lock.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Images/Sprite/Menu.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Images/Sprite/Menu/Border.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Images/Sprite/Menu/Border/Border1px.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Images/Sprite/Menu/Border/Border1px.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Images/Sprite/Menu/Border/Border2px.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Images/Sprite/Menu/Border/Border2px.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Images/Sprite/Menu/Border/Border3px.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Images/Sprite/Menu/Border/Border3px.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Images/Sprite/Menu/Border/Border4px.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Images/Sprite/Menu/Border/Border4px.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Images/Sprite/Menu/Border/BorderBack.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Images/Sprite/Menu/Border/BorderBack.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Images/Sprite/Menu/Close.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Images/Sprite/Menu/Close.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Images/Sprite/Menu/Craft.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Images/Sprite/Menu/Craft/ArrowIcon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Images/Sprite/Menu/Craft/ArrowIcon.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Images/Sprite/Menu/Craft/BlueprintCraftProduct.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Images/Sprite/Menu/Craft/BlueprintCraftProduct.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Images/Sprite/Menu/Craft/TimerIcon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Images/Sprite/Menu/Craft/TimerIcon.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Images/Sprite/Menu/CraftIcon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Images/Sprite/Menu/CraftIcon.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Images/Sprite/Menu/Order.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Images/Sprite/Menu/Order/RefreshIcon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Images/Sprite/Menu/Order/RefreshIcon.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Images/Sprite/Menu/OrderIcon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Images/Sprite/Menu/OrderIcon.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Images/Sprite/Menu/QualityPart.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Images/Sprite/Menu/QualityPart.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Images/Sprite/Menu/StorageIcon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Images/Sprite/Menu/StorageIcon.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Images/Sprite/MoneyIcon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Images/Sprite/MoneyIcon.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Images/Sprite/Pixel.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Images/Sprite/Pixel.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Images/Texture.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Images/Texture/ColorTexture.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Images/Texture/ColorTexture.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Images/Texture/GrassTexture.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Images/Texture/GrassTexture.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Images/Texture/OfficeTexture.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Images/Texture/OfficeTexture.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Images/Texture/RoadTexture.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Images/Texture/RoadTexture.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Images/Texture/TreeTexture.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Images/Texture/TreeTexture.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Materials/Colors.mat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Materials/Colors.mat.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Materials/Earth.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Materials/Earth/GrassMaterial.mat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Materials/Earth/GrassMaterial.mat.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Materials/Earth/GroundMaterial.mat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Materials/Earth/GroundMaterial.mat.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Materials/Earth/TreeMaterial.mat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Materials/Earth/TreeMaterial.mat.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Materials/Fence.mat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Materials/Fence.mat.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Materials/New Material.mat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Materials/New Material.mat.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Materials/Office.mat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Materials/Office.mat.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Materials/Road.mat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Materials/Road.mat.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Meshes/123.FBX" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Meshes/123.FBX.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Meshes/Bush.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Meshes/Bush/BushEnd.FBX" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Meshes/Bush/BushEnd.FBX.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Meshes/Bush/BushRotate.FBX" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Meshes/Bush/BushRotate.FBX.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Meshes/Bush/BushStraight.FBX" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Meshes/Bush/BushStraight.FBX.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Meshes/Bush/Tree.FBX" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Meshes/Bush/Tree.FBX.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Meshes/Fence.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Meshes/Fence/FenceCrossroad.FBX" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Meshes/Fence/FenceCrossroad.FBX.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Meshes/Fence/FenceEnd.FBX" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Meshes/Fence/FenceEnd.FBX.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Meshes/Fence/FenceRotate.FBX" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Meshes/Fence/FenceRotate.FBX.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Meshes/Fence/FenceStraight.FBX" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Meshes/Fence/FenceStraight.FBX.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Meshes/Fence/FenceTCrossroad.FBX" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Meshes/Fence/FenceTCrossroad.FBX.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Meshes/Office.FBX" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Meshes/Office.FBX.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Meshes/Road.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Meshes/Road/Crossroad.FBX" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Meshes/Road/Crossroad.FBX.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Meshes/Road/CrossroadWithoutOneBorder.FBX" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Meshes/Road/CrossroadWithoutOneBorder.FBX.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Meshes/Road/RoadWithMarkup.FBX" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Meshes/Road/RoadWithMarkup.FBX.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Meshes/Road/RoadWithoutMarkup.FBX" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Meshes/Road/RoadWithoutMarkup.FBX.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Meshes/Road/RoadWithoutOneBorder.FBX" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Meshes/Road/RoadWithoutOneBorder.FBX.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Meshes/Road/Rotate.FBX" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Meshes/Road/Rotate.FBX.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Meshes/Road/TCrossroad.FBX" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Meshes/Road/TCrossroad.FBX.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Meshes/Tile.FBX" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Meshes/Tile.FBX.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Prefabs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/Grass.prefab" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/Grass.prefab.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ProjectSettings/SceneTemplateSettings.json" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.textmeshpro@3.0.6/Scripts/Editor/TMP_SpriteCharacterPropertyDrawer.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Stores/Item/Product/Scriptable/Type/WeaponProductScriptableEditor.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Ui/Menu/Order/Info/Part/PartsSection.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://C:/Program Files/Unity/Hub/Editor/2019.4.25f1/Editor/Data/Resources/PackageManager/BuiltInPackages/com.unity.ugui/Tests/Runtime/Canvas/NestedCanvas.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Plugins/Zenject/Source/Install/ZenjectBinding.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Stores/LevelCapsScriptable.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Plugins/Zenject/Source/Factories/Pooling/MemoryPoolBase.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Plugins/Zenject/Source/Editor/ZenUnityEditorUtil.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Plugins/Zenject/Source/Providers/SubContainerCreators/SubContainerCreatorDynamicContext.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Plugins/Zenject/Source/Install/ScriptableObjectInstallerBase.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Stores/Item/ItemBase.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Stores/Item/Scriptable/ItemScriptable.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Stores/Item/Product/Scriptable/Type/EquipmentProductScriptable.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Plugins/Zenject/Source/Internal/Assert.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Plugins/Zenject/Source/Runtime/DisposableManager.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Stores/Item/Product/Scriptable/Type/TeamProductScriptable.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.shadergraph@10.7.0/Editor/Drawing/Inspector/TabbedView/TabButton.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Stores/Item/Types/ItemType.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Ui/Menu/Craft/Scheme/Create/CreateButton.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Di/Game/GameInstaller.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://C:/Program Files/Unity/Hub/Editor/2019.4.25f1/Editor/Data/Resources/PackageManager/BuiltInPackages/com.unity.ugui/Runtime/UI/Core/Text.cs" root0="SKIP_HIGHLIGHTING" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <changedPaths>
+      <option value="$PROJECT_DIR$/Assets/Scripts/Ui/Menu/Convert/Part/PartCell.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Ui/Menu/Convert/Part/PartResultCell.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Ui/Menu/Convert/Part/PartsSection.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Ui/Menu/Craft/Items/ItemsSection.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Ui/Menu/Craft/Sidebar/SidebarSection.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Ui/Menu/Craft/CraftMenu.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Ui/Menu/Craft/Sidebar/Product/Specification/SpecificationCell.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Ui/Menu/Convert/ConvertMenu.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Stores/Item/ItemPath.cs" />
+      <option value="$PROJECT_DIR$/Assets/Resources/Data/Localisation/Localisation.csv" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Stores/Audio/AudioType.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Ui/Menu/Craft/Header/Group/GroupTabCell.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Ui/Menu/Craft/Tab/TabCell.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Ui/Menu/Craft/Items/ItemCell.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Controllers/Audio/ApiManager.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Controllers/Audio/AudioController.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Utils/AudioUtil.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Ui/Menu/Craft/Scheme/Arrow/ArrowCell.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Ui/Menu/Craft/Scheme/Quality/QualityButton.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Stores/Audio/AudioClipType.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Ui/Menu/Craft/Header/Close/CloseButton.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Test.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Ui/Menu/Craft/CraftButton.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Ui/Menu/Storage/StorageButton.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Ui/Menu/Order/OrderButton.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Ui/Menu/Convert/ConvertButton.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Ui/Menu/Storage/Header/Close/CloseButton.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Ui/Menu/Convert/Header/Close/CloseButton.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Ui/Menu/Order/Header/Close/CloseButton.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Ui/Menu/Storage/Sidebar/Product/Quality/QualityButton.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Ui/Menu/Convert/Footer/Quality/QualityButton.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Ui/Menu/Craft/Scheme/Create/CreateButton.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Ui/Menu/Convert/Footer/Exchange/ExchangeButton.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Controllers/Money/MoneyController.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Controllers/Money/IMoneyController.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Ui/Money/MoneyUi.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Controllers/Level/LevelController.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Controllers/Level/ILevelController.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Ui/MainScene/Header/Level/LevelUi.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/MusicManager.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Scenes/MainInitManager.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Ui/Common/Buttons/SquareButtonBase.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Ui/Menu/Convert/Header/Tab/TabCell.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Ui/Menu/Convert/Footer/Count/CountButton.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Ui/Menu/Order/Items/ItemButton.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Ui/Menu/Order/Header/Refresh/RefreshButton.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Ui/Menu/Order/Info/Trade/TradeButton.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/MainCamera/Zoom/Zoom.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/MainCamera/Move/Move.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Ui/Menu/Craft/CraftMenuFactory.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Ui/Menu/Convert/ConvertMenuFactory.cs" />
+    </changedPaths>
+  </component>
+  <component name="ProjectId" id="1w32T52DnIfHSjIEz1yvJupeBRb" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="Discover.Launch.Via.Unity" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.github.ui.GithubSettingsConfigurable" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
+    <configuration name="Standalone Player" type="RunUnityExe" factoryName="Unity Executable">
+      <option name="EXE_PATH" value="$USER_HOME$/Desktop/Новая папка\Master of distillation.exe" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="C:\Users\AlexKrios\Desktop\Новая папка" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+      <option name="allowRunningInParallel" value="false" />
+      <option name="listenPortForConnections" value="false" />
+      <option name="pid" />
+      <option name="projectPathOnTarget" />
+      <option name="selectedOptions">
+        <list />
+      </option>
+      <method v="2" />
+    </configuration>
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+      <option name="allowRunningInParallel" value="false" />
+      <option name="listenPortForConnections" value="false" />
+      <option name="pid" />
+      <option name="projectPathOnTarget" />
+      <option name="selectedOptions">
+        <list />
+      </option>
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c710f76b-f79b-4481-8e42-124bd317a2e7" name="Default Changelist" comment="" />
+      <created>1627672960919</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1627672960919</updated>
+      <workItem from="1627672978136" duration="408000" />
+      <workItem from="1629426918539" duration="1463000" />
+      <workItem from="1629429021193" duration="26516000" />
+      <workItem from="1629585903103" duration="27993000" />
+      <workItem from="1629823207188" duration="3054000" />
+      <workItem from="1630184994330" duration="21538000" />
+      <workItem from="1630427537820" duration="1467000" />
+      <workItem from="1630497321221" duration="1884000" />
+      <workItem from="1630889439255" duration="598000" />
+      <workItem from="1632095323352" duration="596000" />
+      <workItem from="1632342771164" duration="128035000" />
+      <workItem from="1633567366313" duration="112182000" />
+      <workItem from="1634424479815" duration="53504000" />
+      <workItem from="1635543289999" duration="10487000" />
+      <workItem from="1636406931009" duration="18548000" />
+      <workItem from="1636716718228" duration="200268000" />
+      <workItem from="1637528932557" duration="79639000" />
+      <workItem from="1637856814945" duration="30395000" />
+      <workItem from="1637919196403" duration="13217000" />
+      <workItem from="1638061669234" duration="42224000" />
+      <workItem from="1638389638026" duration="2041000" />
+      <workItem from="1638843609056" duration="61000" />
+      <workItem from="1638843715407" duration="4477000" />
+      <workItem from="1639777924412" duration="242000" />
+    </task>
+    <task id="LOCAL-00001" summary="[Main] - Added test models">
+      <created>1639778094297</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1639778094297</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
+  <component name="UnityUnitTestConfiguration" currentTestLauncher="EditMode" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ID_WIDTH">
+                <map>
+                  <entry key="Table.Default.Author.ColumnIdWidth" value="108" />
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+    <MESSAGE value="[Popup, Craft][Main] - Fix get store count functionality, rework popup" />
+    <MESSAGE value="[Main] - Added test models" />
+    <option name="LAST_COMMIT_MESSAGE" value="[Main] - Added test models" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>

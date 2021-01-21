@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54de067d55c44b79be19c46b7b4870eb, type: 3}
+  m_Name: Battle
+  m_EditorClassIdentifier: 
+  battleUi:
+    queueCellName: Unit
+    queueCellPrefab: {fileID: 3253125992508115157, guid: 28a58c3b552f8274fba4c89a2418e2c4,
+      type: 3}
+    unitCellName: Unit
+    unitCellPrefab: {fileID: 0}
+  endBattle:
+    popupName: EndBattlePopup
+    popupPrefab: {fileID: 4758183550124237268, guid: eb27ccbc730c30f4e8f21923c6e19153,
+      type: 3}
+    itemCellName: ItemReward
+    itemCellPrefab: {fileID: 225897022957301923, guid: 18aab3d07adeb1f4b9fad0c53093c0d7,
+      type: 3}

@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ae4749186b454c40aff59c9428c9e43, type: 3}
+  m_Name: Raw_Weapon
+  m_EditorClassIdentifier: 
+  itemType: 0
+  key: raw_weapon
+  iconRef:
+    m_AssetGUID: 7cebe9a3c0e99c54b955b7f8a1499bfa
+    m_SubObjectName: Raw_Weapon
+    m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+    m_EditorAssetChanged: 0
+  rawName: Raw Weapon
+  rawType: 1
+  isMain: 1
+  recipes:
+  - star: 2
+    parts:
+    - data: {fileID: 11400000}
+      star: 1
+      count: 5
+    - data: {fileID: 11400000}
+      star: 1
+      count: 2
+    cost: 50
+    experience: 0
+    craftTime: 0
+    specs: []

@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c510de7351c1b0b4aa5e3e6e9cb327bf, type: 3}
+  m_Name: Trooper_Armor_Product_Star1
+  m_EditorClassIdentifier: 
+  itemType: 1
+  key: trooper_armor_product_star1
+  iconRef:
+    m_AssetGUID: 0151d479850dec64cb1772835345e19a
+    m_SubObjectName: Trooper_Armor_Product
+    m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+    m_EditorAssetChanged: 0
+  index: 0
+  productName: "Trooper Armor Product \u2605"
+  star: 1
+  unitType: 1
+  productGroup: 2
+  productType: 1
+  isProduct: 1
+  model: {fileID: 0}
+  recipe:
+    star: 0
+    parts:
+    - data: {fileID: 11400000, guid: fce60d2bebb5965488c25695165b2202, type: 2}
+      star: 1
+      count: 1
+    - data: {fileID: 11400000, guid: 978c47231a5fce548ab318724e30328d, type: 2}
+      star: 1
+      count: 1
+    - data: {fileID: 11400000, guid: f56c57247b4803a49bf312ab8bc395b1, type: 2}
+      star: 1
+      count: 1
+    - data: {fileID: 11400000, guid: 021dc6073f4783e45b542f3f8a13f693, type: 2}
+      star: 1
+      count: 1
+    cost: 1000
+    experience: 10
+    craftTime: 10
+    specs:
+    - type: 0
+      value: 25
+    - type: 1
+      value: 0
+    - type: 2
+      value: 0
+    - type: 3
+      value: 10
