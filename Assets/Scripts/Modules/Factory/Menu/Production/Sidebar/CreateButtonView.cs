@@ -45,7 +45,7 @@ namespace Modules.Factory.Menu.Production.Sidebar
         #endregion
 
         public override void SetState()
-        { 
+        {
             var product = _productionMenuManager.Parts.ActiveItem;
             var star = _productionMenuManager.Star.ActiveStar;
             _productionObject = new ProductionObjectBuilder().Create(product, star);

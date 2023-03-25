@@ -2,30 +2,24 @@
 using Modules.General.Localisation;
 using Modules.General.Localisation.Models;
 using Modules.General.Scriptable;
-using Modules.General.Ui;
-using Modules.General.Ui.Popup.Views;
+using Modules.General.Ui.Common.Menu;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 using Zenject;
 
 namespace Modules.Factory.Menu.Production.Queue.Upgrade
 {
     [AddComponentMenu("Scripts/Factory/Menu/Production/Queue/Upgrade Queue Popup View")]
-    public class UpgradeQueuePopupView : PopupBase
+    public class UpgradeQueuePopupView : MenuBase
     {
         #region Zenject
 
         [Inject] private readonly ILocalisationController _localisationController;
-        [Inject] private readonly IUiController _uiController;
         [Inject] private readonly IProductionController _productionController;
 
         #endregion
         
         #region Components
-        
-        [Space]
-        [SerializeField] private Button close;
         
         [Space]
         [SerializeField] private TextMeshProUGUI titleText;
@@ -51,8 +45,6 @@ namespace Modules.Factory.Menu.Production.Queue.Upgrade
         {
             base.Awake();
             
-            _uiController.AddUi(type, gameObject);
-            close.onClick.AddListener(Close);
             upgrade.OnUpgradeClick += Close;
             
             var cellCount = _productionController.CellCount;
@@ -64,15 +56,8 @@ namespace Modules.Factory.Menu.Production.Queue.Upgrade
         
         private void Start() 
         {
-            _buyData = _productionController.GetUpgradeData();
+            _buyData = _productionController.GetUpgradeQueueData();
             upgrade.SetData(_buyData.Cost, _buyData.Level);
-
-            PlayFadeIn();
-        }
-
-        private void OnDestroy()
-        {
-            close.onClick.RemoveListener(Close);
         }
 
         #endregion

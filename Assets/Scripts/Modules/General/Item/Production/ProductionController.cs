@@ -62,10 +62,15 @@ namespace Modules.General.Item.Production
         }
         public List<ProductionObject> GetAllProduction() => _productionData;
         public ProductionObject GetProduction(Guid id) => _productionData.First(x => x.Id == id);
-        public UpgradeDataObject GetUpgradeData()
+        public UpgradeDataObject GetUpgradeQueueData()
         {
-            return _settings.upgradeData.Data.First(x => x.Count == CellCount);
+            return _settings.upgradeQueueData.Data.First(x => x.Count == CellCount);
         }
+        public UpgradeDataObject GetUpgradeQualityData()
+        {
+            return _settings.upgradeQualityData.Data.First(x => x.Count == Level);
+        }
+
 
         public void RemoveProduction(Guid id)
         {
@@ -107,7 +112,8 @@ namespace Modules.General.Item.Production
         [Serializable]
         public class Settings
         {
-            public UpgradeDataScriptable upgradeData;
+            public UpgradeDataScriptable upgradeQueueData;
+            public UpgradeDataScriptable upgradeQualityData;
         }
     }
 }

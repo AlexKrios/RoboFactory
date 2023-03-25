@@ -1,12 +1,14 @@
 ﻿using DG.Tweening;
 using Modules.General.Audio;
 using Modules.General.Audio.Models;
+using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
 namespace Modules.General.Ui.Common.Menu
 {
+    [RequireComponent(typeof(CanvasGroup))]
     public abstract class MenuBase : MonoBehaviour
     {
         private const float FadeTime = 0.25f;
@@ -30,6 +32,7 @@ namespace Modules.General.Ui.Common.Menu
         #region Variables
 
         private CanvasGroup _canvasGroup;
+        protected CompositeDisposable Disposable;
 
         #endregion
 
@@ -37,23 +40,23 @@ namespace Modules.General.Ui.Common.Menu
 
         protected virtual void Awake()
         {
+            Disposable = new CompositeDisposable();
             _canvasGroup = GetComponent<CanvasGroup>();
+            close.OnClickAsObservable().Subscribe(_ => Close()).AddTo(Disposable);
             
             _uiController.AddUi(type, gameObject);
-            
-            close.onClick.AddListener(Close);
 
-            Open();
+            PlayFadeIn();
         }
 
         private void OnDestroy()
         {
-            close.onClick.RemoveListener(Close);
+            Disposable.Dispose();
         }
 
         #endregion
 
-        private void Open()
+        private void PlayFadeIn()
         {
             _canvasGroup.alpha = 0f;
             _canvasGroup.DOFade(1, FadeTime).SetEase(Ease.InCubic);

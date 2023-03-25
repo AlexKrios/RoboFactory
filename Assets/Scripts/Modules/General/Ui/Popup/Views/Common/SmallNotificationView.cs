@@ -20,7 +20,7 @@ namespace Modules.General.Ui.Popup.Views.Common
             var popupKey = LocalisationKeys.UiKeys[type];
             messageText.text = _localisationController.GetLanguageValue(popupKey);
             
-            PlayFadeInOut(3f);
+            Close(3f);
         }
     }
 }

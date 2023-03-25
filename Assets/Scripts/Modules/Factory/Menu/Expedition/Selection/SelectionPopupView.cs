@@ -1,12 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using JetBrains.Annotations;
-using Modules.General.Audio;
-using Modules.General.Audio.Models;
+using Modules.General.Asset;
+using Modules.General.Item.Products;
 using Modules.General.Item.Products.Models.Object.Spec;
 using Modules.General.Item.Products.Models.Types;
 using Modules.General.Localisation;
-using Modules.General.Ui;
 using Modules.General.Ui.Common.Menu;
 using Modules.General.Unit;
 using TMPro;
@@ -17,13 +15,12 @@ using Zenject;
 namespace Modules.Factory.Menu.Expedition.Selection
 {
     [AddComponentMenu("Scripts/Factory/Menu/Expedition/Selection/Selection Popup View")]
-    public class SelectionPopupView : MonoBehaviour
+    public class SelectionPopupView : MenuBase
     {
         #region Zenject
         
         [Inject] private readonly ILocalisationController _localisationController;
-        [Inject] private readonly IAudioController _audioController;
-        [Inject] private readonly IUiController _uiController;
+        [Inject] private readonly IProductsController _productsController;
         [Inject] private readonly IUnitsController _unitsController;
         [Inject] private readonly ExpeditionMenuManager _expeditionMenuManager;
         [Inject] private readonly ExpeditionMenuFactory _expeditionMenuFactory;
@@ -32,19 +29,20 @@ namespace Modules.Factory.Menu.Expedition.Selection
 
         #region Components
 
-        [SerializeField] private UiType type;
-
         [Space]
         [SerializeField] private TextMeshProUGUI title;
-        [SerializeField] private Button close;
         
         [Space]
-        [SerializeField] private Transform unitParent;
-        [SerializeField] private List<SelectionCellView> units;
+        [SerializeField] private Transform cellsParent;
+        [SerializeField] private List<SelectionCellView> cells;
         
         [Space]
-        [UsedImplicitly, SerializeField] private List<SpecCellView> specs;
-        [UsedImplicitly, SerializeField] private SelectButtonView select;
+        [SerializeField] private TextMeshProUGUI sidebarTitle;
+        [SerializeField] private Image sidebarIcon;
+        [SerializeField] private List<SpecCellView> specs;
+        
+        [Space]
+        [SerializeField] private SelectButtonView select;
 
         #endregion
         
@@ -68,16 +66,15 @@ namespace Modules.Factory.Menu.Expedition.Selection
 
         #region Unity Methods
         
-        private void Awake()
+        protected override void Awake()
         {
-            _expeditionMenuManager.Selection = this;
+            base.Awake();
             
-            _uiController.AddUi(type, gameObject);
-            close.onClick.AddListener(Close);
+            _expeditionMenuManager.Selection = this;
 
-            CreateUnits();
+            SetSelectionData();
             SetTitleData();
-            SetSpecsData();
+            SetSidebarData();
         }
 
         #endregion
@@ -87,40 +84,31 @@ namespace Modules.Factory.Menu.Expedition.Selection
             title.text = _localisationController.GetLanguageValue(ActiveUnit.Data.Key);
         }
 
-        public void Close()
+        private void SetSelectionData()
         {
-            _audioController.PlayAudio(AudioClipType.CloseClick);
-            _uiController.RemoveUi(type);
-        }
-
-        private void CreateUnits()
-        {
-            if (units.Count != 0)
-                RemoveUnits();
+            if (cells.Count != 0)
+            {
+                cells.ForEach(x => Destroy(x.gameObject));
+                cells.Clear();
+            }
             
             var unitAttackType = _expeditionMenuManager.Units.ActiveUnit.AttackTypes;
             var unitsObject = _unitsController.GetUnits()
-                    .Where(x => unitAttackType.Contains(x.AttackType))
-                    .Where(x => _expeditionMenuManager.Units.GetUnitsWithData()
-                        .All(y => x != y.Data))
-                    .OrderBy(x => x.UnitType)
-                    .ToList();
+                .Where(x => unitAttackType.Contains(x.AttackType))
+                .Where(x => _expeditionMenuManager.Units.GetUnitsWithData()
+                    .All(y => x != y.Data))
+                .OrderBy(x => x.UnitType)
+                .ToList();
 
-            foreach (var unitObject in unitsObject)
+            foreach (var data in unitsObject)
             {
-                var unit = _expeditionMenuFactory.CreateSelectionUnit(unitParent);
-                unit.OnEquipmentClick += OnEquipmentClick;
-                unit.SetData(unitObject);
-                units.Add(unit);
+                var cell = _expeditionMenuFactory.CreateSelectionCell(cellsParent);
+                cell.OnUnitClick += OnEquipmentClick;
+                cell.SetUnitData(data);
+                cells.Add(cell);
             }
 
-            ActiveUnit = units.First();
-        }
-
-        private void RemoveUnits()
-        {
-            units.ForEach(x => Destroy(x.gameObject));
-            units.Clear();
+            ActiveUnit = cells.First();
         }
 
         private void OnEquipmentClick(SelectionCellView cell)
@@ -128,19 +116,39 @@ namespace Modules.Factory.Menu.Expedition.Selection
             if (ActiveUnit == cell)
                 return;
             
+            if (ActiveUnit != null)
+                ActiveUnit.SetInactive();
+
             ActiveUnit = cell;
+            ActiveUnit.SetActive();
             
             SetTitleData();
-            SetSpecsData();
+            SetSidebarData();
+            select.SetState();
         }
         
-        private void SetSpecsData()
+        private async void SetSidebarData()
         {
-            var specsData = _unitsController.GetUnit(ActiveUnit.Data.Key).Specs;
-            for (var i = 0; i < specs.Count; i++)
+            var unit = _unitsController.GetUnit(ActiveUnit.Data.Key);
+            sidebarTitle.text = _localisationController.GetLanguageValue(unit.Key);
+            sidebarIcon.sprite = await AssetsController.LoadAsset<Sprite>(unit.IconRef);
+            for (var i = 0; i < unit.Outfit.Count; i++)
             {
-                var newSpec = new SpecObject((SpecType) i, specsData[(SpecType) i]);
-                specs[i].SetData(newSpec);
+                var spec = unit.Specs[(SpecType) i];
+                var specObject = new SpecObject();
+                foreach (var outfit in unit.Outfit)
+                {
+                    if (outfit == Constants.EmptyOutfit)
+                        continue;
+
+                    var item = _productsController.GetProduct(outfit).Recipe;
+                    spec += item.Specs[i].value;
+                }
+
+                specObject.type = (SpecType) i;
+                specObject.value = spec;
+                
+                specs[i].SetData(specObject);
             }
         }
     }

@@ -1,11 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Modules.General.Asset;
-using Modules.General.Audio;
-using Modules.General.Audio.Models;
 using Modules.General.Item.Products;
 using Modules.General.Localisation;
-using Modules.General.Ui;
 using Modules.General.Ui.Common.Menu;
 using TMPro;
 using UnityEngine;
@@ -15,13 +12,11 @@ using Zenject;
 namespace Modules.Factory.Menu.Units.Selection
 {
     [AddComponentMenu("Scripts/Factory/Menu/Units/Selection/Selection Popup View")]
-    public class SelectionPopupView : MonoBehaviour
+    public class SelectionPopupView : MenuBase
     {
         #region Zenject
         
         [Inject] private readonly ILocalisationController _localisationController;
-        [Inject] private readonly IAudioController _audioController;
-        [Inject] private readonly IUiController _uiController;
         [Inject] private readonly IProductsController _productsController;
         [Inject] private readonly UnitsMenuManager _unitsMenuManager;
         [Inject] private readonly UnitsMenuFactory _unitsMenuFactory;
@@ -30,12 +25,9 @@ namespace Modules.Factory.Menu.Units.Selection
 
         #region Components
 
-        [SerializeField] private UiType type;
-
         [Space]
         [SerializeField] private TextMeshProUGUI title;
-        [SerializeField] private Button close;
-        
+
         [Space]
         [SerializeField] private Transform cellsParent;
         [SerializeField] private List<SelectionCellView> cells;
@@ -70,12 +62,11 @@ namespace Modules.Factory.Menu.Units.Selection
 
         #region Unity Methods
         
-        private void Awake()
+        protected override void Awake()
         {
-            _unitsMenuManager.Selection = this;
+            base.Awake();
             
-            _uiController.AddUi(type, gameObject);
-            close.onClick.AddListener(Close);
+            _unitsMenuManager.Selection = this;
 
             SetSelectionData();
             SetTitleData();
@@ -86,15 +77,9 @@ namespace Modules.Factory.Menu.Units.Selection
 
         private void SetTitleData()
         {
-            title.text = _localisationController.GetLanguageValue(ActiveItem.Data.ProductGroup.ToString());
+            title.text = _localisationController.GetLanguageValue(ActiveItem.Data.Key);
         }
 
-        public void Close()
-        {
-            _audioController.PlayAudio(AudioClipType.CloseClick);
-            _uiController.RemoveUi(type);
-        }
-        
         private void SetSelectionData()
         {
             if (cells.Count != 0)

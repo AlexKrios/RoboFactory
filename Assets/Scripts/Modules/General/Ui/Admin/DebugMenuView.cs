@@ -3,6 +3,7 @@ using Modules.General.Level;
 using Modules.General.Money;
 using Modules.General.Order;
 using Modules.General.Save;
+using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
@@ -39,29 +40,29 @@ namespace Modules.General.Ui.Admin
         [SerializeField] private Button resetOrder;
 
         #endregion
+
+        #region Variables
+
+        private CompositeDisposable _disposable;
+
+        #endregion
         
         #region Unity Methods
 
         private void Awake()
         {
-            moneyPlus.onClick.AddListener(OnMoneyPlus);
-            bankrupt.onClick.AddListener(OnBankrupt);
-            experiencePlus.onClick.AddListener(OnExperiencePlus);
-            experiencePlusDouble.onClick.AddListener(OnExperiencePlusDouble);
-            rawMax.onClick.AddListener(OnRawMax);
-            rawMin.onClick.AddListener(OnRawMin);
-            resetOrder.onClick.AddListener(OnResetOrder);
+            moneyPlus.OnClickAsObservable().Subscribe(_ => OnMoneyPlus()).AddTo(_disposable);
+            bankrupt.OnClickAsObservable().Subscribe(_ => OnBankrupt()).AddTo(_disposable);
+            experiencePlus.OnClickAsObservable().Subscribe(_ => OnExperiencePlus()).AddTo(_disposable);
+            experiencePlusDouble.OnClickAsObservable().Subscribe(_ => OnExperiencePlusDouble()).AddTo(_disposable);
+            rawMax.OnClickAsObservable().Subscribe(_ => OnRawMax()).AddTo(_disposable);
+            rawMin.OnClickAsObservable().Subscribe(_ => OnRawMin()).AddTo(_disposable);
+            resetOrder.OnClickAsObservable().Subscribe(_ => OnResetOrder()).AddTo(_disposable);
         }
         
         private void OnDestroy()
         {
-            moneyPlus.onClick.RemoveListener(OnMoneyPlus);
-            bankrupt.onClick.RemoveListener(OnBankrupt);
-            experiencePlus.onClick.RemoveListener(OnExperiencePlus);
-            experiencePlusDouble.onClick.RemoveListener(OnExperiencePlusDouble);
-            rawMax.onClick.RemoveListener(OnRawMax);
-            rawMin.onClick.RemoveListener(OnRawMin);
-            resetOrder.onClick.RemoveListener(OnResetOrder);
+            _disposable.Dispose();
         }
 
         #endregion

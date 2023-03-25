@@ -63,7 +63,9 @@ MonoBehaviour:
     - {fileID: 11400000, guid: aedf127617cf6c346ae6dc3ff48fb8e5, type: 2}
     upgradeData: {fileID: 11400000, guid: 5072e6947a629c647baf637025f51003, type: 2}
   production:
-    upgradeData: {fileID: 11400000, guid: 5f62e1c220c8bfc498061e554ff1155a, type: 2}
+    upgradeQueueData: {fileID: 11400000, guid: 5f62e1c220c8bfc498061e554ff1155a, type: 2}
+    upgradeQualityData: {fileID: 11400000, guid: fb19fe9a7f83b344e8dd8b740b5acab8,
+      type: 2}
   order:
     orders:
     - {fileID: 11400000, guid: 96e4b3d8567d0b047a6dccf1e8bd8786, type: 2}

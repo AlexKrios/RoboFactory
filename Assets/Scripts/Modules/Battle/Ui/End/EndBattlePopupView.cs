@@ -2,6 +2,7 @@
 using Modules.General.Location;
 using Modules.General.Save;
 using TMPro;
+using UniRx;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -33,11 +34,19 @@ namespace Modules.Battle.Ui.End
 
         #endregion
 
+        #region Variables
+
+        private CompositeDisposable _disposable;
+
+        #endregion
+        
         #region Unity Methods
 
         private void Awake()
         {
-            acceptButton.onClick.AddListener(AcceptButtonClick);
+            _disposable = new CompositeDisposable();
+            
+            acceptButton.OnClickAsObservable().Subscribe(_ => AcceptButtonClick()).AddTo(_disposable);
 
             SetTitle(_battleController.BattleResult);
             StartCoroutine(CreateItemsCell());
@@ -45,7 +54,7 @@ namespace Modules.Battle.Ui.End
 
         private void OnDestroy()
         {
-            acceptButton.onClick.RemoveListener(AcceptButtonClick);
+            _disposable.Dispose();
         }
 
         #endregion

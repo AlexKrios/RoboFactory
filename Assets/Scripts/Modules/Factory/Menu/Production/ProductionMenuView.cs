@@ -5,6 +5,7 @@ using Modules.Factory.Menu.Production.Sidebar;
 using Modules.Factory.Menu.Production.Tab;
 using Modules.General.Save;
 using Modules.General.Ui.Common.Menu;
+using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
@@ -46,7 +47,7 @@ namespace Modules.Factory.Menu.Production
             
             base.Awake();
             
-            upgrade.onClick.AddListener(OnUpgradeClick);
+            upgrade.OnClickAsObservable().Subscribe(_ => OnUpgradeClick()).AddTo(Disposable);
 
             header.OnTabClickEvent += OnGroupTabClick;
             star.OnClickEvent += OnStarTabClick;

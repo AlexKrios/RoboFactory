@@ -2,6 +2,7 @@
 using Modules.General.Audio;
 using Modules.General.Audio.Models;
 using Modules.General.Settings.Models;
+using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
@@ -33,6 +34,7 @@ namespace Modules.Factory.Menu.Settings.Language
         public Action<LanguageCellView, LanguageType> OnClickEvent { get; set; }
 
         private Button _button;
+        private CompositeDisposable _disposable;
 
         #endregion
 
@@ -41,12 +43,12 @@ namespace Modules.Factory.Menu.Settings.Language
         private void Awake()
         {
             _button = GetComponent<Button>();
-            _button.onClick.AddListener(Click);
+            _button.OnClickAsObservable().Subscribe(_ => Click()).AddTo(_disposable);
         }
         
         private void OnDestroy()
         {
-            _button.onClick.RemoveListener(Click);
+            _disposable.Dispose();
         }
 
         #endregion

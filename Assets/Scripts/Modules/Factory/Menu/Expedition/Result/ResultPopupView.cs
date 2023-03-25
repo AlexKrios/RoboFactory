@@ -9,6 +9,7 @@ using Modules.General.Save;
 using Modules.General.Ui;
 using Modules.General.Unit;
 using TMPro;
+using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
@@ -56,6 +57,8 @@ namespace Modules.Factory.Menu.Expedition.Result
         private CanvasGroup _canvasGroup;
         
         private ExpeditionObject _data;
+        
+        private CompositeDisposable _disposable;
 
         #endregion
 
@@ -63,16 +66,17 @@ namespace Modules.Factory.Menu.Expedition.Result
 
         private void Awake()
         {
+            _disposable = new CompositeDisposable();
             _canvasGroup = GetComponent<CanvasGroup>();
             
-            acceptButton.onClick.AddListener(AcceptButtonClick);
-            
+            acceptButton.OnClickAsObservable().Subscribe(_ => AcceptButtonClick()).AddTo(_disposable);
+
             _uiController.AddUi(type, gameObject);
         }
 
         private void OnDestroy()
         {
-            acceptButton.onClick.RemoveListener(AcceptButtonClick);
+            _disposable.Dispose();
         }
 
         #endregion

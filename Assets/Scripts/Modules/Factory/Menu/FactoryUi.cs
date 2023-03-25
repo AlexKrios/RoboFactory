@@ -7,6 +7,7 @@ using Modules.General.Level;
 using Modules.General.Money;
 using Modules.General.Ui.Admin;
 using TMPro;
+using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
 using Utils;
@@ -47,16 +48,24 @@ namespace Modules.Factory.Menu
 
         #endregion
 
+        #region Variables
+
+        private CompositeDisposable _disposable;
+
+        #endregion
+        
         #region Unity Methods
 
         private void Awake()
         {
+            _disposable = new CompositeDisposable();
+            
             _moneyController.OnMoneySet += SetMoneyData;
             _levelController.OnExperienceSet += SetExperienceData;
             _levelController.OnLevelSet += SetLevelData;
             
-            settingsButton.onClick.AddListener(SettingsClick);
-            
+            settingsButton.OnClickAsObservable().Subscribe(_ => SettingsClick()).AddTo(_disposable);
+
             debug.gameObject.SetActive(true);
             
             levelSlider.value = 0;
@@ -74,8 +83,8 @@ namespace Modules.Factory.Menu
             _moneyController.OnMoneySet -= SetMoneyData;
             _levelController.OnExperienceSet -= SetExperienceData;
             _levelController.OnLevelSet -= SetLevelData;
-            
-            settingsButton.onClick.RemoveListener(SettingsClick);
+
+            _disposable.Dispose();
         }
 
         #endregion

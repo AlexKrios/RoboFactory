@@ -6,11 +6,11 @@
     "audioVolume": 6.0
   },
   "moneyInfo": {
-    "money": 2000
+    "money": 4500
   },
   "levelInfo": {
-    "level": 2,
-    "experience": 385
+    "level": 5,
+    "experience": 5385
   },
   "storesInfo": {
     "raw": [
@@ -38,7 +38,7 @@
     "products": [
       {
         "key": "trooper_weapon_product_star1",
-        "count": 1,
+        "count": 9,
         "experience": 1
       },
       {
@@ -121,24 +121,24 @@
     "expeditions": []
   },
   "productionsInfo": {
-    "level": 3,
+    "level": 1,
     "count": 2,
     "production": []
   },
   "ordersInfo": {
     "orders": [
       {
-        "key": "order_weapon_3",
+        "key": "order_weapon_1",
         "isActive": true,
         "isComplete": false
       },
       {
-        "key": "order_armor_4",
+        "key": "order_armor_3",
         "isActive": true,
         "isComplete": false
       }
     ],
     "count": 0,
-    "timeRefresh": 133224479990000000
+    "timeRefresh": 133241759990000000
   }
 }

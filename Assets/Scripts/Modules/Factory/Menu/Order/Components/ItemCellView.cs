@@ -6,6 +6,7 @@ using Modules.General.Order;
 using Modules.General.Order.Models.Object;
 using Modules.General.Save;
 using TMPro;
+using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
 using Utils;
@@ -44,6 +45,7 @@ namespace Modules.Factory.Menu.Order.Components
         #region Variables
 
         private OrderObject _orderData;
+        private CompositeDisposable _disposable;
 
         #endregion
 
@@ -51,12 +53,14 @@ namespace Modules.Factory.Menu.Order.Components
 
         private void Awake()
         {
-            button.onClick.AddListener(Click);
+            _disposable = new CompositeDisposable();
+            
+            button.OnClickAsObservable().Subscribe(_ => Click()).AddTo(_disposable);
         }
         
         private void OnDestroy()
         {
-            button.onClick.RemoveListener(Click);
+            _disposable.Dispose();
         }
 
         #endregion

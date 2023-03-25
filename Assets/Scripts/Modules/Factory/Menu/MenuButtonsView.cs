@@ -11,6 +11,7 @@ using Modules.General.Audio.Models;
 using Modules.General.Item.Production;
 using Modules.General.Location;
 using Modules.General.Ui;
+using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
@@ -38,6 +39,7 @@ namespace Modules.Factory.Menu
         #region Variables
 
         private Dictionary<UiType, Button> _menuButtonsDictionary;
+        private CompositeDisposable _disposable;
 
         #endregion
         
@@ -45,6 +47,7 @@ namespace Modules.Factory.Menu
 
         private void Awake()
         {
+            _disposable = new CompositeDisposable();
             _menuButtonsDictionary = new Dictionary<UiType, Button>
             {
                 { UiType.Production, _productionMenuFactory.CreateButton(transform) },
@@ -55,12 +58,17 @@ namespace Modules.Factory.Menu
                 { UiType.Order, _orderMenuFactory.CreateButton(transform) }
             };
 
-            _menuButtonsDictionary[UiType.Production].onClick.AddListener(ProductionClick);
-            _menuButtonsDictionary[UiType.Storage].onClick.AddListener(StorageClick);
-            _menuButtonsDictionary[UiType.Conversion].onClick.AddListener(ConversionClick);
-            _menuButtonsDictionary[UiType.Units].onClick.AddListener(UnitsClick);
-            _menuButtonsDictionary[UiType.Expedition].onClick.AddListener(ExpeditionClick);
-            _menuButtonsDictionary[UiType.Order].onClick.AddListener(OrderClick);
+            _menuButtonsDictionary[UiType.Production].OnClickAsObservable().Subscribe(_ => ProductionClick()).AddTo(_disposable);
+            _menuButtonsDictionary[UiType.Storage].OnClickAsObservable().Subscribe(_ => StorageClick()).AddTo(_disposable);
+            _menuButtonsDictionary[UiType.Conversion].OnClickAsObservable().Subscribe(_ => ConversionClick()).AddTo(_disposable);
+            _menuButtonsDictionary[UiType.Units].OnClickAsObservable().Subscribe(_ => UnitsClick()).AddTo(_disposable);
+            _menuButtonsDictionary[UiType.Expedition].OnClickAsObservable().Subscribe(_ => ExpeditionClick()).AddTo(_disposable);
+            _menuButtonsDictionary[UiType.Order].OnClickAsObservable().Subscribe(_ => OrderClick()).AddTo(_disposable);
+        }
+
+        private void OnDestroy()
+        {
+            _disposable.Dispose();
         }
 
         #endregion

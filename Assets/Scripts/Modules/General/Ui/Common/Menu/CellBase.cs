@@ -1,5 +1,6 @@
 ﻿using Modules.General.Audio;
 using Modules.General.Audio.Models;
+using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
@@ -29,6 +30,7 @@ namespace Modules.General.Ui.Common.Menu
         #region Variables
 
         private Button _buttonComponent;
+        private CompositeDisposable _disposable;
 
         #endregion
 
@@ -36,8 +38,10 @@ namespace Modules.General.Ui.Common.Menu
 
         protected virtual void Awake()
         {
+            _disposable = new CompositeDisposable();
+            
             _buttonComponent = GetComponent<Button>();
-            _buttonComponent.onClick.AddListener(Click);
+            _buttonComponent.OnClickAsObservable().Subscribe(_ => Click()).AddTo(_disposable);
             
             if (!_buttonComponent.interactable)
                 locked.SetActive(true);
@@ -47,6 +51,11 @@ namespace Modules.General.Ui.Common.Menu
         {
             if (activeImage != null && activeImage.gameObject.activeSelf)
                 activeImage.transform.Rotate(new Vector3(0, 0, 30) * Time.deltaTime);
+        }
+
+        private void OnDestroy()
+        {
+            _disposable.Dispose();
         }
 
         #endregion

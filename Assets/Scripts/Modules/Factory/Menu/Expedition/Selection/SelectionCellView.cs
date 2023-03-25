@@ -13,7 +13,7 @@ namespace Modules.Factory.Menu.Expedition.Selection
     {
         #region Variables
 
-        public Action<SelectionCellView> OnEquipmentClick { get; set; }
+        public Action<SelectionCellView> OnUnitClick { get; set; }
 
         public UnitObject Data { get; private set; }
 
@@ -23,13 +23,13 @@ namespace Modules.Factory.Menu.Expedition.Selection
         {
             base.Click();
             
-            OnEquipmentClick?.Invoke(this);
+            OnUnitClick?.Invoke(this);
         }
         
-        public async void SetData(UnitObject unit)
+        public async void SetUnitData(UnitObject unit)
         {
             Data = unit;
-            var sprite = await AssetsController.LoadAsset<Sprite>(unit?.IconRef);
+            var sprite = await AssetsController.LoadAsset<Sprite>(unit.IconRef);
             
             SetIconSprite(sprite);
         }

@@ -1,15 +1,18 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using Modules.Factory.Building;
 using Modules.Factory.Building.Floors;
 using Modules.General.Coroutines;
+using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
 namespace Modules.Factory.Cameras
 {
+    [UsedImplicitly]
     public class CameraController
     {
         #region Zenject
@@ -36,13 +39,17 @@ namespace Modules.Factory.Cameras
 
         private Vector3 _targetPosition;
         private Coroutine _activeCoroutine;
+        
+        private CompositeDisposable _disposable;
 
         #endregion
 
         public void Init()
         {
-            MoveUp.onClick.AddListener(() => Move(CameraDirection.Up));
-            MoveDown.onClick.AddListener(() => Move(CameraDirection.Down));
+            _disposable = new CompositeDisposable();
+            
+            MoveUp.OnClickAsObservable().Subscribe(_ => Move(CameraDirection.Up)).AddTo(_disposable);
+            MoveDown.OnClickAsObservable().Subscribe(_ => Move(CameraDirection.Down)).AddTo(_disposable);
 
             OnButtonClick += _factoryBuildingController.SetBuildingVisibility;
         }

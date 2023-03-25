@@ -65,9 +65,9 @@ MonoBehaviour:
       type: 3}
     locationPrefab: {fileID: 2791654665713099554, guid: 86262d85a6e741a4a9194f996c969458,
       type: 3}
-    selectionPopupPrefab: {fileID: 2304976658524223300, guid: f2e2690adfed25749b83cb57316ef8df,
+    selectionPopupPrefab: {fileID: 2304976658524223300, guid: 175079862e4d7914186c368bb0b32d3b,
       type: 3}
-    selectionUnitPrefab: {fileID: 856711308128087706, guid: 06513fd078de790429d07f729a260de2,
+    selectionCellPrefab: {fileID: 856711308128087706, guid: 725c774cec2c6dc468475ec6b43a0b40,
       type: 3}
     queuePrefab: {fileID: 4758183550124237268, guid: 0bf0aa54007c06546bf4031140da168e,
       type: 3}

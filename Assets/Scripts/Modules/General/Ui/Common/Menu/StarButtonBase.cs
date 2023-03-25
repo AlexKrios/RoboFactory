@@ -1,6 +1,7 @@
 ﻿using Modules.General.Audio;
 using Modules.General.Audio.Models;
 using TMPro;
+using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
@@ -17,12 +18,6 @@ namespace Modules.General.Ui.Common.Menu
 
         #endregion
 
-        #region Variables
-
-        private Button _buttonComponent;
-
-        #endregion
-        
         #region Components
 
         [SerializeField] private TextMeshProUGUI level;
@@ -30,15 +25,29 @@ namespace Modules.General.Ui.Common.Menu
 
         #endregion
 
+        #region Variables
+
+        private Button _buttonComponent;
+        private CompositeDisposable _disposable;
+
+        #endregion
+        
         #region Unity Methods
 
         protected virtual void Awake()
         {
-            _buttonComponent = GetComponent<Button>();
-            _buttonComponent.onClick.AddListener(Click);
+            _disposable = new CompositeDisposable();
             
+            _buttonComponent = GetComponent<Button>();
+            _buttonComponent.OnClickAsObservable().Subscribe(_ => Click()).AddTo(_disposable);
+
             if (!_buttonComponent.interactable)
                 locked.SetActive(true);
+        }
+
+        private void OnDestroy()
+        {
+            _disposable.Dispose();
         }
 
         #endregion

@@ -21,7 +21,8 @@ namespace Modules.General.Item.Production
         ProductionObject GetProduction(Guid id);
         void RemoveProduction(Guid id);
         
-        UpgradeDataObject GetUpgradeData();
+        UpgradeDataObject GetUpgradeQueueData();
+        UpgradeDataObject GetUpgradeQualityData();
 
         bool IsEnoughParts(ProductionObject productionObj);
         void RemoveParts(ProductionObject productionObj);

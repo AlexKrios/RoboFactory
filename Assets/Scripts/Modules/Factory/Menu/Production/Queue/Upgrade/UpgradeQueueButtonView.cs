@@ -54,7 +54,7 @@ namespace Modules.Factory.Menu.Production.Queue.Upgrade
             base.Awake();
 
             SetButtonText(_localisationController.GetLanguageValue(LocalisationKeys.UpgradeButtonTitleKey));
-            _buyData = _productionController.GetUpgradeData();
+            _buyData = _productionController.GetUpgradeQueueData();
             
             SetState();
         }

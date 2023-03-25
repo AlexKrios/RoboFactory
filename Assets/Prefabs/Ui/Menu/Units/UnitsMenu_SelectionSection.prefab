@@ -243,6 +243,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3673148422514412041}
   - component: {fileID: 1085384350642622572}
+  - component: {fileID: 3981339500849636747}
   m_Layer: 5
   m_Name: UnitsMenu_SelectionSection
   m_TagString: Untagged
@@ -285,8 +286,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 151
-  title: {fileID: 6769662054202551844}
   close: {fileID: 8807087765496294839}
+  title: {fileID: 6769662054202551844}
   cellsParent: {fileID: 8008384591280705591}
   cells:
   - {fileID: 3892687099763013538}
@@ -306,6 +307,18 @@ MonoBehaviour:
   - {fileID: 4119335660746622277}
   - {fileID: 762035644589746955}
   select: {fileID: 1904208163407605048}
+--- !u!225 &3981339500849636747
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2304976658524223300}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &2489720184304949844
 GameObject:
   m_ObjectHideFlags: 0

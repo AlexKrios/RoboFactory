@@ -193,7 +193,7 @@ Animator:
   m_GameObject: {fileID: 5977401071244761863}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 133f1a052b40e3245a3b3f8dadba48ee, type: 2}
+  m_Controller: {fileID: 9100000, guid: 0de441dd7b0c4fb459af0ff52965b505, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -333,7 +333,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4285261568
+    rgba: 4282485760
   m_fontColor: {r: 0, g: 0.90588236, b: 0.41960785, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -565,7 +565,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4285261568
+    rgba: 4282485760
   m_fontColor: {r: 0, g: 0.90588236, b: 0.41960785, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3

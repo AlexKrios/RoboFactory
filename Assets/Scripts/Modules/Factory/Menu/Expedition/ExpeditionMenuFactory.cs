@@ -41,9 +41,9 @@ namespace Modules.Factory.Menu.Expedition
             popup.transform.localPosition = new Vector3(0, 0, -500);
         }
         
-        public SelectionCellView CreateSelectionUnit(Transform parent)
+        public SelectionCellView CreateSelectionCell(Transform parent)
         {
-            return _container.InstantiatePrefabForComponent<SelectionCellView>(_settings.selectionUnitPrefab, parent);
+            return _container.InstantiatePrefabForComponent<SelectionCellView>(_settings.selectionCellPrefab, parent);
         }
         
         public void CreateUpgradeQueuePopup(Transform parent)
@@ -79,7 +79,7 @@ namespace Modules.Factory.Menu.Expedition
 
             [Space]
             public GameObject selectionPopupPrefab;
-            public GameObject selectionUnitPrefab;
+            public GameObject selectionCellPrefab;
             
             [Space]
             public GameObject queuePrefab;

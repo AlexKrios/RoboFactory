@@ -1,6 +1,7 @@
 ﻿using Modules.General.Audio;
 using Modules.General.Audio.Models;
 using TMPro;
+using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
@@ -26,6 +27,7 @@ namespace Modules.General.Ui.Common
         #region Variables
 
         private Button _button;
+        private CompositeDisposable _disposable;
 
         #endregion
 
@@ -33,8 +35,15 @@ namespace Modules.General.Ui.Common
 
         protected virtual void Awake()
         {
+            _disposable = new CompositeDisposable();
+            
             _button = GetComponent<Button>();
-            _button.onClick.AddListener(Click);
+            _button.OnClickAsObservable().Subscribe(_ => Click()).AddTo(_disposable);
+        }
+
+        private void OnDestroy()
+        {
+            _disposable.Dispose();
         }
 
         #endregion
