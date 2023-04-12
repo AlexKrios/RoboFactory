@@ -1,4 +1,5 @@
 using DG.Tweening;
+using Modules.Factory.Cameras;
 using Modules.Factory.Menu.Production.Queue;
 using Modules.Factory.Menu.Settings;
 using Modules.General.Audio;
@@ -24,11 +25,12 @@ namespace Modules.Factory.Menu
         [Inject] private readonly IMoneyController _moneyController;
         [Inject] private readonly ILevelController _levelController;
         [Inject] private readonly SettingsMenuFactory _settingsMenuFactory;
+        [Inject] private readonly FactoryCameraController _factoryCameraController;
 
         #endregion
 
         #region Components
-
+        
         [SerializeField] private DebugMenuView debug;
         
         [Header("Money")]
@@ -40,11 +42,19 @@ namespace Modules.Factory.Menu
         
         [Header("Settings")]
         [SerializeField] private Button settingsButton;
+
+        [Header("Elevator")]
+        [SerializeField] private Button floorUpButton;
+        [SerializeField] private Button floorDownButton;
         
         [Header("Production")]
         [SerializeField] private ProductionSection production;
         
+        [Header("Menu Buttons")]
+        [SerializeField] private MenuButtonsView menuButtons;
+        
         public ProductionSection Production => production;
+        public MenuButtonsView MenuButtons => menuButtons;
 
         #endregion
 
@@ -64,7 +74,9 @@ namespace Modules.Factory.Menu
             _levelController.OnExperienceSet += SetExperienceData;
             _levelController.OnLevelSet += SetLevelData;
             
-            settingsButton.OnClickAsObservable().Subscribe(_ => SettingsClick()).AddTo(_disposable);
+            settingsButton.OnClickAsObservable().Subscribe(_ => OnSettingsClick()).AddTo(_disposable);
+            floorUpButton.OnClickAsObservable().Subscribe(_ => OnFloorUpClick()).AddTo(_disposable);
+            floorDownButton.OnClickAsObservable().Subscribe(_ => OnFloorDownClick()).AddTo(_disposable);
 
             debug.gameObject.SetActive(true);
             
@@ -118,10 +130,13 @@ namespace Modules.Factory.Menu
             levelCount.text = _levelController.Level.ToString();
         }
         
-        private void SettingsClick()
+        private void OnSettingsClick()
         {
             _audioController.PlayAudio(AudioClipType.ButtonClick);
             _settingsMenuFactory.CreateMenu();
         }
+
+        private void OnFloorUpClick() => _factoryCameraController.Move(1);
+        private void OnFloorDownClick() => _factoryCameraController.Move(-1);
     }
 }

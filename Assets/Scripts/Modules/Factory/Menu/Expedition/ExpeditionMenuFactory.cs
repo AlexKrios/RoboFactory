@@ -1,22 +1,25 @@
 ﻿using System;
+using JetBrains.Annotations;
 using Modules.Factory.Menu.Expedition.Locations;
 using Modules.Factory.Menu.Expedition.Queue.Upgrade;
 using Modules.Factory.Menu.Expedition.Result;
 using Modules.Factory.Menu.Expedition.Selection;
 using Modules.General.Location.Model;
+using Modules.General.Ui;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
 namespace Modules.Factory.Menu.Expedition
 {
+    [UsedImplicitly]
     public class ExpeditionMenuFactory
     {
         #region Zenject
 
         [Inject] private readonly DiContainer _container;
         [Inject] private readonly Settings _settings;
-        [Inject(Id = "MenuCanvas")] private readonly RectTransform _menuCanvas;
+        [Inject] private readonly IUiController _uiController;
 
         #endregion
 
@@ -27,7 +30,8 @@ namespace Modules.Factory.Menu.Expedition
         
         public void CreateMenu()
         { 
-            _container.InstantiatePrefabForComponent<ExpeditionMenuView>(_settings.menuPrefab, _menuCanvas);
+            var canvasT = _uiController.GetCanvas(CanvasType.Ui).transform;
+            _container.InstantiatePrefabForComponent<ExpeditionMenuView>(_settings.menuPrefab, canvasT);
         }
         
         public LocationCellView CreateLocationCell(Transform parent)

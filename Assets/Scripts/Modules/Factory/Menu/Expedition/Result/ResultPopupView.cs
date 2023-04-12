@@ -34,9 +34,6 @@ namespace Modules.Factory.Menu.Expedition.Result
 
         #region Components
         
-        [SerializeField] private UiType type;
-        
-        [Space]
         [SerializeField] private TextMeshProUGUI title;
         
         [Space]
@@ -71,7 +68,7 @@ namespace Modules.Factory.Menu.Expedition.Result
             
             acceptButton.OnClickAsObservable().Subscribe(_ => AcceptButtonClick()).AddTo(_disposable);
 
-            _uiController.AddUi(type, gameObject);
+            _uiController.AddUi(this);
         }
 
         private void OnDestroy()
@@ -147,7 +144,7 @@ namespace Modules.Factory.Menu.Expedition.Result
             _saveController.SaveStores();
 
             _canvasGroup.DOFade(0, 0.25f).SetEase(Ease.OutCubic)
-                .OnComplete(() => _uiController.RemoveUi(type));
+                .OnComplete(() => _uiController.RemoveUi(this, gameObject));
         }
     }
 }

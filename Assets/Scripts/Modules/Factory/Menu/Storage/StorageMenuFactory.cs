@@ -1,19 +1,22 @@
 ﻿using System;
+using JetBrains.Annotations;
 using Modules.Factory.Menu.Storage.Items;
+using Modules.General.Ui;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
 namespace Modules.Factory.Menu.Storage
 {
+    [UsedImplicitly]
     public class StorageMenuFactory
     {
         #region Zenject
 
         [Inject] private readonly DiContainer _container;
         [Inject] private readonly Settings _settings;
-        [Inject(Id = "MenuCanvas")] private readonly RectTransform _menuCanvas;
-        
+        [Inject] private readonly IUiController _uiController;
+
         #endregion                
 
         public Button CreateButton(Transform parent)
@@ -23,7 +26,8 @@ namespace Modules.Factory.Menu.Storage
         
         public void CreateMenu()
         {
-            _container.InstantiatePrefabForComponent<StorageMenuView>(_settings.menuPrefab, _menuCanvas);
+            var canvasT = _uiController.GetCanvas(CanvasType.Ui).transform;
+            _container.InstantiatePrefabForComponent<StorageMenuView>(_settings.menuPrefab, canvasT);
         }
         
         public ItemCellView CreateItem(Transform parent)

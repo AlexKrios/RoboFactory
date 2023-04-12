@@ -66,7 +66,7 @@ namespace Modules.Factory.Menu.Expedition.Units
         private void OnUnitClick(UnitCellView cell)
         {
             ActiveUnit = cell;
-            _expeditionMenuFactory.CreateSelectionMenu(_uiController.FindCanvas(CanvasType.Menu).transform);
+            _expeditionMenuFactory.CreateSelectionMenu(_uiController.GetCanvas(CanvasType.Ui).transform);
         }
     }
 }

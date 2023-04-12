@@ -19,6 +19,7 @@ namespace Modules.Factory.Menu.Production.Tab
         #region Components
 
         [SerializeField] private UnitType unitType;
+        public UnitType UnitType => unitType;
 
         #endregion
         

@@ -9,7 +9,7 @@ using Zenject;
 namespace Modules.Factory.Menu.Settings
 {
     [AddComponentMenu("Scripts/Factory/Menu/Settings/Settings Menu View")]
-    public class SettingsMenuView : MenuBase
+    public class SettingsMenuView : PopupBase
     {
         #region Zenject
 

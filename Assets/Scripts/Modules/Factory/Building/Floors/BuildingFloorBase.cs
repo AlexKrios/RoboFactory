@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using JetBrains.Annotations;
+using Modules.Factory.Cameras;
 using Modules.Factory.Menu;
 using Modules.General.Ui;
 using UnityEngine;
@@ -12,14 +13,14 @@ namespace Modules.Factory.Building.Floors
     {
         #region Zenject
         
-        [Inject] private readonly IFactoryBuildingController _factoryBuildingController;
-        [Inject(Id = "MenuButtons")] private readonly MenuButtonsView _menuButtonsView;
+        [Inject] private readonly FactoryCameraController _factoryCameraController;
+        [Inject] private readonly FactoryUi _factoryUi;
 
         #endregion
 
         #region Components
 
-        [SerializeField] private int floor;
+        [SerializeField] private int floorNumber;
         [SerializeField] private List<UiType> menuButtons;
         
         [Header("Links")]
@@ -39,7 +40,7 @@ namespace Modules.Factory.Building.Floors
         [SerializeField, UsedImplicitly] private MeshRenderer columnBackLeft;
         [SerializeField, UsedImplicitly] private MeshRenderer columnBackRight;
         
-        public int Floor => floor;
+        public int FloorNumber => floorNumber;
         public Transform CameraPoint => cameraPoint;
 
         #endregion
@@ -48,7 +49,7 @@ namespace Modules.Factory.Building.Floors
 
         private void Awake()
         {
-            _factoryBuildingController.FloorsDictionary.Add(floor, this);
+            _factoryCameraController.FloorsDictionary.Add(floorNumber, this);
         }
 
         #endregion
@@ -79,8 +80,8 @@ namespace Modules.Factory.Building.Floors
 
         public void SetMenuButtonsActive()
         {
-            _menuButtonsView.SetMenuButtonsActive(false);
-            _menuButtonsView.SetMenuButtonsActive(true, menuButtons);
+            _factoryUi.MenuButtons.SetMenuButtonsActive(false);
+            _factoryUi.MenuButtons.SetMenuButtonsActive(true, menuButtons);
         }
     }
 }

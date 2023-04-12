@@ -9,7 +9,7 @@ namespace Modules
 
         private void Update()
         {
-            mainCamera.transform.RotateAround(cameraTarget.position, Vector3.up, 5 * Time.deltaTime);
+            mainCamera.transform.RotateAround(cameraTarget.position, Vector3.up, 15 * Time.deltaTime);
             //mainCamera.transform.LookAt(cameraTarget);
         }
     }

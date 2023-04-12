@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using Modules.Factory.Menu.Order.Components;
 using Modules.General.Localisation;
 using Modules.General.Localisation.Models;
@@ -15,8 +15,10 @@ using Zenject;
 namespace Modules.Factory.Menu.Order
 {
     [AddComponentMenu("Scripts/Factory/Menu/Order/Order Menu View")]
-    public class OrderMenuView : MenuBase
+    public class OrderMenuView : PopupBase
     {
+        private const string TimerTemplate = "HH:mm:ss";
+        
         #region Zenject
 
         [Inject] private readonly ILocalisationController _localisationController;
@@ -42,25 +44,24 @@ namespace Modules.Factory.Menu.Order
             title.text = _localisationController.GetLanguageValue(LocalisationKeys.OrderMenuTitleKey);
 
             SetData();
-            StartCoroutine(StartRefreshTimer());
+            StartRefreshTimer();
         }
 
         #endregion
 
-        private IEnumerator StartRefreshTimer()
+        private async void StartRefreshTimer()
         {
-            var waitTime = new WaitForSeconds(1);
             while (true)
             {
                 var ticks = (DateUtil.EndOfTheDay(DateTime.Now) - DateTime.Now).Ticks;
-                timer.text = new DateTime(ticks).ToString("HH:mm:ss");
+                timer.text = new DateTime(ticks).ToString(TimerTemplate);
                 
-                yield return waitTime;
+                await UniTask.Delay(TimeSpan.FromSeconds(1));
                 
                 if (ticks <= 0)
                     SetData();
             }
-            // ReSharper disable once IteratorNeverReturns
+            // ReSharper disable once FunctionNeverReturns
         }
         
         private void SetData()

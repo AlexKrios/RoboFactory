@@ -2,8 +2,8 @@
 {
     public enum CanvasType
     {
+        Admin,
         HUD,
-        Menu,
-        Popup
+        Ui
     }
 }

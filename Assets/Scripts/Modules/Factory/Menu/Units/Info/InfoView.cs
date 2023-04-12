@@ -92,7 +92,7 @@ namespace Modules.Factory.Menu.Units.Info
             else
             {
                 ActiveCell = cell;
-                _unitsMenuFactory.CreateSelectionMenu(_uiController.FindCanvas(CanvasType.Menu).transform);
+                _unitsMenuFactory.CreateSelectionMenu(_uiController.GetCanvas(CanvasType.Ui).transform);
             }
         }
         

@@ -42,6 +42,8 @@ namespace Modules.Factory.Menu.Settings.Language
 
         private void Awake()
         {
+            _disposable = new CompositeDisposable();
+            
             _button = GetComponent<Button>();
             _button.OnClickAsObservable().Subscribe(_ => Click()).AddTo(_disposable);
         }

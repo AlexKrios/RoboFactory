@@ -19,6 +19,7 @@ namespace Modules.Factory.Menu.Production.Header
         #region Components
         
         [SerializeField] private ProductGroup group;
+        public ProductGroup Group => group;
 
         #endregion
         
@@ -31,6 +32,7 @@ namespace Modules.Factory.Menu.Production.Header
         protected override void Click()
         {
             base.Click();
+            
             OnClickEvent?.Invoke(this, group);
         }
 

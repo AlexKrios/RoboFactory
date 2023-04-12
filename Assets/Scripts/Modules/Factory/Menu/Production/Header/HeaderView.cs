@@ -4,6 +4,7 @@ using System.Linq;
 using Modules.General.Item.Products.Models.Types;
 using Modules.General.Localisation;
 using Modules.General.Localisation.Models;
+using Modules.General.Ui;
 using TMPro;
 using UnityEngine;
 using Zenject;
@@ -16,7 +17,7 @@ namespace Modules.Factory.Menu.Production.Header
         #region Zenject
 
         [Inject] private readonly ILocalisationController _localisationController;
-        [Inject] private readonly ProductionMenuManager _productionMenuManager;
+        [Inject] private readonly IUiController _uiController;
 
         #endregion
 
@@ -35,6 +36,7 @@ namespace Modules.Factory.Menu.Production.Header
         
         public Action OnTabClickEvent { get; set; }
 
+        private ProductionMenuView _menu;
         private HeaderTabCellView _activeTab;
         private HeaderTabCellView ActiveTab
         {
@@ -48,13 +50,14 @@ namespace Modules.Factory.Menu.Production.Header
                 _activeTab.SetActive();
             }
         }
-
         #endregion
 
         #region Unity Methods
 
         private void Awake()
         {
+            _menu = _uiController.FindUi<ProductionMenuView>();
+            
             SetTabsData();
             SetData();
         }
@@ -63,14 +66,14 @@ namespace Modules.Factory.Menu.Production.Header
 
         public void SetData()
         {
-            var productKey = LocalisationKeys.ProductKeys[_productionMenuManager.ActiveProductGroup];
-            var unitKey = LocalisationKeys.UnitKeys[_productionMenuManager.ActiveUnitType];
+            var productKey = LocalisationKeys.ProductKeys[_menu.ActiveProductGroup];
+            var unitKey = LocalisationKeys.UnitKeys[_menu.ActiveUnitType];
 
             title.text = _localisationController.GetLanguageValue(LocalisationKeys.ProductionMenuTitleKey);
             productGroup.text = _localisationController.GetLanguageValue(productKey);
             productType.text = _localisationController.GetLanguageValue(unitKey);
         }
-        
+
         private void SetTabsData()
         {
             var productGroupCount = Enum.GetValues(typeof(ProductGroup)).Length;
@@ -88,8 +91,8 @@ namespace Modules.Factory.Menu.Production.Header
             if (ActiveTab == tab)
                 return;
 
-            _productionMenuManager.ActiveProductGroup = group;
-            _productionMenuManager.ActiveProductType = 1;
+            _menu.ActiveProductGroup = group;
+            _menu.ActiveProductType = 1;
 
             ActiveTab = tab;
 

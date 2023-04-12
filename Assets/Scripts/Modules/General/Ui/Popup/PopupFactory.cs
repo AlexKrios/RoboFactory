@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
-using Modules.General.Ui.Popup.Views;
-using Modules.General.Ui.Popup.Views.Common;
+using Modules.General.Ui.Popup.Common;
 using UnityEngine;
 using Zenject;
 
@@ -16,48 +15,23 @@ namespace Modules.General.Ui.Popup
         [Inject] private readonly Settings _settings;
         [Inject] private readonly IUiController _uiController;
 
-        public void Create(UiType type, Transform parent)
-        {
-            var popupData = _settings.popups.First(x => x.type == type);
-            var popupExists = _uiController.FindUi(popupData.type);
-            if (popupExists != null)
-                return;
-
-            var popup = _container
-                .InstantiatePrefabForComponent<PopupBase>(popupData.prefab, parent);
-            
-            popup.name = popupData.type.ToString();
-
-            _uiController.AddUi(popupData.type, popup.gameObject);
-        }
-        
         public void CreateSmallNotification(UiType type, Transform parent)
         {
-            Debug.LogWarning(_settings);
-            var popupData = _settings.popups.First(x => x.type == type);
-            var popupExists = _uiController.FindUi(popupData.type);
+            var popupData = _settings.popups.First(x => x.Key == type);
+            var popupExists = _uiController.FindUi<SmallNotificationView>();
             if (popupExists != null)
                 return;
 
-            var popup = _container
-                .InstantiatePrefabForComponent<SmallNotificationView>(popupData.prefab, parent);
-            
-            popup.name = popupData.type.ToString();
+            var popup = _container.InstantiatePrefabForComponent<SmallNotificationView>(popupData.Value, parent);
+            popup.name = popupData.Key.ToString();
 
-            _uiController.AddUi(popupData.type, popup.gameObject);
+            _uiController.AddUi(this);
         }
 
         [Serializable]
         public class Settings
         {
-            public List<PopupFactoryObject> popups;
+            public List<KeyValuePair<UiType, GameObject>> popups;
         }
-    }
-
-    [Serializable]
-    public class PopupFactoryObject
-    {
-        public UiType type;
-        public GameObject prefab;
     }
 }

@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using Modules.General.Asset;
-using Modules.General.Item.Products;
 using Modules.General.Item.Products.Models.Object;
+using Modules.General.Ui;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -16,8 +16,7 @@ namespace Modules.Factory.Menu.Production.Parts
     {
         #region Zenject
         
-        [Inject] private readonly IProductsController _productsController;
-        [Inject] private readonly ProductionMenuManager _productionMenuManager;
+        [Inject] private readonly IUiController _uiController;
 
         #endregion
 
@@ -36,10 +35,9 @@ namespace Modules.Factory.Menu.Production.Parts
         #region Variables
 
         public Action OnPartClickEvent { get; set; }
-        
-        public ProductObject ActiveItem { get; private set; }
-        private ProductObject ActiveProduct => _productionMenuManager.Products.ActiveProduct.Data;
-        private int ActiveStar => _productionMenuManager.Star.ActiveStar;
+
+        private ProductionMenuView _menu;
+        private ProductObject ActiveProduct => _menu.ActiveProduct;
 
         #endregion
 
@@ -47,7 +45,7 @@ namespace Modules.Factory.Menu.Production.Parts
 
         private void Awake()
         {
-            _productionMenuManager.Parts = this;
+            _menu = _uiController.FindUi<ProductionMenuView>();
 
             SetData();
         }
@@ -56,42 +54,28 @@ namespace Modules.Factory.Menu.Production.Parts
 
         public async void SetData()
         {
-            ActiveItem = _productsController.GetProduct(ActiveProduct.Key);
-            
-            icon.sprite = await AssetsController.LoadAsset<Sprite>(ActiveItem.IconRef);
-            star.text = ActiveStar.ToString();
+            icon.sprite = await AssetsController.LoadAsset<Sprite>(ActiveProduct.IconRef);
+            star.text = _menu.ActiveStar.ToString();
             SetLevelData();
-
-            var recipe = ActiveItem.Recipe;
-            parts.ForEach(x => x.SetPartInfo(recipe));
-        }
-        
-        public async void SetComponent()
-        {
-            icon.sprite = await AssetsController.LoadAsset<Sprite>(ActiveItem.IconRef);
-            star.text = ActiveStar.ToString();
-            SetLevelData();
-            
-            var recipe = ActiveItem.Recipe;
-            parts.ForEach(x => x.SetPartInfo(recipe));
+            parts.ForEach(x => x.SetPartInfo(ActiveProduct.Recipe));
         }
 
         private void SetLevelData()
         {
-            var level = ActiveItem.GetLevel();
-            var experience = ActiveItem.Experience;
+            var level = ActiveProduct.GetLevel();
+            var experience = ActiveProduct.Experience;
 
-            if (ActiveItem.Caps.Last().level <= level)
+            if (ActiveProduct.Caps.Last().level <= level)
             {
                 levelBar.fillAmount = 1f;
                 levelCount.text = (level + 1).ToString();
             }
             else
             {
-                var prevCup = level == 1 ? 0 : ActiveItem.Caps.First(x => x.level == level - 1).experience;
+                var prevCup = level == 1 ? 0 : ActiveProduct.Caps.First(x => x.level == level - 1).experience;
                 var currentCap = level == 1 
-                    ? ActiveItem.Caps.First().experience  
-                    : ActiveItem.Caps.First(x => x.level == level).experience;
+                    ? ActiveProduct.Caps.First().experience  
+                    : ActiveProduct.Caps.First(x => x.level == level).experience;
                 var step = 1f / (currentCap - prevCup);
 
                 levelBar.fillAmount = step * (experience - prevCup);

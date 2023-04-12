@@ -2,6 +2,7 @@
 using Modules.General.Localisation;
 using Modules.General.Localisation.Models;
 using Modules.General.Scriptable;
+using Modules.General.Ui;
 using Modules.General.Ui.Common.Menu;
 using TMPro;
 using UnityEngine;
@@ -10,11 +11,12 @@ using Zenject;
 namespace Modules.Factory.Menu.Production.Queue.Upgrade
 {
     [AddComponentMenu("Scripts/Factory/Menu/Production/Queue/Upgrade Queue Popup View")]
-    public class UpgradeQueuePopupView : MenuBase
+    public class UpgradeQueuePopupView : PopupBase
     {
         #region Zenject
 
         [Inject] private readonly ILocalisationController _localisationController;
+        [Inject] private readonly IUiController _uiController;
         [Inject] private readonly IProductionController _productionController;
 
         #endregion
@@ -44,6 +46,8 @@ namespace Modules.Factory.Menu.Production.Queue.Upgrade
         protected override void Awake()
         {
             base.Awake();
+            
+            _uiController.AddUi(this);
             
             upgrade.OnUpgradeClick += Close;
             

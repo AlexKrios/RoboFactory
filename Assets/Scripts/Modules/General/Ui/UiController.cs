@@ -1,17 +1,41 @@
 ﻿using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
+using Zenject;
 
 namespace Modules.General.Ui
 {
+    [UsedImplicitly]
     public class UiController : IUiController
     {
+        [Inject] private readonly DiContainer _container;
+        
+        private readonly Dictionary<CameraType, GameObject> _cameraDictionary;
         private readonly Dictionary<CanvasType, GameObject> _canvasDictionary;
-        private readonly Dictionary<UiType, GameObject> _uiDictionary;
 
         public UiController()
         {
+            _cameraDictionary = new Dictionary<CameraType, GameObject>();
             _canvasDictionary = new Dictionary<CanvasType, GameObject>();
-            _uiDictionary = new Dictionary<UiType, GameObject>();
+        }
+
+        public void AddCamera(CameraType type, GameObject camera)
+        {
+            if (_cameraDictionary.ContainsKey(type))
+                _cameraDictionary[type] = camera;
+            else
+                _cameraDictionary.Add(type, camera);
+        }
+
+        public void SetCameraActive(CameraType type, bool value = true)
+        {
+            _cameraDictionary[type].SetActive(value);
+        }
+        
+        public void ClearCamera()
+        {
+            if (_cameraDictionary.Count != 0)
+                _cameraDictionary.Clear();
         }
 
         public void AddCanvas(CanvasType type, GameObject canvas)
@@ -22,40 +46,39 @@ namespace Modules.General.Ui
                 _canvasDictionary.Add(type, canvas);
         }
 
-        public GameObject FindCanvas(CanvasType type)
+        public GameObject GetCanvas(CanvasType type)
         {
             return _canvasDictionary[type];
         }
 
+        public void SetCanvasActive(CanvasType type, bool value = true)
+        {
+            _canvasDictionary[type].SetActive(value);
+        }
+
         public void ClearCanvas()
         {
-            _canvasDictionary.Clear();
+            if (_canvasDictionary.Count != 0)
+                _canvasDictionary.Clear();
         }
         
-        public void AddUi(UiType type, GameObject canvas)
+        public void AddUi<T>(T element) where T : class
         {
-            if (_uiDictionary.Count == 0)
-                _canvasDictionary[CanvasType.HUD].SetActive(false);
+            if (_container.TryResolve<T>() != null)
+                _container.Unbind<T>();
             
-            _uiDictionary.Add(type, canvas);
+            _container.BindInstance(element);
+        }
+        
+        public T FindUi<T>()
+        {
+            return _container.Resolve<T>();
         }
 
-        public GameObject FindUi(UiType key)
+        public void RemoveUi<T>(T element, GameObject gameObject, float timeout = 0f)
         {
-            return _uiDictionary[key];
-        }
-        public T FindUi<T>(UiType key)
-        {
-            return _uiDictionary[key].GetComponent<T>();
-        }
-
-        public void RemoveUi(UiType key, float timeout = 0f)
-        {
-            Object.Destroy(_uiDictionary[key], timeout);
-            _uiDictionary.Remove(key);
-
-            if (_uiDictionary.Count == 0)
-                _canvasDictionary[CanvasType.HUD].SetActive(true);
+            _container.Unbind<T>();
+            Object.Destroy(gameObject, timeout);
         }
     }
 }

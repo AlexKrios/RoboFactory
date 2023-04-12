@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Modules.General.Ui;
 using Modules.General.Unit.Models.Type;
 using UnityEngine;
 using Zenject;
@@ -12,7 +13,7 @@ namespace Modules.Factory.Menu.Production.Tab
     {
         #region Zenject
 
-        [Inject] private readonly ProductionMenuManager _productionMenuManager;
+        [Inject] private readonly IUiController _uiController;
 
         #endregion
 
@@ -26,6 +27,7 @@ namespace Modules.Factory.Menu.Production.Tab
         
         public Action OnTabClickEvent { get; set; }
 
+        private ProductionMenuView _menu;
         private TabCellView _activeTab;
         private TabCellView ActiveTab
         {
@@ -46,7 +48,7 @@ namespace Modules.Factory.Menu.Production.Tab
 
         private void Awake()
         {
-            _productionMenuManager.Tabs = this;
+            _menu = _uiController.FindUi<ProductionMenuView>();
             
             SetData();
         }
@@ -69,8 +71,8 @@ namespace Modules.Factory.Menu.Production.Tab
             if (ActiveTab == tab)
                 return;
 
-            _productionMenuManager.ActiveUnitType = unit;
-            _productionMenuManager.ActiveProductType = 1;
+            _menu.ActiveUnitType = unit;
+            _menu.ActiveProductType = 1;
 
             ActiveTab = tab;
 

@@ -4,13 +4,17 @@ namespace Modules.General.Ui
 {
     public interface IUiController
     {
-        void AddCanvas(CanvasType type, GameObject canvas);
-        GameObject FindCanvas(CanvasType type);
-        void ClearCanvas();
+        void AddCamera(CameraType type, GameObject camera);
+        void SetCameraActive(CameraType type, bool value = true);
+        void ClearCamera();
         
-        void AddUi(UiType type, GameObject canvas);
-        GameObject FindUi(UiType key);
-        T FindUi<T>(UiType key);
-        void RemoveUi(UiType key, float timeout = 0f);
+        void AddCanvas(CanvasType type, GameObject canvas);
+        GameObject GetCanvas(CanvasType type);
+        void SetCanvasActive(CanvasType type, bool value = true);
+        void ClearCanvas();
+
+        void AddUi<T>(T element) where T : class;
+        T FindUi<T>();
+        void RemoveUi<T>(T element, GameObject gameObject, float timeout = 0f);
     }
 }

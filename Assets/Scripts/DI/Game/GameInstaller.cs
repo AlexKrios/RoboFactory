@@ -2,7 +2,6 @@ using Modules.Factory.Api;
 using Modules.Factory.Menu.Conversion;
 using Modules.Factory.Menu.Expedition;
 using Modules.Factory.Menu.Order;
-using Modules.Factory.Menu.Production;
 using Modules.Factory.Menu.Storage;
 using Modules.Factory.Menu.Units;
 using Modules.General.Audio;
@@ -38,8 +37,8 @@ namespace Di.Game
             Container.BindInterfacesTo<LocalisationController>().AsSingle().NonLazy();
 
             InitCoroutines();
-            InstallControllers();
             InstallUi();
+            InstallControllers();
             InstallHelpers();
             InstallApi();
             InstallFactoryMenu();
@@ -89,8 +88,6 @@ namespace Di.Game
         private void InstallUi()
         {
             Container.BindInterfacesTo<UiController>().AsSingle().NonLazy();
-
-            Container.BindInterfacesTo<PopupController>().AsSingle().NonLazy();
             Container.Bind<PopupFactory>().AsSingle().NonLazy();
         }
 
@@ -101,7 +98,6 @@ namespace Di.Game
 
         private void InstallFactoryMenu()
         {
-            Container.Bind<ProductionMenuManager>().AsSingle().NonLazy();
             Container.Bind<StorageMenuManager>().AsSingle().NonLazy();
             Container.Bind<UnitsMenuManager>().AsSingle().NonLazy();
             Container.Bind<ExpeditionMenuManager>().AsSingle().NonLazy();

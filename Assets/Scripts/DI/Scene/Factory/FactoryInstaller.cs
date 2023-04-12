@@ -1,4 +1,3 @@
-using Modules.Factory.Building;
 using Modules.Factory.Cameras;
 using Modules.Factory.Menu;
 using Modules.Factory.Menu.Conversion;
@@ -9,7 +8,6 @@ using Modules.Factory.Menu.Order;
 using Modules.Factory.Menu.Production;
 using Modules.Factory.Menu.Production.Queue.Cell;
 using Modules.Factory.Menu.Production.Queue.Cell.State;
-using Modules.Factory.Menu.Production.Queue.Result;
 using Modules.Factory.Menu.Settings;
 using Modules.Factory.Menu.Storage;
 using Modules.Factory.Menu.Units;
@@ -25,29 +23,19 @@ namespace Di.Scene.Factory
 
         public override void InstallBindings()
         {
+            Container.Bind<FactoryCameraController>().AsSingle().NonLazy();
             Container.Bind<FactoryUi>().FromInstance(factoryUi).AsSingle().NonLazy();
-            
-            InstallCameraComponents();
+
             InstallUiFactory();
             InstallMenu();
         }
-
-        private void InstallCameraComponents()
-        {
-            Container.BindInterfacesTo<FactoryBuildingController>().AsSingle().NonLazy();
-            
-            Container.Bind<CameraController>().AsSingle().NonLazy();
-        }
-
+        
         private void InstallUiFactory()
         {
             Container.BindFactory<ProductionCell, ProductionCellEmpty, ProductionCellEmpty.Factory>();
             Container.BindFactory<ProductionCell, ProductionCellBusy, ProductionCellBusy.Factory>();
             Container.BindFactory<ProductionCell, ProductionCellFinish, ProductionCellFinish.Factory>();
 
-            //Container.BindFactory<CraftObject, ResultCanvas, ResultCanvas.Factory>().FromFactory<ResultCanvasFactory>();
-            Container.BindFactory<GameObject, ResultModel, ResultModel.Factory>().FromFactory<ResultModelFactory>();
-            
             Container.BindFactory<ExpeditionCell, ExpeditionCellEmpty, ExpeditionCellEmpty.Factory>();
             Container.BindFactory<ExpeditionCell, ExpeditionCellBusy, ExpeditionCellBusy.Factory>();
             Container.BindFactory<ExpeditionCell, ExpeditionCellFinish, ExpeditionCellFinish.Factory>();

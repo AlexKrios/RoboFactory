@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Modules.General.Asset;
-using Modules.General.Item.Products.Models.Object;
 using Modules.General.Localisation;
+using Modules.General.Ui;
 using Modules.General.Ui.Common.Menu;
 using TMPro;
 using UnityEngine;
@@ -18,7 +18,7 @@ namespace Modules.Factory.Menu.Production.Sidebar
         #region Zenject
         
         [Inject] private readonly ILocalisationController _localisationController;
-        [Inject] private readonly ProductionMenuManager _productionMenuManager;
+        [Inject] private readonly IUiController _uiController;
 
         #endregion
 
@@ -33,7 +33,7 @@ namespace Modules.Factory.Menu.Production.Sidebar
         
         #region Variables
 
-        private ProductObject ActiveItem => _productionMenuManager.Parts.ActiveItem;
+        private ProductionMenuView _menu;
 
         #endregion
 
@@ -41,6 +41,8 @@ namespace Modules.Factory.Menu.Production.Sidebar
 
         private void Awake()
         {
+            _menu = _uiController.FindUi<ProductionMenuView>();
+            
             SetData();
         }
 
@@ -48,11 +50,11 @@ namespace Modules.Factory.Menu.Production.Sidebar
 
         public async void SetData()
         {
-            title.text = _localisationController.GetLanguageValue(ActiveItem.Key);
-            icon.sprite = await AssetsController.LoadAsset<Sprite>(ActiveItem.IconRef);
-            timer.text = TimeUtil.DateCraftTimer(ActiveItem.Recipe.CraftTime);
+            title.text = _localisationController.GetLanguageValue(_menu.ActiveProduct.Key);
+            icon.sprite = await AssetsController.LoadAsset<Sprite>(_menu.ActiveProduct.IconRef);
+            timer.text = TimeUtil.DateCraftTimer(_menu.ActiveProduct.Recipe.CraftTime);
 
-            foreach (var specData in ActiveItem.Recipe.Specs)
+            foreach (var specData in _menu.ActiveProduct.Recipe.Specs)
             {
                 var spec = specs.First(x => x.SpecType == specData.type);
                 spec.SetData(specData);

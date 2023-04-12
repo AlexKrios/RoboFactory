@@ -10,7 +10,7 @@ namespace Modules.Factory.Menu.Units.Info
     {
         #region Zenject
 
-        [Inject(Id = "MenuCamera")] private readonly Camera _menuCamera;
+        [Inject(Id = "UiCamera")] private readonly Camera _uiCamera;
 
         #endregion
         
@@ -59,7 +59,7 @@ namespace Modules.Factory.Menu.Units.Info
                 return;
 
             var touch = Input.GetTouch(0);
-            var ray = _menuCamera.ScreenPointToRay(touch.position);
+            var ray = _uiCamera.ScreenPointToRay(touch.position);
             if(Physics.Raycast(ray, out var hit))
             {
                 if(hit.transform.gameObject != transform.parent.gameObject) 

@@ -1,5 +1,6 @@
 ﻿using System;
 using Modules.General.Item.Production;
+using Modules.General.Ui;
 using Modules.General.Ui.Common.Menu;
 using UnityEngine;
 using Zenject;
@@ -9,10 +10,12 @@ namespace Modules.Factory.Menu.Production.Sidebar
     [AddComponentMenu("Scripts/Factory/Menu/Production/Star Button View")]
     public class StarButtonView : StarButtonBase
     {
+        private const int DefaultStar = 1;
+        
         #region Zenject
-
+        
+        [Inject] private readonly IUiController _uiController;
         [Inject] private readonly IProductionController _productionController;
-        [Inject] private readonly ProductionMenuManager _productionMenuManager;
 
         #endregion
         
@@ -20,13 +23,13 @@ namespace Modules.Factory.Menu.Production.Sidebar
 
         public Action OnClickEvent { get; set; }
         
-        private int _activeStar;
-        public int ActiveStar
+        private ProductionMenuView _menu;
+        private int ActiveStar
         {
-            get => _activeStar;
-            private set
+            get => _menu.ActiveStar;
+            set
             {
-                _activeStar = value;
+                _menu.ActiveStar = value;
                 SetStarLevel(value);
             } 
         }
@@ -39,7 +42,8 @@ namespace Modules.Factory.Menu.Production.Sidebar
         {
             base.Awake();
 
-            _productionMenuManager.Star = this;
+            _menu = _uiController.FindUi<ProductionMenuView>();
+            
             ResetStar();
         }
 
@@ -60,7 +64,7 @@ namespace Modules.Factory.Menu.Production.Sidebar
 
         public void ResetStar()
         {
-            ActiveStar = ProductionMenuManager.DefaultStar;
+            ActiveStar = DefaultStar;
         }
     }
 }

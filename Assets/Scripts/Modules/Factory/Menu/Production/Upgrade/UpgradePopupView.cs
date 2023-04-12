@@ -15,7 +15,7 @@ using Zenject;
 namespace Modules.Factory.Menu.Production.Upgrade
 {
     [AddComponentMenu("Scripts/Factory/Menu/Production/Upgrade/Upgrade Popup View")]
-    public class UpgradePopupView : MenuBase
+    public class UpgradePopupView : PopupBase
     {
         #region Zenject
 

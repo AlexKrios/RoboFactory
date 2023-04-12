@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using JetBrains.Annotations;
 using Modules.General.Asset;
 using Modules.General.Audio.Models;
 using Modules.General.Settings;
@@ -9,6 +10,7 @@ using Random = System.Random;
 
 namespace Modules.General.Audio
 {
+    [UsedImplicitly]
     public class AudioController : IAudioController
     {
         [Inject] private readonly ISettingsController _settingsController;

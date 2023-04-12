@@ -22,7 +22,7 @@ namespace Modules.General.Ui.Common.Menu
 
         #region Components
         
-        [SerializeField] private UiType type;
+        [SerializeField] protected UiType type;
         
         [Space]
         [SerializeField] private Button close;
@@ -43,8 +43,6 @@ namespace Modules.General.Ui.Common.Menu
             Disposable = new CompositeDisposable();
             _canvasGroup = GetComponent<CanvasGroup>();
             close.OnClickAsObservable().Subscribe(_ => Close()).AddTo(Disposable);
-            
-            _uiController.AddUi(type, gameObject);
 
             PlayFadeIn();
         }
@@ -60,16 +58,20 @@ namespace Modules.General.Ui.Common.Menu
         {
             _canvasGroup.alpha = 0f;
             _canvasGroup.DOFade(1, FadeTime).SetEase(Ease.InCubic);
+            _uiController.SetCameraActive(CameraType.Main, false);
+            _uiController.SetCanvasActive(CanvasType.HUD, false);
         }
         
         public virtual void Close()
         {
             _audioController.PlayAudio(AudioClipType.CloseClick);
+            _uiController.SetCameraActive(CameraType.Main);
+            _uiController.SetCanvasActive(CanvasType.HUD);
             
             _canvasGroup.alpha = 1f;
             _canvasGroup.DOFade(0, FadeTime)
                 .SetEase(Ease.OutCubic)
-                .OnComplete(() => _uiController.RemoveUi(type));
+                .OnComplete(() => _uiController.RemoveUi(this, gameObject));
         }
     }
 }

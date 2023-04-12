@@ -51,6 +51,8 @@ namespace Modules.General.Ui.Admin
 
         private void Awake()
         {
+            _disposable = new CompositeDisposable();
+            
             moneyPlus.OnClickAsObservable().Subscribe(_ => OnMoneyPlus()).AddTo(_disposable);
             bankrupt.OnClickAsObservable().Subscribe(_ => OnBankrupt()).AddTo(_disposable);
             experiencePlus.OnClickAsObservable().Subscribe(_ => OnExperiencePlus()).AddTo(_disposable);

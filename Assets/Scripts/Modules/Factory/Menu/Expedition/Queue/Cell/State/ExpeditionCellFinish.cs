@@ -36,7 +36,7 @@ namespace Modules.Factory.Menu.Expedition.Queue.Cell.State
         {
             _cell.SetStateEmpty();
             
-            var parent = _uiController.FindCanvas(CanvasType.Menu);
+            var parent = _uiController.GetCanvas(CanvasType.Ui);
             _expeditionMenuFactory.CreateResultPopup(parent.transform, _cell.Data);
         }
 

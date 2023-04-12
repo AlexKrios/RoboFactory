@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Modules.General.Item.Products;
+using Modules.General.Ui;
 using UnityEngine;
 using Zenject;
 
@@ -12,8 +13,8 @@ namespace Modules.Factory.Menu.Production.Products
     {
         #region Zenject
         
+        [Inject] private readonly IUiController _uiController;
         [Inject] private readonly IProductsController _productsController;
-        [Inject] private readonly ProductionMenuManager _productionMenuManager;
         [Inject] private readonly ProductionMenuFactory _productionMenuFactory;
         
         #endregion
@@ -28,16 +29,18 @@ namespace Modules.Factory.Menu.Production.Products
 
         public Action OnProductClickEvent { get; set; }
 
+        private ProductionMenuView _menu;
         private ProductCellView _activeProduct;
-        public ProductCellView ActiveProduct
+        private ProductCellView ActiveProduct
         {
             get => _activeProduct;
-            private set 
+            set 
             {
                 if (_activeProduct != null)
                     _activeProduct.SetInactive();
 
                 _activeProduct = value;
+                _menu.ActiveProduct = value.Data;
                 _activeProduct.SetActive();
             }
         }
@@ -48,7 +51,7 @@ namespace Modules.Factory.Menu.Production.Products
 
         private void Awake()
         {
-            _productionMenuManager.Products = this;
+            _menu = _uiController.FindUi<ProductionMenuView>();
 
             CreateProductCells();
         }
@@ -62,9 +65,9 @@ namespace Modules.Factory.Menu.Production.Products
             
             var productsWithComponents = _productsController.GetAllProducts()
                 .Where(x =>
-                    x.ProductGroup == _productionMenuManager.ActiveProductGroup &&
-                    x.UnitType == _productionMenuManager.ActiveUnitType &&
-                    x.ProductType == _productionMenuManager.ActiveProductType
+                    x.ProductGroup == _menu.ActiveProductGroup &&
+                    x.UnitType == _menu.ActiveUnitType &&
+                    x.ProductType == _menu.ActiveProductType
                 ).OrderBy(x => x.Index).ToList();
 
             foreach (var productData in productsWithComponents)
@@ -89,7 +92,8 @@ namespace Modules.Factory.Menu.Production.Products
             if (ActiveProduct == tab)
                 return;
 
-            _productionMenuManager.ActiveProductType = productType;
+            _menu.ActiveProductType = productType;
+            _menu.ActiveProduct = tab.Data;
 
             ActiveProduct = tab;
 

@@ -90,7 +90,7 @@ namespace Modules.Factory.Menu
             }
             else
             {
-                var parent = _uiController.FindCanvas(CanvasType.Menu);
+                var parent = _uiController.GetCanvas(CanvasType.Ui);
                 _productionMenuFactory.CreateUpgradeQueuePopup(parent.transform);
             }
         }
@@ -122,7 +122,7 @@ namespace Modules.Factory.Menu
             }
             else
             {
-                var parent = _uiController.FindCanvas(CanvasType.Menu);
+                var parent = _uiController.GetCanvas(CanvasType.Ui);
                 _expeditionMenuFactory.CreateUpgradeQueuePopup(parent.transform);
             }
         }

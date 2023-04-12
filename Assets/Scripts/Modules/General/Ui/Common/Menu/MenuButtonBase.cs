@@ -14,10 +14,6 @@ namespace Modules.General.Ui.Common.Menu
         #region Zenject
         
         [Inject] private readonly IAudioController _audioController;
-        [Inject(Id = "UiCamera")] private readonly Transform _uiCamera;
-        [Inject(Id = "MenuCamera")] private readonly Transform _menuCamera;
-        [Inject(Id = "UiCanvas")] private readonly RectTransform _uiCanvas;
-        [Inject(Id = "MenuCanvas")] private readonly RectTransform _menuCanvas;
 
         #endregion
 
@@ -48,12 +44,6 @@ namespace Modules.General.Ui.Common.Menu
         protected virtual void Click()
         {
             _audioController.PlayAudio(AudioClipType.ButtonClick);
-            
-            _uiCamera.gameObject.SetActive(false);
-            _menuCamera.gameObject.SetActive(true);
-            
-            _uiCanvas.gameObject.SetActive(false);
-            _menuCanvas.gameObject.SetActive(true);
         }
     }
 }

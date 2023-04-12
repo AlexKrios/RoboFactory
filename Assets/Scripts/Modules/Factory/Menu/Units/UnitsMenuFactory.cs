@@ -2,6 +2,7 @@
 using JetBrains.Annotations;
 using Modules.Factory.Menu.Units.Roster;
 using Modules.Factory.Menu.Units.Selection;
+using Modules.General.Ui;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
@@ -15,7 +16,7 @@ namespace Modules.Factory.Menu.Units
 
         [Inject] private readonly DiContainer _container;
         [Inject] private readonly Settings _settings;
-        [Inject(Id = "MenuCanvas")] private readonly RectTransform _menuCanvas;
+        [Inject] private readonly IUiController _uiController;
 
         #endregion                
 
@@ -26,7 +27,8 @@ namespace Modules.Factory.Menu.Units
         
         public void CreateMenu()
         {
-            _container.InstantiatePrefabForComponent<UnitsMenuView>(_settings.menuPrefab, _menuCanvas);
+            var canvasT = _uiController.GetCanvas(CanvasType.Ui).transform;
+            _container.InstantiatePrefabForComponent<UnitsMenuView>(_settings.menuPrefab, canvasT);
         }
         
         public void CreateSelectionMenu(Transform parent)

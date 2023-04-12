@@ -20,7 +20,6 @@ namespace Modules.Factory.Menu.Production.Sidebar
         [Inject] private readonly ILocalisationController _localisationController;
         [Inject] private readonly IProductionController _productionController;
         [Inject] private readonly ISaveController _saveController;
-        [Inject] private readonly ProductionMenuManager _productionMenuManager;
 
         #endregion
 
@@ -28,6 +27,7 @@ namespace Modules.Factory.Menu.Production.Sidebar
         
         public Action OnClickEvent { get; set; }
 
+        private ProductionMenuView _menu;
         private ProductionObject _productionObject;
 
         #endregion
@@ -37,6 +37,8 @@ namespace Modules.Factory.Menu.Production.Sidebar
         protected override void Awake()
         {
             base.Awake();
+            
+            _menu = _uiController.FindUi<ProductionMenuView>();
 
             SetButtonText(_localisationController.GetLanguageValue(LocalisationKeys.ProductionMenuButtonTextKey));
             SetState();
@@ -46,10 +48,8 @@ namespace Modules.Factory.Menu.Production.Sidebar
 
         public override void SetState()
         {
-            var product = _productionMenuManager.Parts.ActiveItem;
-            var star = _productionMenuManager.Star.ActiveStar;
-            _productionObject = new ProductionObjectBuilder().Create(product, star);
-            var buttonState = _productionMenuManager.Star.ActiveStar <= _productionController.Level
+            _productionObject = new ProductionObjectBuilder().Create(_menu.ActiveProduct, _menu.ActiveStar);
+            var buttonState = _menu.ActiveStar <= _productionController.Level
                               && _productionController.IsEnoughParts(_productionObject);
             SetInteractable(buttonState);
         }
@@ -65,7 +65,7 @@ namespace Modules.Factory.Menu.Production.Sidebar
 
             if (!_productionController.IsHaveFreeCell())
             {
-                var menu = _uiController.FindUi<ProductionMenuView>(UiType.Production);
+                var menu = _uiController.FindUi<ProductionMenuView>();
                 menu.Close();
             }
         }
