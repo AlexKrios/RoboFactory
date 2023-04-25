@@ -4,19 +4,12 @@ using Modules.General.Item.Products.Models.Object;
 using Modules.General.Ui.Common.Menu;
 using TMPro;
 using UnityEngine;
-using Zenject;
 
 namespace Modules.Factory.Menu.Storage.Items
 {
     [AddComponentMenu("Scripts/Factory/Menu/Storage/Item Cell View")]
     public class ItemCellView : CellBase
     {
-        #region Zenject
-
-        [Inject] private readonly StorageMenuManager _storageMenuManager;
-
-        #endregion
-
         #region Components
 
         [SerializeField] private GameObject countWrapper;
@@ -28,18 +21,7 @@ namespace Modules.Factory.Menu.Storage.Items
 
         public Action<ItemCellView> OnTabClickEvent { get; set; }
 
-        public ProductObject ItemData { get; private set; }
-
-        #endregion
-        
-        #region Unity Methods
-
-        protected override void Awake()
-        {
-            base.Awake();
-
-            _storageMenuManager.Items.SubscribeItemToList(this);
-        }
+        public ProductObject Data { get; private set; }
 
         #endregion
 
@@ -52,7 +34,7 @@ namespace Modules.Factory.Menu.Storage.Items
         
         public async void SetItemData(ProductObject item)
         {
-            ItemData = item; 
+            Data = item; 
             var sprite = await AssetsController.LoadAsset<Sprite>(item.IconRef);
 
             SetIconSprite(sprite);
@@ -61,8 +43,8 @@ namespace Modules.Factory.Menu.Storage.Items
 
         private void SetCount()
         {
-            countWrapper.SetActive(ItemData.ProductType != 0);
-            countText.text = $"x{ItemData.Count}";
+            countWrapper.SetActive(Data.ProductType != 0);
+            countText.text = $"x{Data.Count}";
         }
     }
 }

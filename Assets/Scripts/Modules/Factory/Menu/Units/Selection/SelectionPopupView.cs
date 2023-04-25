@@ -3,6 +3,7 @@ using System.Linq;
 using Modules.General.Asset;
 using Modules.General.Item.Products;
 using Modules.General.Localisation;
+using Modules.General.Ui;
 using Modules.General.Ui.Common.Menu;
 using TMPro;
 using UnityEngine;
@@ -12,13 +13,13 @@ using Zenject;
 namespace Modules.Factory.Menu.Units.Selection
 {
     [AddComponentMenu("Scripts/Factory/Menu/Units/Selection/Selection Popup View")]
-    public class SelectionPopupView : MenuBase
+    public class SelectionPopupView : PopupBase
     {
         #region Zenject
         
         [Inject] private readonly ILocalisationController _localisationController;
+        [Inject] private readonly IUiController _uiController;
         [Inject] private readonly IProductsController _productsController;
-        [Inject] private readonly UnitsMenuManager _unitsMenuManager;
         [Inject] private readonly UnitsMenuFactory _unitsMenuFactory;
 
         #endregion
@@ -44,6 +45,7 @@ namespace Modules.Factory.Menu.Units.Selection
         
         #region Varaibles
 
+        private UnitsMenuView _menu;
         private SelectionCellView _activeItem;
         public SelectionCellView ActiveItem
         {
@@ -66,7 +68,8 @@ namespace Modules.Factory.Menu.Units.Selection
         {
             base.Awake();
             
-            _unitsMenuManager.Selection = this;
+            _uiController.AddUi(this);
+            _menu = _uiController.FindUi<UnitsMenuView>();
 
             SetSelectionData();
             SetTitleData();
@@ -88,11 +91,9 @@ namespace Modules.Factory.Menu.Units.Selection
                 cells.Clear();
             }
             
-            var equipmentType = _unitsMenuManager.Info.ActiveCell.EquipmentType;
-            var unitType = _unitsMenuManager.Roster.ActiveUnit.UnitData.UnitType;
             var equipments = _productsController.GetAllProducts()
-                .Where(x => x.ProductGroup == equipmentType)
-                .Where(x => x.UnitType == unitType)
+                .Where(x => x.ProductGroup == _menu.ActiveEquipment.ProductGroup)
+                .Where(x => x.UnitType == _menu.ActiveUnit.UnitType)
                 .Where(x => x.IsProduct)
                 .ToList();
 

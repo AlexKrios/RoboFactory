@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Linq;
 using Modules.General.Unit.Battle.Models;
-using Modules.General.Unit.Models.Type;
+using Modules.General.Unit.Type;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using Random = System.Random;

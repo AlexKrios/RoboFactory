@@ -14,21 +14,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   popup:
     popups:
-    - type: 2
-      prefab: {fileID: 8299688824651853905, guid: d3749f341bd8b454a9ae8b1589392145,
+    - key: 121
+      value: {fileID: 4758183550124237268, guid: 84dffa0932e0886448db7b955035689c,
         type: 3}
-    - type: 3
-      prefab: {fileID: 8299688824651853905, guid: d3749f341bd8b454a9ae8b1589392145,
+    - key: 126
+      value: {fileID: 4758183550124237268, guid: 56cff11359c6baa40af59aa9fbe55cd2,
         type: 3}
-    - type: 126
-      prefab: {fileID: 4758183550124237268, guid: 84dffa0932e0886448db7b955035689c,
+    - key: 151
+      value: {fileID: 2304976658524223300, guid: 3dfa2329484b48c4c8da6b94027bccea,
         type: 3}
-    - type: 1
-      prefab: {fileID: 4758183550124237268, guid: 56cff11359c6baa40af59aa9fbe55cd2,
+    - key: 161
+      value: {fileID: 2304976658524223300, guid: 175079862e4d7914186c368bb0b32d3b,
         type: 3}
-    - type: 4
-      prefab: {fileID: 8299688824651853905, guid: d3749f341bd8b454a9ae8b1589392145,
+    - key: 164
+      value: {fileID: 0}
+    - key: 166
+      value: {fileID: 4758183550124237268, guid: 0bf0aa54007c06546bf4031140da168e,
         type: 3}
-    - type: 166
-      prefab: {fileID: 4758183550124237268, guid: 0bf0aa54007c06546bf4031140da168e,
+    - key: 903
+      value: {fileID: 8299688824651853905, guid: d3749f341bd8b454a9ae8b1589392145,
         type: 3}

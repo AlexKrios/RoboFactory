@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42a0c6e56bbe4c09b8960911a2b6610c, type: 3}
+  m_Name: UnitDefender
+  m_EditorClassIdentifier: 
+  key: unit_defender
+  unitType: 2
+  attackType: 0
+  specType: 0
+  iconRef:
+    m_AssetGUID: a5f35de28ca0fcc4aa51964cddeab5c9
+    m_SubObjectName: DefenderWeaponProduct
+    m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+    m_EditorAssetChanged: 0
+  model: {fileID: 5538192371963980350, guid: ba810e3fb29a5fe4cb8d36f4abd6af0a, type: 3}
+  specifications: 0a00000032000000000000000a000000
+  unlockCost: 0
+  unlockLevel: 0

@@ -1,6 +1,6 @@
 ﻿using DG.Tweening;
 using Modules.General.Asset;
-using Modules.General.Unit.Models.Object;
+using Modules.General.Unit.Object;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;

@@ -1,5 +1,4 @@
 ﻿using System;
-using Modules.Factory.Menu.Conversion.Tabs;
 using Modules.General.Item.Raw;
 using Modules.General.Item.Raw.Convert;
 using Modules.General.Localisation;
@@ -21,21 +20,19 @@ namespace Modules.Factory.Menu.Conversion.Components
         #region Zenject
 
         [Inject] private readonly ILocalisationController _localisationController;
-        [Inject] private readonly IConvertRawController _convertRawController;
-        [Inject] private readonly ConversionMenuManager _conversionMenuManager;
+        [Inject] private readonly IUiController _uiController;
         [Inject] private readonly IRawController _rawController;
+        [Inject] private readonly IConvertRawController _convertRawController;
         [Inject] private readonly PopupFactory _popupFactory;
-        [Inject(Id = "PopupCanvas")] private readonly RectTransform _popupCanvas;
-        
+
         #endregion
 
         #region Variables
 
         public Action OnClickEvent { get; set; }
-
-        private TabCellView ActiveTab => _conversionMenuManager.Tabs.ActiveTab;
-        private int ActiveStar => _conversionMenuManager.Star.ActiveStar;
-
+        
+        private ConversionMenuView _menu;
+        
         #endregion
 
         #region Unity Methods
@@ -44,7 +41,7 @@ namespace Modules.Factory.Menu.Conversion.Components
         {
             base.Awake();
 
-            _conversionMenuManager.Convert = this;
+            _menu = _uiController.FindUi<ConversionMenuView>();
 
             SetButtonText(_localisationController.GetLanguageValue(LocalisationKeys.ConversionMenuButtonTitleKey));
         }
@@ -58,7 +55,7 @@ namespace Modules.Factory.Menu.Conversion.Components
 
         public override void SetState()
         {
-            var isEnoughRaw = _convertRawController.IsEnoughRaw(ActiveTab.RawData.Key, ActiveStar);
+            var isEnoughRaw = _convertRawController.IsEnoughRaw(_menu.ActiveRaw.Key, _menu.ActiveStar);
             SetInteractable(isEnoughRaw);
         }
         
@@ -66,9 +63,10 @@ namespace Modules.Factory.Menu.Conversion.Components
         {
             base.Click();
             
-            if (_rawController.CheckIfRawStoreFull(ActiveTab.RawData.Key, ActiveStar))
+            if (_rawController.CheckIfRawStoreFull(_menu.ActiveRaw.Key, _menu.ActiveStar))
             {
-                _popupFactory.CreateSmallNotification(UiType.StorageFull, _popupCanvas);
+                var canvasT = _uiController.GetCanvas(CanvasType.HUD).transform;
+                _popupFactory.CreateSmallNotification(UiType.StorageFull, canvasT);
                 return;
             }
 

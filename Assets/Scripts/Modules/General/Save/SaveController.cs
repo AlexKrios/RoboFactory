@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using JetBrains.Annotations;
 using Modules.General.Item;
 using Modules.General.Item.Production;
 using Modules.General.Item.Production.Models.Load;
@@ -20,12 +21,12 @@ using Modules.General.Save.Models;
 using Modules.General.Settings;
 using Modules.General.Settings.Models;
 using Modules.General.Unit;
-using Modules.General.Unit.Models;
 using Newtonsoft.Json;
 using Zenject;
 
 namespace Modules.General.Save
 {
+    [UsedImplicitly]
     public class SaveController : ISaveController
     {
         [Inject] private readonly ISettingsController _settingsController;

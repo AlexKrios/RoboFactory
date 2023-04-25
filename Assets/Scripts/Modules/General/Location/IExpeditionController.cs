@@ -10,13 +10,13 @@ namespace Modules.General.Location
         Action OnExpeditionComplete { get; set; }
         
         int CellCount { get; set; }
-        LocationScriptable CurrentBattleLocation { get; set; }
+        LocationObject CurrentBattleLocation { get; set; }
         
         void LoadStoreData(ExpeditionsLoadObject data);
         bool IsHaveFreeCell();
         
-        List<LocationScriptable> GetLocations();
-        LocationScriptable GetLocation(string key);
+        List<LocationObject> GetLocations();
+        LocationObject GetLocation(string key);
 
         void AddExpedition(ExpeditionObject data);
         List<ExpeditionObject> GetAllExpeditions();

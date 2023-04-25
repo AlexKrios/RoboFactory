@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 using Modules.General.Unit.Battle.Models;
-using Modules.General.Unit.Models;
-using Modules.General.Unit.Models.Object;
+using Modules.General.Unit.Object;
+using Modules.General.Unit.Type;
+using UnityEngine;
 
 namespace Modules.General.Unit
 {
@@ -13,6 +14,8 @@ namespace Modules.General.Unit
 
         List<UnitObject> GetUnits();
         UnitObject GetUnit(string key);
+
+        Material GetFace(FaceType type);
 
         List<BattleUnitObject> GetBattleUnits();
         void AddBattleUnit(BattleUnitObject unit);

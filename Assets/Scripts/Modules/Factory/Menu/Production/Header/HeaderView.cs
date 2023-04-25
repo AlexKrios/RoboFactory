@@ -76,7 +76,7 @@ namespace Modules.Factory.Menu.Production.Header
 
         private void SetTabsData()
         {
-            var productGroupCount = Enum.GetValues(typeof(ProductGroup)).Length;
+            var productGroupCount = Enum.GetValues(typeof(ProductGroup)).Length - 1;
             for (var i = 1; i < productGroupCount; i++)
             {
                 tabs[i - 1].SetTabData((ProductGroup) i);

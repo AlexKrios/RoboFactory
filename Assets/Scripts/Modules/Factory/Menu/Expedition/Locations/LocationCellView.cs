@@ -1,6 +1,6 @@
 ﻿using System;
 using Modules.General.Asset;
-using Modules.General.Location;
+using Modules.General.Location.Model;
 using Modules.General.Ui.Common.Menu;
 using UnityEngine;
 
@@ -13,7 +13,7 @@ namespace Modules.Factory.Menu.Expedition.Locations
 
         public Action<LocationCellView> OnClickEvent { get; set; }
         
-        public LocationScriptable Data { get; private set; }
+        public LocationObject Data { get; private set; }
 
         #endregion
 
@@ -24,7 +24,7 @@ namespace Modules.Factory.Menu.Expedition.Locations
             OnClickEvent?.Invoke(this);
         }
 
-        public async void SetData(LocationScriptable data)
+        public async void SetData(LocationObject data)
         {
             Data = data;
             var sprite = await AssetsController.LoadAsset<Sprite>(data.IconRef);

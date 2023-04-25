@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Modules.General.Location;
+using Modules.General.Ui;
 using UnityEngine;
 using Zenject;
 
@@ -12,8 +13,8 @@ namespace Modules.Factory.Menu.Expedition.Locations
     {
         #region Zenject
         
+        [Inject] private readonly IUiController _uiController;
         [Inject] private readonly IExpeditionController _expeditionController;
-        [Inject] private readonly ExpeditionMenuManager _expeditionMenuManager;
         [Inject] private readonly ExpeditionMenuFactory _expeditionMenuFactory;
 
         #endregion
@@ -28,17 +29,19 @@ namespace Modules.Factory.Menu.Expedition.Locations
         #region Variables
 
         public Action OnClickEvent { get; set; }
-        
+
+        private ExpeditionMenuView _menu;
         private LocationCellView _activeLocation;
-        public LocationCellView ActiveLocation
+        private LocationCellView ActiveLocation
         {
             get => _activeLocation;
-            private set
+            set
             {
                 if (_activeLocation != null)
                     _activeLocation.SetInactive();
 
                 _activeLocation = value;
+                _menu.ActiveLocation = value.Data;
                 _activeLocation.SetActive();
             }
         }
@@ -48,9 +51,9 @@ namespace Modules.Factory.Menu.Expedition.Locations
         #region Unity Methods
 
         private void Awake()
-        { 
-            _expeditionMenuManager.Locations = this;
-
+        {
+            _menu = _uiController.FindUi<ExpeditionMenuView>();
+            
             CreateLocations();
         }
 

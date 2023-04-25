@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using JetBrains.Annotations;
 using Modules.General.Location.Model;
 using Modules.General.Scriptable;
 using Zenject;
 
 namespace Modules.General.Location
 {
+    [UsedImplicitly]
     public class ExpeditionController : IExpeditionController
     {
         #region Zenject
@@ -19,9 +21,9 @@ namespace Modules.General.Location
 
         public Action OnExpeditionComplete { get; set; }
         
-        private readonly Dictionary<string, LocationScriptable> _locationDictionary;
+        private readonly Dictionary<string, LocationObject> _locationDictionary;
         private readonly List<ExpeditionObject> _expeditionData;
-        public LocationScriptable CurrentBattleLocation { get; set; }
+        public LocationObject CurrentBattleLocation { get; set; }
         
         public int CellCount { get; set; }
 
@@ -29,12 +31,13 @@ namespace Modules.General.Location
 
         public ExpeditionController(Settings settings)
         {
-            _locationDictionary = new Dictionary<string, LocationScriptable>();
+            _locationDictionary = new Dictionary<string, LocationObject>();
             _expeditionData = new List<ExpeditionObject>();
             
             foreach (var locationData in settings.locations)
             {
-                _locationDictionary.Add(locationData.Key, locationData);
+                var locationObject = new LocationBuilder().Create(locationData);
+                _locationDictionary.Add(locationObject.Key, locationObject);
             }
             
             CellCount = 1;
@@ -62,8 +65,8 @@ namespace Modules.General.Location
             return _expeditionData.Count < CellCount;
         }
 
-        public List<LocationScriptable> GetLocations() => _locationDictionary.Values.ToList();
-        public LocationScriptable GetLocation(string key) => _locationDictionary[key];
+        public List<LocationObject> GetLocations() => _locationDictionary.Values.ToList();
+        public LocationObject GetLocation(string key) => _locationDictionary[key];
         
         public void AddExpedition(ExpeditionObject data)
         {

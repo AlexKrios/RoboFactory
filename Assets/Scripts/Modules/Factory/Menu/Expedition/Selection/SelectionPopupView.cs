@@ -15,14 +15,13 @@ using Zenject;
 namespace Modules.Factory.Menu.Expedition.Selection
 {
     [AddComponentMenu("Scripts/Factory/Menu/Expedition/Selection/Selection Popup View")]
-    public class SelectionPopupView : MenuBase
+    public class SelectionPopupView : PopupBase
     {
         #region Zenject
         
         [Inject] private readonly ILocalisationController _localisationController;
         [Inject] private readonly IProductsController _productsController;
         [Inject] private readonly IUnitsController _unitsController;
-        [Inject] private readonly ExpeditionMenuManager _expeditionMenuManager;
         [Inject] private readonly ExpeditionMenuFactory _expeditionMenuFactory;
 
         #endregion
@@ -47,7 +46,8 @@ namespace Modules.Factory.Menu.Expedition.Selection
         #endregion
         
         #region Varaibles
-
+        
+        private ExpeditionMenuView _menu;
         private SelectionCellView _activeUnit;
         public SelectionCellView ActiveUnit
         {
@@ -70,7 +70,8 @@ namespace Modules.Factory.Menu.Expedition.Selection
         {
             base.Awake();
             
-            _expeditionMenuManager.Selection = this;
+            UiController.AddUi(this);
+            _menu = UiController.FindUi<ExpeditionMenuView>();
 
             SetSelectionData();
             SetTitleData();
@@ -92,10 +93,10 @@ namespace Modules.Factory.Menu.Expedition.Selection
                 cells.Clear();
             }
             
-            var unitAttackType = _expeditionMenuManager.Units.ActiveUnit.AttackTypes;
+            var unitAttackType = _menu.Units.ActiveUnit.AttackTypes;
             var unitsObject = _unitsController.GetUnits()
                 .Where(x => unitAttackType.Contains(x.AttackType))
-                .Where(x => _expeditionMenuManager.Units.GetUnitsWithData()
+                .Where(x => _menu.Units.GetUnitsWithData()
                     .All(y => x != y.Data))
                 .OrderBy(x => x.UnitType)
                 .ToList();

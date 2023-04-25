@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using Modules.General.Item.Products.Models.Types;
-using Modules.General.Unit.Models.Object;
+using Modules.General.Unit.Object;
 
 namespace Modules.General.Unit.Battle.Models
 {

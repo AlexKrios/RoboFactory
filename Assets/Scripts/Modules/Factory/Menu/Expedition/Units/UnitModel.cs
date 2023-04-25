@@ -1,22 +1,25 @@
 ﻿using System.Linq;
-using Modules.General.Unit.Models.Object;
+using Cysharp.Threading.Tasks;
+using Modules.General.Ui;
+using Modules.General.Unit.Object;
 using UnityEngine;
 using Zenject;
 
 namespace Modules.Factory.Menu.Expedition.Units
 {
-    [RequireComponent(typeof(Rigidbody))]
     [AddComponentMenu("Scripts/Factory/Menu/Expedition/Unit Model")]
     public class UnitModel : MonoBehaviour
     {
         #region Zenject
 
-        [Inject] private readonly ExpeditionMenuManager _expeditionMenuManager;
+        [Inject] private readonly IUiController _uiController;
 
         #endregion
         
         #region Variables
 
+        private ExpeditionMenuView _menu;
+        
         private UnitObject _data;
         
         private Transform _unitTransform;
@@ -25,13 +28,16 @@ namespace Modules.Factory.Menu.Expedition.Units
 
         #region Unity Methods
 
-        private void Awake()
+        private async void Awake()
         {
+            await UniTask.WaitUntil(() => _uiController != null);
+            _menu = _uiController.FindUi<ExpeditionMenuView>();
+            
             _unitTransform = transform;
 
-            _unitTransform.localPosition = new Vector3(0, -150, -150);
-            _unitTransform.localRotation = Quaternion.Euler(0, 135, 0);
-            _unitTransform.localScale = new Vector3(200, 200, 200);
+            _unitTransform.localPosition = new Vector3(0, 0, -250);
+            _unitTransform.localRotation = Quaternion.Euler(0, -45, 0);
+            _unitTransform.localScale = new Vector3(400, 400, 400);
         }
 
         #endregion
@@ -43,13 +49,13 @@ namespace Modules.Factory.Menu.Expedition.Units
         
         private void OnMouseDown()
         {
-            var activeUnit = _expeditionMenuManager.Units.GetUnitsWithData().First(x => x.Data == _data);
+            var activeUnit = _menu.Units.GetUnitsWithData().First(x => x.Data == _data);
             if (activeUnit.Data != null)
             {
                 activeUnit.ActivateCell(true);
                 activeUnit.ResetData();
                 
-                _expeditionMenuManager.Units.OnClickEvent?.Invoke();
+                _menu.Units.OnClickEvent?.Invoke();
                 
                 Destroy(gameObject);
             }

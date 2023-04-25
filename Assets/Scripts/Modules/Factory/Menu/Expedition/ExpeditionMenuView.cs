@@ -3,6 +3,7 @@ using Modules.Factory.Menu.Expedition.Sidebar;
 using Modules.Factory.Menu.Expedition.Units;
 using Modules.General.Localisation;
 using Modules.General.Localisation.Models;
+using Modules.General.Location.Model;
 using Modules.General.Ui.Common.Menu;
 using TMPro;
 using UnityEngine;
@@ -27,14 +28,25 @@ namespace Modules.Factory.Menu.Expedition
         [SerializeField] private LocationsSectionView locations;
         [SerializeField] private SidebarView sidebar;
         [SerializeField] private StartButtonView start;
+        
+        public UnitsSectionView Units => units;
 
         #endregion
 
+        #region Variables
+
+        public LocationObject ActiveLocation { get; set; }
+        public int ActiveStar { get; set; }
+
+        #endregion
+        
         #region Unity Methods
 
         protected override void Awake()
         {
             base.Awake();
+            
+            UiController.AddUi(this);
             
             units.OnClickEvent += OnUnitClick;
             locations.OnClickEvent += OnLocationClick;

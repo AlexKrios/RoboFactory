@@ -4,7 +4,7 @@ using System.Linq;
 using Modules.General.Item.Models;
 using Modules.General.Item.Products.Models.Types;
 using Modules.General.Scriptable;
-using Modules.General.Unit.Models.Type;
+using Modules.General.Unit.Type;
 using UnityEngine;
 
 namespace Modules.General.Item.Products.Models.Object

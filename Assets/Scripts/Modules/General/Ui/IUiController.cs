@@ -5,6 +5,7 @@ namespace Modules.General.Ui
     public interface IUiController
     {
         void AddCamera(CameraType type, GameObject camera);
+        GameObject GetCamera(CameraType type);
         void SetCameraActive(CameraType type, bool value = true);
         void ClearCamera();
         

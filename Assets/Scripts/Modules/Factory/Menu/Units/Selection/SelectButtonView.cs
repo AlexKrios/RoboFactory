@@ -2,6 +2,7 @@
 using Modules.General.Localisation;
 using Modules.General.Localisation.Models;
 using Modules.General.Save;
+using Modules.General.Ui;
 using Modules.General.Ui.Common;
 using UnityEngine;
 using Zenject;
@@ -14,14 +15,16 @@ namespace Modules.Factory.Menu.Units.Selection
         #region Zenject
 
         [Inject] private readonly ILocalisationController _localisationController;
+        [Inject] private readonly IUiController _uiController;
         [Inject] private readonly ISaveController _saveController;
-        [Inject] private readonly UnitsMenuManager _unitsMenuManager;
 
         #endregion
         
         #region Variables
 
-        private ProductObject Equipment => _unitsMenuManager.Selection.ActiveItem.Data;
+        private UnitsMenuView _menu;
+        private SelectionPopupView _selectionMenu;
+        private ProductObject Equipment => _selectionMenu.ActiveItem.Data;
 
         #endregion
 
@@ -30,6 +33,9 @@ namespace Modules.Factory.Menu.Units.Selection
         protected override void Awake()
         {
             base.Awake();
+            
+            _menu = _uiController.FindUi<UnitsMenuView>();
+            _selectionMenu = _uiController.FindUi<SelectionPopupView>();
 
             SetButtonText(_localisationController.GetLanguageValue(LocalisationKeys.SelectButtonTitleKey));
         }
@@ -43,22 +49,22 @@ namespace Modules.Factory.Menu.Units.Selection
 
         public override void SetState()
         {
-            SetInteractable(!Equipment.IsEmpty());
+            SetInteractable(!Equipment.IsEmpty() || Equipment.ProductType == 0);
         }
         
         protected override void Click()
         {
             base.Click();
             
-            var unit = _unitsMenuManager.Roster.ActiveUnit;
-            var equipmentCell = _unitsMenuManager.Info.ActiveCell;
-            unit.UnitData.Outfit[(int)Equipment.ProductGroup] = Equipment.Key;
+            _menu.ActiveUnit.Outfit[(int)Equipment.ProductGroup - 1] = Equipment.Key;
+            _menu.Info.ActiveCell.SetEquipmentData(Equipment);
+            _menu.Info.UnitModel.SetEquipment(Equipment);
             
-            equipmentCell.SetEquipmentData(Equipment);
-            Equipment.DecrementCount();
+            if (Equipment.ProductType != 0)
+                Equipment.DecrementCount();
             
             _saveController.SaveUnits();
-            _unitsMenuManager.Selection.Close();
+            _selectionMenu.Close();
         }
     }
 }

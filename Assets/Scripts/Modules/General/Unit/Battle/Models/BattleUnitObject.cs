@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Modules.General.Item.Products.Models.Types;
-using Modules.General.Unit.Models.Object;
+using Modules.General.Unit.Object;
 using UnityEngine;
 
 namespace Modules.General.Unit.Battle.Models

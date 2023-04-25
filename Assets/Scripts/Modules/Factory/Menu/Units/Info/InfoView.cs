@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
+﻿ using System.Collections.Generic;
 using System.Linq;
-using Modules.Factory.Menu.Units.Roster;
 using Modules.General.Item.Products;
 using Modules.General.Save;
 using Modules.General.Ui;
-using UnityEngine;
+ using Modules.General.Unit.Object;
+ using UnityEngine;
 using Zenject;
 
 namespace Modules.Factory.Menu.Units.Info
@@ -19,7 +19,6 @@ namespace Modules.Factory.Menu.Units.Info
         [Inject] private readonly IProductsController _productsController;
         [Inject] private readonly ISaveController _saveController;
         [Inject] private readonly UnitsMenuFactory _unitsMenuFactory;
-        [Inject] private readonly UnitsMenuManager _unitsMenuManager;
 
         #endregion
 
@@ -32,11 +31,9 @@ namespace Modules.Factory.Menu.Units.Info
         
         #region Variables
         
+        private UnitsMenuView _menu;
         public EquipmentCellView ActiveCell { get; private set; }
-        
-        private GameObject _unitModel;
-        
-        private RosterCellView ActiveUnit => _unitsMenuManager.Roster.ActiveUnit;
+        public UnitViewObject UnitModel { get; private set; }
 
         #endregion
 
@@ -44,7 +41,7 @@ namespace Modules.Factory.Menu.Units.Info
 
         private void Awake()
         {
-            _unitsMenuManager.Info = this;
+            _menu = _uiController.FindUi<UnitsMenuView>();
             
             equipment.ForEach(x => x.OnClickEvent += OnEquipmentClick);
 
@@ -61,19 +58,12 @@ namespace Modules.Factory.Menu.Units.Info
         
         private void SetEquipmentData()
         {
-            var outfit = ActiveUnit.UnitData.Outfit;
-            for (var i = 0; i < outfit.Count; i++)
+            var outfit = _menu.ActiveUnit.Outfit;
+            foreach (var data in outfit)
             {
-                if (outfit[i] != Constants.EmptyOutfit)
-                {
-                    var product = _productsController.GetProduct(outfit[i]);
-                    equipment.First(x => x.EquipmentType == product.ProductGroup)
-                        .SetEquipmentData(product);
-                }
-                else
-                {
-                    equipment[i].ResetEquipmentData();
-                }
+                var product = _productsController.GetProduct(data);
+                equipment.First(x => x.EquipmentType == product.ProductGroup)
+                    .SetEquipmentData(product);
             }
         }
 
@@ -81,10 +71,11 @@ namespace Modules.Factory.Menu.Units.Info
         {
             if (cell.Data.ProductType != 0)
             {
-                ActiveUnit.UnitData.Outfit[(int)cell.Data.ProductGroup] = Constants.EmptyOutfit;
-                
                 cell.Data.IncrementCount();
                 cell.ResetEquipmentData();
+                
+                _menu.ActiveUnit.Outfit[(int)cell.Data.ProductGroup - 1] = cell.Data.Key;
+                UnitModel.SetEquipment(cell.Data);
             
                 _saveController.SaveStores(true);
                 _saveController.SaveUnits();
@@ -92,23 +83,25 @@ namespace Modules.Factory.Menu.Units.Info
             else
             {
                 ActiveCell = cell;
+                _menu.ActiveEquipment = cell.Data;
                 _unitsMenuFactory.CreateSelectionMenu(_uiController.GetCanvas(CanvasType.Ui).transform);
             }
         }
         
         private void CreateModel()
         {
-            if (_unitModel != null)
+            if (UnitModel != null)
                 RemoveModel();
 
-            _unitModel = _container.InstantiatePrefab(ActiveUnit.UnitData.Model, modelParent);
-            _container.InstantiateComponent<UnitModel>(_unitModel);
+            UnitModel = _container.InstantiatePrefabForComponent<UnitViewObject>(_menu.ActiveUnit.Model, modelParent);
+            UnitModel.SetData(_menu.ActiveUnit);
+            _container.InstantiateComponent<UnitModel>(UnitModel.gameObject);
         }
 
         private void RemoveModel()
         {
-            Destroy(_unitModel.gameObject);
-            _unitModel = null;
+            Destroy(UnitModel.gameObject);
+            UnitModel = null;
         }
     }
 }

@@ -4,8 +4,8 @@ using Modules.General.Item.Products;
 using Modules.General.Item.Products.Models.Object.Spec;
 using Modules.General.Item.Products.Models.Types;
 using Modules.General.Localisation;
+using Modules.General.Ui;
 using Modules.General.Ui.Common.Menu;
-using Modules.General.Unit.Models.Object;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -19,8 +19,8 @@ namespace Modules.Factory.Menu.Units.Sidebar
         #region Zenject
 
         [Inject] private readonly ILocalisationController _localisationController;
+        [Inject] private readonly IUiController _uiController;
         [Inject] private readonly IProductsController _productsController;
-        [Inject] private readonly UnitsMenuManager _unitsMenuManager;
 
         #endregion
 
@@ -34,7 +34,7 @@ namespace Modules.Factory.Menu.Units.Sidebar
         
         #region Variables
         
-        private UnitObject UnitData => _unitsMenuManager.Roster.ActiveUnit.UnitData;
+        private UnitsMenuView _menu;
 
         #endregion
 
@@ -42,7 +42,7 @@ namespace Modules.Factory.Menu.Units.Sidebar
 
         private void Awake()
         {
-            _unitsMenuManager.Sidebar = this;
+            _menu = _uiController.FindUi<UnitsMenuView>();
             
             SetData();
         }
@@ -51,14 +51,14 @@ namespace Modules.Factory.Menu.Units.Sidebar
         
         public async void SetData()
         {
-            unitName.text = _localisationController.GetLanguageValue(UnitData.Key);
-            unitIcon.sprite = await AssetsController.LoadAsset<Sprite>(UnitData.IconRef);
+            unitName.text = _localisationController.GetLanguageValue(_menu.ActiveUnit.Key);
+            unitIcon.sprite = await AssetsController.LoadAsset<Sprite>(_menu.ActiveUnit.IconRef);
 
-            for (var i = 0; i < UnitData.Outfit.Count; i++)
+            for (var i = 0; i < _menu.ActiveUnit.Outfit.Count; i++)
             {
-                var spec = UnitData.Specs[(SpecType) i];
+                var spec = _menu.ActiveUnit.Specs[(SpecType) i];
                 var specObject = new SpecObject();
-                foreach (var outfit in UnitData.Outfit)
+                foreach (var outfit in _menu.ActiveUnit.Outfit)
                 {
                     if (outfit == Constants.EmptyOutfit)
                         continue;

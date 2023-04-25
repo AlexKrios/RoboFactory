@@ -3,6 +3,7 @@ using System.Linq;
 using Modules.General.Location;
 using Modules.General.Location.Model;
 using Modules.General.Save;
+using Modules.General.Ui;
 using Modules.General.Ui.Common;
 using UnityEngine;
 using Zenject;
@@ -14,9 +15,15 @@ namespace Modules.Factory.Menu.Expedition.Sidebar
     {
         #region Zenject
         
+        [Inject] private readonly IUiController _uiController;
         [Inject] private readonly ISaveController _saveController;
         [Inject] private readonly IExpeditionController _expeditionController;
-        [Inject] private readonly ExpeditionMenuManager _expeditionMenuManager;
+
+        #endregion
+
+        #region Variables
+
+        private ExpeditionMenuView _menu;
 
         #endregion
 
@@ -26,6 +33,8 @@ namespace Modules.Factory.Menu.Expedition.Sidebar
         {
             base.Awake();
             
+            _menu = _uiController.FindUi<ExpeditionMenuView>();
+            
             SetState();
         }
 
@@ -33,23 +42,22 @@ namespace Modules.Factory.Menu.Expedition.Sidebar
         
         public override void SetState()
         {
-            SetInteractable(!_expeditionMenuManager.Units.IsAllUnitEmpty());
+            SetInteractable(!_menu.Units.IsAllUnitEmpty());
         }
 
         protected override void Click()
         {
             base.Click();
+            
+            _expeditionController.CurrentBattleLocation = _menu.ActiveLocation;
 
-            var activeLocation = _expeditionMenuManager.Locations.ActiveLocation;
-            _expeditionController.CurrentBattleLocation = activeLocation.Data;
-
-            var allyUnits = _expeditionMenuManager.Units.GetUnitsWithData();
+            var allyUnits = _menu.Units.GetUnitsWithData();
             var allyKey = allyUnits.Select(x => x.Data.Key).ToList();
-            var expeditionTime = activeLocation.Data.Time;
+            var expeditionTime = _menu.ActiveLocation.Time;
             var expedition = new ExpeditionObject
             {
                 Id = Guid.NewGuid(),
-                Key = activeLocation.Data.Key,
+                Key = _menu.ActiveLocation.Key,
                 Star = "1",
                 Units = allyKey,
                 TimeEnd = DateTime.Now.AddSeconds(expeditionTime).ToFileTime()

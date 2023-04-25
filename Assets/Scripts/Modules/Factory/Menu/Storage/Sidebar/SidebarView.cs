@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Modules.General.Asset;
-using Modules.General.Item.Products.Models.Object;
 using Modules.General.Localisation;
+using Modules.General.Ui;
 using Modules.General.Ui.Common.Menu;
 using TMPro;
 using UnityEngine;
@@ -17,7 +17,7 @@ namespace Modules.Factory.Menu.Storage.Sidebar
         #region Zenject
 
         [Inject] private readonly ILocalisationController _localisationController;
-        [Inject] private readonly StorageMenuManager _storageMenuManager;
+        [Inject] private readonly IUiController _uiController;
 
         #endregion
 
@@ -33,7 +33,7 @@ namespace Modules.Factory.Menu.Storage.Sidebar
 
         #region Variables
 
-        private ProductObject ActiveItem => _storageMenuManager.Items.ActiveCell.ItemData;
+        private StorageMenuView _menu;
 
         #endregion
 
@@ -41,7 +41,7 @@ namespace Modules.Factory.Menu.Storage.Sidebar
 
         private void Awake()
         {
-            _storageMenuManager.Sidebar = this;
+            _menu = _uiController.FindUi<StorageMenuView>();
             
             SetData();
         }
@@ -50,19 +50,19 @@ namespace Modules.Factory.Menu.Storage.Sidebar
 
         public async void SetData()
         {
-            gameObject.SetActive(!_storageMenuManager.IsItemEmpty);
-            if (_storageMenuManager.IsItemEmpty)
+            gameObject.SetActive(!_menu.IsItemEmpty);
+            if (_menu.IsItemEmpty)
                 return;
-
-            title.text = _localisationController.GetLanguageValue(ActiveItem.Key);
-            icon.sprite = await AssetsController.LoadAsset<Sprite>(ActiveItem.IconRef);
+            
+            title.text = _localisationController.GetLanguageValue(_menu.ActiveItem.Key);
+            icon.sprite = await AssetsController.LoadAsset<Sprite>(_menu.ActiveItem.IconRef);
 
             SetSpecsData();
         }
 
         private void SetSpecsData()
         {
-            foreach (var specData in ActiveItem.Recipe.Specs)
+            foreach (var specData in _menu.ActiveItem.Recipe.Specs)
             {
                 var spec = specs.First(x => x.SpecType == specData.type);
                 spec.SetData(specData);

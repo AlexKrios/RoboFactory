@@ -1,4 +1,5 @@
 ﻿using System;
+using Modules.General.Asset;
 using Modules.General.Item.Products.Models.Types;
 using Modules.General.Ui.Common.Menu;
 using UnityEngine;
@@ -35,9 +36,10 @@ namespace Modules.Factory.Menu.Storage.Tab
             OnClickEvent?.Invoke(this, group);
         }
 
-        public void SetTabData(ProductGroup type)
+        public async void SetTabData(ProductGroup type)
         {
-            var sprite = _iconUtil.GetProductGroupIcon(type);
+            var spriteRef = _iconUtil.GetProductGroupIcon(type);
+            var sprite = await AssetsController.LoadAsset<Sprite>(spriteRef);
 
             SetIconSprite(sprite);
         }

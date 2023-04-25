@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
+using Modules.General;
 using Modules.General.Item.Products.Models.Types;
 using Modules.General.Item.Raw.Models.Type;
-using Modules.General.Unit.Models.Type;
+using Modules.General.Unit.Type;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
@@ -11,62 +10,34 @@ namespace Utils
 {
     public class IconUtil : MonoBehaviour
     {
-        [SerializeField] private List<RawIconKeyObject> rawIcons;
-        [SerializeField] private List<UnitTypeIconKeyObject> unitIcons;
-        [SerializeField] private List<ProductGroupIconKeyObject> productGroupIcons;
-        [SerializeField] private List<SpecificationIconKeyObject> specificationIcons;
+        [SerializeField] private System.Collections.Generic.List<KeyValuePair<RawType, AssetReference>> rawIcons;
+        [SerializeField] private System.Collections.Generic.List<KeyValuePair<UnitType, AssetReference>> unitIcons;
+        [SerializeField] private System.Collections.Generic.List<KeyValuePair<ProductGroup, AssetReference>> productGroupIcons;
+        [SerializeField] private System.Collections.Generic.List<KeyValuePair<SpecType, AssetReference>> specsIcons;
 
-        public List<RawIconKeyObject> RawIcons => rawIcons;
-        public List<UnitTypeIconKeyObject> UnitIcons => unitIcons;
-        public List<ProductGroupIconKeyObject> ProductGroupIcons => productGroupIcons;
-        public List<SpecificationIconKeyObject> SpecificationIcons => specificationIcons;
+        public System.Collections.Generic.List<KeyValuePair<RawType, AssetReference>> RawIcons => rawIcons;
+        public System.Collections.Generic.List<KeyValuePair<UnitType, AssetReference>> UnitIcons => unitIcons;
+        public System.Collections.Generic.List<KeyValuePair<ProductGroup, AssetReference>> ProductGroupIcons => productGroupIcons;
+        public System.Collections.Generic.List<KeyValuePair<SpecType, AssetReference>> SpecsIcons => specsIcons;
 
         public AssetReference GetRawIcon(RawType raw)
         {
-            return rawIcons.First(x => x.type == raw).iconRef;
+            return rawIcons.First(x => x.Key == raw).Value;
         }
 
-        public Sprite GetUnitIcon(UnitType type)
+        public AssetReference GetUnitIcon(UnitType type)
         {
-            return unitIcons.First(x => x.type == type).icon;
+            return unitIcons.First(x => x.Key == type).Value;
         }
         
-        public Sprite GetProductGroupIcon(ProductGroup group)
+        public AssetReference GetProductGroupIcon(ProductGroup group)
         {
-            return productGroupIcons.First(x => x.type == group).icon;
+            return productGroupIcons.First(x => x.Key == group).Value;
         }
         
-        public Sprite GetSpecIcon(SpecType spec)
+        public AssetReference GetSpecIcon(SpecType spec)
         {
-            return specificationIcons.First(x => x.type == spec).icon;
+            return specsIcons.First(x => x.Key == spec).Value;
         }
-    }
-
-    [Serializable]
-    public class RawIconKeyObject
-    {
-        public RawType type;
-        public AssetReference iconRef;
-    }
-
-    [Serializable]
-    public class UnitTypeIconKeyObject
-    {
-        public UnitType type;
-        public Sprite icon;
-    }
-    
-    [Serializable]
-    public class ProductGroupIconKeyObject
-    {
-        public ProductGroup type;
-        public Sprite icon;
-    }
-
-    [Serializable]
-    public class SpecificationIconKeyObject
-    {
-        public SpecType type;
-        public Sprite icon;
     }
 }

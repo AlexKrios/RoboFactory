@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Modules.General.Item.Products.Models.Types;
+using Modules.General.Ui;
 using UnityEngine;
 using Zenject;
 
@@ -12,8 +13,8 @@ namespace Modules.Factory.Menu.Storage.Tab
     {
         #region Zenject
         
-        [Inject] private readonly StorageMenuManager _storageMenuManager;
-        
+        [Inject] private readonly IUiController _uiController;
+
         #endregion
 
         #region Components
@@ -26,6 +27,7 @@ namespace Modules.Factory.Menu.Storage.Tab
 
         public Action OnTabClickEvent { get; set; }
 
+        private StorageMenuView _menu;
         private TabCellView _activeTab;
         private TabCellView ActiveTab
         {
@@ -46,8 +48,8 @@ namespace Modules.Factory.Menu.Storage.Tab
 
         private void Awake()
         {
-            _storageMenuManager.Tabs = this;
-
+            _menu = _uiController.FindUi<StorageMenuView>();
+            
             SetTabsData();
         }
 
@@ -70,7 +72,7 @@ namespace Modules.Factory.Menu.Storage.Tab
             if (ActiveTab == tab)
                 return;
             
-            _storageMenuManager.ActiveProductGroup = group;
+            _menu.ActiveProductGroup = group;
             ActiveTab = tab;
             
             OnTabClickEvent?.Invoke();

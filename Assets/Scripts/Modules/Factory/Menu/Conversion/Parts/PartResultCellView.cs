@@ -1,6 +1,7 @@
 ﻿using DG.Tweening;
 using Modules.General.Asset;
 using Modules.General.Item.Raw.Convert;
+using Modules.General.Ui;
 using TMPro;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
@@ -14,7 +15,7 @@ namespace Modules.Factory.Menu.Conversion.Parts
     {
         #region Zenject
         
-        [Inject] private readonly ConversionMenuManager _conversionMenuManager;
+        [Inject] private readonly IUiController _uiController;
         [Inject] private readonly IConvertRawController _convertRawController;
 
         #endregion
@@ -27,6 +28,21 @@ namespace Modules.Factory.Menu.Conversion.Parts
 
         #endregion
 
+        #region Variables
+
+        private ConversionMenuView _menu;
+
+        #endregion
+        
+        #region Unity Methods
+
+        protected void Awake()
+        {
+            _menu = _uiController.FindUi<ConversionMenuView>();
+        }
+
+        #endregion
+
         public async void SetResultData(AssetReference iconRef, int star)
         {
             icon.sprite = await AssetsController.LoadAsset<Sprite>(iconRef);
@@ -35,10 +51,10 @@ namespace Modules.Factory.Menu.Conversion.Parts
         
         public void StartConvertAnimation()
         {
-            _conversionMenuManager.Convert.SetInteractable(false);
+            _menu.Convert.SetInteractable(false);
             progress.DOFillAmount(1, 1).SetEase(Ease.OutCubic).OnComplete(() =>
             {
-                _conversionMenuManager.Convert.SetState();
+                _menu.Convert.SetState();
                 progress.fillAmount = 0;
 
                 _convertRawController.AddRaw();

@@ -18,9 +18,7 @@ namespace Modules.General.Item.Raw.Models.Object
                 Count = 0,
                 Level = 1,
                 
-                IsRefill = data.IsMain,
-                
-                //Recipe = data.Recipes
+                IsRefill = data.IsMain
             };
         }
     }

@@ -13,6 +13,8 @@ public static class Constants
     public const int MaxStar = 2;
 
     public const int MaxPart = 4;
+    
+    public const int ProductTypeCount = 4;
 
     public const string EmptyOutfit = "Empty";
 }

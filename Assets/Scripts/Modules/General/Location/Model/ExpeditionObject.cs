@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace Modules.General.Location.Model
 {
@@ -13,7 +12,5 @@ namespace Modules.General.Location.Model
         public List<string> Enemy { get; set; }
         
         public long TimeEnd { get; set; }
-
-        public Coroutine Timer { get; set; }
     }
 }

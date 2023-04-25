@@ -57,6 +57,17 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 711a9fc90eab8bc4ba93360673cb9540, type: 2}
     - {fileID: 11400000, guid: 980e112917b4c9c46a4142afa0b76d53, type: 2}
     - {fileID: 11400000, guid: 1322bd4a16ad14145afcdf3da45fe2fa, type: 2}
+    faces:
+    - key: 1
+      value: {fileID: 2100000, guid: 639ea160989b12346888d4e593f39f52, type: 2}
+    - key: 2
+      value: {fileID: 2100000, guid: 19b8dd20df0a3c74a8be2c7eb4862870, type: 2}
+    - key: 3
+      value: {fileID: 2100000, guid: 516f3bc4a2f026743936c1859f9708f4, type: 2}
+    - key: 4
+      value: {fileID: 2100000, guid: 717ffb028c427854ea02cd3a67a88a82, type: 2}
+    - key: 5
+      value: {fileID: 2100000, guid: 830a1377c568bfc4ca0ee3d4762597a1, type: 2}
   locations:
     locations:
     - {fileID: 11400000, guid: 1f6271ca99bfddd449ba0c861e45a280, type: 2}

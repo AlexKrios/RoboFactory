@@ -13,7 +13,6 @@ namespace Modules.Factory.Menu.Expedition.Units
         #region Zenject
 
         [Inject] private readonly IUiController _uiController;
-        [Inject] private readonly ExpeditionMenuManager _expeditionMenuManager;
         [Inject] private readonly ExpeditionMenuFactory _expeditionMenuFactory;
 
         #endregion
@@ -36,8 +35,6 @@ namespace Modules.Factory.Menu.Expedition.Units
 
         private void Awake()
         {
-            _expeditionMenuManager.Units = this;
-
             SetData();
         }
 

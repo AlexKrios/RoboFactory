@@ -3,6 +3,7 @@ using Modules.General.Asset;
 using Modules.General.Item.Products;
 using Modules.General.Item.Products.Models.Object;
 using Modules.General.Item.Products.Models.Types;
+using Modules.General.Ui;
 using Modules.General.Ui.Common.Menu;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,8 +16,8 @@ namespace Modules.Factory.Menu.Units.Info
     {
         #region Zenject
 
+        [Inject] private readonly IUiController _uiController;
         [Inject] private readonly IProductsController _productsController;
-        [Inject] private readonly UnitsMenuManager _unitsMenuManager;
 
         #endregion
         
@@ -26,8 +27,6 @@ namespace Modules.Factory.Menu.Units.Info
         [SerializeField] private ProductGroup equipmentType;
         
         [Space]
-        [SerializeField] private Image emptyIcon;
-        [SerializeField] private Image plusIcon;
         [SerializeField] private Image starImage;
 
         public ProductGroup EquipmentType => equipmentType;
@@ -38,7 +37,19 @@ namespace Modules.Factory.Menu.Units.Info
 
         public Action<EquipmentCellView> OnClickEvent { get; set; }
         
+        private UnitsMenuView _menu;
         public ProductObject Data { get; private set; }
+
+        #endregion
+        
+        #region Unity Methods
+
+        protected override void Awake()
+        {
+            base.Awake();
+            
+            _menu = _uiController.FindUi<UnitsMenuView>();
+        }
 
         #endregion
 
@@ -48,31 +59,20 @@ namespace Modules.Factory.Menu.Units.Info
 
             var sprite = await AssetsController.LoadAsset<Sprite>(product.IconRef);
             SetIconSprite(sprite);
-            SetEmptyIcon(null, false);
 
-            starImage.gameObject.SetActive(true);
-            plusIcon.gameObject.SetActive(false);
+            starImage.gameObject.SetActive(product.ProductType != 0);
         }
 
         public async void ResetEquipmentData()
         {
-            var unitType = _unitsMenuManager.Roster.ActiveUnit.UnitData.UnitType;
-            Data = _productsController.GetDefaultProduct(equipmentType, unitType);
+            Data = _productsController.GetDefaultProduct(equipmentType, _menu.ActiveUnit.UnitType);
 
             var sprite = await AssetsController.LoadAsset<Sprite>(Data.IconRef);
-            SetIconSprite(null, false);
-            SetEmptyIcon(sprite, true);
-            
+            SetIconSprite(sprite);
+
             starImage.gameObject.SetActive(false);
-            plusIcon.gameObject.SetActive(true);
         }
-
-        private void SetEmptyIcon(Sprite sprite, bool active)
-        {
-            emptyIcon.gameObject.SetActive(active);
-            emptyIcon.sprite = sprite;
-        }
-
+        
         protected override void Click()
         {
             base.Click();

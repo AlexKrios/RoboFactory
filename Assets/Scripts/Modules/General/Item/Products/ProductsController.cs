@@ -11,7 +11,7 @@ using Modules.General.Item.Products.Models.Object;
 using Modules.General.Item.Products.Models.Scriptable;
 using Modules.General.Item.Products.Models.Types;
 using Modules.General.Scriptable;
-using Modules.General.Unit.Models.Type;
+using Modules.General.Unit.Type;
 using UnityEngine;
 
 namespace Modules.General.Item.Products
@@ -24,7 +24,7 @@ namespace Modules.General.Item.Products
 
         public ProductsController(Settings settings)
         {
-            ItemType = ItemType.Item;
+            ItemType = ItemType.Product;
             _productsDictionary = new Dictionary<string, ProductObject>();
             
             foreach (var product in settings.items)
@@ -63,13 +63,17 @@ namespace Modules.General.Item.Products
         public ProductObject GetProduct(string key) => _productsDictionary[key];
         public List<ProductObject> GetAllProducts() => _productsDictionary.Values.ToList();
 
+        public List<ProductObject> GetUnitDefaultProducts(UnitType unit)
+        {
+            return _productsDictionary.Values
+                .Where(x => x.UnitType == unit && x.ProductType == 0)
+                .ToList();
+        }
+        
         public ProductObject GetDefaultProduct(ProductGroup group, UnitType unit)
         {
             return _productsDictionary.Values
-                .First(x => 
-                    x.ProductGroup == group && 
-                    x.UnitType == unit &&
-                    x.ProductType == 0);
+                .First(x => x.ProductGroup == group && x.UnitType == unit && x.ProductType == 0);
         }
 
         public bool IsEnoughProduct(List<PartObject> parts)

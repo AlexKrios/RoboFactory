@@ -3,6 +3,6 @@
     public enum ItemType
     {
         Raw,
-        Item
+        Product
     }
 }

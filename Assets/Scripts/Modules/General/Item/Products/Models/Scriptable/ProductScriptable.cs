@@ -2,7 +2,7 @@ using Modules.General.Item.Models.Recipe;
 using Modules.General.Item.Models.Scriptable;
 using Modules.General.Item.Models.Types;
 using Modules.General.Item.Products.Models.Types;
-using Modules.General.Unit.Models.Type;
+using Modules.General.Unit.Type;
 using UnityEngine;
 
 namespace Modules.General.Item.Products.Models.Scriptable
@@ -11,7 +11,7 @@ namespace Modules.General.Item.Products.Models.Scriptable
     {
         public ProductScriptable()
         {
-            ItemType = ItemType.Item;
+            ItemType = ItemType.Product;
         }
         
         [SerializeField] private int index;

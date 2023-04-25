@@ -1,4 +1,5 @@
 ﻿using Modules.General.Item.Raw;
+using Modules.General.Ui;
 using UnityEngine;
 using Zenject;
 
@@ -9,7 +10,7 @@ namespace Modules.Factory.Menu.Conversion.Parts
     {
         #region Zenject
 
-        [Inject] private readonly ConversionMenuManager _conversionMenuManager;
+        [Inject] private readonly IUiController _uiController;
         [Inject] private readonly IRawController _rawController;
 
         #endregion
@@ -21,25 +22,28 @@ namespace Modules.Factory.Menu.Conversion.Parts
         [SerializeField] private PartResultCellView result;
 
         #endregion
+
+        #region Variables
+
+        private ConversionMenuView _menu;
+
+        #endregion
         
         #region Unity Methods
 
         protected void Awake()
         {
-            _conversionMenuManager.Parts = this;
+            _menu = _uiController.FindUi<ConversionMenuView>();
         }
 
         #endregion
 
         public void SetData()
         {
-            var raw = _conversionMenuManager.Tabs.ActiveTab.RawData;
-            var star = _conversionMenuManager.Star.ActiveStar;
-            
-            var recipe = _rawController.GetRaw(raw.Key).Recipe;
+            var recipe = _rawController.GetRaw(_menu.ActiveRaw.Key).Recipe;
             part1.SetPartData(recipe.Parts[0]);
             part2.SetPartData(recipe.Parts[1]);
-            result.SetResultData(raw.IconRef, star);
+            result.SetResultData(_menu.ActiveRaw.IconRef, _menu.ActiveStar);
         }
         
         public void StartConvertAnimation()

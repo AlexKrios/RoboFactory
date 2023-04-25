@@ -1,5 +1,6 @@
 ﻿using Modules.General.Localisation;
 using Modules.General.Localisation.Models;
+using Modules.General.Ui;
 using TMPro;
 using UnityEngine;
 using Zenject;
@@ -12,7 +13,7 @@ namespace Modules.Factory.Menu.Units.Header
         #region Zenject
 
         [Inject] private readonly ILocalisationController _localisationController;
-        [Inject] private readonly UnitsMenuManager _unitsMenuManager;
+        [Inject] private readonly IUiController _uiController;
 
         #endregion
 
@@ -23,11 +24,17 @@ namespace Modules.Factory.Menu.Units.Header
 
         #endregion
 
+        #region Variables
+
+        private UnitsMenuView _menu;
+
+        #endregion
+
         #region Unity Methods
 
         private void Awake()
         {
-            _unitsMenuManager.Header = this;
+            _menu = _uiController.FindUi<UnitsMenuView>();
             
             SetData();
         }
@@ -37,7 +44,7 @@ namespace Modules.Factory.Menu.Units.Header
         public void SetData()
         {
             title.text = _localisationController.GetLanguageValue(LocalisationKeys.UnitsMenuTitleKey);
-            unitType.text = _localisationController.GetLanguageValue(LocalisationKeys.UnitKeys[_unitsMenuManager.ActiveUnitType]);
+            unitType.text = _localisationController.GetLanguageValue(LocalisationKeys.UnitKeys[_menu.ActiveUnitType]);
         }
     }
 }

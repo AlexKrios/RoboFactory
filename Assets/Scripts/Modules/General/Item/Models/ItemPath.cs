@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Modules.General.Item.Products.Models.Object.Types;
 using Modules.General.Item.Products.Models.Types;
-using Modules.General.Unit.Models.Type;
+using Modules.General.Unit.Type;
 
 namespace Modules.General.Item.Models
 {
@@ -20,15 +20,15 @@ namespace Modules.General.Item.Models
             $"Data/Products/{UnitType.Support}/{ProductGroup.Armor}/{WeaponType.Star1}",
             $"Data/Products/{UnitType.Sniper}/{ProductGroup.Armor}/{WeaponType.Star1}",
             /* ----- Equipment ----- */
-            $"Data/Products/{UnitType.Trooper}/{ProductGroup.Equipment}/{WeaponType.Star1}",
-            $"Data/Products/{UnitType.Defender}/{ProductGroup.Equipment}/{WeaponType.Star1}",
-            $"Data/Products/{UnitType.Support}/{ProductGroup.Equipment}/{WeaponType.Star1}",
-            $"Data/Products/{UnitType.Sniper}/{ProductGroup.Equipment}/{WeaponType.Star1}",
+            $"Data/Products/{UnitType.Trooper}/{ProductGroup.Engine}/{WeaponType.Star1}",
+            $"Data/Products/{UnitType.Defender}/{ProductGroup.Engine}/{WeaponType.Star1}",
+            $"Data/Products/{UnitType.Support}/{ProductGroup.Engine}/{WeaponType.Star1}",
+            $"Data/Products/{UnitType.Sniper}/{ProductGroup.Engine}/{WeaponType.Star1}",
             /* ----- Skill ----- */
-            $"Data/Products/{UnitType.Trooper}/{ProductGroup.Skill}/{WeaponType.Star1}",
-            $"Data/Products/{UnitType.Defender}/{ProductGroup.Skill}/{WeaponType.Star1}",
-            $"Data/Products/{UnitType.Support}/{ProductGroup.Skill}/{WeaponType.Star1}",
-            $"Data/Products/{UnitType.Sniper}/{ProductGroup.Skill}/{WeaponType.Star1}"
+            $"Data/Products/{UnitType.Trooper}/{ProductGroup.Battery}/{WeaponType.Star1}",
+            $"Data/Products/{UnitType.Defender}/{ProductGroup.Battery}/{WeaponType.Star1}",
+            $"Data/Products/{UnitType.Support}/{ProductGroup.Battery}/{WeaponType.Star1}",
+            $"Data/Products/{UnitType.Sniper}/{ProductGroup.Battery}/{WeaponType.Star1}"
         };
     }
 }

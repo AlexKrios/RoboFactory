@@ -81,11 +81,5 @@ namespace Modules.General.Ui.Common.Menu
         {
             activeImage.gameObject.SetActive(true);
         }
-        
-        protected void SetAlpha(bool state)
-        {
-            var backgroundCanvasGroup = background.GetComponent<CanvasGroup>();
-            backgroundCanvasGroup.alpha = state ? 1f : 0.25f;
-        }
     }
 }

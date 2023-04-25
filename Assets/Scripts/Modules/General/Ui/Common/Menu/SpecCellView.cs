@@ -1,4 +1,5 @@
-﻿using Modules.General.Item.Products.Models.Object.Spec;
+﻿using Modules.General.Asset;
+using Modules.General.Item.Products.Models.Object.Spec;
 using Modules.General.Item.Products.Models.Types;
 using TMPro;
 using UnityEngine;
@@ -29,9 +30,10 @@ namespace Modules.General.Ui.Common.Menu
         
         #endregion
 
-        public void SetData(SpecObject spec)
+        public async void SetData(SpecObject spec)
         {
-            icon.sprite = _iconUtil.GetSpecIcon(spec.type);
+            var spriteRef = _iconUtil.GetSpecIcon(spec.type);
+            icon.sprite = await AssetsController.LoadAsset<Sprite>(spriteRef);
             count.text = spec.value.ToString();
         }
     }

@@ -1,6 +1,7 @@
 ﻿using Modules.Factory.Menu.Conversion.Components;
 using Modules.Factory.Menu.Conversion.Parts;
 using Modules.Factory.Menu.Conversion.Tabs;
+using Modules.General.Item.Raw.Models.Object;
 using Modules.General.Localisation;
 using Modules.General.Localisation.Models;
 using Modules.General.Ui.Common.Menu;
@@ -28,9 +29,18 @@ namespace Modules.Factory.Menu.Conversion
         [SerializeField] private TabsSectionView tabs;
         [SerializeField] private PartsSectionView parts;
         [SerializeField] private ConvertButtonView convert;
+        
+        public ConvertButtonView Convert => convert;
 
         #endregion
 
+        #region Variables
+
+        public RawObject ActiveRaw { get; set; }
+        public int ActiveStar { get; set; }
+
+        #endregion
+        
         #region Unity Methods
 
         protected override void Awake()

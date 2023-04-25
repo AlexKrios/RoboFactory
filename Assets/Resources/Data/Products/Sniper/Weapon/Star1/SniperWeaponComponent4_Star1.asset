@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 815bcbab6dced214193958b72caf0b6d, type: 3}
+  m_Name: SniperWeaponComponent4_Star1
+  m_EditorClassIdentifier: 
+  itemType: 1
+  key: sniper_weapon_component4_star1
+  iconRef:
+    m_AssetGUID: 261629d4fd5c9a1408f79a50c0f224cd
+    m_SubObjectName: SniperWeaponComponent4
+    m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+    m_EditorAssetChanged: 0
+  index: 4
+  productName: Sniper Weapon Component4 Star1
+  star: 1
+  unitType: 4
+  productGroup: 1
+  productType: 1
+  isProduct: 0
+  model: {fileID: 0}
+  recipe:
+    star: 0
+    parts:
+    - data: {fileID: 11400000, guid: d93f5a32beae9f84081da35a39b1468f, type: 2}
+      star: 1
+      count: 5
+    cost: 50
+    experience: 5
+    craftTime: 5
+    specs: []

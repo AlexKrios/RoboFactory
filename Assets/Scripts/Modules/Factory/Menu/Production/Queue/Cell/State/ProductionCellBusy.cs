@@ -1,6 +1,5 @@
-﻿using System.Collections;
+﻿using Cysharp.Threading.Tasks;
 using Modules.General.Asset;
-using Modules.General.Coroutines;
 using Modules.General.Item.Production;
 using Modules.General.Item.Products;
 using UnityEngine;
@@ -13,7 +12,6 @@ namespace Modules.Factory.Menu.Production.Queue.Cell.State
     {
         #region Zenject
 
-        [Inject] private readonly ICoroutinesController _coroutinesController;
         [Inject] private readonly IProductsController _productsController;
         [Inject] private readonly IProductionController _productionController;
 
@@ -37,27 +35,26 @@ namespace Modules.Factory.Menu.Production.Queue.Cell.State
 
             var sprite = await AssetsController.LoadAsset<Sprite>(craftItem.IconRef);
             _cell.SetCellIcon(sprite);
-            _cell.Data.Timer = _coroutinesController.StartNewCoroutine(StartProductionTimer());
+            StartProductionTimer();
         }
 
         public void Click() { }
 
         public void Exit() { }
         
-        private IEnumerator StartProductionTimer()
+        private async void StartProductionTimer()
         {
             var productionTime = DateUtil.GetTime(_cell.Data.TimeEnd);
             if (productionTime == 0)
             {
-                yield return new WaitForSeconds(0.1f);
                 _cell.SetStateFinish();
-                yield break;
+                return;
             }
 
             while (productionTime > 0)
             {
                 _cell.SetCellTimer(DateUtil.DateCraftTimer(productionTime));
-                yield return new WaitForSeconds(1.0f);
+                await UniTask.Delay(1000);
                 productionTime--;
             }
             

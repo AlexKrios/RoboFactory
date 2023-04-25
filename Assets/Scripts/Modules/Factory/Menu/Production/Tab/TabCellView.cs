@@ -1,6 +1,7 @@
 ﻿using System;
+using Modules.General.Asset;
 using Modules.General.Ui.Common.Menu;
-using Modules.General.Unit.Models.Type;
+using Modules.General.Unit.Type;
 using UnityEngine;
 using Utils;
 using Zenject;
@@ -36,10 +37,11 @@ namespace Modules.Factory.Menu.Production.Tab
             OnClickEvent?.Invoke(this, unitType);
         }
 
-        public void SetTabData()
+        public async void SetTabData()
         {
-            var sprite = _iconUtil.GetUnitIcon(unitType);
-
+            var spriteRef = _iconUtil.GetUnitIcon(unitType);
+            var sprite = await AssetsController.LoadAsset<Sprite>(spriteRef);
+            
             SetIconSprite(sprite);
         }
     }

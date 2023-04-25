@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Modules.General.Unit.Models.Type;
+using Modules.General.Ui;
+using Modules.General.Unit.Type;
 using UnityEngine;
 using Zenject;
 
@@ -12,8 +13,8 @@ namespace Modules.Factory.Menu.Units.Tab
     {
         #region Zenject
         
-        [Inject] private readonly UnitsMenuManager _unitsMenuManager;
-        
+        [Inject] private readonly IUiController _uiController;
+
         #endregion
 
         #region Components
@@ -26,6 +27,7 @@ namespace Modules.Factory.Menu.Units.Tab
 
         public Action OnTabClickEvent { get; set; }
 
+        private UnitsMenuView _menu;
         private TabCellView _activeTab;
         private TabCellView ActiveTab
         {
@@ -34,7 +36,7 @@ namespace Modules.Factory.Menu.Units.Tab
             {
                 if (_activeTab != null)
                     _activeTab.SetInactive();
-
+                
                 _activeTab = value;
                 _activeTab.SetActive();
             }
@@ -46,8 +48,8 @@ namespace Modules.Factory.Menu.Units.Tab
 
         private void Awake()
         {
-            _unitsMenuManager.Tabs = this;
-
+            _menu = _uiController.FindUi<UnitsMenuView>();
+            
             SetTabsData();
         }
 
@@ -69,7 +71,7 @@ namespace Modules.Factory.Menu.Units.Tab
             if (ActiveTab == tab)
                 return;
             
-            _unitsMenuManager.ActiveUnitType = unit;
+            _menu.ActiveUnitType = unit;
             ActiveTab = tab;
             
             OnTabClickEvent?.Invoke();

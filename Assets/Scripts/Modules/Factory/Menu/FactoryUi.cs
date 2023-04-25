@@ -10,6 +10,7 @@ using Modules.General.Ui.Admin;
 using TMPro;
 using UniRx;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Utils;
 using Zenject;
@@ -138,5 +139,13 @@ namespace Modules.Factory.Menu
 
         private void OnFloorUpClick() => _factoryCameraController.Move(1);
         private void OnFloorDownClick() => _factoryCameraController.Move(-1);
+        
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                SceneManager.LoadScene("UnitTest");
+            }
+        }
     }
 }

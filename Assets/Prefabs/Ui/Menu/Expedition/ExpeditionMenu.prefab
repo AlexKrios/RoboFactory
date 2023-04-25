@@ -1804,7 +1804,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 985313327bbe4467b3b97a62a36b346e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 6
   close: {fileID: 231540740182993891}
   title: {fileID: 700770254868621099}
   star: {fileID: 7268702395156601196}
@@ -2732,7 +2731,7 @@ PrefabInstance:
     - target: {fileID: 6743872837399469097, guid: 2fc41719c5f000440bc5331960c01e04,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 30
+      value: -30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2fc41719c5f000440bc5331960c01e04, type: 3}
@@ -3466,7 +3465,7 @@ PrefabInstance:
     - target: {fileID: 6743872837399469097, guid: 2fc41719c5f000440bc5331960c01e04,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -30
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2fc41719c5f000440bc5331960c01e04, type: 3}
@@ -3623,7 +3622,7 @@ PrefabInstance:
     - target: {fileID: 6743872837399469097, guid: 2fc41719c5f000440bc5331960c01e04,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 30
+      value: -20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2fc41719c5f000440bc5331960c01e04, type: 3}
@@ -3922,7 +3921,7 @@ PrefabInstance:
     - target: {fileID: 6743872837399469097, guid: 2fc41719c5f000440bc5331960c01e04,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -30
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2fc41719c5f000440bc5331960c01e04, type: 3}

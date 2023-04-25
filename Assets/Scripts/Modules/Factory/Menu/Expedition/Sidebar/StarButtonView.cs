@@ -1,4 +1,5 @@
 ﻿using System;
+using Modules.General.Ui;
 using Modules.General.Ui.Common.Menu;
 using UnityEngine;
 using Zenject;
@@ -8,9 +9,11 @@ namespace Modules.Factory.Menu.Expedition.Sidebar
     [AddComponentMenu("Scripts/Factory/Menu/Expedition/Star Button View")]
     public class StarButtonView : StarButtonBase
     {
+        private const int DefaultStar = 1;
+        
         #region Zenject
 
-        [Inject] private readonly ExpeditionMenuManager _expeditionMenuManager;
+        [Inject] private readonly IUiController _uiController;
 
         #endregion
         
@@ -18,13 +21,13 @@ namespace Modules.Factory.Menu.Expedition.Sidebar
 
         public Action OnClickEvent { get; set; }
         
-        private int _activeStar;
+        private ExpeditionMenuView _menu;
         private int ActiveStar
         {
-            get => _activeStar;
+            get => _menu.ActiveStar;
             set
             {
-                _activeStar = value;
+                _menu.ActiveStar = value;
                 SetStarLevel(value);
             } 
         }
@@ -36,8 +39,9 @@ namespace Modules.Factory.Menu.Expedition.Sidebar
         protected override void Awake()
         {
             base.Awake();
-
-            _expeditionMenuManager.Star = this;
+            
+            _menu = _uiController.FindUi<ExpeditionMenuView>();
+            
             ResetStar();
         }
 
@@ -48,14 +52,14 @@ namespace Modules.Factory.Menu.Expedition.Sidebar
             base.Click();
             
             var nextStar = ActiveStar + 1;
-            ActiveStar = nextStar <= Constants.MaxStar ? nextStar : ExpeditionMenuManager.DefaultStar;
+            ActiveStar = nextStar <= Constants.MaxStar ? nextStar : DefaultStar;
 
             OnClickEvent?.Invoke();
         }
 
         public void ResetStar()
         {
-            ActiveStar = ExpeditionMenuManager.DefaultStar;
+            ActiveStar = DefaultStar;
         }
     }
 }

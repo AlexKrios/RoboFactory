@@ -2,7 +2,7 @@
 using Modules.General.Item.Products.Models.Types;
 using Modules.General.Item.Raw.Models.Type;
 using Modules.General.Ui;
-using Modules.General.Unit.Models.Type;
+using Modules.General.Unit.Type;
 
 namespace Modules.General.Localisation.Models
 {
@@ -33,25 +33,28 @@ namespace Modules.General.Localisation.Models
         {
             RawKeys = new Dictionary<RawType, string>
             {
+                {RawType.None, "raw_none"},
                 {RawType.All, "raw_all"},
-                {RawType.Skill, "raw_robotic"},
+                {RawType.Battery, "raw_robotic"},
                 {RawType.Weapon, "raw_weapon"},
                 {RawType.Armor, "raw_armor"},
-                {RawType.Equipment, "raw_bionic"}
+                {RawType.Engine, "raw_bionic"}
             };
 
             ProductKeys = new Dictionary<ProductGroup, string>
             {
+                {ProductGroup.None, "group_type_none"},
                 {ProductGroup.All, "group_type_all"},
-                {ProductGroup.Skill, "group_type_robotic"},
                 {ProductGroup.Weapon, "group_type_weapon"},
                 {ProductGroup.Armor, "group_type_armor"},
-                {ProductGroup.Equipment, "group_type_equipment"}
+                {ProductGroup.Engine, "group_type_engine"},
+                {ProductGroup.Battery, "group_type_battery"}
             };
             
             UnitKeys = new Dictionary<UnitType, string>
             {
-                {UnitType.None, "unit_all"},
+                {UnitType.None, "unit_none"},
+                {UnitType.All, "unit_all"},
                 {UnitType.Trooper, "unit_trooper"},
                 {UnitType.Defender, "unit_defender"},
                 {UnitType.Support, "unit_support"},

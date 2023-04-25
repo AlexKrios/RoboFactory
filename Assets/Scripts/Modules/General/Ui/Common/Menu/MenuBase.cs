@@ -16,15 +16,12 @@ namespace Modules.General.Ui.Common.Menu
         #region Zenject
         
         [Inject] private readonly IAudioController _audioController;
-        [Inject] private readonly IUiController _uiController;
+        [Inject] protected readonly IUiController UiController;
 
         #endregion
 
         #region Components
         
-        [SerializeField] protected UiType type;
-        
-        [Space]
         [SerializeField] private Button close;
 
         #endregion
@@ -58,20 +55,20 @@ namespace Modules.General.Ui.Common.Menu
         {
             _canvasGroup.alpha = 0f;
             _canvasGroup.DOFade(1, FadeTime).SetEase(Ease.InCubic);
-            _uiController.SetCameraActive(CameraType.Main, false);
-            _uiController.SetCanvasActive(CanvasType.HUD, false);
+            UiController.SetCameraActive(CameraType.Main, false);
+            UiController.SetCanvasActive(CanvasType.HUD, false);
         }
         
         public virtual void Close()
         {
             _audioController.PlayAudio(AudioClipType.CloseClick);
-            _uiController.SetCameraActive(CameraType.Main);
-            _uiController.SetCanvasActive(CanvasType.HUD);
+            UiController.SetCameraActive(CameraType.Main);
+            UiController.SetCanvasActive(CanvasType.HUD);
             
             _canvasGroup.alpha = 1f;
             _canvasGroup.DOFade(0, FadeTime)
                 .SetEase(Ease.OutCubic)
-                .OnComplete(() => _uiController.RemoveUi(this, gameObject));
+                .OnComplete(() => UiController.RemoveUi(this, gameObject));
         }
     }
 }

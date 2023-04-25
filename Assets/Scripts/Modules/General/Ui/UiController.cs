@@ -26,6 +26,11 @@ namespace Modules.General.Ui
             else
                 _cameraDictionary.Add(type, camera);
         }
+        
+        public GameObject GetCamera(CameraType type)
+        {
+            return _cameraDictionary[type];
+        }
 
         public void SetCameraActive(CameraType type, bool value = true)
         {

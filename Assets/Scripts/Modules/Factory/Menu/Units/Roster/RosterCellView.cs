@@ -1,8 +1,8 @@
 ﻿using System;
 using Modules.General.Asset;
 using Modules.General.Ui.Common.Menu;
-using Modules.General.Unit.Models.Object;
-using Modules.General.Unit.Models.Type;
+using Modules.General.Unit.Object;
+using Modules.General.Unit.Type;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,7 +16,7 @@ namespace Modules.Factory.Menu.Units.Roster
 
         public Action<RosterCellView, UnitType> OnClickEvent { get; set; }
         
-        public UnitObject UnitData { get; private set; }
+        public UnitObject Data { get; private set; }
 
         #endregion
 
@@ -24,12 +24,12 @@ namespace Modules.Factory.Menu.Units.Roster
         {
             base.Click();
             
-            OnClickEvent?.Invoke(this, UnitData.UnitType);
+            OnClickEvent?.Invoke(this, Data.UnitType);
         }
         
         public async void SetProductData(UnitObject unit)
         {
-            UnitData = unit;
+            Data = unit;
             var sprite = await AssetsController.LoadAsset<Sprite>(unit.IconRef);
 
             SetIconSprite(sprite);

@@ -4382,7 +4382,7 @@ Camera:
   m_Depth: 1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 96
+    m_Bits: 32864
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -8266,71 +8266,135 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rawIcons:
-  - type: 0
-    iconRef:
-      m_AssetGUID: 3e54da3b0b863c140845430cb89f6aec
-      m_SubObjectName: Raw_Bionic
-      m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-      m_EditorAssetChanged: 0
-  - type: 1
-    iconRef:
+  - key: 1
+    value:
       m_AssetGUID: 7cebe9a3c0e99c54b955b7f8a1499bfa
-      m_SubObjectName: Raw_Weapon
+      m_SubObjectName: RawWeapon
       m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       m_EditorAssetChanged: 0
-  - type: 2
-    iconRef:
+  - key: 2
+    value:
       m_AssetGUID: 16d03c305c253b64db3fedafaaeabe9d
-      m_SubObjectName: Raw_Armor
+      m_SubObjectName: RawArmor
       m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       m_EditorAssetChanged: 0
-  - type: 3
-    iconRef:
+  - key: 3
+    value:
+      m_AssetGUID: dc9c1d0cded8ac64590d9913657bfdc4
+      m_SubObjectName: RawEngine
+      m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      m_EditorAssetChanged: 0
+  - key: 4
+    value:
       m_AssetGUID: 3e54da3b0b863c140845430cb89f6aec
-      m_SubObjectName: Raw_Bionic
+      m_SubObjectName: RawBattery
       m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
-      m_EditorAssetChanged: 0
-  - type: 0
-    iconRef:
-      m_AssetGUID: 
-      m_SubObjectName: 
-      m_SubObjectType: 
       m_EditorAssetChanged: 0
   unitIcons:
-  - type: 0
-    icon: {fileID: -619759936, guid: 114d1c7c5dc27d0428359f3a678a6533, type: 3}
-  - type: 1
-    icon: {fileID: 2392094248530165700, guid: 114d1c7c5dc27d0428359f3a678a6533, type: 3}
-  - type: 2
-    icon: {fileID: 8074240187575744562, guid: 114d1c7c5dc27d0428359f3a678a6533, type: 3}
-  - type: 3
-    icon: {fileID: 7909699751267622942, guid: 114d1c7c5dc27d0428359f3a678a6533, type: 3}
-  - type: 4
-    icon: {fileID: -8151835640473163728, guid: 114d1c7c5dc27d0428359f3a678a6533, type: 3}
+  - key: 0
+    value:
+      m_AssetGUID: 114d1c7c5dc27d0428359f3a678a6533
+      m_SubObjectName: CharachterTypeAll
+      m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      m_EditorAssetChanged: 0
+  - key: 1
+    value:
+      m_AssetGUID: 114d1c7c5dc27d0428359f3a678a6533
+      m_SubObjectName: CharachterTypeTrooper
+      m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      m_EditorAssetChanged: 0
+  - key: 2
+    value:
+      m_AssetGUID: 114d1c7c5dc27d0428359f3a678a6533
+      m_SubObjectName: CharachterTypeDefender
+      m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      m_EditorAssetChanged: 0
+  - key: 3
+    value:
+      m_AssetGUID: 114d1c7c5dc27d0428359f3a678a6533
+      m_SubObjectName: CharachterTypeSupport
+      m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      m_EditorAssetChanged: 0
+  - key: 4
+    value:
+      m_AssetGUID: 114d1c7c5dc27d0428359f3a678a6533
+      m_SubObjectName: CharachterTypeSniper
+      m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      m_EditorAssetChanged: 0
   productGroupIcons:
-  - type: 0
-    icon: {fileID: -1929098035, guid: 144efc02586ae384e9bc4c6cbe77e313, type: 3}
-  - type: 1
-    icon: {fileID: 6110231818009536002, guid: 144efc02586ae384e9bc4c6cbe77e313, type: 3}
-  - type: 2
-    icon: {fileID: 6924161944270206828, guid: 144efc02586ae384e9bc4c6cbe77e313, type: 3}
-  - type: 3
-    icon: {fileID: 2885990641996142954, guid: 144efc02586ae384e9bc4c6cbe77e313, type: 3}
-  - type: 4
-    icon: {fileID: -4851389383475883316, guid: 144efc02586ae384e9bc4c6cbe77e313, type: 3}
-  specificationIcons:
-  - type: 0
-    icon: {fileID: 614113978, guid: 4b02a20004ae0ca47aca6850eff73879, type: 3}
-  - type: 1
-    icon: {fileID: 1862308789, guid: 4b02a20004ae0ca47aca6850eff73879, type: 3}
-  - type: 2
-    icon: {fileID: -1074712080, guid: 4b02a20004ae0ca47aca6850eff73879, type: 3}
-  - type: 3
-    icon: {fileID: -1657778688, guid: 4b02a20004ae0ca47aca6850eff73879, type: 3}
+  - key: 0
+    value:
+      m_AssetGUID: 144efc02586ae384e9bc4c6cbe77e313
+      m_SubObjectName: ProductsTypeAll
+      m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      m_EditorAssetChanged: 0
+  - key: 1
+    value:
+      m_AssetGUID: 144efc02586ae384e9bc4c6cbe77e313
+      m_SubObjectName: ProductTypeWeapon
+      m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      m_EditorAssetChanged: 0
+  - key: 2
+    value:
+      m_AssetGUID: 144efc02586ae384e9bc4c6cbe77e313
+      m_SubObjectName: ProductTypeArmor
+      m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      m_EditorAssetChanged: 0
+  - key: 3
+    value:
+      m_AssetGUID: 144efc02586ae384e9bc4c6cbe77e313
+      m_SubObjectName: ProductTypeEngine
+      m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      m_EditorAssetChanged: 0
+  - key: 4
+    value:
+      m_AssetGUID: 144efc02586ae384e9bc4c6cbe77e313
+      m_SubObjectName: ProductTypeBattery
+      m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      m_EditorAssetChanged: 0
+  specsIcons:
+  - key: 0
+    value:
+      m_AssetGUID: 4b02a20004ae0ca47aca6850eff73879
+      m_SubObjectName: SpecAttack
+      m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      m_EditorAssetChanged: 0
+  - key: 1
+    value:
+      m_AssetGUID: 4b02a20004ae0ca47aca6850eff73879
+      m_SubObjectName: SpecHealth
+      m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      m_EditorAssetChanged: 0
+  - key: 2
+    value:
+      m_AssetGUID: 4b02a20004ae0ca47aca6850eff73879
+      m_SubObjectName: SpecDefence
+      m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      m_EditorAssetChanged: 0
+  - key: 3
+    value:
+      m_AssetGUID: 4b02a20004ae0ca47aca6850eff73879
+      m_SubObjectName: SpecInitiative
+      m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      m_EditorAssetChanged: 0
 --- !u!224 &225355305407300595
 RectTransform:
   m_ObjectHideFlags: 0

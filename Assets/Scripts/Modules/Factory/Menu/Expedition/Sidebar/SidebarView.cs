@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Modules.General.Asset;
 using Modules.General.Localisation;
-using Modules.General.Location;
+using Modules.General.Ui;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,7 +15,7 @@ namespace Modules.Factory.Menu.Expedition.Sidebar
         #region Zenject
         
         [Inject] private readonly ILocalisationController _localisationController;
-        [Inject] private readonly ExpeditionMenuManager _expeditionMenuManager;
+        [Inject] private readonly IUiController _uiController;
 
         #endregion
 
@@ -29,7 +29,7 @@ namespace Modules.Factory.Menu.Expedition.Sidebar
         
         #region Variables
 
-        private LocationScriptable ActiveLocationData => _expeditionMenuManager.Locations.ActiveLocation.Data;
+        private ExpeditionMenuView _menu;
 
         #endregion
 
@@ -37,6 +37,8 @@ namespace Modules.Factory.Menu.Expedition.Sidebar
 
         private void Awake()
         {
+            _menu = _uiController.FindUi<ExpeditionMenuView>();
+            
             SetData();
         }
 
@@ -44,13 +46,13 @@ namespace Modules.Factory.Menu.Expedition.Sidebar
 
         public async void SetData()
         {
-            title.text = _localisationController.GetLanguageValue(ActiveLocationData.Key);
-            icon.sprite = await AssetsController.LoadAsset<Sprite>(ActiveLocationData.IconRef);
+            title.text = _localisationController.GetLanguageValue(_menu.ActiveLocation.Key);
+            icon.sprite = await AssetsController.LoadAsset<Sprite>(_menu.ActiveLocation.IconRef);
 
             rewards.ForEach(x => x.Reset());
-            for (var i = 0; i < ActiveLocationData.Reward.Count; i++)
+            for (var i = 0; i < _menu.ActiveLocation.Reward.Count; i++)
             {
-                rewards[i].SetData(ActiveLocationData.Reward[i]);
+                rewards[i].SetData(_menu.ActiveLocation.Reward[i]);
             }
         }
     }

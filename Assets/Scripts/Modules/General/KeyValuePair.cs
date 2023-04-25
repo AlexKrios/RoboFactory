@@ -8,8 +8,16 @@ namespace Modules.General
     {
         [SerializeField] private TKey key;
         [SerializeField] private TValue value;
-            
-        public TKey Key => key;
-        public TValue Value => value;
+
+        public TKey Key
+        {
+            get => key;
+            set => key = value;
+        }
+        public TValue Value
+        {
+            get => value;
+            set => this.value = value;
+        }
     }
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using Modules.General.Item.Products;
 using Modules.General.Item.Products.Models.Object;
 using Modules.General.Item.Products.Models.Types;
+using Modules.General.Ui;
 using TMPro;
 using UnityEngine;
 using Zenject;
@@ -16,8 +17,8 @@ namespace Modules.Factory.Menu.Storage.Items
         #region Zenject
 
         [Inject] private readonly IProductsController _productsController;
+        [Inject] private readonly IUiController _uiController;
         [Inject] private readonly StorageMenuFactory _storageMenuFactory;
-        [Inject] private readonly StorageMenuManager _storageMenuManager;
 
         #endregion
         
@@ -35,16 +36,18 @@ namespace Modules.Factory.Menu.Storage.Items
 
         public Action OnTabClickEvent { get; set; }
 
+        private StorageMenuView _menu;
         private ItemCellView _activeCell;
-        public ItemCellView ActiveCell
+        private ItemCellView ActiveCell
         {
             get => _activeCell;
-            private set
+            set
             {
                 if (_activeCell != null)
                     _activeCell.SetInactive();
 
                 _activeCell = value;
+                _menu.ActiveItem = value.Data;
                 _activeCell.SetActive();
             }
         }
@@ -55,18 +58,12 @@ namespace Modules.Factory.Menu.Storage.Items
 
         private void Awake()
         {
-            _storageMenuManager.Items = this;
-            
+            _menu = _uiController.FindUi<StorageMenuView>();
+
             CreateItemCells();
         }
 
         #endregion
-        
-        public void SubscribeItemToList(ItemCellView item)
-        {
-            item.OnTabClickEvent += OnTabClick;
-            items.Add(item);
-        }
 
         public void CreateItemCells()
         {
@@ -74,7 +71,7 @@ namespace Modules.Factory.Menu.Storage.Items
                 RemoveItemCells();
             
             var allItems = GetFilteredItems()
-                .Where(x => !x.IsEmpty() || x.ProductType == 0 && _storageMenuManager.IsDefault).ToList();
+                .Where(x => !x.IsEmpty() || x.ProductType == 0 && _menu.IsDefault).ToList();
             empty.gameObject.SetActive(allItems.Count == 0);
             if (allItems.Count == 0)
                 return;
@@ -82,7 +79,9 @@ namespace Modules.Factory.Menu.Storage.Items
             foreach (var itemData in allItems)
             {
                 var item = _storageMenuFactory.CreateItem(parent);
+                item.OnTabClickEvent += OnTabClick;
                 item.SetItemData(itemData);
+                items.Add(item);
             }
 
             ActiveCell = items.First();
@@ -90,11 +89,11 @@ namespace Modules.Factory.Menu.Storage.Items
         
         private List<ProductObject> GetFilteredItems()
         {
-            if (_storageMenuManager.ActiveProductGroup == ProductGroup.All)
+            if (_menu.ActiveProductGroup == ProductGroup.All)
                 return _productsController.GetAllProducts();
 
             return _productsController.GetAllProducts()
-                .Where(x => x.ProductGroup == _storageMenuManager.ActiveProductGroup).ToList();
+                .Where(x => x.ProductGroup == _menu.ActiveProductGroup).ToList();
         }
 
         private void RemoveItemCells()
@@ -109,6 +108,7 @@ namespace Modules.Factory.Menu.Storage.Items
                 return;
             
             ActiveCell = tab;
+            _menu.ActiveItem = tab.Data;
             
             OnTabClickEvent?.Invoke();
         }

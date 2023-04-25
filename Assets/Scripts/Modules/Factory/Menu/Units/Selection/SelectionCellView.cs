@@ -44,9 +44,16 @@ namespace Modules.Factory.Menu.Units.Selection
         protected override void SetIconSprite(Sprite sprite, bool active = true)
         {
             base.SetIconSprite(sprite, active);
-            
-            var isEmpty = Data.IsEmpty();
-            canvasGroup.alpha = isEmpty ? 0.25f : 1f;
+
+            if (Data.ProductType != 0)
+            {
+                var isEmpty = Data.IsEmpty();
+                canvasGroup.alpha = isEmpty ? 0.25f : 1f;
+            }
+            else
+            {
+                canvasGroup.alpha = 1f;
+            }
         }
     }
 }

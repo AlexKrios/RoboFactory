@@ -2720,7 +2720,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dec1baa55a3be7c46a3c9cae4ad62f27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 2
   close: {fileID: 5226654472252331480}
   upgrade: {fileID: 7840088974505804554}
   header: {fileID: 2016266512130896199}
@@ -5178,7 +5177,7 @@ PrefabInstance:
     - target: {fileID: 2263814673788967157, guid: 4fe42555ce1b21a46bb4207cc1861c0f,
         type: 3}
       propertyPath: m_Name
-      value: Skill
+      value: Battery
       objectReference: {fileID: 0}
     - target: {fileID: 6478614740655021577, guid: 4fe42555ce1b21a46bb4207cc1861c0f,
         type: 3}
@@ -5910,7 +5909,7 @@ PrefabInstance:
     - target: {fileID: 2263814673788967157, guid: 4fe42555ce1b21a46bb4207cc1861c0f,
         type: 3}
       propertyPath: m_Name
-      value: Equipment
+      value: Engine
       objectReference: {fileID: 0}
     - target: {fileID: 6478614740655021577, guid: 4fe42555ce1b21a46bb4207cc1861c0f,
         type: 3}

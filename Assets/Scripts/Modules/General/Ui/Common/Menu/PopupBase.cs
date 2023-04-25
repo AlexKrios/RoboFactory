@@ -16,7 +16,7 @@ namespace Modules.General.Ui.Common.Menu
         #region Zenject
         
         [Inject] private readonly IAudioController _audioController;
-        [Inject] private readonly IUiController _uiController;
+        [Inject] protected readonly IUiController UiController;
 
         #endregion
 
@@ -54,19 +54,17 @@ namespace Modules.General.Ui.Common.Menu
         private void PlayFadeIn()
         {
             _canvasGroup.alpha = 0f;
-            _canvasGroup.DOFade(1, FadeTime).SetEase(Ease.InCubic)
-                .OnComplete(() => _uiController.SetCanvasActive(CanvasType.HUD, false));
+            _canvasGroup.DOFade(1, FadeTime).SetEase(Ease.InCubic);
         }
         
-        protected void Close()
+        public void Close()
         {
             _audioController.PlayAudio(AudioClipType.CloseClick);
-            _uiController.SetCanvasActive(CanvasType.HUD);
 
             _canvasGroup.alpha = 1f;
             _canvasGroup.DOFade(0, FadeTime)
                 .SetEase(Ease.OutCubic)
-                .OnComplete(() => _uiController.RemoveUi(this, gameObject));
+                .OnComplete(() => UiController.RemoveUi(this, gameObject));
         }
     }
 }

@@ -12,17 +12,17 @@ namespace Modules.General.Item.Products.Models
         {
             switch (data.ProductGroup)
             {
-                case ProductGroup.Skill:
-                    return new ProductBuilder(data).Create<EquipmentObject>();
-                
                 case ProductGroup.Weapon:
                     return new ProductBuilder(data).Create<WeaponObject>();
 
                 case ProductGroup.Armor:
                     return new ProductBuilder(data).Create<ArmorObject>();
                 
-                case ProductGroup.Equipment:
-                    return new ProductBuilder(data).Create<SkillObject>();
+                case ProductGroup.Engine:
+                    return new ProductBuilder(data).Create<EngineObject>();
+                
+                case ProductGroup.Battery:
+                    return new ProductBuilder(data).Create<BatteryObject>();
 
                 default:
                     throw new ArgumentOutOfRangeException();

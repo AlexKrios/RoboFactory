@@ -4,7 +4,7 @@ using Modules.General.Item.Models.Types;
 using Modules.General.Item.Products.Models.Object.Spec;
 using Modules.General.Item.Products.Models.Object.Types;
 using Modules.General.Item.Products.Models.Types;
-using Modules.General.Unit.Models.Type;
+using Modules.General.Unit.Type;
 using UnityEditor;
 using UnityEngine;
 

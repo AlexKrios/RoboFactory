@@ -1,7 +1,9 @@
 using Modules.Factory.Cameras;
 using Modules.General.Audio;
 using Modules.General.Ui;
+using UniRx;
 using UnityEngine;
+using UnityEngine.Networking;
 using Zenject;
 using CameraType = Modules.General.Ui.CameraType;
 
@@ -45,16 +47,14 @@ namespace Modules.Factory
         {
             _factoryCameraController.Init();
             _audioController.PlayMusic();
-            
-            /*var request = UnityWebRequest.Get("http://api.localhost/api/products");
-            //request.SetRequestHeader("Content-Type", "application/json");
-            var operation = request.SendWebRequest();
-
-            while (!operation.isDone)
-                await Task.Yield();
-
-            var result = request.downloadHandler.text;
-            Debug.LogWarning(result);*/
+            UnityWebRequest
+                .Get("http://robo-factory.bubeha.com/api/units")
+                .SendWebRequest()
+                .AsAsyncOperationObservable()
+                .Subscribe(result =>
+                {
+                    Debug.LogWarning(result.webRequest.downloadHandler.text);
+                });
         }
 
         private void OnDestroy()

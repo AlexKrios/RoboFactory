@@ -1,7 +1,7 @@
 ﻿using System;
 using Modules.General.Asset;
 using Modules.General.Ui.Common.Menu;
-using Modules.General.Unit.Models.Object;
+using Modules.General.Unit.Object;
 using UnityEngine;
 using UnityEngine.UI;
 

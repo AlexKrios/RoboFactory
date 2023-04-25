@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89ce7cb292edf2844ab9eb0d9ca6a554, type: 3}
+  m_Name: TrooperEngineProduct_Star1
+  m_EditorClassIdentifier: 
+  itemType: 1
+  key: trooper_engine_product_star1
+  iconRef:
+    m_AssetGUID: 7e4d507bf545c8e43b79c378f25ac6c0
+    m_SubObjectName: TrooperEngineProduct
+    m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+    m_EditorAssetChanged: 0
+  index: 0
+  productName: "Trooper Engine Product \u2605"
+  star: 1
+  unitType: 1
+  productGroup: 3
+  productType: 1
+  isProduct: 1
+  model: {fileID: 0}
+  recipe:
+    star: 0
+    parts:
+    - data: {fileID: 11400000, guid: 50ac80aab2de7b946b7bc70e829736bf, type: 2}
+      star: 1
+      count: 1
+    - data: {fileID: 11400000, guid: d5123d465c18c1d48bd05d9b1b8eb252, type: 2}
+      star: 1
+      count: 1
+    - data: {fileID: 11400000, guid: b1f5e065c1929a94eb53d612e7aa091d, type: 2}
+      star: 1
+      count: 1
+    - data: {fileID: 11400000, guid: 8948e19b0a135614da7ecb5f9c6dd123, type: 2}
+      star: 1
+      count: 1
+    cost: 1000
+    experience: 10
+    craftTime: 10
+    specs:
+    - type: 0
+      value: 25
+    - type: 1
+      value: 0
+    - type: 2
+      value: 0
+    - type: 3
+      value: 10

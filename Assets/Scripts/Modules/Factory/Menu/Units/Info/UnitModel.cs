@@ -1,6 +1,8 @@
 ﻿using JetBrains.Annotations;
+using Modules.General.Ui;
 using UnityEngine;
 using Zenject;
+using CameraType = Modules.General.Ui.CameraType;
 
 namespace Modules.Factory.Menu.Units.Info
 {
@@ -10,7 +12,7 @@ namespace Modules.Factory.Menu.Units.Info
     {
         #region Zenject
 
-        [Inject(Id = "UiCamera")] private readonly Camera _uiCamera;
+        [Inject] private readonly IUiController _uiController;
 
         #endregion
         
@@ -30,9 +32,9 @@ namespace Modules.Factory.Menu.Units.Info
             _unitTransform = transform;
             _unitRigidbody = GetComponent<Rigidbody>();
             
-            _unitTransform.localPosition = new Vector3(325, -500, -150);
-            _unitTransform.localRotation = Quaternion.Euler(0, 180, 0);
-            _unitTransform.localScale = new Vector3(250, 250, 250);
+            _unitTransform.localPosition = new Vector3(250, -300, -250);
+            _unitTransform.localRotation = Quaternion.Euler(0, 135, 0);
+            _unitTransform.localScale = new Vector3(300, 300, 300);
 
             _unitRigidbody.constraints = (RigidbodyConstraints) 94;
         }
@@ -58,8 +60,9 @@ namespace Modules.Factory.Menu.Units.Info
             if (Input.touchCount != 1)
                 return;
 
+            var cam = _uiController.GetCamera(CameraType.Ui).GetComponent<Camera>();
             var touch = Input.GetTouch(0);
-            var ray = _uiCamera.ScreenPointToRay(touch.position);
+            var ray = cam.ScreenPointToRay(touch.position);
             if(Physics.Raycast(ray, out var hit))
             {
                 if(hit.transform.gameObject != transform.parent.gameObject) 

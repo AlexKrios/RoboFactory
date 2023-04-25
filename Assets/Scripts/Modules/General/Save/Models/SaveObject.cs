@@ -6,7 +6,7 @@ using Modules.General.Location.Model;
 using Modules.General.Money.Models;
 using Modules.General.Order.Models.Load;
 using Modules.General.Settings.Models;
-using Modules.General.Unit.Models;
+using Modules.General.Unit;
 
 namespace Modules.General.Save.Models
 {

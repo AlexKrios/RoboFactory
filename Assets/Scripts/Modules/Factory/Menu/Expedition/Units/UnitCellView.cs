@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using Modules.General.Asset;
 using Modules.General.Ui.Common.Menu;
-using Modules.General.Unit.Models.Object;
-using Modules.General.Unit.Models.Type;
+using Modules.General.Unit.Object;
+using Modules.General.Unit.Type;
 using UnityEngine;
 using UnityEngine.UI;
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using Modules.General.Ui;
 using Modules.General.Ui.Common.Menu;
 using UnityEngine;
 using Zenject;
@@ -8,9 +9,11 @@ namespace Modules.Factory.Menu.Conversion.Components
     [AddComponentMenu("Scripts/Factory/Menu/Conversion/Star Button View")]
     public class StarButtonView : StarButtonBase
     {
+        private const int DefaultStar = 2;
+        
         #region Zenject
         
-        [Inject] private readonly ConversionMenuManager _conversionMenuManager;
+        [Inject] private readonly IUiController _uiController;
         
         #endregion
         
@@ -18,13 +21,13 @@ namespace Modules.Factory.Menu.Conversion.Components
 
         public Action OnClickEvent { get; set; }
 
-        private int _activeStar;
-        public int ActiveStar
+        private ConversionMenuView _menu;
+        private int ActiveStar
         {
-            get => _activeStar;
+            get => _menu.ActiveStar;
             set
             {
-                _activeStar = value;
+                _menu.ActiveStar = value;
                 SetStarLevel(value);
             } 
         }
@@ -36,8 +39,9 @@ namespace Modules.Factory.Menu.Conversion.Components
         protected override void Awake()
         {
             base.Awake();
-
-            _conversionMenuManager.Star = this;
+            
+            _menu = _uiController.FindUi<ConversionMenuView>();
+            
             ResetStar();
         }
 
@@ -53,14 +57,14 @@ namespace Modules.Factory.Menu.Conversion.Components
             base.Click();
 
             var nextStar = ActiveStar + 1;
-            ActiveStar = nextStar <= Constants.MaxStar ? nextStar : ConversionMenuManager.DefaultStar;
+            ActiveStar = nextStar <= Constants.MaxStar ? nextStar : DefaultStar;
 
             OnClickEvent?.Invoke();
         }
 
         private void ResetStar()
         {
-            ActiveStar = ConversionMenuManager.DefaultStar;
+            ActiveStar = DefaultStar;
         }
     }
 }

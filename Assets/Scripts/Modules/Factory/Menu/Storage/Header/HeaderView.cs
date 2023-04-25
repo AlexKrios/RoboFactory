@@ -1,6 +1,7 @@
 ﻿using System;
 using Modules.General.Localisation;
 using Modules.General.Localisation.Models;
+using Modules.General.Ui;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,7 +15,7 @@ namespace Modules.Factory.Menu.Storage.Header
         #region Zenject
 
         [Inject] private readonly ILocalisationController _localisationController;
-        [Inject] private readonly StorageMenuManager _storageMenuManager;
+        [Inject] private readonly IUiController _uiController;
 
         #endregion
 
@@ -29,6 +30,8 @@ namespace Modules.Factory.Menu.Storage.Header
         #region Variables
 
         public Action OnToggleClickEvent { get; set; }
+        
+        private StorageMenuView _menu;
 
         #endregion
 
@@ -36,8 +39,7 @@ namespace Modules.Factory.Menu.Storage.Header
 
         private void Awake()
         {
-            _storageMenuManager.Header = this;
-            
+            _menu = _uiController.FindUi<StorageMenuView>();
             defaultToggle.onValueChanged.AddListener(OnToggleClick);
 
             SetData();
@@ -52,14 +54,14 @@ namespace Modules.Factory.Menu.Storage.Header
 
         private void OnToggleClick(bool isOn)
         {
-            _storageMenuManager.IsDefault = isOn;
+            _menu.IsDefault = isOn;
             
             OnToggleClickEvent?.Invoke();
         }
         
         public void SetData()
         {
-            var productKey = LocalisationKeys.ProductKeys[_storageMenuManager.ActiveProductGroup];
+            var productKey = LocalisationKeys.ProductKeys[_menu.ActiveProductGroup];
 
             title.text = _localisationController.GetLanguageValue(LocalisationKeys.StorageMenuTitleKey);
             productGroup.text = _localisationController.GetLanguageValue(productKey);

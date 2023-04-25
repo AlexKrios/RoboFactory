@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Modules.General.Ui;
 using Modules.General.Unit;
-using Modules.General.Unit.Models.Object;
-using Modules.General.Unit.Models.Type;
+using Modules.General.Unit.Object;
+using Modules.General.Unit.Type;
 using UnityEngine;
 using Zenject;
 
@@ -14,8 +15,8 @@ namespace Modules.Factory.Menu.Units.Roster
     {
         #region Zenject
 
+        [Inject] private readonly IUiController _uiController;
         [Inject] private readonly IUnitsController _unitsController;
-        [Inject] private readonly UnitsMenuManager _unitsMenuManager;
         [Inject] private readonly UnitsMenuFactory _unitsMenuFactory;
 
         #endregion
@@ -31,16 +32,18 @@ namespace Modules.Factory.Menu.Units.Roster
 
         public Action OnUnitClickEvent { get; set; }
 
+        private UnitsMenuView _menu;
         private RosterCellView _activeUnit;
-        public RosterCellView ActiveUnit
+        private RosterCellView ActiveUnit
         {
             get => _activeUnit;
-            private set
+            set
             {
                 if (_activeUnit != null)
                     _activeUnit.SetInactive();
 
                 _activeUnit = value;
+                _menu.ActiveUnit = value.Data;
                 _activeUnit.SetActive();
             }
         }
@@ -51,7 +54,7 @@ namespace Modules.Factory.Menu.Units.Roster
 
         private void Awake()
         {
-            _unitsMenuManager.Roster = this;
+            _menu = _uiController.FindUi<UnitsMenuView>();
 
             CreateUnits();
         }
@@ -71,10 +74,7 @@ namespace Modules.Factory.Menu.Units.Roster
                 unit.SetProductData(unitData);
                 units.Add(unit);
             }
-
-            var width = 240f * units.Count + 10f * (units.Count - 1);
-            unitsParent.sizeDelta = new Vector2(width, unitsParent.sizeDelta.y);
-
+            
             ActiveUnit = units.First();
         }
 
@@ -86,9 +86,9 @@ namespace Modules.Factory.Menu.Units.Roster
 
         private List<UnitObject> GetFilteredUnits()
         {
-            if (_unitsMenuManager.ActiveUnitType == UnitType.None)
+            if (_menu.ActiveUnitType == UnitType.All)
                 return _unitsController.GetUnits()
-                    .Where(x => x.UnitType != _unitsMenuManager.ActiveUnitType)
+                    .Where(x => x.UnitType != _menu.ActiveUnitType)
                     .OrderBy(x => x.UnitType == UnitType.Sniper)
                     .ThenBy(x => x.UnitType == UnitType.Support)
                     .ThenBy(x => x.UnitType == UnitType.Defender)
@@ -96,7 +96,7 @@ namespace Modules.Factory.Menu.Units.Roster
                     .ToList();
             
             return _unitsController.GetUnits()
-                .Where(x => x.UnitType == _unitsMenuManager.ActiveUnitType).ToList();
+                .Where(x => x.UnitType == _menu.ActiveUnitType).ToList();
         }
 
         private void OnUnitClick(RosterCellView cell, UnitType unit)
@@ -104,8 +104,8 @@ namespace Modules.Factory.Menu.Units.Roster
             if (ActiveUnit == cell)
                 return;
             
-            _unitsMenuManager.ActiveUnitType = unit;
             ActiveUnit = cell;
+            _menu.ActiveUnit = cell.Data;
 
             OnUnitClickEvent?.Invoke();
         }

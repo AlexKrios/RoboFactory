@@ -12,7 +12,6 @@ namespace Modules.Factory.Menu.Conversion.Tabs
     {
         #region Zenject
         
-        [Inject] private readonly ConversionMenuManager _conversionMenuManager;
         [Inject] private readonly IRawController _rawController;
         
         #endregion
@@ -28,10 +27,10 @@ namespace Modules.Factory.Menu.Conversion.Tabs
         public Action OnClickEvent { get; set; }
 
         private TabCellView _activeTab;
-        public TabCellView ActiveTab
+        private TabCellView ActiveTab
         {
             get => _activeTab;
-            private set
+            set
             {
                 if (_activeTab != null)
                     _activeTab.SetInactive();
@@ -47,8 +46,6 @@ namespace Modules.Factory.Menu.Conversion.Tabs
 
         private void Awake()
         {
-            _conversionMenuManager.Tabs = this;
-
             tabs.ForEach(x => x.OnTabClick += OnTabClick);
         }
 

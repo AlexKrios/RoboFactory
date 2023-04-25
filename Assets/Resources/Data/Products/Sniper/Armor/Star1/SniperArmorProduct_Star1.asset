@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c510de7351c1b0b4aa5e3e6e9cb327bf, type: 3}
+  m_Name: SniperArmorProduct_Star1
+  m_EditorClassIdentifier: 
+  itemType: 1
+  key: sniper_armor_product_star1
+  iconRef:
+    m_AssetGUID: c44f7d8a76b78914bab8fccd3e773a93
+    m_SubObjectName: SniperArmorProduct
+    m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+    m_EditorAssetChanged: 0
+  index: 0
+  productName: Sniper Armor Product Star1
+  star: 1
+  unitType: 4
+  productGroup: 2
+  productType: 1
+  isProduct: 1
+  model: {fileID: 0}
+  recipe:
+    star: 0
+    parts:
+    - data: {fileID: 11400000, guid: 6b333fb55a7bfd34bbcd300807046738, type: 2}
+      star: 1
+      count: 1
+    - data: {fileID: 11400000, guid: 210b5f0b35f38f54ca101eec332a4b92, type: 2}
+      star: 1
+      count: 1
+    - data: {fileID: 11400000, guid: 6b4c149d629f39e469192e6845f41177, type: 2}
+      star: 1
+      count: 1
+    - data: {fileID: 11400000, guid: b34be4d519b168449993a4f22bd2d31b, type: 2}
+      star: 1
+      count: 1
+    cost: 1000
+    experience: 10
+    craftTime: 10
+    specs:
+    - type: 0
+      value: 25
+    - type: 1
+      value: 0
+    - type: 2
+      value: 0
+    - type: 3
+      value: 10

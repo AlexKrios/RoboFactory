@@ -1,6 +1,6 @@
-﻿using System.Collections;
+﻿using Cysharp.Threading.Tasks;
+using JetBrains.Annotations;
 using Modules.General.Asset;
-using Modules.General.Coroutines;
 using Modules.General.Location;
 using UnityEngine;
 using Utils;
@@ -11,8 +11,7 @@ namespace Modules.Factory.Menu.Expedition.Queue.Cell.State
     public class ExpeditionCellBusy : IExpeditionCellState
     {
         #region Zenject
-
-        [Inject] private readonly ICoroutinesController _coroutinesController;
+        
         [Inject] private readonly IExpeditionController _expeditionController;
 
         #endregion
@@ -35,33 +34,33 @@ namespace Modules.Factory.Menu.Expedition.Queue.Cell.State
 
             var sprite = await AssetsController.LoadAsset<Sprite>(location.IconRef);
             _cell.SetCellIcon(sprite);
-            _cell.Data.Timer = _coroutinesController.StartNewCoroutine(StartExpeditionTimer());
+            StartExpeditionTimer();
         }
 
         public void Click() { }
 
         public void Exit() { }
         
-        private IEnumerator StartExpeditionTimer()
+        private async void StartExpeditionTimer()
         {
             var expeditionTime = DateUtil.GetTime(_cell.Data.TimeEnd);
             if (expeditionTime == 0)
             {
-                yield return new WaitForSeconds(0.1f);
                 _cell.SetStateFinish();
-                yield break;
+                return;
             }
 
             while (expeditionTime > 0)
             {
                 _cell.SetCellTimer(DateUtil.DateCraftTimer(expeditionTime));
-                yield return new WaitForSeconds(1.0f);
+                await UniTask.Delay(1000);
                 expeditionTime--;
             }
             
             _cell.SetStateFinish();
         }
 
+        [UsedImplicitly]
         public class Factory : PlaceholderFactory<ExpeditionCell, ExpeditionCellBusy> { }
     }
 }
