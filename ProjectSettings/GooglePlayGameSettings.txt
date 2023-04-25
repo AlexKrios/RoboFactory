@@ -1,0 +1,11 @@
+lastUpgrade=01101
+proj.pluginVersion=0.11.01
+App.NearbdServiceId=com.krios.robofactory
+android.NearbySetupDone=true
+proj.AppId=82929594312
+and.BundleId=com.krios.robofactory
+proj.classDir=Assets%2fSmokeTest%2fScripts
+proj.ConstantsClassName=GPGSIds
+and.ResourceData=%3c%3fxml+version%3d%221.0%22+encoding%3d%22utf-8%22%3f%3e%0d%0a%3c%21--Google+Play+game+services+IDs.+Save+this+file+as+res%2fvalues%2fgames-ids.xml+in+your+project.--%3e%0d%0a%3cresources%3e%0d%0a++%3c%21--app_id--%3e%0d%0a++%3cstring+name%3d%22app_id%22+translatable%3d%22false%22%3e82929594312%3c%2fstring%3e%0d%0a++%3c%21--package_name--%3e%0d%0a++%3cstring+name%3d%22package_name%22+translatable%3d%22false%22%3ecom.krios.robofactory%3c%2fstring%3e%0d%0a++%3c%21--achievement+AchievementToReveal--%3e%0d%0a++%3cstring+name%3d%22achievement_achievementtoreveal%22+translatable%3d%22false%22%3eCgkIyN_097QCEAIQBg%3c%2fstring%3e%0d%0a++%3c%21--achievement+AchievementToUnlock--%3e%0d%0a++%3cstring+name%3d%22achievement_achievementtounlock%22+translatable%3d%22false%22%3eCgkIyN_097QCEAIQBw%3c%2fstring%3e%0d%0a++%3c%21--achievement+AchievementToIncrement--%3e%0d%0a++%3cstring+name%3d%22achievement_achievementtoincrement%22+translatable%3d%22false%22%3eCgkIyN_097QCEAIQCA%3c%2fstring%3e%0d%0a++%3c%21--achievement+AchievementToHiddenIncremental--%3e%0d%0a++%3cstring+name%3d%22achievement_achievementtohiddenincremental%22+translatable%3d%22false%22%3eCgkIyN_097QCEAIQCQ%3c%2fstring%3e%0d%0a++%3c%21--event+SmokingEvent--%3e%0d%0a++%3cstring+name%3d%22event_smokingevent%22+translatable%3d%22false%22%3eCgkIyN_097QCEAIQCw%3c%2fstring%3e%0d%0a++%3c%21--leaderboard+Leaders--%3e%0d%0a++%3cstring+name%3d%22leaderboard_leaders%22+translatable%3d%22false%22%3eCgkIyN_097QCEAIQCg%3c%2fstring%3e%0d%0a%3c%2fresources%3e
+and.ClientId=
+android.SetupDone=true

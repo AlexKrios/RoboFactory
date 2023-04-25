@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "82929594312",
+    "project_id": "robo-factory",
+    "storage_bucket": "robo-factory.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:82929594312:android:0c4f02029cd23f90e2dafd",
+        "android_client_info": {
+          "package_name": "com.krios.robofactory"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "82929594312-f9fr196jm866fghl5j2fsqg8pkqiesgc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAnRvAuu6a-j_9wmXp99-deiHScFDbKdUo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "82929594312-f9fr196jm866fghl5j2fsqg8pkqiesgc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
