@@ -20,7 +20,7 @@ namespace Modules.General.Ui.Common
 
         #region Compnents
 
-        [SerializeField] private TextMeshProUGUI buttonText;
+        [SerializeField] private TMP_Text buttonText;
 
         #endregion
         

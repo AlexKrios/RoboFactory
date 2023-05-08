@@ -12,8 +12,8 @@ namespace Modules.Battle.Ui.End
         #region Components
 
         [SerializeField] private Image itemIcon;
-        [SerializeField] private TextMeshProUGUI itemCount;
-        [SerializeField] private TextMeshProUGUI itemLevel;
+        [SerializeField] private TMP_Text itemCount;
+        [SerializeField] private TMP_Text itemLevel;
 
         #endregion
         

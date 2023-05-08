@@ -572,7 +572,7 @@ namespace SmokeTest
 
             if (GUI.Button(CalcGrid(0, 8), "Request Server Side Access"))
             {
-                PlayGamesPlatform.Instance.RequestServerSideAccess(/* forceRefreshToken= */ false,
+                PlayGamesPlatform.Instance.RequestServerSideAccess(/* forceRefreshToken= */ true,
                     authCode => mAuthCode = authCode);
             }
             else if (GUI.Button(CalcGrid(1, 8), "Back"))

@@ -19,8 +19,8 @@ namespace Modules.Factory.Menu.Units.Header
 
         #region Components
 
-        [SerializeField] private TextMeshProUGUI title;
-        [SerializeField] private TextMeshProUGUI unitType;
+        [SerializeField] private TMP_Text title;
+        [SerializeField] private TMP_Text unitType;
 
         #endregion
 

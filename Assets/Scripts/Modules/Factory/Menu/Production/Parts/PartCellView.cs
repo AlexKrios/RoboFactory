@@ -21,8 +21,8 @@ namespace Modules.Factory.Menu.Production.Parts
         #region Components
         
         [SerializeField] private Image icon;
-        [SerializeField] private TextMeshProUGUI star;
-        [SerializeField] private TextMeshProUGUI count;
+        [SerializeField] private TMP_Text star;
+        [SerializeField] private TMP_Text count;
 
         #endregion
         

@@ -3,6 +3,9 @@ using UnityEngine;
 
 public static class Constants
 {
+    public const string TestEmail = "test@gmail.com";
+    public const string TestPassword = "123456";
+    
 #if UNITY_ANDROID && !UNITY_EDITOR
     public static readonly string SavePath = Path.Combine(Application.persistentDataPath, "save.json");
 #elif UNITY_EDITOR

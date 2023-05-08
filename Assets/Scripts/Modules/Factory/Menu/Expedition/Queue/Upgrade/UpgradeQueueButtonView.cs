@@ -31,11 +31,11 @@ namespace Modules.Factory.Menu.Expedition.Queue.Upgrade
         #region Components
 
         [Space]
-        [SerializeField] private TextMeshProUGUI title;
+        [SerializeField] private TMP_Text title;
         
         [Space]
         [SerializeField] private RectTransform cost;
-        [SerializeField] private TextMeshProUGUI costCount;
+        [SerializeField] private TMP_Text costCount;
 
         #endregion
         

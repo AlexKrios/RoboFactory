@@ -11,7 +11,7 @@ namespace Modules.General.Ui.Admin
     {
         [Inject] private readonly ILevelController _levelController;
         
-        [SerializeField] private TextMeshProUGUI fps;
+        [SerializeField] private TMP_Text fps;
 
         private void Awake()
         {

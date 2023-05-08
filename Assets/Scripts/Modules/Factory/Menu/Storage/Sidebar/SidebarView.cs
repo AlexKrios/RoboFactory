@@ -23,7 +23,7 @@ namespace Modules.Factory.Menu.Storage.Sidebar
 
         #region Components
 
-        [SerializeField] private TextMeshProUGUI title;
+        [SerializeField] private TMP_Text title;
         [SerializeField] private Image icon;
 
         [Space]

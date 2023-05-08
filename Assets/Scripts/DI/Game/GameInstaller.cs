@@ -1,3 +1,4 @@
+using Modules.Authentication;
 using Modules.Factory.Api;
 using Modules.General.Audio;
 using Modules.General.Item;
@@ -30,6 +31,7 @@ namespace Di.Game
             Container.Bind<GameManager>().AsSingle().NonLazy();
 
             Container.BindInterfacesTo<LocalisationController>().AsSingle().NonLazy();
+            Container.Bind<AuthenticationManager>().AsSingle().NonLazy();
             
             InstallUi();
             InstallControllers();

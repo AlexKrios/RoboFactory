@@ -32,11 +32,11 @@ namespace Modules.Factory.Menu.Order.Components
         
         [Space]
         [SerializeField] private Image icon;
-        [SerializeField] private TextMeshProUGUI title;
-        [SerializeField] private TextMeshProUGUI prize;
+        [SerializeField] private TMP_Text title;
+        [SerializeField] private TMP_Text prize;
         [SerializeField] private Button button;
         [SerializeField] private Image bar;
-        [SerializeField] private TextMeshProUGUI count;
+        [SerializeField] private TMP_Text count;
         
         public ProductGroup Group => group;
 

@@ -26,7 +26,7 @@ namespace Modules.Factory.Menu.Units.Sidebar
 
         #region Components
 
-        [SerializeField] private TextMeshProUGUI unitName;
+        [SerializeField] private TMP_Text unitName;
         [SerializeField] private Image unitIcon;
         [SerializeField] private List<SpecCellView> specs;
 

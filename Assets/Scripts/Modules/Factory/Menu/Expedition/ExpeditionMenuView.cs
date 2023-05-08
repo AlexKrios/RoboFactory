@@ -22,7 +22,7 @@ namespace Modules.Factory.Menu.Expedition
 
         #region Components
         
-        [SerializeField] private TextMeshProUGUI title;
+        [SerializeField] private TMP_Text title;
         [SerializeField] private StarButtonView star;
         [SerializeField] private UnitsSectionView units;
         [SerializeField] private LocationsSectionView locations;

@@ -24,7 +24,7 @@ namespace Modules.General.Ui.Common.Menu
         
         [Space]
         [SerializeField] private Image icon;
-        [SerializeField] private TextMeshProUGUI count;
+        [SerializeField] private TMP_Text count;
 
         public SpecType SpecType => specType;
         

@@ -24,7 +24,7 @@ namespace Modules.Factory.Menu.Expedition.Queue.Cell
         #region Components
 
         [SerializeField] private Image icon;
-        [SerializeField] private TextMeshProUGUI timer;
+        [SerializeField] private TMP_Text timer;
         [SerializeField] private RectTransform rectTransform;
         
         public RectTransform RectTransform => rectTransform;

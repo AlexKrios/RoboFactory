@@ -24,11 +24,11 @@ namespace Modules.Factory.Menu.Expedition.Queue.Upgrade
         #region Components
         
         [Space]
-        [SerializeField] private TextMeshProUGUI titleText;
+        [SerializeField] private TMP_Text titleText;
 
         [Space]
-        [SerializeField] private TextMeshProUGUI currentCount;
-        [SerializeField] private TextMeshProUGUI nextCount;
+        [SerializeField] private TMP_Text currentCount;
+        [SerializeField] private TMP_Text nextCount;
         
         [Space]
         [SerializeField] private UpgradeQueueButtonView upgrade;

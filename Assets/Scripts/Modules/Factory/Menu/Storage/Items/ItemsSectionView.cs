@@ -26,7 +26,7 @@ namespace Modules.Factory.Menu.Storage.Items
 
         [SerializeField] private Transform parent;
         [SerializeField] private List<ItemCellView> items;
-        [SerializeField] private TextMeshProUGUI empty;
+        [SerializeField] private TMP_Text empty;
         
         public List<ItemCellView> Items => items;
 

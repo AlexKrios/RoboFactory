@@ -30,11 +30,11 @@ namespace Modules.Factory.Menu.Production.Upgrade
         #region Components
         
         [Space]
-        [SerializeField] private TextMeshProUGUI titleText;
+        [SerializeField] private TMP_Text titleText;
 
         [Space]
-        [SerializeField] private TextMeshProUGUI currentLevel;
-        [SerializeField] private TextMeshProUGUI nextLevel;
+        [SerializeField] private TMP_Text currentLevel;
+        [SerializeField] private TMP_Text nextLevel;
         
         [Header("Accept Button")]
         [SerializeField] private Button acceptButton;

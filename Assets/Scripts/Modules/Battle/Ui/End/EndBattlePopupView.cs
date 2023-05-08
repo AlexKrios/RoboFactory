@@ -24,7 +24,7 @@ namespace Modules.Battle.Ui.End
 
         #region Components
 
-        [SerializeField] private TextMeshProUGUI title;
+        [SerializeField] private TMP_Text title;
         
         [Space]
         [SerializeField] private RectTransform itemsParent;

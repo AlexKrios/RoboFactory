@@ -12,7 +12,7 @@ namespace Modules.Factory.Menu.Expedition.Result
     public class ResultRewardCellView : MonoBehaviour
     {
         [SerializeField] private Image icon;
-        [SerializeField] private TextMeshProUGUI count;
+        [SerializeField] private TMP_Text count;
 
         private CanvasGroup _canvasGroup;
 

@@ -10,7 +10,7 @@ namespace Modules.General.Ui.Common.Menu
     {
         #region Variables
         
-        [SerializeField] private TextMeshProUGUI volumeText;
+        [SerializeField] private TMP_Text volumeText;
 
         #endregion
 

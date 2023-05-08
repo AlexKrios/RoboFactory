@@ -20,8 +20,8 @@ namespace Modules.Factory.Menu.Conversion.Parts
         #region Components
         
         [SerializeField] private Image icon;
-        [SerializeField] private TextMeshProUGUI count;
-        [SerializeField] private TextMeshProUGUI level;
+        [SerializeField] private TMP_Text count;
+        [SerializeField] private TMP_Text level;
 
         #endregion
 

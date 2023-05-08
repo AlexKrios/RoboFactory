@@ -10,6 +10,7 @@ namespace Utils.MenuItems
     public class HelpersUtil
     {
         private const string LauncherPath = "Assets/Scenes/Launcher.unity";
+        private const string AuthenticationPath = "Assets/Scenes/Authentication.unity";
         private const string LoaderPath = "Assets/Scenes/Loader.unity";
         private const string FactoryPath = "Assets/Scenes/Factory.unity";
         private const string BattlePath = "Assets/Scenes/Battle.unity";
@@ -25,6 +26,13 @@ namespace Utils.MenuItems
         {
             EditorSceneManager.SaveOpenScenes();
             EditorSceneManager.OpenScene(LauncherPath);
+        }
+        
+        [MenuItem("Helper/Open Authentication", false, 1)]
+        public static void Authentication()
+        {
+            EditorSceneManager.SaveOpenScenes();
+            EditorSceneManager.OpenScene(AuthenticationPath);
         }
         
         [MenuItem("Helper/Open Loader", false, 2)]
@@ -55,7 +63,7 @@ namespace Utils.MenuItems
         }
 
         [MenuItem("Helper/Run Launcher", false, 101)]
-        public static void RunLauncher()
+        public static void RunAuthentication()
         {
             if (!EditorApplication.isPlaying)
             {

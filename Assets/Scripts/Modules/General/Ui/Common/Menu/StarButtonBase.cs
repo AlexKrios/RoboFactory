@@ -20,7 +20,7 @@ namespace Modules.General.Ui.Common.Menu
 
         #region Components
 
-        [SerializeField] private TextMeshProUGUI level;
+        [SerializeField] private TMP_Text level;
         [SerializeField] private GameObject locked;
 
         #endregion

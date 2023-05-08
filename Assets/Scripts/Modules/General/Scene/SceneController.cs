@@ -1,7 +1,9 @@
-﻿using UnityEngine.SceneManagement;
+﻿using JetBrains.Annotations;
+using UnityEngine.SceneManagement;
 
 namespace Modules.General.Scene
 {
+    [UsedImplicitly]
     public class SceneController
     {
         public float TimeLoad { get; set; }

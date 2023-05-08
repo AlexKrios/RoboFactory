@@ -12,7 +12,7 @@ namespace Modules.Factory.Menu.Expedition.Sidebar
         #region Components
         
         [SerializeField] private Image icon;
-        [SerializeField] private TextMeshProUGUI count;
+        [SerializeField] private TMP_Text count;
         
         #endregion
 

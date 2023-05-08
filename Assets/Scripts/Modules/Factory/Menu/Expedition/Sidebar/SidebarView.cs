@@ -21,7 +21,7 @@ namespace Modules.Factory.Menu.Expedition.Sidebar
 
         #region Components
         
-        [SerializeField] private TextMeshProUGUI title;
+        [SerializeField] private TMP_Text title;
         [SerializeField] private Image icon;
         [SerializeField] private List<RewardCellView> rewards;
 

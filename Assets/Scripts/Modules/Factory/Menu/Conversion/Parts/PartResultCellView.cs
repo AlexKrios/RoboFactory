@@ -23,7 +23,7 @@ namespace Modules.Factory.Menu.Conversion.Parts
         #region Components
         
         [SerializeField] private Image icon;
-        [SerializeField] private TextMeshProUGUI level;
+        [SerializeField] private TMP_Text level;
         [SerializeField] private Image progress;
 
         #endregion

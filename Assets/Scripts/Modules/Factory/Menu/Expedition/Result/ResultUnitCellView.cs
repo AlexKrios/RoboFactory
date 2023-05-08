@@ -12,7 +12,7 @@ namespace Modules.Factory.Menu.Expedition.Result
     public class ResultUnitCellView : MonoBehaviour
     {
         [SerializeField] private Image icon;
-        [SerializeField] private TextMeshProUGUI level;
+        [SerializeField] private TMP_Text level;
         
         private CanvasGroup _canvasGroup;
 

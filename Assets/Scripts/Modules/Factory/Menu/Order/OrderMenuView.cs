@@ -29,8 +29,8 @@ namespace Modules.Factory.Menu.Order
 
         #region Components
         
-        [SerializeField] private TextMeshProUGUI title;
-        [SerializeField] private TextMeshProUGUI timer;
+        [SerializeField] private TMP_Text title;
+        [SerializeField] private TMP_Text timer;
         [SerializeField] private List<ItemCellView> orders;
 
         #endregion

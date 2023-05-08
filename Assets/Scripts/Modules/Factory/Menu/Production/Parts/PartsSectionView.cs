@@ -23,12 +23,12 @@ namespace Modules.Factory.Menu.Production.Parts
         #region Components
 
         [SerializeField] private Image icon;
-        [SerializeField] private TextMeshProUGUI star;
+        [SerializeField] private TMP_Text star;
         [SerializeField] private List<PartCellView> parts;
         
         [Space]
         [SerializeField] private Image levelBar;
-        [SerializeField] private TextMeshProUGUI levelCount;
+        [SerializeField] private TMP_Text levelCount;
 
         #endregion
 

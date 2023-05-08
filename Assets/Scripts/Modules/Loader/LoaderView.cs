@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using Zenject;
 
 namespace Modules.Loader
-{
+{ 
     [AddComponentMenu("Scripts/Loader", 0)]
     public class LoaderView : MonoBehaviour
     {

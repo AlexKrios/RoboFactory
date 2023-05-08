@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:keep="@string/firebase_database_url,@string/gcm_defaultSenderId,@string/google_storage_bucket,@string/project_id,@string/google_api_key,@string/google_crash_reporting_api_key,@string/google_app_id,@string/default_web_client_id">
+  <string name="firebase_database_url" translatable="false">https://robo-factory-default-rtdb.europe-west1.firebasedatabase.app</string>
+  <string name="gcm_defaultSenderId" translatable="false">82929594312</string>
+  <string name="google_storage_bucket" translatable="false">robo-factory.appspot.com</string>
+  <string name="project_id" translatable="false">robo-factory</string>
+  <string name="google_api_key" translatable="false">AIzaSyAnRvAuu6a-j_9wmXp99-deiHScFDbKdUo</string>
+  <string name="google_crash_reporting_api_key" translatable="false">AIzaSyAnRvAuu6a-j_9wmXp99-deiHScFDbKdUo</string>
+  <string name="google_app_id" translatable="false">1:82929594312:android:0c4f02029cd23f90e2dafd</string>
+  <string name="default_web_client_id" translatable="false">82929594312-f9fr196jm866fghl5j2fsqg8pkqiesgc.apps.googleusercontent.com</string>
+</resources>

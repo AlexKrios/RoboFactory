@@ -29,14 +29,14 @@ namespace Modules.Factory.Menu.Expedition.Selection
         #region Components
 
         [Space]
-        [SerializeField] private TextMeshProUGUI title;
+        [SerializeField] private TMP_Text title;
         
         [Space]
         [SerializeField] private Transform cellsParent;
         [SerializeField] private List<SelectionCellView> cells;
         
         [Space]
-        [SerializeField] private TextMeshProUGUI sidebarTitle;
+        [SerializeField] private TMP_Text sidebarTitle;
         [SerializeField] private Image sidebarIcon;
         [SerializeField] private List<SpecCellView> specs;
         

@@ -11,7 +11,7 @@ namespace Modules.General.Ui.Popup.Common
     {
         [Inject] private readonly ILocalisationController _localisationController;
 
-        [SerializeField] private TextMeshProUGUI messageText;
+        [SerializeField] private TMP_Text messageText;
 
         protected override void Awake()
         {

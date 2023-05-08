@@ -35,10 +35,10 @@ namespace Modules.Factory.Menu
         [SerializeField] private DebugMenuView debug;
         
         [Header("Money")]
-        [SerializeField] private TextMeshProUGUI moneyCount;
+        [SerializeField] private TMP_Text moneyCount;
         
         [Header("Level")]
-        [SerializeField] private TextMeshProUGUI levelCount;
+        [SerializeField] private TMP_Text levelCount;
         [SerializeField] private Slider levelSlider;
         
         [Header("Settings")]
@@ -118,7 +118,7 @@ namespace Modules.Factory.Menu
                     .Append(levelSlider.DOValue(1, 0.1f).SetEase(Ease.OutCubic))
                     .AppendInterval(0.1f)
                     .Append(levelSlider.DOValue(0, 0))
-                    .Append(levelSlider.DOValue(currentExperience, 0.5f).SetEase(Ease.OutCubic));
+                    .Append(levelSlider.DOValue(currentExperience, 0.5f).SetEase(Ease.OutCubic)); 
             }
             else
             {
@@ -137,9 +137,18 @@ namespace Modules.Factory.Menu
             _settingsMenuFactory.CreateMenu();
         }
 
-        private void OnFloorUpClick() => _factoryCameraController.Move(1);
-        private void OnFloorDownClick() => _factoryCameraController.Move(-1);
-        
+        private void OnFloorUpClick()
+        {
+            _audioController.PlayAudio(AudioClipType.ButtonClick);
+            _factoryCameraController.Move(1);
+        }
+
+        private void OnFloorDownClick()
+        {
+            _audioController.PlayAudio(AudioClipType.ButtonClick);
+            _factoryCameraController.Move(-1);
+        }
+
         private void Update()
         {
             if (Input.GetKeyDown(KeyCode.Q))

@@ -23,9 +23,9 @@ namespace Modules.Factory.Menu.Production.Header
 
         #region Components
 
-        [SerializeField] private TextMeshProUGUI title;
-        [SerializeField] private TextMeshProUGUI productGroup;
-        [SerializeField] private TextMeshProUGUI productType;
+        [SerializeField] private TMP_Text title;
+        [SerializeField] private TMP_Text productGroup;
+        [SerializeField] private TMP_Text productType;
         
         [Space]
         [SerializeField] private List<HeaderTabCellView> tabs;

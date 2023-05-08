@@ -34,7 +34,7 @@ namespace Modules.Factory.Menu.Expedition.Result
 
         #region Components
         
-        [SerializeField] private TextMeshProUGUI title;
+        [SerializeField] private TMP_Text title;
         
         [Space]
         [SerializeField] private RectTransform rewardsParent;

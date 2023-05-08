@@ -12,7 +12,7 @@ namespace Modules.Battle.Ui.Units
         #region Components
 
         [SerializeField] private Image unitIcon;
-        [SerializeField] private TextMeshProUGUI unitHealthText;
+        [SerializeField] private TMP_Text unitHealthText;
         [SerializeField] private Image unitHealth;
 
         #endregion

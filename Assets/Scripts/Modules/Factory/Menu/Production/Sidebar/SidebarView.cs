@@ -24,9 +24,9 @@ namespace Modules.Factory.Menu.Production.Sidebar
 
         #region Components
         
-        [SerializeField] private TextMeshProUGUI title;
+        [SerializeField] private TMP_Text title;
         [SerializeField] private Image icon;
-        [SerializeField] private TextMeshProUGUI timer;
+        [SerializeField] private TMP_Text timer;
         [SerializeField] private List<SpecCellView> specs;
 
         #endregion

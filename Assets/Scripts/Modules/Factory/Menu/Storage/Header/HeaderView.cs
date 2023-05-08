@@ -21,8 +21,8 @@ namespace Modules.Factory.Menu.Storage.Header
 
         #region Components
 
-        [SerializeField] private TextMeshProUGUI title;
-        [SerializeField] private TextMeshProUGUI productGroup;
+        [SerializeField] private TMP_Text title;
+        [SerializeField] private TMP_Text productGroup;
         [SerializeField] private Toggle defaultToggle;
 
         #endregion

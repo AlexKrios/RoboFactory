@@ -21,7 +21,7 @@ namespace Modules.Factory.Menu.Settings.Components
         
         #region Components
 
-        [SerializeField] private TextMeshProUGUI qualityText;
+        [SerializeField] private TMP_Text qualityText;
 
         #endregion
 

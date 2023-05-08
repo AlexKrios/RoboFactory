@@ -2,11 +2,12 @@
 {
     public enum SceneName
     {
-        Unknown = 0,
+        None = 0,
         Launcher = 1,
-        Loader = 2,
-        Factory = 3,
-        Battle = 4,
+        Authentication = 2,
+        Loader = 3,
+        Factory = 4,
+        Battle = 5,
         
         UnitTest = 101
     }
