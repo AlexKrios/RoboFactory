@@ -1,1 +1,101 @@
-{"settingsInfo":{"language":"Russian","graphics":"High","musicVolume":1.0,"audioVolume":5.0},"moneyInfo":{"money":4500},"levelInfo":{"level":5,"experience":5390},"storesInfo":{"raw":[{"key":"raw_battery","count":0,"level":1},{"key":"raw_weapon","count":0,"level":1},{"key":"raw_armor","count":10,"level":1},{"key":"raw_engine","count":0,"level":1}],"products":[{"key":"trooper_weapon_product_star1","count":2,"experience":0}]},"unitsInfo":{"groupCount":0,"units":[{"key":"unit_trooper","experience":0,"level":1,"isLocked":false,"outfit":["trooper_weapon_product_default","trooper_armor_product_default","trooper_engine_product_default","trooper_battery_product_default"]},{"key":"unit_defender","experience":0,"level":1,"isLocked":false,"outfit":["defender_weapon_product_default","defender_armor_product_default","defender_engine_product_default","defender_battery_product_default"]},{"key":"unit_support","experience":0,"level":1,"isLocked":false,"outfit":["support_weapon_product_default","support_armor_product_default","support_engine_product_default","support_battery_product_default"]},{"key":"unit_sniper","experience":0,"level":1,"isLocked":false,"outfit":["sniper_weapon_product_default","sniper_armor_product_default","sniper_engine_product_default","sniper_battery_product_default"]}]},"expeditionsInfo":{"count":2,"expeditions":[]},"productionsInfo":{"level":1,"count":2,"production":[]},"ordersInfo":{"orders":[{"key":"order_weapon_2","isActive":true,"isComplete":false},{"key":"order_armor_3","isActive":true,"isComplete":false}],"count":0,"timeRefresh":133280639990000000}}
+{
+  "expeditionsSection": {
+    "count": 1
+  },
+  "levelSection": {
+    "experience": 0,
+    "level": 1
+  },
+  "moneySection": {
+    "money": 0
+  },
+  "ordersSection": {
+    "count": 1,
+    "timeRefresh": 133291871990000000
+  },
+  "productionsSection": {
+    "count": 1,
+    "level": 1,
+    "queue": {
+      "fb249272-b629-496e-90ad-2c8195cddd04": {
+        "id": "fb249272-b629-496e-90ad-2c8195cddd04",
+        "key": "trooper_weapon_component1_star1",
+        "star": 1,
+        "timeEnd": 133291743874991921
+      }
+    }
+  },
+  "storesSection": {
+    "raw": {
+      "raw_armor": {
+        "count": 25,
+        "level": 1
+      },
+      "raw_battery": {
+        "count": 25,
+        "level": 1
+      },
+      "raw_engine": {
+        "count": 25,
+        "level": 1
+      },
+      "raw_weapon": {
+        "count": 25,
+        "level": 1
+      }
+    }
+  },
+  "unitsSection": {
+    "groupCount": 0,
+    "units": {
+      "unit_defender": {
+        "experience": 0,
+        "isLocked": false,
+        "key": "unit_defender",
+        "level": 1,
+        "outfit": [
+          "defender_weapon_product_default",
+          "defender_armor_product_default",
+          "defender_engine_product_default",
+          "defender_battery_product_default"
+        ]
+      },
+      "unit_sniper": {
+        "experience": 0,
+        "isLocked": false,
+        "key": "unit_sniper",
+        "level": 1,
+        "outfit": [
+          "sniper_weapon_product_default",
+          "sniper_armor_product_default",
+          "sniper_engine_product_default",
+          "sniper_battery_product_default"
+        ]
+      },
+      "unit_support": {
+        "experience": 0,
+        "isLocked": false,
+        "key": "unit_support",
+        "level": 1,
+        "outfit": [
+          "support_weapon_product_default",
+          "support_armor_product_default",
+          "support_engine_product_default",
+          "support_battery_product_default"
+        ]
+      },
+      "unit_trooper": {
+        "experience": 0,
+        "isLocked": false,
+        "key": "unit_trooper",
+        "level": 1,
+        "outfit": [
+          "trooper_weapon_product_default",
+          "trooper_armor_product_default",
+          "trooper_engine_product_default",
+          "trooper_battery_product_default"
+        ]
+      }
+    }
+  }
+}

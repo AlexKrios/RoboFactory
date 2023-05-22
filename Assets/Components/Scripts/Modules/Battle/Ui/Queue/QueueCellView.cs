@@ -1,0 +1,60 @@
+﻿using Components.Scripts.Modules.General.Asset;
+using Components.Scripts.Modules.General.Unit.Battle.Models;
+using UnityEngine;
+using UnityEngine.UI;
+
+namespace Components.Scripts.Modules.Battle.Ui.Queue
+{
+    [AddComponentMenu("Scripts/Battle/Ui/Queue Cell View")]
+    public class QueueCellView : MonoBehaviour
+    {
+        #region Components
+
+        [SerializeField] private Image icon;
+
+        [SerializeField] private Color allyColor;
+        [SerializeField] private Color enemyColor;
+
+        #endregion
+
+        #region Variables
+
+        public BattleUnitObject Data { get; private set; }
+        
+        private Image _background;
+
+        #endregion
+
+        #region Unity Methods
+
+        private void Awake()
+        {
+            _background = GetComponent<Image>();
+        }
+
+        #endregion
+
+        public async void SetCellData(BattleUnitObject unit)
+        {
+            Data = unit;
+            
+            var sprite = await AssetsManager.LoadAsset<Sprite>(unit.Info.IconRef);
+            
+            SetCellBg(unit.Team);
+            SetCellIcon(sprite);
+        }
+
+        private void SetCellBg(BattleUnitTeamType team)
+        {
+            if (team == BattleUnitTeamType.Ally)
+                _background.color = allyColor;
+            
+            if (team == BattleUnitTeamType.Enemy)
+                _background.color = enemyColor;
+        }
+        private void SetCellIcon(Sprite sprite)
+        {
+            icon.sprite = sprite;
+        }
+    }
+}

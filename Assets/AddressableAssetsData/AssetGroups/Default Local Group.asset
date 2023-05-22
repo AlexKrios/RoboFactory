@@ -17,101 +17,124 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: af42ec82797a2e54a9a530cddd70dca7
   m_SerializeEntries:
-  - m_GUID: 07c21296f688bff42afbe3502b8787f5
-    m_Address: Assets/Images/Sprite/Item/Product/Trooper/TrooperWeapon.png
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: a5f35de28ca0fcc4aa51964cddeab5c9
-    m_Address: Assets/Images/Sprite/Item/Product/Defender/DefenderWeapon.png
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: ce87a4f0a8b26d84d88b84cb597202e7
-    m_Address: Assets/Images/Sprite/Item/Product/Defender/DefenderEngine.png
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 53be831e4b0faa043a3cfcf9af2b29d2
-    m_Address: Assets/Images/Sprite/Item/Product/Sniper/SniperEngine.png
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: bbd01f80ca5ad5d40b956b3b93da6f77
-    m_Address: Assets/Images/Sprite/Item/Product/Support/SupportBattery.png
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 16d03c305c253b64db3fedafaaeabe9d
-    m_Address: Assets/Images/Sprite/Item/Raw/RawArmor.png
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 261629d4fd5c9a1408f79a50c0f224cd
-    m_Address: Assets/Images/Sprite/Item/Product/Sniper/SniperWeapon.png
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: e5024f8a9c6569e4c89d0a043d827425
-    m_Address: Assets/Images/Sprite/Item/Product/Support/SupportArmor.png
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 7e4d507bf545c8e43b79c378f25ac6c0
-    m_Address: Assets/Images/Sprite/Item/Product/Trooper/TrooperEngine.png
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: d8a3a2fb60f2b4b4dbbcf4acd38e4752
-    m_Address: Assets/Images/Sprite/Item/Product/Defender/DefenderArmor.png
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: c44f7d8a76b78914bab8fccd3e773a93
-    m_Address: Assets/Images/Sprite/Item/Product/Sniper/SniperArmor.png
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 6a1db7dc653941f4c9f989bc8f310d5f
-    m_Address: Assets/Images/Sprite/Item/Product/Support/SupportWeapon.png
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 22d1ccf963095b04c82d9ae5535aa8df
-    m_Address: Assets/Images/Sprite/Item/Product/Trooper/TrooperBattery.png
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 3e54da3b0b863c140845430cb89f6aec
-    m_Address: Assets/Images/Sprite/Item/Raw/RawBattery.png
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 7cebe9a3c0e99c54b955b7f8a1499bfa
-    m_Address: Assets/Images/Sprite/Item/Raw/RawWeapon.png
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: dc9c1d0cded8ac64590d9913657bfdc4
-    m_Address: Assets/Images/Sprite/Item/Raw/RawEngine.png
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 0151d479850dec64cb1772835345e19a
-    m_Address: Assets/Images/Sprite/Item/Product/Trooper/TrooperArmor.png
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: a96c1d1d18e90804485ce03e627a02f2
-    m_Address: Assets/Images/Sprite/Item/Product/Defender/DefenderBattery.png
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: b1701e2ecb08a21438321d9af2b7a663
-    m_Address: Assets/Images/Sprite/Item/Product/Support/SupportEngine.png
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: b7377a7b96ea166428934145311b16b2
-    m_Address: Assets/Images/Sprite/Item/Product/Sniper/SniperBattery.png
-    m_ReadOnly: 0
-    m_SerializedLabels: []
   - m_GUID: 3b4d4547d01f39c429b186952282b8dc
-    m_Address: Assets/Images/Sprite/Menu/Craft/BlueprintCraftProduct.png
+    m_Address: Assets/Components/Images/Sprite/Ui/Menu/Production/BlueprintCraftProduct.png
     m_ReadOnly: 0
-    m_SerializedLabels:
-    - default
+    m_SerializedLabels: []
   - m_GUID: 4b02a20004ae0ca47aca6850eff73879
-    m_Address: Assets/Images/Sprite/Item/Product/SpecsIcons.png
+    m_Address: Assets/Components/Images/Sprite/Item/Product/SpecsIcons.png
     m_ReadOnly: 0
     m_SerializedLabels: []
-  - m_GUID: 114d1c7c5dc27d0428359f3a678a6533
-    m_Address: Assets/Images/Sprite/CharachterType.png
+  - m_GUID: 5eb3fa8e677d5e9478a4d67095de3f68
+    m_Address: Assets/Components/Animation/Units/UnitAnimator.controller
     m_ReadOnly: 0
     m_SerializedLabels: []
-  - m_GUID: 144efc02586ae384e9bc4c6cbe77e313
-    m_Address: Assets/Images/Sprite/Item/Product/ProductType.png
+  - m_GUID: 1560312eb2ec3054fbf9fd5ad5c3834a
+    m_Address: Assets/Components/Animation/Units/Defender/Armor/DefenderArmorDefault.controller
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 51ffdfac4616319448e1e6610d5f0381
+    m_Address: Assets/Components/Animation/Units/Defender/Armor/DefenderArmorDefault_Idle.anim
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 1c7d1aef86a6b8d46b1f1fa60d609265
+    m_Address: Assets/Components/Animation/Units/Defender/Weapon/DefenderWeaponDefault.controller
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 421fe48540618b84793880a719814551
+    m_Address: Assets/Components/Animation/Units/Defender/Weapon/DefenderWeaponDefault_Idle.anim
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 98a3263dfdbbe01418b525de99a2a71d
+    m_Address: Assets/Components/Animation/Units/Sniper/Armor/SniperArmorDefault.controller
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f5e7db311a6667545919d8cdb27aa543
+    m_Address: Assets/Components/Animation/Units/Sniper/Armor/SniperArmorDefault_Idle.anim
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b8b670445c50caa419f17f90af64f586
+    m_Address: Assets/Components/Animation/Units/Sniper/Weapon/SniperWeaponDefault.controller
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 0af12b9b786b0d345b8eef7394812fa7
+    m_Address: Assets/Components/Animation/Units/Sniper/Weapon/SniperWeaponDefault_Idle.anim
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 5f91477241fff6947811015f3ad895eb
+    m_Address: Assets/Components/Animation/Units/Support/Armor/SupportArmorDefault.controller
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 491f95a5987bc2341878b326d75ea109
+    m_Address: Assets/Components/Animation/Units/Support/Armor/SupportArmorDefault_Idle.anim
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: c238a382c16289a4c96b2e7aa661156b
+    m_Address: Assets/Components/Animation/Units/Support/Weapon/SupportWeaponDefault.controller
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: fc0bc36ebdb5aaa4298d8845aea7eecb
+    m_Address: Assets/Components/Animation/Units/Support/Weapon/SupportWeaponDefault_Idle.anim
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 193cba80026028b438547bc6b3792311
+    m_Address: Assets/Components/Animation/Units/Trooper/Armor/TrooperArmorDefault.controller
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: addb0a90193503e408de627074e8107f
+    m_Address: Assets/Components/Animation/Units/Trooper/Weapon/TrooperWeaponDefault.controller
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 7d4048a48337f7040b7349075ba92be8
+    m_Address: Assets/Components/Animation/Units/Trooper/Weapon/TrooperWeaponDefault_Idle.anim
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 133f1a052b40e3245a3b3f8dadba48ee
+    m_Address: Assets/Components/Animation/GreenButton.controller
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 0de441dd7b0c4fb459af0ff52965b505
+    m_Address: Assets/Components/Animation/ConfirmUpgradeButton.controller
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 3d3ee9bb6a3f6c641996fe972fd976f3
+    m_Address: Assets/Components/Animation/YellowButton.controller
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 4dcbcb8909871574b94a35bbfb678be8
+    m_Address: Assets/Components/Animation/RedButton.controller
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 5bc11980fba99c445a08d08f53cb5cd2
+    m_Address: Assets/Components/Images/Sprite/Item/StarIcon.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 49152d6ec0e2fd840a3f1482dfc0dbe9
+    m_Address: Assets/Components/Prefabs/Ui/Menu/Production/ProductionMenu.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: c5dd78a8a7266bf458db432b0570b1d4
+    m_Address: Assets/Components/Prefabs/Ui/Menu/Storage/StorageMenu.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 0c36dae8d0b3a8b44844ace73ba46a1e
+    m_Address: Assets/Components/Prefabs/Ui/Menu/Units/UnitsMenu.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 47fa50b707f5f9541915b2c91ee0ef76
+    m_Address: Assets/Components/Prefabs/Ui/Menu/Settings/SettingsMenu.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: c87fbf4fe1c381844b47f2163c958c9e
+    m_Address: Assets/Components/Prefabs/Ui/Menu/Order/OrderMenu.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 2238f4f078686ba44b03c162a51db0c0
+    m_Address: Assets/Components/Prefabs/Ui/Menu/Expedition/ExpeditionMenu.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 7b738a0b7c2318841b10f2a1077b9cfc
+    m_Address: Assets/Components/Prefabs/Ui/Menu/Conversion/ConversionMenu.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
   m_ReadOnly: 0

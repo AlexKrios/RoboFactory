@@ -45,6 +45,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 599721a10bbbcb341b019412a3b47743, type: 2}
   - {fileID: 11400000, guid: 8fe94f1f0e0d42e42b35fa5935e11793, type: 2}
   - {fileID: 11400000, guid: 824115b72b715f349b10c02761d629fb, type: 2}
+  - {fileID: 11400000, guid: e6547261c7a4b1a4989a606720a32937, type: 2}
+  - {fileID: 11400000, guid: 5a0aed5a7a45225479ebb44ee05556b4, type: 2}
+  - {fileID: 11400000, guid: 4f0706ce2924b6d46b4c391cfdf14712, type: 2}
+  - {fileID: 11400000, guid: b08a5793c78ed594f93284f70c4ee694, type: 2}
   m_BuildSettings:
     m_CompileScriptsInVirtualMode: 0
     m_CleanupStreamingAssetsAfterBuilds: 1
@@ -88,7 +92,7 @@ MonoBehaviour:
     - default
     - Music
     - Audio
-    - Products
+    - Products Sprites
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: 840dbda6ecb7c544a83f372c8722ad99, type: 2}

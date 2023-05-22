@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89ce7cb292edf2844ab9eb0d9ca6a554, type: 3}
+  m_Name: SupportEngineProduct_Default
+  m_EditorClassIdentifier: 
+  itemType: 1
+  key: support_engine_product_default
+  iconRef:
+    m_AssetGUID: b1701e2ecb08a21438321d9af2b7a663
+    m_SubObjectName: SupportEngineProduct
+    m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+    m_EditorAssetChanged: 0
+  index: 0
+  productName: Support Engine Product Default
+  star: 1
+  unitType: 3
+  productGroup: 3
+  productType: 0
+  isProduct: 1
+  model: {fileID: 9081755806499959452, guid: 4931a368f237d0848bda856505484bbf, type: 3}
+  recipe:
+    star: 0
+    parts: []
+    cost: 1000
+    experience: 10
+    craftTime: 10
+    specs:
+    - type: 0
+      value: 25
+    - type: 1
+      value: 0
+    - type: 2
+      value: 0
+    - type: 3
+      value: 10

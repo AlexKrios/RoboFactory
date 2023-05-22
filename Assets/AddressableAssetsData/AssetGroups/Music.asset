@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Music
+  m_EditorClassIdentifier: 
+  m_GroupName: Music
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 03e41bb05df297a44b83d55d3917b009
+  m_SerializeEntries:
+  - m_GUID: d64ae2f9a52f0dc4ca6ab45961981032
+    m_Address: Audio/Spartacus.mp3
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Music
+  - m_GUID: fff91a21e9de4b44da699a052358eeb9
+    m_Address: Audio/Boom.mp3
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Music
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 43f345baeabe80145b7f64554f5c1876, type: 2}
+  m_SchemaSet:
+    m_Schemas: []
