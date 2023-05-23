@@ -59,7 +59,7 @@ namespace Components.Scripts.Modules.General.Item.Production
         public async UniTask AddLevel()
         {
             Level++;
-            await _apiManager.AddUserProductionLevel(Level);
+            await _apiManager.SetUserProductionLevel(Level);
         }
 
         public bool IsHaveFreeCell()
@@ -100,7 +100,7 @@ namespace Components.Scripts.Modules.General.Item.Production
             return _settings.upgradeQueueData.Data.First(x => x.Count == CellCount);
         }
 
-        public async void IncreaseQueueCount()
+        public async UniTask IncreaseQueueCount()
         {
             CellCount++;
             await _apiManager.SetUserProductionQueueCount(CellCount);

@@ -9,6 +9,7 @@ namespace Components.Scripts.Modules.General.Order.Object
     public class OrderObject
     {
         public string Key { get; set; }
+        public OrderType Type { get; set; }
         public ProductGroup Group { get; set; }
         public PartObject Part { get; set; }
 

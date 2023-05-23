@@ -1,5 +1,6 @@
 ﻿using System;
 using Components.Scripts.Modules.Factory.Menu.Order.Components;
+using Components.Scripts.Modules.Factory.Menu.Order.Upgrade;
 using Components.Scripts.Modules.General.Asset;
 using Components.Scripts.Modules.General.Ui;
 using JetBrains.Annotations;
@@ -37,6 +38,11 @@ namespace Components.Scripts.Modules.Factory.Menu.Order
         { 
             return _container.InstantiatePrefabForComponent<ItemCellView>(_settings.itemPrefab, parent);
         }
+        
+        public void CreateUpgradePopup(Transform parent)
+        {
+            _container.InstantiatePrefabForComponent<UpgradePopupView>(_settings.upgradePrefab, parent);
+        }
 
         [Serializable]
         public class Settings
@@ -48,6 +54,9 @@ namespace Components.Scripts.Modules.Factory.Menu.Order
             
             [Space]
             public GameObject itemPrefab;
+            
+            [Space]
+            public GameObject upgradePrefab;
         }
     }
 }

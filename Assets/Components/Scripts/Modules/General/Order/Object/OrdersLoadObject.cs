@@ -8,6 +8,7 @@ namespace Components.Scripts.Modules.General.Order.Object
     public class OrdersLoadObject
     {
         public int count;
+        public int level;
         public long timeRefresh;
         
         [JsonProperty("orders")]

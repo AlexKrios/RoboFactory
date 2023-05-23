@@ -30,11 +30,15 @@ namespace Components.Scripts.Modules.Factory.Api
         private static readonly string UnitsRoot = $"{UserRoot}/unitsSection/units";
         private static readonly string ProductionsRoot = $"{UserRoot}/productionsSection";
         private static readonly string ProductionQueueRoot = $"{ProductionsRoot}/queue";
+        private static readonly string ProductionCountRoot = $"{ProductionsRoot}/count";
+        private static readonly string ProductionLevelRoot = $"{ProductionsRoot}/level";
         private static readonly string ExpeditionRoot = $"{UserRoot}/expeditionSection";
         private static readonly string ExpeditionQueueRoot = $"{ExpeditionRoot}/queue";
+        private static readonly string ExpeditionCountRoot = $"{ExpeditionRoot}/count";
         private static readonly string OrdersRoot = $"{UserRoot}/ordersSection";
         private static readonly string OrdersListRoot = $"{OrdersRoot}/orders";
         private static readonly string OrdersCountRoot = $"{OrdersRoot}/count";
+        private static readonly string OrdersLevelRoot = $"{OrdersRoot}/level";
 
         private static FirebaseDatabase FirebaseDatabase => FirebaseDatabase.DefaultInstance;
         private static FirebaseUser FirebaseUser => FirebaseAuth.DefaultInstance.CurrentUser;
@@ -147,17 +151,17 @@ namespace Components.Scripts.Modules.Factory.Api
         
         #region Production
 
-        public async UniTask AddUserProductionLevel(int value)
+        public async UniTask SetUserProductionLevel(int value)
         {
             await FirebaseDatabase.DefaultInstance.RootReference
-                .Child($"{ProductionsRoot}/level")
+                .Child($"{ProductionLevelRoot}")
                 .SetValueAsync(value);
         }
         
         public async UniTask SetUserProductionQueueCount(int value)
         {
             await FirebaseDatabase.DefaultInstance.RootReference
-                .Child($"{ProductionsRoot}/count")
+                .Child($"{ProductionCountRoot}")
                 .SetValueAsync(value);
         }
         
@@ -184,7 +188,7 @@ namespace Components.Scripts.Modules.Factory.Api
         public async UniTask SetUserExpeditionQueueCount(int value)
         {
             await FirebaseDatabase.DefaultInstance.RootReference
-                .Child($"{ExpeditionRoot}/count")
+                .Child($"{ExpeditionCountRoot}")
                 .SetValueAsync(value);
         }
         
@@ -205,7 +209,9 @@ namespace Components.Scripts.Modules.Factory.Api
         }
 
         #endregion
-        
+
+        #region Orders
+
         public async UniTask SetUserOrders(Dictionary<string, OrderDto> ordersData)
         {
             var tasks = new List<UniTask>();
@@ -226,8 +232,17 @@ namespace Components.Scripts.Modules.Factory.Api
         public async UniTask SetUserOrdersCount(int value)
         {
             await FirebaseDatabase.DefaultInstance.RootReference
-                .Child($"{OrdersCountRoot}/count")
+                .Child($"{OrdersCountRoot}")
                 .SetValueAsync(value);
         }
+        
+        public async UniTask SetUserOrdersLevel(int value)
+        {
+            await FirebaseDatabase.DefaultInstance.RootReference
+                .Child($"{OrdersLevelRoot}")
+                .SetValueAsync(value);
+        }
+
+        #endregion
     }
 }

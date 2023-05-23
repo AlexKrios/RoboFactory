@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using Components.Scripts.Modules.Factory.Menu.Order.Components;
 using Components.Scripts.Modules.General.Localisation;
 using Components.Scripts.Modules.General.Order;
+using Components.Scripts.Modules.General.Ui;
 using Components.Scripts.Modules.General.Ui.Common.Menu;
 using Components.Scripts.Utils;
 using Cysharp.Threading.Tasks;
 using TMPro;
+using UniRx;
 using UnityEngine;
+using UnityEngine.UI;
 using Zenject;
 
 namespace Components.Scripts.Modules.Factory.Menu.Order
@@ -27,6 +30,9 @@ namespace Components.Scripts.Modules.Factory.Menu.Order
 
         #region Components
         
+        [SerializeField] private Button upgrade;
+        
+        [Space]
         [SerializeField] private TMP_Text title;
         [SerializeField] private TMP_Text timer;
         [SerializeField] private List<ItemCellView> orders;
@@ -41,6 +47,8 @@ namespace Components.Scripts.Modules.Factory.Menu.Order
         protected override void Awake()
         {
             base.Awake();
+            
+            upgrade.OnClickAsObservable().Subscribe(_ => OnUpgradeClick()).AddTo(Disposable);
             
             title.text = _localisationController.GetLanguageValue(LocalisationKeys.OrderMenuTitleKey);
 
@@ -99,6 +107,12 @@ namespace Components.Scripts.Modules.Factory.Menu.Order
                     orderCell.SetData(order);
                 }
             }
+        }
+        
+        private void OnUpgradeClick()
+        {
+            var canvasT = UiController.GetCanvas(CanvasType.Ui).transform;
+            _orderManagerFactory.CreateUpgradePopup(canvasT);
         }
     }
 }

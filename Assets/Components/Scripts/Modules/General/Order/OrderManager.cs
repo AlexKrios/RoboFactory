@@ -29,6 +29,7 @@ namespace Components.Scripts.Modules.General.Order
         private Dictionary<string, OrderObject> OrdersDictionary { get; }
 
         public int OrderCount { get; private set; }
+        public int OrderLevel { get; private set; }
         private long RefreshTime { get; set; }
 
         private bool _isNeedRefreshForce;
@@ -127,6 +128,12 @@ namespace Components.Scripts.Modules.General.Order
         {
             OrderCount++;
             await _apiManager.SetUserOrdersCount(OrderCount);
+        }
+        
+        private async void IncreaseOrderLevel()
+        {
+            OrderLevel++;
+            await _apiManager.SetUserOrdersLevel(OrderCount);
         }
         
         [Serializable]
