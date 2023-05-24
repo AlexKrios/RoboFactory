@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Components.Scripts.Modules.General.Location;
-using Components.Scripts.Modules.General.Ui;
+using RoboFactory.General.Location;
+using RoboFactory.General.Ui;
 using UnityEngine;
 using Zenject;
 
-namespace Components.Scripts.Modules.Factory.Menu.Expedition.Locations
+namespace RoboFactory.Factory.Menu.Expedition
 {
     [AddComponentMenu("Scripts/Factory/Menu/Expedition/Locations Section View")]
     public class LocationsSectionView : MonoBehaviour

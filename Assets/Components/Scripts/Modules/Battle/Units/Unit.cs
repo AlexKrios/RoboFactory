@@ -1,8 +1,7 @@
-﻿using Components.Scripts.Modules.Battle.Units.Behaviour;
-using Components.Scripts.Modules.General.Unit.Battle.Models;
+﻿using RoboFactory.General.Unit.Battle;
 using UnityEngine;
 
-namespace Components.Scripts.Modules.Battle.Units
+namespace RoboFactory.Battle.Units
 {
     [AddComponentMenu("Scripts/Battle/Unit", 1)]
     public class Unit : MonoBehaviour

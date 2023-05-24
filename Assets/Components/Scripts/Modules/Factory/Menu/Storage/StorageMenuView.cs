@@ -1,13 +1,8 @@
-﻿using Components.Scripts.Modules.Factory.Menu.Storage.Header;
-using Components.Scripts.Modules.Factory.Menu.Storage.Items;
-using Components.Scripts.Modules.Factory.Menu.Storage.Sidebar;
-using Components.Scripts.Modules.Factory.Menu.Storage.Tab;
-using Components.Scripts.Modules.General.Item.Products.Object;
-using Components.Scripts.Modules.General.Item.Products.Types;
-using Components.Scripts.Modules.General.Ui.Common.Menu;
+﻿using RoboFactory.General.Item.Products;
+using RoboFactory.General.Ui.Common;
 using UnityEngine;
 
-namespace Components.Scripts.Modules.Factory.Menu.Storage
+namespace RoboFactory.Factory.Menu.Storage
 {
     [AddComponentMenu("Scripts/Factory/Menu/Storage/Storage Menu")]
     public class StorageMenuView : MenuBase

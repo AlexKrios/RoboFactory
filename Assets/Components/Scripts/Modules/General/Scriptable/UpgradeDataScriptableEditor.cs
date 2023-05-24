@@ -2,7 +2,7 @@
 using UnityEditor;
 
 #if UNITY_EDITOR
-namespace Components.Scripts.Modules.General.Scriptable
+namespace RoboFactory.General.Scriptable
 {
     [CustomEditor(typeof(UpgradeDataScriptable))]
     public class UpgradeDataScriptableEditor : Editor

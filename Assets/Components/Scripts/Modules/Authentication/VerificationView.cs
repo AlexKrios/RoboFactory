@@ -1,13 +1,14 @@
-﻿using Components.Scripts.Modules.General.Localisation;
-using Cysharp.Threading.Tasks;
+﻿using Cysharp.Threading.Tasks;
+using RoboFactory.General.Localisation;
 using TMPro;
 using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-namespace Components.Scripts.Modules.Authentication
+namespace RoboFactory.Authentication
 {
+    [AddComponentMenu("Scripts/Authentication/Verification View")]
     public class VerificationView : MonoBehaviour
     {
         private const string HeaderTitleKey = "auth_email";

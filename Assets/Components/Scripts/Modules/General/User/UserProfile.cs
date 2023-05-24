@@ -1,22 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using Components.Scripts.Modules.General.Expedition;
-using Components.Scripts.Modules.General.Item;
-using Components.Scripts.Modules.General.Item.Production;
-using Components.Scripts.Modules.General.Item.Production.Object;
-using Components.Scripts.Modules.General.Item.Raw;
-using Components.Scripts.Modules.General.Item.Raw.Object;
-using Components.Scripts.Modules.General.Level;
-using Components.Scripts.Modules.General.Location;
-using Components.Scripts.Modules.General.Money;
-using Components.Scripts.Modules.General.Order.Object;
-using Components.Scripts.Modules.General.Unit;
-using Components.Scripts.Modules.General.Unit.Object;
-using Components.Scripts.Utils;
 using Newtonsoft.Json;
+using RoboFactory.General.Expedition;
+using RoboFactory.General.Item;
+using RoboFactory.General.Item.Production;
+using RoboFactory.General.Item.Raw;
+using RoboFactory.General.Level;
+using RoboFactory.General.Location;
+using RoboFactory.General.Money;
+using RoboFactory.General.Order;
+using RoboFactory.General.Unit;
+using RoboFactory.Utils;
 using Zenject;
 
-namespace Components.Scripts.Modules.General.User
+namespace RoboFactory.General.User
 {
     [Serializable]
     public class UserProfile

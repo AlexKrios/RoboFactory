@@ -1,9 +1,9 @@
 ﻿using System;
-using Components.Scripts.Modules.General.Location;
-using Components.Scripts.Modules.General.Ui.Common.Menu;
+using RoboFactory.General.Location;
+using RoboFactory.General.Ui.Common;
 using UnityEngine;
 
-namespace Components.Scripts.Modules.Factory.Menu.Expedition.Locations
+namespace RoboFactory.Factory.Menu.Expedition
 {
     [AddComponentMenu("Scripts/Factory/Menu/Expedition/Location Cell View")]
     public class LocationCellView : CellBase

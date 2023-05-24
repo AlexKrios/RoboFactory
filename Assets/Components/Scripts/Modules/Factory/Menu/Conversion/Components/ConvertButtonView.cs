@@ -1,15 +1,15 @@
 ﻿using System;
-using Components.Scripts.Modules.General.Item.Raw;
-using Components.Scripts.Modules.General.Item.Raw.Convert;
-using Components.Scripts.Modules.General.Localisation;
-using Components.Scripts.Modules.General.Ui;
-using Components.Scripts.Modules.General.Ui.Common;
-using Components.Scripts.Modules.General.Ui.Popup;
+using RoboFactory.General.Item.Raw;
+using RoboFactory.General.Item.Raw.Convert;
+using RoboFactory.General.Localisation;
+using RoboFactory.General.Ui;
+using RoboFactory.General.Ui.Common;
+using RoboFactory.General.Ui.Popup;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-namespace Components.Scripts.Modules.Factory.Menu.Conversion.Components
+namespace RoboFactory.Factory.Menu.Conversion
 {
     [RequireComponent(typeof(Image))]
     [RequireComponent(typeof(Button))]

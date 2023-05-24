@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace Components.Scripts.Modules.General.Unit.Object
+namespace RoboFactory.General.Unit
 {
     [Serializable]
     public class UnitsLoadObject

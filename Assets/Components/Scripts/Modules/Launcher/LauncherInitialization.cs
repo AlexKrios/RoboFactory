@@ -1,23 +1,23 @@
-using Components.Scripts.Modules.Authentication;
-using Components.Scripts.Modules.Factory.Api;
-using Components.Scripts.Modules.General.Audio;
-using Components.Scripts.Modules.General.Expedition;
-using Components.Scripts.Modules.General.Item.Production;
-using Components.Scripts.Modules.General.Item.Products;
-using Components.Scripts.Modules.General.Item.Raw;
-using Components.Scripts.Modules.General.Level;
-using Components.Scripts.Modules.General.Localisation;
-using Components.Scripts.Modules.General.Location;
-using Components.Scripts.Modules.General.Money;
-using Components.Scripts.Modules.General.Order;
-using Components.Scripts.Modules.General.Scene;
-using Components.Scripts.Modules.General.Settings;
-using Components.Scripts.Modules.General.Unit;
-using Components.Scripts.Modules.General.User;
+using RoboFactory.Authentication;
+using RoboFactory.General.Api;
+using RoboFactory.General.Audio;
+using RoboFactory.General.Expedition;
+using RoboFactory.General.Item.Production;
+using RoboFactory.General.Item.Products;
+using RoboFactory.General.Item.Raw;
+using RoboFactory.General.Level;
+using RoboFactory.General.Localisation;
+using RoboFactory.General.Location;
+using RoboFactory.General.Money;
+using RoboFactory.General.Order;
+using RoboFactory.General.Scene;
+using RoboFactory.General.Settings;
+using RoboFactory.General.Unit;
+using RoboFactory.General.User;
 using UnityEngine;
 using Zenject;
 
-namespace Components.Scripts.Modules.Launcher
+namespace RoboFactory.Launcher
 {
     [AddComponentMenu("Scripts/Launcher/Launcher Initialization", 0)]
     public class LauncherInitialization : MonoBehaviour

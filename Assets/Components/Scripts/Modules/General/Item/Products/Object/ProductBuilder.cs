@@ -1,6 +1,4 @@
-﻿using Components.Scripts.Modules.General.Item.Products.Scriptable;
-
-namespace Components.Scripts.Modules.General.Item.Products.Object
+﻿namespace RoboFactory.General.Item.Products
 {
     public class ProductBuilder
     {

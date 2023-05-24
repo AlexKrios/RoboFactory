@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace Components.Scripts.Modules.General.Location
+namespace RoboFactory.General.Location
 {
     [Serializable]
     public class LocationSectionDto

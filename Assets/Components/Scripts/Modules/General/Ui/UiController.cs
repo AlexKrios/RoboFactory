@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AddressableAssets;
 using Zenject;
 
-namespace Components.Scripts.Modules.General.Ui
+namespace RoboFactory.General.Ui
 {
     [UsedImplicitly]
     public class UiController : IUiController

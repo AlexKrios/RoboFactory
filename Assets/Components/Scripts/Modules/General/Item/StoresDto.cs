@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using Components.Scripts.Modules.General.Item.Products.Object.Types;
-using Components.Scripts.Modules.General.Item.Raw.Object;
 using Newtonsoft.Json;
+using RoboFactory.General.Item.Products;
+using RoboFactory.General.Item.Raw;
 
-namespace Components.Scripts.Modules.General.Item
+namespace RoboFactory.General.Item
 {
     [Serializable]
     public class StoresDto

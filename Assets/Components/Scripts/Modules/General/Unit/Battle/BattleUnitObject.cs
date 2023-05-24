@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using Components.Scripts.Modules.General.Item.Products.Types;
-using Components.Scripts.Modules.General.Unit.Object;
+using RoboFactory.General.Item.Products;
 using UnityEngine;
 
-namespace Components.Scripts.Modules.General.Unit.Battle.Models
+namespace RoboFactory.General.Unit.Battle
 {
     public class BattleUnitObject
     {

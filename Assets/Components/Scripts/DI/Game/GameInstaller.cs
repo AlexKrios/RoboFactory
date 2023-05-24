@@ -1,29 +1,28 @@
-using Components.Scripts.Modules.Authentication;
-using Components.Scripts.Modules.Factory.Api;
-using Components.Scripts.Modules.General.Asset;
-using Components.Scripts.Modules.General.Audio;
-using Components.Scripts.Modules.General.Expedition;
-using Components.Scripts.Modules.General.Item;
-using Components.Scripts.Modules.General.Item.Production;
-using Components.Scripts.Modules.General.Item.Products;
-using Components.Scripts.Modules.General.Item.Raw;
-using Components.Scripts.Modules.General.Item.Raw.Convert;
-using Components.Scripts.Modules.General.Level;
-using Components.Scripts.Modules.General.Localisation;
-using Components.Scripts.Modules.General.Location;
-using Components.Scripts.Modules.General.Money;
-using Components.Scripts.Modules.General.Order;
-using Components.Scripts.Modules.General.Scene;
-using Components.Scripts.Modules.General.Settings;
-using Components.Scripts.Modules.General.Ui;
-using Components.Scripts.Modules.General.Ui.Popup;
-using Components.Scripts.Modules.General.Unit;
-using Components.Scripts.Modules.General.Unit.Object;
-using Components.Scripts.Modules.General.User;
+using RoboFactory.Authentication;
+using RoboFactory.General.Api;
+using RoboFactory.General.Asset;
+using RoboFactory.General.Audio;
+using RoboFactory.General.Expedition;
+using RoboFactory.General.Item;
+using RoboFactory.General.Item.Production;
+using RoboFactory.General.Item.Products;
+using RoboFactory.General.Item.Raw;
+using RoboFactory.General.Item.Raw.Convert;
+using RoboFactory.General.Level;
+using RoboFactory.General.Localisation;
+using RoboFactory.General.Location;
+using RoboFactory.General.Money;
+using RoboFactory.General.Order;
+using RoboFactory.General.Scene;
+using RoboFactory.General.Settings;
+using RoboFactory.General.Ui;
+using RoboFactory.General.Ui.Popup;
+using RoboFactory.General.Unit;
+using RoboFactory.General.User;
 using UnityEngine;
 using Zenject;
 
-namespace Components.Scripts.DI.Game
+namespace RoboFactory.DI
 {
     [AddComponentMenu("Scripts/General/Di/Game Installer")]
     public class GameInstaller : MonoInstaller
@@ -47,7 +46,6 @@ namespace Components.Scripts.DI.Game
             Container.Bind<AuthenticationManager>().AsSingle().NonLazy();
             
             Container.BindFactory<UserProfile, UserProfile.Factory>();
-            Container.Bind<UserManager>().AsSingle().NonLazy();
         }
 
         private void InstallControllers()

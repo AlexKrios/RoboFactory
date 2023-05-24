@@ -1,14 +1,14 @@
-﻿using Components.Scripts.Modules.General.Asset;
-using Components.Scripts.Modules.General.Item.Raw.Convert;
-using Components.Scripts.Modules.General.Ui;
-using DG.Tweening;
+﻿using DG.Tweening;
+using RoboFactory.General.Asset;
+using RoboFactory.General.Item.Raw.Convert;
+using RoboFactory.General.Ui;
 using TMPro;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.UI;
 using Zenject;
 
-namespace Components.Scripts.Modules.Factory.Menu.Conversion.Parts
+namespace RoboFactory.Factory.Menu.Conversion
 {
     [AddComponentMenu("Scripts/Factory/Menu/Conversion/Part Result Cell View")]
     public class PartResultCellView : MonoBehaviour

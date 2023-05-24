@@ -1,11 +1,11 @@
-﻿using Components.Scripts.Modules.General.Asset;
-using Components.Scripts.Modules.General.Item.Models.Recipe;
-using DG.Tweening;
+﻿using DG.Tweening;
+using RoboFactory.General.Asset;
+using RoboFactory.General.Item;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Components.Scripts.Modules.Factory.Menu.Expedition.Result
+namespace RoboFactory.Factory.Menu.Expedition
 {
     [RequireComponent(typeof(CanvasGroup))]
     [AddComponentMenu("Scripts/Factory/Menu/Expedition/Selection/Result Reward Cell View")]

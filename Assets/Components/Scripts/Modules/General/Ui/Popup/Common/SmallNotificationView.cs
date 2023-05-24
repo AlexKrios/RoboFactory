@@ -1,9 +1,9 @@
-﻿using Components.Scripts.Modules.General.Localisation;
+﻿using RoboFactory.General.Localisation;
 using TMPro;
 using UnityEngine;
 using Zenject;
 
-namespace Components.Scripts.Modules.General.Ui.Popup.Common
+namespace RoboFactory.General.Ui.Popup
 {
     [AddComponentMenu("Scripts/General/Popup/Small Notification View")]
     public class SmallNotificationView : PopupBase

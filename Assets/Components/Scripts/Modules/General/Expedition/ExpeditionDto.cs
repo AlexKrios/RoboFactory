@@ -1,7 +1,7 @@
 ﻿using System;
 using Newtonsoft.Json;
 
-namespace Components.Scripts.Modules.General.Expedition
+namespace RoboFactory.General.Expedition
 {
     [Serializable]
     public class ExpeditionDto

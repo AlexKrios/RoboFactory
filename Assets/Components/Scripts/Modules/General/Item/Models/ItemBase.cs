@@ -1,8 +1,6 @@
-﻿using Components.Scripts.Modules.General.Item.Models.Recipe;
-using Components.Scripts.Modules.General.Item.Models.Types;
-using UnityEngine.AddressableAssets;
+﻿using UnityEngine.AddressableAssets;
 
-namespace Components.Scripts.Modules.General.Item.Models
+namespace RoboFactory.General.Item
 {
     public abstract class ItemBase
     {

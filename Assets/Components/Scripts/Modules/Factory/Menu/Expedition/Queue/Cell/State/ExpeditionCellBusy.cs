@@ -1,13 +1,13 @@
-﻿using Components.Scripts.Modules.General.Asset;
-using Components.Scripts.Modules.General.Expedition;
-using Components.Scripts.Modules.General.Location;
-using Components.Scripts.Utils;
-using Cysharp.Threading.Tasks;
+﻿using Cysharp.Threading.Tasks;
 using JetBrains.Annotations;
+using RoboFactory.General.Asset;
+using RoboFactory.General.Expedition;
+using RoboFactory.General.Location;
+using RoboFactory.Utils;
 using UnityEngine;
 using Zenject;
 
-namespace Components.Scripts.Modules.Factory.Menu.Expedition.Queue.Cell.State
+namespace RoboFactory.Factory.Menu.Expedition
 {
     public class ExpeditionCellBusy : IExpeditionCellState
     {

@@ -1,15 +1,10 @@
 using System;
-using Components.Scripts.Modules.General.Item.Models.Scriptable;
-using Components.Scripts.Modules.General.Item.Models.Types;
-using Components.Scripts.Modules.General.Item.Products.Object;
-using Components.Scripts.Modules.General.Item.Products.Object.Types;
-using Components.Scripts.Modules.General.Item.Products.Types;
-using Components.Scripts.Modules.General.Unit.Type;
+using RoboFactory.General.Unit;
 using UnityEditor;
 using UnityEngine;
 
 #if UNITY_EDITOR
-namespace Components.Scripts.Modules.General.Item.Products.Scriptable.Type
+namespace RoboFactory.General.Item.Products
 {
     [CustomEditor(typeof(ArmorProductScriptable))]
     public class ArmorProductScriptableEditor : ProductScriptableEditorBase

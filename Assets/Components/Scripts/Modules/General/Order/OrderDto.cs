@@ -1,6 +1,6 @@
 using System;
 
-namespace Components.Scripts.Modules.General.Order.Object
+namespace RoboFactory.General.Order
 {
     [Serializable]
     public class OrderDto

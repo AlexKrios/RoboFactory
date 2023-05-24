@@ -1,13 +1,13 @@
 ﻿using System;
-using Components.Scripts.Modules.General.Asset;
-using Components.Scripts.Modules.General.Ui;
 using JetBrains.Annotations;
+using RoboFactory.General.Asset;
+using RoboFactory.General.Ui;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.UI;
 using Zenject;
 
-namespace Components.Scripts.Modules.Factory.Menu.Conversion
+namespace RoboFactory.Factory.Menu.Conversion
 {
     [UsedImplicitly]
     public class ConversionMenuFactory

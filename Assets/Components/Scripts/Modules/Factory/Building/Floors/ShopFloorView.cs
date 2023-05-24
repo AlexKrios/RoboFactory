@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Components.Scripts.Modules.Factory.Building.Floors
+namespace RoboFactory.Factory.Building
 {
     [AddComponentMenu("Scripts/Factory/Building/Shop Floor View")]
     public class ShopFloorView : BuildingFloorBase

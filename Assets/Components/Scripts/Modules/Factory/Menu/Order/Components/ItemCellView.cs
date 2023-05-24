@@ -1,17 +1,15 @@
-﻿using Components.Scripts.Modules.General.Asset;
-using Components.Scripts.Modules.General.Item.Products;
-using Components.Scripts.Modules.General.Item.Products.Types;
-using Components.Scripts.Modules.General.Localisation;
-using Components.Scripts.Modules.General.Order;
-using Components.Scripts.Modules.General.Order.Object;
-using Components.Scripts.Utils;
+﻿using RoboFactory.General.Asset;
+using RoboFactory.General.Item.Products;
+using RoboFactory.General.Localisation;
+using RoboFactory.General.Order;
+using RoboFactory.Utils;
 using TMPro;
 using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-namespace Components.Scripts.Modules.Factory.Menu.Order.Components
+namespace RoboFactory.Factory.Menu.Order
 {
     [AddComponentMenu("Scripts/Factory/Menu/Order/Item Cell View")]
     public class ItemCellView : MonoBehaviour

@@ -1,11 +1,11 @@
-using Components.Scripts.Modules.Factory.Cameras;
-using Components.Scripts.Modules.General.Audio;
-using Components.Scripts.Modules.General.Ui;
+using RoboFactory.Factory.Cameras;
+using RoboFactory.General.Audio;
+using RoboFactory.General.Ui;
 using UnityEngine;
 using Zenject;
-using CameraType = Components.Scripts.Modules.General.Ui.CameraType;
+using CameraType = RoboFactory.General.Ui.CameraType;
 
-namespace Components.Scripts.Modules.Factory
+namespace RoboFactory.Factory
 {
     [AddComponentMenu("Scripts/Factory/Factory Initialization", 0)]
     public class FactoryInitialization : MonoBehaviour

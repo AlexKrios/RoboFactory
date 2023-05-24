@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using Zenject;
 
-namespace Components.Scripts.Modules.Battle.Units.Behaviour
+namespace RoboFactory.Battle.Units
 {
     [RequireComponent(typeof(UnitMarks))]
     public abstract class UnitBehaviour : MonoBehaviour, IPointerClickHandler

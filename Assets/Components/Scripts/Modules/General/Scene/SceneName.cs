@@ -1,4 +1,4 @@
-﻿namespace Components.Scripts.Modules.General.Scene
+﻿namespace RoboFactory.General.Scene
 {
     public enum SceneName
     {

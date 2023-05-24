@@ -1,11 +1,11 @@
 ﻿using System;
-using Components.Scripts.Modules.General.Item.Products.Types;
-using Components.Scripts.Modules.General.Ui.Common.Menu;
-using Components.Scripts.Utils;
+using RoboFactory.General.Item.Products;
+using RoboFactory.General.Ui.Common;
+using RoboFactory.Utils;
 using UnityEngine;
 using Zenject;
 
-namespace Components.Scripts.Modules.Factory.Menu.Storage.Tab
+namespace RoboFactory.Factory.Menu.Storage
 {
     [AddComponentMenu("Scripts/Factory/Menu/Storage/Tab Cell View")]
     public class TabCellView : CellBase

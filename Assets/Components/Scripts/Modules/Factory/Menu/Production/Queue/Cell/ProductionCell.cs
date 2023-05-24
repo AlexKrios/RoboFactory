@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using Components.Scripts.Modules.Factory.Menu.Production.Queue.Cell.State;
-using Components.Scripts.Modules.General.Item.Production.Object;
+using RoboFactory.General.Item.Production;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using Zenject;
 
-namespace Components.Scripts.Modules.Factory.Menu.Production.Queue.Cell
+namespace RoboFactory.Factory.Menu.Production
 {
     [AddComponentMenu("Scripts/Factory/Menu/Production/Queue/Production Cell")]
     public class ProductionCell : MonoBehaviour, IPointerClickHandler

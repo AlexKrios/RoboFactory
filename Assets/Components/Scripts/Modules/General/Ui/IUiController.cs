@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Components.Scripts.Modules.General.Ui
+namespace RoboFactory.General.Ui
 {
     public interface IUiController
     {

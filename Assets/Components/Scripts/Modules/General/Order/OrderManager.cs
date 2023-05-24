@@ -1,17 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Components.Scripts.Modules.Factory.Api;
-using Components.Scripts.Modules.General.Item.Products;
-using Components.Scripts.Modules.General.Item.Products.Types;
-using Components.Scripts.Modules.General.Money;
-using Components.Scripts.Modules.General.Order.Object;
-using Components.Scripts.Modules.General.Order.Scriptable;
-using Components.Scripts.Utils;
 using JetBrains.Annotations;
+using RoboFactory.General.Api;
+using RoboFactory.General.Item.Products;
+using RoboFactory.General.Money;
+using RoboFactory.Utils;
 using Zenject;
 
-namespace Components.Scripts.Modules.General.Order
+namespace RoboFactory.General.Order
 {
     [UsedImplicitly]
     public class OrderManager

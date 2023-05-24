@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Linq;
-using Components.Scripts.Modules.General.Expedition;
-using Components.Scripts.Modules.General.Ui;
-using Components.Scripts.Modules.General.Ui.Common;
+using RoboFactory.General.Expedition;
+using RoboFactory.General.Ui;
+using RoboFactory.General.Ui.Common;
 using UnityEngine;
 using Zenject;
 
-namespace Components.Scripts.Modules.Factory.Menu.Expedition.Sidebar
+namespace RoboFactory.Factory.Menu.Expedition
 {
     [AddComponentMenu("Scripts/Factory/Menu/Expedition/Start Button View")]
     public class StartButtonView : ButtonBase

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Components.Scripts.Modules.General.Settings
+namespace RoboFactory.General.Settings
 {
     [Serializable]
     public class SettingsLoadObject

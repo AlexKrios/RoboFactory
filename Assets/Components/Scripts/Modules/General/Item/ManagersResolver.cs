@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Components.Scripts.Modules.General.Item.Models.Types;
 using JetBrains.Annotations;
 using Zenject;
 
-namespace Components.Scripts.Modules.General.Item
+namespace RoboFactory.General.Item
 {
     [UsedImplicitly]
     public class ManagersResolver

@@ -1,12 +1,11 @@
-﻿using Components.Scripts.Modules.Factory.Menu.Expedition.Units;
-using Components.Scripts.Modules.General.Localisation;
-using Components.Scripts.Modules.General.Ui;
-using Components.Scripts.Modules.General.Ui.Common;
-using Components.Scripts.Modules.General.Unit;
+﻿using RoboFactory.General.Localisation;
+using RoboFactory.General.Ui;
+using RoboFactory.General.Ui.Common;
+using RoboFactory.General.Unit;
 using UnityEngine;
 using Zenject;
 
-namespace Components.Scripts.Modules.Factory.Menu.Expedition.Selection
+namespace RoboFactory.Factory.Menu.Expedition
 {
     [AddComponentMenu("Scripts/Factory/Menu/Expedition/Selection/Select Button View")]
     public class SelectButtonView : ButtonBase

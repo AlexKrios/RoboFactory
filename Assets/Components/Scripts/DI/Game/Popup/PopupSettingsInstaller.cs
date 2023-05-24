@@ -1,8 +1,8 @@
-using Components.Scripts.Modules.General.Ui.Popup;
+using RoboFactory.General.Ui.Popup;
 using UnityEngine;
 using Zenject;
 
-namespace Components.Scripts.DI.Game.Popup
+namespace RoboFactory.DI
 {
     [CreateAssetMenu(menuName = "Scriptable/Popup/Settings", order = 3)]
     public class PopupSettingsInstaller : ScriptableObjectInstaller<PopupSettingsInstaller>

@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Components.Scripts.Modules.Factory.Building.Floors;
 using DG.Tweening;
 using JetBrains.Annotations;
+using RoboFactory.Factory.Building;
 using UnityEngine;
 using Zenject;
 
-namespace Components.Scripts.Modules.Factory.Cameras
+namespace RoboFactory.Factory.Cameras
 {
     [UsedImplicitly]
     public class FactoryCameraController

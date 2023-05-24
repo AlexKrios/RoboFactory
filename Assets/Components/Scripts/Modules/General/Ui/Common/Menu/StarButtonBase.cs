@@ -1,11 +1,11 @@
-﻿using Components.Scripts.Modules.General.Audio;
+﻿using RoboFactory.General.Audio;
 using TMPro;
 using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-namespace Components.Scripts.Modules.General.Ui.Common.Menu
+namespace RoboFactory.General.Ui.Common
 {
     [RequireComponent(typeof(Image))]
     [RequireComponent(typeof(Button))]

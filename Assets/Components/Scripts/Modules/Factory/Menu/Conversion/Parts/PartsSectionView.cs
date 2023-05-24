@@ -1,9 +1,9 @@
-﻿using Components.Scripts.Modules.General.Item.Raw;
-using Components.Scripts.Modules.General.Ui;
+﻿using RoboFactory.General.Item.Raw;
+using RoboFactory.General.Ui;
 using UnityEngine;
 using Zenject;
 
-namespace Components.Scripts.Modules.Factory.Menu.Conversion.Parts
+namespace RoboFactory.Factory.Menu.Conversion
 {
     [AddComponentMenu("Scripts/Factory/Menu/Conversion/Parts Section View")]
     public class PartsSectionView : MonoBehaviour

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using Components.Scripts.Modules.General.Item.Products.Types;
 using Newtonsoft.Json;
+using RoboFactory.General.Item.Products;
 
-namespace Components.Scripts.Modules.General.Unit.Object
+namespace RoboFactory.General.Unit
 {
     [Serializable]
     public class UnitDto

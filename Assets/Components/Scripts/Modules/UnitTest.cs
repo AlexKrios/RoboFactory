@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Components.Scripts.Modules
+namespace RoboFactory
 {
     public class UnitTest : MonoBehaviour
     {

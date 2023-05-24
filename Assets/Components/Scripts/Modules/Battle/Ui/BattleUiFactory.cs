@@ -1,10 +1,8 @@
 ﻿using System;
-using Components.Scripts.Modules.Battle.Ui.Queue;
-using Components.Scripts.Modules.Battle.Ui.Units;
 using UnityEngine;
 using Zenject;
 
-namespace Components.Scripts.Modules.Battle.Ui
+namespace RoboFactory.Battle.Ui
 {
     public class BattleUiFactory
     {

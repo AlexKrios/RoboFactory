@@ -1,14 +1,11 @@
-﻿using Components.Scripts.Modules.Factory.Menu.Expedition.Locations;
-using Components.Scripts.Modules.Factory.Menu.Expedition.Sidebar;
-using Components.Scripts.Modules.Factory.Menu.Expedition.Units;
-using Components.Scripts.Modules.General.Localisation;
-using Components.Scripts.Modules.General.Location;
-using Components.Scripts.Modules.General.Ui.Common.Menu;
+﻿using RoboFactory.General.Localisation;
+using RoboFactory.General.Location;
+using RoboFactory.General.Ui.Common;
 using TMPro;
 using UnityEngine;
 using Zenject;
 
-namespace Components.Scripts.Modules.Factory.Menu.Expedition
+namespace RoboFactory.Factory.Menu.Expedition
 {
     [AddComponentMenu("Scripts/Factory/Menu/Expedition/Expedition Menu")]
     public class ExpeditionMenuView : MenuBase

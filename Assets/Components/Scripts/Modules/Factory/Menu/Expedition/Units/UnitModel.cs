@@ -1,11 +1,11 @@
 ﻿using System.Linq;
-using Components.Scripts.Modules.General.Ui;
-using Components.Scripts.Modules.General.Unit.Object;
 using Cysharp.Threading.Tasks;
+using RoboFactory.General.Ui;
+using RoboFactory.General.Unit;
 using UnityEngine;
 using Zenject;
 
-namespace Components.Scripts.Modules.Factory.Menu.Expedition.Units
+namespace RoboFactory.Factory.Menu.Expedition
 {
     [AddComponentMenu("Scripts/Factory/Menu/Expedition/Unit Model")]
     public class UnitModel : MonoBehaviour

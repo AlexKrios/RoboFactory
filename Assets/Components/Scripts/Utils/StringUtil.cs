@@ -1,7 +1,7 @@
 ﻿using System.Globalization;
 using JetBrains.Annotations;
 
-namespace Components.Scripts.Utils
+namespace RoboFactory.Utils
 {
     [UsedImplicitly]
     public class StringUtil

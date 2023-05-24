@@ -1,4 +1,4 @@
-namespace Components.Scripts.Modules.General.Audio
+namespace RoboFactory.General.Audio
 {
     public enum AudioClipType
     {

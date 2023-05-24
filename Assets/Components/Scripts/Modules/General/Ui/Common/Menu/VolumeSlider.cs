@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Components.Scripts.Modules.General.Ui.Common.Menu
+namespace RoboFactory.General.Ui.Common
 {
     [RequireComponent(typeof(Slider))]
     public abstract class VolumeSlider : MonoBehaviour

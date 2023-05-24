@@ -1,12 +1,12 @@
 ﻿using System;
-using Components.Scripts.Modules.General.Audio;
-using Components.Scripts.Modules.General.Settings;
+using RoboFactory.General.Audio;
+using RoboFactory.General.Settings;
 using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-namespace Components.Scripts.Modules.Factory.Menu.Settings.Language
+namespace RoboFactory.Factory.Menu.Settings
 {
     [AddComponentMenu("Scripts/Factory/Menu/Settings/Language Cell View")]
     public class LanguageCellView : MonoBehaviour

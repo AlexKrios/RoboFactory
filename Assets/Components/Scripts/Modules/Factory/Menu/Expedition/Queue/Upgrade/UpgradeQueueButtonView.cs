@@ -1,16 +1,16 @@
 ﻿using System;
-using Components.Scripts.Modules.General.Expedition;
-using Components.Scripts.Modules.General.Level;
-using Components.Scripts.Modules.General.Localisation;
-using Components.Scripts.Modules.General.Money;
-using Components.Scripts.Modules.General.Scriptable;
-using Components.Scripts.Modules.General.Ui.Common;
 using DG.Tweening;
+using RoboFactory.General.Expedition;
+using RoboFactory.General.Level;
+using RoboFactory.General.Localisation;
+using RoboFactory.General.Money;
+using RoboFactory.General.Scriptable;
+using RoboFactory.General.Ui.Common;
 using TMPro;
 using UnityEngine;
 using Zenject;
 
-namespace Components.Scripts.Modules.Factory.Menu.Expedition.Queue.Upgrade
+namespace RoboFactory.Factory.Menu.Expedition
 {
     [AddComponentMenu("Scripts/Factory/Menu/Expedition/Queue/Upgrade Queue Button View")]
     public class UpgradeQueueButtonView : ButtonBase

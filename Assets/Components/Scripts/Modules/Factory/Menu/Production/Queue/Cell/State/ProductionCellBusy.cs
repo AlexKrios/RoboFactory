@@ -1,13 +1,13 @@
-﻿using Components.Scripts.Modules.General.Asset;
-using Components.Scripts.Modules.General.Item.Production;
-using Components.Scripts.Modules.General.Item.Products;
-using Components.Scripts.Utils;
-using Cysharp.Threading.Tasks;
+﻿using Cysharp.Threading.Tasks;
 using JetBrains.Annotations;
+using RoboFactory.General.Asset;
+using RoboFactory.General.Item.Production;
+using RoboFactory.General.Item.Products;
+using RoboFactory.Utils;
 using UnityEngine;
 using Zenject;
 
-namespace Components.Scripts.Modules.Factory.Menu.Production.Queue.Cell.State
+namespace RoboFactory.Factory.Menu.Production
 {
     public class ProductionCellBusy : IProductionCellState
     {

@@ -1,12 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Components.Scripts.Modules.Factory.Menu.Expedition.Queue.Cell;
-using Components.Scripts.Modules.General.Expedition;
 using DG.Tweening;
+using RoboFactory.General.Expedition;
 using UnityEngine;
 using Zenject;
 
-namespace Components.Scripts.Modules.Factory.Menu.Expedition.Queue
+namespace RoboFactory.Factory.Menu.Expedition
 {
     [AddComponentMenu("Scripts/Factory/Menu/Expedition/Queue/Expedition Section")]
     public class ExpeditionSection : MonoBehaviour

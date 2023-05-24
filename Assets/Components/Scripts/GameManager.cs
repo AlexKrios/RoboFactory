@@ -1,6 +1,6 @@
-﻿using Components.Scripts.Modules.General.Localisation;
+﻿using RoboFactory.General.Localisation;
 
-namespace Components.Scripts
+namespace RoboFactory
 {
     public class GameManager
     {

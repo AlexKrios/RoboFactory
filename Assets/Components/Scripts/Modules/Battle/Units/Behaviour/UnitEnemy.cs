@@ -1,12 +1,12 @@
 ﻿using System.Collections;
 using System.Linq;
-using Components.Scripts.Modules.General.Unit.Battle.Models;
-using Components.Scripts.Modules.General.Unit.Type;
+using RoboFactory.General.Unit;
+using RoboFactory.General.Unit.Battle;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using Random = System.Random;
 
-namespace Components.Scripts.Modules.Battle.Units.Behaviour
+namespace RoboFactory.Battle.Units
 {
     [AddComponentMenu("Scripts/Battle/Units/Unit Enemy")]
     public class UnitEnemy : UnitBehaviour

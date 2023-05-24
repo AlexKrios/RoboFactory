@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Components.Scripts.Utils
+namespace RoboFactory.Utils
 {
     public class DateUtil
     {

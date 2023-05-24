@@ -1,10 +1,10 @@
-﻿using Components.Scripts.Modules.General.Asset;
-using Components.Scripts.Modules.General.Item.Models.Recipe;
+﻿using RoboFactory.General.Asset;
+using RoboFactory.General.Item;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Components.Scripts.Modules.Battle.Ui.End
+namespace RoboFactory.Battle.Ui
 {
     [AddComponentMenu("Scripts/Battle/Ui/End Battle Item View")]
     public class EndBattleItemView : MonoBehaviour

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
-namespace Components.Scripts.Modules.General.Audio
+namespace RoboFactory.General.Audio
 {
     [CreateAssetMenu(fileName = "MusicData", menuName = "Scriptable/General/Music List", order = 201)]
     public class MusicScriptable : ScriptableObject

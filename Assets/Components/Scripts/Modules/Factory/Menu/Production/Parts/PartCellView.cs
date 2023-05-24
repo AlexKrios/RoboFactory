@@ -1,12 +1,11 @@
-﻿using Components.Scripts.Modules.General.Asset;
-using Components.Scripts.Modules.General.Item;
-using Components.Scripts.Modules.General.Item.Models.Recipe;
+﻿using RoboFactory.General.Asset;
+using RoboFactory.General.Item;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-namespace Components.Scripts.Modules.Factory.Menu.Production.Parts
+namespace RoboFactory.Factory.Menu.Production
 {
     [RequireComponent(typeof(Image))]
     [AddComponentMenu("Scripts/Factory/Menu/Production/Part Cell View")]

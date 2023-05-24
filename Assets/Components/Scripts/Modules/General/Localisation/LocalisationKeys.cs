@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
-using Components.Scripts.Modules.General.Item.Products.Types;
-using Components.Scripts.Modules.General.Item.Raw;
-using Components.Scripts.Modules.General.Ui;
-using Components.Scripts.Modules.General.Unit.Type;
+using RoboFactory.General.Item.Products;
+using RoboFactory.General.Item.Raw;
+using RoboFactory.General.Ui;
+using RoboFactory.General.Unit;
 
-namespace Components.Scripts.Modules.General.Localisation
+namespace RoboFactory.General.Localisation
 {
     public static class LocalisationKeys
     {

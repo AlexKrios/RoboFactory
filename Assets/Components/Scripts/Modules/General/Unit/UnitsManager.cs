@@ -1,18 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Components.Scripts.Modules.Factory.Api;
-using Components.Scripts.Modules.General.Item.Products.Types;
-using Components.Scripts.Modules.General.Unit.Battle.Models;
-using Components.Scripts.Modules.General.Unit.Object;
-using Components.Scripts.Modules.General.Unit.Scriptable;
-using Components.Scripts.Modules.General.Unit.Type;
 using Cysharp.Threading.Tasks;
 using JetBrains.Annotations;
+using RoboFactory.General.Api;
+using RoboFactory.General.Item.Products;
+using RoboFactory.General.Unit.Battle;
 using UnityEngine;
 using Zenject;
 
-namespace Components.Scripts.Modules.General.Unit
+namespace RoboFactory.General.Unit
 {
     [UsedImplicitly]
     public class UnitsManager

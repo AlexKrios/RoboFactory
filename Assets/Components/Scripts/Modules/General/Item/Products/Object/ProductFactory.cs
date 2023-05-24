@@ -1,9 +1,6 @@
 ﻿using System;
-using Components.Scripts.Modules.General.Item.Products.Object.Types;
-using Components.Scripts.Modules.General.Item.Products.Scriptable;
-using Components.Scripts.Modules.General.Item.Products.Types;
 
-namespace Components.Scripts.Modules.General.Item.Products.Object
+namespace RoboFactory.General.Item.Products
 {
     public class ProductFactory
     {

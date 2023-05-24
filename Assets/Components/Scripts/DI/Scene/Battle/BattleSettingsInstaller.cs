@@ -1,9 +1,8 @@
-using Components.Scripts.Modules.Battle.Ui;
-using Components.Scripts.Modules.Battle.Ui.End;
+using RoboFactory.Battle.Ui;
 using UnityEngine;
 using Zenject;
 
-namespace Components.Scripts.DI.Scene.Battle
+namespace RoboFactory.DI
 {
     [CreateAssetMenu(menuName = "Scriptable/Battle/Settings", order = 2)]
     public class BattleSettingsInstaller : ScriptableObjectInstaller<BattleSettingsInstaller>

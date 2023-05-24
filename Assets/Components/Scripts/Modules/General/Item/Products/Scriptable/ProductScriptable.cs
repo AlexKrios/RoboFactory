@@ -1,11 +1,8 @@
-using Components.Scripts.Modules.General.Item.Models.Recipe;
-using Components.Scripts.Modules.General.Item.Models.Scriptable;
-using Components.Scripts.Modules.General.Item.Models.Types;
-using Components.Scripts.Modules.General.Item.Products.Types;
-using Components.Scripts.Modules.General.Unit.Type;
+using RoboFactory.General.Item.Products;
+using RoboFactory.General.Unit;
 using UnityEngine;
 
-namespace Components.Scripts.Modules.General.Item.Products.Scriptable
+namespace RoboFactory.General.Item
 {
     public class ProductScriptable : ItemScriptable
     {

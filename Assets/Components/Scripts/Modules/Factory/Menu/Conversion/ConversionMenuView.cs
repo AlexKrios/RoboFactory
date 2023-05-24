@@ -1,14 +1,11 @@
-﻿using Components.Scripts.Modules.Factory.Menu.Conversion.Components;
-using Components.Scripts.Modules.Factory.Menu.Conversion.Parts;
-using Components.Scripts.Modules.Factory.Menu.Conversion.Tabs;
-using Components.Scripts.Modules.General.Item.Raw.Object;
-using Components.Scripts.Modules.General.Localisation;
-using Components.Scripts.Modules.General.Ui.Common.Menu;
+﻿using RoboFactory.General.Item.Raw;
+using RoboFactory.General.Localisation;
+using RoboFactory.General.Ui.Common;
 using TMPro;
 using UnityEngine;
 using Zenject;
 
-namespace Components.Scripts.Modules.Factory.Menu.Conversion
+namespace RoboFactory.Factory.Menu.Conversion
 {
     [AddComponentMenu("Scripts/Factory/Menu/Conversion/Conversion Menu View")]
     public class ConversionMenuView : MenuBase

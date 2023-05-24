@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using UnityEngine;
 
-namespace Components.Scripts
+namespace RoboFactory
 {
     public static class Constants
     {

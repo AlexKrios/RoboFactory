@@ -1,10 +1,9 @@
 ﻿using System;
-using Components.Scripts.Modules.General.Item.Raw;
-using Components.Scripts.Modules.General.Item.Raw.Object;
-using Components.Scripts.Modules.General.Ui.Common.Menu;
+using RoboFactory.General.Item.Raw;
+using RoboFactory.General.Ui.Common;
 using UnityEngine;
 
-namespace Components.Scripts.Modules.Factory.Menu.Conversion.Tabs
+namespace RoboFactory.Factory.Menu.Conversion
 {
     [AddComponentMenu("Scripts/Factory/Menu/Conversion/Tab Cell View")]
     public class TabCellView : CellBase

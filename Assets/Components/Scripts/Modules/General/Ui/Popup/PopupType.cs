@@ -1,4 +1,4 @@
-﻿namespace Components.Scripts.Modules.General.Ui.Popup
+﻿namespace RoboFactory.General.Ui.Popup
 {
     public enum PopupType
     {

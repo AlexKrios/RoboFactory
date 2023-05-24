@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Components.Scripts.Modules.General.Ui;
-using Components.Scripts.Modules.General.Unit;
-using Components.Scripts.Modules.General.Unit.Object;
-using Components.Scripts.Modules.General.Unit.Type;
+using RoboFactory.General.Ui;
+using RoboFactory.General.Unit;
 using UnityEngine;
 using Zenject;
 
-namespace Components.Scripts.Modules.Factory.Menu.Units.Roster
+namespace RoboFactory.Factory.Menu.Units
 {
     [AddComponentMenu("Scripts/Factory/Menu/Units/Roster Section View")]
     public class RosterSectionView : MonoBehaviour

@@ -1,8 +1,8 @@
-﻿using Components.Scripts.Modules.General.Localisation;
-using Components.Scripts.Modules.General.Ui;
+﻿using RoboFactory.General.Localisation;
+using RoboFactory.General.Ui;
 using Zenject;
 
-namespace Components.Scripts.Modules.Factory.Menu.Expedition.Queue.Cell.State
+namespace RoboFactory.Factory.Menu.Expedition
 {
     public class ExpeditionCellFinish : IExpeditionCellState
     {

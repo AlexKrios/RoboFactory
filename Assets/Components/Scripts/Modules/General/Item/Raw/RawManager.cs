@@ -1,17 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Components.Scripts.Modules.Factory.Api;
-using Components.Scripts.Modules.General.Item.Models;
-using Components.Scripts.Modules.General.Item.Models.Recipe;
-using Components.Scripts.Modules.General.Item.Models.Types;
-using Components.Scripts.Modules.General.Item.Raw.Object;
-using Components.Scripts.Modules.General.Item.Raw.Scriptable;
 using Cysharp.Threading.Tasks;
 using JetBrains.Annotations;
+using RoboFactory.General.Api;
 using Zenject;
 
-namespace Components.Scripts.Modules.General.Item.Raw
+namespace RoboFactory.General.Item.Raw
 {
     [UsedImplicitly]
     public class RawManager : IItemManager

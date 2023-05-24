@@ -2,7 +2,7 @@
 using UnityEngine;
 
 #if UNITY_EDITOR
-namespace Components.Scripts.Utils.MenuItems
+namespace RoboFactory.Utils
 {
     public class AnimatorControllerUtil : MonoBehaviour
     {

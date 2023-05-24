@@ -1,7 +1,6 @@
-using Components.Scripts.Modules.General.Item.Products.Types;
 using UnityEngine;
 
-namespace Components.Scripts.Modules.General.Item.Products.Scriptable.Type
+namespace RoboFactory.General.Item.Products
 {
     [CreateAssetMenu(fileName = "BatteryProductData", menuName = "Scriptable/General/Product/Battery", order = 74)]
     public class BatteryProductScriptable : ProductScriptable

@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Components.Scripts.Modules.General.Audio;
+using RoboFactory.General.Audio;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
-namespace Components.Scripts.Utils
+namespace RoboFactory.Utils
 {
     public class AudioUtil : MonoBehaviour
     {

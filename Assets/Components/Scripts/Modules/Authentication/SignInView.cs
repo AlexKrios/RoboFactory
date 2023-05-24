@@ -1,16 +1,17 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
-using Components.Scripts.Modules.General.Localisation;
 using Firebase.Auth;
+using RoboFactory.General.Localisation;
 using TMPro;
 using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-namespace Components.Scripts.Modules.Authentication
+namespace RoboFactory.Authentication
 {
+    [AddComponentMenu("Scripts/Authentication/Sign In View")]
     public class SignInView : MonoBehaviour
     {
         private const string HeaderTitleKey = "auth_sign_in_title";

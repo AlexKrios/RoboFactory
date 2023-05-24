@@ -60,6 +60,8 @@ MonoBehaviour:
       type: 3}
     itemPrefab: {fileID: 8366820692665648833, guid: 83283d749f5831345a1941d39a24be9e,
       type: 3}
+    upgradePrefab: {fileID: 4758183550124237268, guid: 1c34fca68240af04d9b56659db4b772e,
+      type: 3}
   unitsMenu:
     menuAsset:
       m_AssetGUID: 0c36dae8d0b3a8b44844ace73ba46a1e

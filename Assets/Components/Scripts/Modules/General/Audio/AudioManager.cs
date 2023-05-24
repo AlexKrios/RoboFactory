@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Linq;
-using Components.Scripts.Modules.General.Asset;
-using Components.Scripts.Modules.General.Settings;
 using JetBrains.Annotations;
+using RoboFactory.General.Asset;
+using RoboFactory.General.Settings;
 using UnityEngine;
 using Zenject;
 using Random = System.Random;
 
-namespace Components.Scripts.Modules.General.Audio
+namespace RoboFactory.General.Audio
 {
     [UsedImplicitly]
     public class AudioManager

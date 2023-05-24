@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
-using Components.Scripts.Modules.General.Settings;
 using JetBrains.Annotations;
+using RoboFactory.General.Settings;
 using UnityEngine;
 using Zenject;
 
-namespace Components.Scripts.Modules.General.Localisation
+namespace RoboFactory.General.Localisation
 {
     [UsedImplicitly]
     public class LocalisationManager

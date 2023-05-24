@@ -1,8 +1,7 @@
-using Components.Scripts.Modules.General.Item.Models.Types;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
-namespace Components.Scripts.Modules.General.Item.Models.Scriptable
+namespace RoboFactory.General.Item
 {
     public class ItemScriptable : ScriptableObject
     {

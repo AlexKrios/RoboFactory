@@ -1,9 +1,7 @@
 ﻿using System.Collections.Generic;
-using Components.Scripts.Modules.General.Item.Products.Object.Types;
-using Components.Scripts.Modules.General.Item.Products.Types;
-using Components.Scripts.Modules.General.Unit.Type;
+using RoboFactory.General.Unit;
 
-namespace Components.Scripts.Modules.General.Item.Products.Object
+namespace RoboFactory.General.Item.Products
 {
     public class ItemPath
     {

@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Components.Scripts.Modules.Factory.Api;
-using Components.Scripts.Modules.General.Location;
-using Components.Scripts.Modules.General.Scriptable;
 using Cysharp.Threading.Tasks;
 using JetBrains.Annotations;
+using RoboFactory.General.Api;
+using RoboFactory.General.Location;
+using RoboFactory.General.Scriptable;
 using Zenject;
 
-namespace Components.Scripts.Modules.General.Expedition
+namespace RoboFactory.General.Expedition
 {
     [UsedImplicitly]
     public class ExpeditionManager

@@ -1,11 +1,9 @@
 using System.Collections.Generic;
-using Components.Scripts.Modules.General.Item.Models.Recipe;
-using Components.Scripts.Modules.General.Item.Models.Scriptable;
 using UnityEditor;
 using UnityEngine;
 
 #if UNITY_EDITOR
-namespace Components.Scripts.Modules.General.Item.Raw.Scriptable
+namespace RoboFactory.General.Item.Raw
 {
     [CustomEditor(typeof(RawScriptable))]
     public class RawScriptableEditor : Editor

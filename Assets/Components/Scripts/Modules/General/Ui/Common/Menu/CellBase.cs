@@ -1,13 +1,13 @@
-﻿using Components.Scripts.Modules.General.Asset;
-using Components.Scripts.Modules.General.Audio;
-using DG.Tweening;
+﻿using DG.Tweening;
+using RoboFactory.General.Asset;
+using RoboFactory.General.Audio;
 using UniRx;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.UI;
 using Zenject;
 
-namespace Components.Scripts.Modules.General.Ui.Common.Menu
+namespace RoboFactory.General.Ui.Common
 {
     [RequireComponent(typeof(Button))]
     public abstract class CellBase : MonoBehaviour

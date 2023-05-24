@@ -1,10 +1,10 @@
-﻿using Components.Scripts.Modules.General.Asset;
-using Components.Scripts.Modules.General.Item.Models.Recipe;
+﻿using RoboFactory.General.Asset;
+using RoboFactory.General.Item;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Components.Scripts.Modules.Factory.Menu.Expedition.Sidebar
+namespace RoboFactory.Factory.Menu.Expedition
 {
     [AddComponentMenu("Scripts/Factory/Menu/Expedition/Reward Cell View")]
     public class RewardCellView : MonoBehaviour

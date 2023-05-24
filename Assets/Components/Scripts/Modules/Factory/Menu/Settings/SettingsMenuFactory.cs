@@ -1,12 +1,12 @@
 ﻿using System;
-using Components.Scripts.Modules.General.Asset;
-using Components.Scripts.Modules.General.Ui;
 using JetBrains.Annotations;
+using RoboFactory.General.Asset;
+using RoboFactory.General.Ui;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using Zenject;
 
-namespace Components.Scripts.Modules.Factory.Menu.Settings
+namespace RoboFactory.Factory.Menu.Settings
 {
     [UsedImplicitly]
     public class SettingsMenuFactory

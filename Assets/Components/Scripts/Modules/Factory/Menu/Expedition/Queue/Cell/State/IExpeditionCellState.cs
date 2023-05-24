@@ -1,4 +1,4 @@
-﻿namespace Components.Scripts.Modules.Factory.Menu.Expedition.Queue.Cell.State
+﻿namespace RoboFactory.Factory.Menu.Expedition
 {
     public interface IExpeditionCellState
     {

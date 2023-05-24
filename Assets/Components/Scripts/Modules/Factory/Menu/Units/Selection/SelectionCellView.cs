@@ -1,11 +1,11 @@
 ﻿using System;
-using Components.Scripts.Modules.General.Item.Products.Object;
-using Components.Scripts.Modules.General.Ui.Common.Menu;
+using RoboFactory.General.Item.Products;
+using RoboFactory.General.Ui.Common;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.UI;
 
-namespace Components.Scripts.Modules.Factory.Menu.Units.Selection
+namespace RoboFactory.Factory.Menu.Units
 {
     [RequireComponent(typeof(Image))]
     [AddComponentMenu("Scripts/Factory/Menu/Units/Selection/Selection Cell View")]

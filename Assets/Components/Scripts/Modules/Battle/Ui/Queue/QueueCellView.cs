@@ -1,9 +1,9 @@
-﻿using Components.Scripts.Modules.General.Asset;
-using Components.Scripts.Modules.General.Unit.Battle.Models;
+﻿using RoboFactory.General.Asset;
+using RoboFactory.General.Unit.Battle;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Components.Scripts.Modules.Battle.Ui.Queue
+namespace RoboFactory.Battle.Ui
 {
     [AddComponentMenu("Scripts/Battle/Ui/Queue Cell View")]
     public class QueueCellView : MonoBehaviour

@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using Components.Scripts.Modules.General.Ui.Common.Menu;
-using Components.Scripts.Modules.General.Unit.Object;
-using Components.Scripts.Modules.General.Unit.Type;
+using RoboFactory.General.Ui.Common;
+using RoboFactory.General.Unit;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Components.Scripts.Modules.Factory.Menu.Expedition.Units
+namespace RoboFactory.Factory.Menu.Expedition
 {
     [AddComponentMenu("Scripts/Factory/Menu/Expedition/Unit Cell View")]
     public class UnitCellView : CellBase

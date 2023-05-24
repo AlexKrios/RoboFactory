@@ -1,16 +1,13 @@
 ﻿using System;
-using Components.Scripts.Modules.Factory.Menu.Production.Products;
-using Components.Scripts.Modules.Factory.Menu.Production.Queue.Upgrade;
-using Components.Scripts.Modules.Factory.Menu.Production.Upgrade;
-using Components.Scripts.Modules.General.Asset;
-using Components.Scripts.Modules.General.Ui;
 using JetBrains.Annotations;
+using RoboFactory.General.Asset;
+using RoboFactory.General.Ui;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.UI;
 using Zenject;
 
-namespace Components.Scripts.Modules.Factory.Menu.Production
+namespace RoboFactory.Factory.Menu.Production
 {
     [UsedImplicitly]
     public class ProductionMenuFactory

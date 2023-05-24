@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Components.Scripts.Modules.General.Expedition
+namespace RoboFactory.General.Expedition
 {
     public class ExpeditionObject
     {

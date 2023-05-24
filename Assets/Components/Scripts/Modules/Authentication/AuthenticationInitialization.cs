@@ -1,9 +1,9 @@
 using UnityEngine;
 using Zenject;
 
-namespace Components.Scripts.Modules.Authentication
+namespace RoboFactory.Authentication
 {
-    [AddComponentMenu("Scripts/Launcher/Authentication Initialization", 0)]
+    [AddComponentMenu("Scripts/Authentication/Authentication Initialization", 0)]
     public class AuthenticationInitialization : MonoBehaviour
     {
         [Inject] private readonly AuthenticationManager _authenticationManager;

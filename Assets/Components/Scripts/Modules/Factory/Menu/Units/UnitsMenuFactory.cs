@@ -1,15 +1,14 @@
 ﻿using System;
-using Components.Scripts.Modules.Factory.Menu.Units.Roster;
-using Components.Scripts.Modules.Factory.Menu.Units.Selection;
-using Components.Scripts.Modules.General.Asset;
-using Components.Scripts.Modules.General.Ui;
 using JetBrains.Annotations;
+using RoboFactory.Factory.Menu.Units;
+using RoboFactory.General.Asset;
+using RoboFactory.General.Ui;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.UI;
 using Zenject;
 
-namespace Components.Scripts.Modules.Factory.Menu.Units
+namespace RoboFactory.Factory.Menu
 {
     [UsedImplicitly]
     public class UnitsMenuFactory

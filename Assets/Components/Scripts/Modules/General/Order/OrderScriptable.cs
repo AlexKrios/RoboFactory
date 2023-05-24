@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
-using Components.Scripts.Modules.General.Item.Models.Recipe;
-using Components.Scripts.Modules.General.Item.Products.Types;
+using RoboFactory.General.Item;
+using RoboFactory.General.Item.Products;
 using UnityEngine;
 
-namespace Components.Scripts.Modules.General.Order.Scriptable
+namespace RoboFactory.General.Order
 {
     [CreateAssetMenu(fileName = "OrderData", menuName = "Scriptable/General/Order/Data", order = 91)]
     public class OrderScriptable : ScriptableObject

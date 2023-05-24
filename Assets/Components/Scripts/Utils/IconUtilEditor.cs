@@ -1,14 +1,14 @@
 ﻿using System;
-using Components.Scripts.Modules.General;
-using Components.Scripts.Modules.General.Item.Products.Types;
-using Components.Scripts.Modules.General.Item.Raw;
-using Components.Scripts.Modules.General.Unit.Type;
+using RoboFactory.General;
+using RoboFactory.General.Item.Products;
+using RoboFactory.General.Item.Raw;
+using RoboFactory.General.Unit;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
 #if UNITY_EDITOR
-namespace Components.Scripts.Utils
+namespace RoboFactory.Utils
 {
     [CustomEditor(typeof(IconUtil))]
     public class IconUtilEditor : Editor

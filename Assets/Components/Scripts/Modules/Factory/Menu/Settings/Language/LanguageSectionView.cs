@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Components.Scripts.Modules.General.Localisation;
-using Components.Scripts.Modules.General.Settings;
+using RoboFactory.General.Localisation;
+using RoboFactory.General.Settings;
 using UnityEngine;
 using Zenject;
 
-namespace Components.Scripts.Modules.Factory.Menu.Settings.Language
+namespace RoboFactory.Factory.Menu.Settings
 {
     [AddComponentMenu("Scripts/Factory/Menu/Settings/Language Section View")]
     public class LanguageSectionView : MonoBehaviour

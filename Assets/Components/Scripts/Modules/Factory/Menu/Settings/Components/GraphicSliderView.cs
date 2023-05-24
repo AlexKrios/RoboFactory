@@ -1,10 +1,10 @@
-﻿using Components.Scripts.Modules.General.Settings;
+﻿using RoboFactory.General.Settings;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-namespace Components.Scripts.Modules.Factory.Menu.Settings.Components
+namespace RoboFactory.Factory.Menu.Settings
 {
     [RequireComponent(typeof(Slider))]
     [AddComponentMenu("Scripts/Factory/Menu/Settings/Graphic Slider View")]

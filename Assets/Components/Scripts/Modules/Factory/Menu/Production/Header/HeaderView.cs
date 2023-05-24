@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Components.Scripts.Modules.General.Item.Products.Types;
-using Components.Scripts.Modules.General.Localisation;
-using Components.Scripts.Modules.General.Ui;
+using RoboFactory.General.Item.Products;
+using RoboFactory.General.Localisation;
+using RoboFactory.General.Ui;
 using TMPro;
 using UnityEngine;
 using Zenject;
 
-namespace Components.Scripts.Modules.Factory.Menu.Production.Header
+namespace RoboFactory.Factory.Menu.Production
 {
     [AddComponentMenu("Scripts/Factory/Menu/Production/Header View")]
     public class HeaderView : MonoBehaviour

@@ -10,7 +10,7 @@ using UnityEditor;
 using UnityEngine;
 
 #if UNITY_EDITOR
-namespace Modules.General.Item.Products.Models.Scriptable
+namespace RoboFactory.General.Item.Products
 {
     [CustomEditor(typeof(ProductScriptable))]
     [CanEditMultipleObjects]

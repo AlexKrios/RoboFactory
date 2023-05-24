@@ -3,7 +3,7 @@ using System.Linq;
 using UnityEngine;
 using Zenject;
 
-namespace Components.Scripts.Modules.Battle.Ui.Queue
+namespace RoboFactory.Battle.Ui
 {
     [AddComponentMenu("Scripts/Battle/Ui/Queue Section View")]
     public class QueueSectionView : MonoBehaviour

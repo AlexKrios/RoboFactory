@@ -1,13 +1,13 @@
 ﻿using System;
-using Components.Scripts.Modules.General.Asset;
-using Components.Scripts.Modules.General.Ui.Common.Menu;
-using Components.Scripts.Modules.General.Unit.Type;
-using Components.Scripts.Utils;
+using RoboFactory.General.Asset;
+using RoboFactory.General.Ui.Common;
+using RoboFactory.General.Unit;
+using RoboFactory.Utils;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using Zenject;
 
-namespace Components.Scripts.Modules.Factory.Menu.Production.Tab
+namespace RoboFactory.Factory.Menu.Production
 {
     [AddComponentMenu("Scripts/Factory/Menu/Production/Tab Cell View")]
     public class TabCellView : CellBase

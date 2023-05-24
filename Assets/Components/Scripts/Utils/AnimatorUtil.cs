@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Components.Scripts.Utils
+namespace RoboFactory.Utils
 {
     public class AnimatorUtil
     {

@@ -4,7 +4,7 @@ using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Components.Scripts.Utils.MenuItems
+namespace RoboFactory.Utils
 {
     [InitializeOnLoad]
     public class HelpersUtil

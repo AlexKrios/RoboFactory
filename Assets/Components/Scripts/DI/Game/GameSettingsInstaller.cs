@@ -1,17 +1,17 @@
-using Components.Scripts.Modules.General.Audio;
-using Components.Scripts.Modules.General.Expedition;
-using Components.Scripts.Modules.General.Item.Production;
-using Components.Scripts.Modules.General.Item.Products;
-using Components.Scripts.Modules.General.Item.Raw;
-using Components.Scripts.Modules.General.Level;
-using Components.Scripts.Modules.General.Localisation;
-using Components.Scripts.Modules.General.Location;
-using Components.Scripts.Modules.General.Order;
-using Components.Scripts.Modules.General.Unit;
+using RoboFactory.General.Audio;
+using RoboFactory.General.Expedition;
+using RoboFactory.General.Item.Production;
+using RoboFactory.General.Item.Products;
+using RoboFactory.General.Item.Raw;
+using RoboFactory.General.Level;
+using RoboFactory.General.Localisation;
+using RoboFactory.General.Location;
+using RoboFactory.General.Order;
+using RoboFactory.General.Unit;
 using UnityEngine;
 using Zenject;
 
-namespace Components.Scripts.DI.Game
+namespace RoboFactory.DI
 {
     [CreateAssetMenu(fileName = "Game", menuName = "Scriptable/General/Settings", order = -1)]
     public class GameSettingsInstaller : ScriptableObjectInstaller<GameSettingsInstaller>

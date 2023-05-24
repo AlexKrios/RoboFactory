@@ -1,9 +1,8 @@
 ﻿using System.Linq;
-using Components.Scripts.Modules.General.Item.Models.Types;
 using JetBrains.Annotations;
 using Zenject;
 
-namespace Components.Scripts.Modules.General.Item.Raw.Convert
+namespace RoboFactory.General.Item.Raw.Convert
 {
     [UsedImplicitly]
     public class ConvertRawController

@@ -1,13 +1,12 @@
-﻿using Components.Scripts.Modules.General.Asset;
-using Components.Scripts.Modules.General.Item.Products.Object;
-using Components.Scripts.Modules.General.Item.Products.Types;
-using Components.Scripts.Utils;
+﻿using RoboFactory.General.Asset;
+using RoboFactory.General.Item.Products;
+using RoboFactory.Utils;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-namespace Components.Scripts.Modules.General.Ui.Common.Menu
+namespace RoboFactory.General.Ui.Common
 {
     [AddComponentMenu("Scripts/General/Menu/Spec Cell View")]
     public class SpecCellView : MonoBehaviour

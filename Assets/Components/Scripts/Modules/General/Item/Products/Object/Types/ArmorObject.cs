@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Components.Scripts.Modules.General.Item.Products.Object.Types
+namespace RoboFactory.General.Item.Products
 {
     [Serializable]
     public class ArmorObject : ProductObject { }

@@ -1,10 +1,10 @@
-﻿using Components.Scripts.Modules.General.Audio;
-using Components.Scripts.Modules.General.Settings;
-using Components.Scripts.Modules.General.Ui.Common.Menu;
+﻿using RoboFactory.General.Audio;
+using RoboFactory.General.Settings;
+using RoboFactory.General.Ui.Common;
 using UnityEngine;
 using Zenject;
 
-namespace Components.Scripts.Modules.Factory.Menu.Settings.Components
+namespace RoboFactory.Factory.Menu.Settings
 {
     [AddComponentMenu("Scripts/Factory/Menu/Settings/Audio Slider View")]
     public class AudioSliderView : VolumeSlider

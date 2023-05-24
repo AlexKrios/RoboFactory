@@ -1,4 +1,4 @@
-﻿namespace Components.Scripts.Modules.General.Localisation
+﻿namespace RoboFactory.General.Localisation
 {
     public enum LocalisationLanguage
     {

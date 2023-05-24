@@ -1,4 +1,4 @@
-﻿namespace Components.Scripts.Modules.General.Unit.Type
+﻿namespace RoboFactory.General.Unit
 {
     public enum FaceType
     {

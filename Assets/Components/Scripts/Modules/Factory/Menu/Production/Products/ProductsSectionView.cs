@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Components.Scripts.Modules.General.Item.Products;
-using Components.Scripts.Modules.General.Ui;
+using RoboFactory.General.Item.Products;
+using RoboFactory.General.Ui;
 using UnityEngine;
 using Zenject;
 
-namespace Components.Scripts.Modules.Factory.Menu.Production.Products
+namespace RoboFactory.Factory.Menu.Production
 {
     [AddComponentMenu("Scripts/Factory/Menu/Production/Products Section View")]
     public class ProductsSectionView : MonoBehaviour

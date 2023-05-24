@@ -1,10 +1,10 @@
 ﻿using System;
-using Components.Scripts.Modules.General.Ui;
-using Components.Scripts.Modules.General.Ui.Common.Menu;
+using RoboFactory.General.Ui;
+using RoboFactory.General.Ui.Common;
 using UnityEngine;
 using Zenject;
 
-namespace Components.Scripts.Modules.Factory.Menu.Expedition.Sidebar
+namespace RoboFactory.Factory.Menu.Expedition
 {
     [AddComponentMenu("Scripts/Factory/Menu/Expedition/Star Button View")]
     public class StarButtonView : StarButtonBase

@@ -1,9 +1,9 @@
 ﻿using System;
-using Components.Scripts.Modules.General.Item.Products.Object;
-using Components.Scripts.Modules.General.Ui.Common.Menu;
+using RoboFactory.General.Item.Products;
+using RoboFactory.General.Ui.Common;
 using UnityEngine;
 
-namespace Components.Scripts.Modules.Factory.Menu.Production.Products
+namespace RoboFactory.Factory.Menu.Production
 {
     [AddComponentMenu("Scripts/Factory/Menu/Production/Product Cell View")]
     public class ProductCellView : CellBase

@@ -1,8 +1,8 @@
 ﻿using System.Collections;
-using Components.Scripts.Utils;
+using RoboFactory.Utils;
 using UnityEngine;
 
-namespace Components.Scripts.Modules.Battle.Units
+namespace RoboFactory.Battle.Units
 {
     [RequireComponent(typeof(Animator))]
     [AddComponentMenu("Scripts/Battle/Unit Animation", 1)]

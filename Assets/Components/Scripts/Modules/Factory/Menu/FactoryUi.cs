@@ -1,12 +1,12 @@
-using Components.Scripts.Modules.Factory.Cameras;
-using Components.Scripts.Modules.Factory.Menu.Production.Queue;
-using Components.Scripts.Modules.Factory.Menu.Settings;
-using Components.Scripts.Modules.General.Audio;
-using Components.Scripts.Modules.General.Level;
-using Components.Scripts.Modules.General.Money;
-using Components.Scripts.Modules.General.Ui.Admin;
-using Components.Scripts.Utils;
 using DG.Tweening;
+using RoboFactory.Factory.Cameras;
+using RoboFactory.Factory.Menu.Production;
+using RoboFactory.Factory.Menu.Settings;
+using RoboFactory.General.Audio;
+using RoboFactory.General.Level;
+using RoboFactory.General.Money;
+using RoboFactory.General.Ui.Admin;
+using RoboFactory.Utils;
 using TMPro;
 using UniRx;
 using UnityEngine;
@@ -14,7 +14,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Zenject;
 
-namespace Components.Scripts.Modules.Factory.Menu
+namespace RoboFactory.Factory.Menu
 {
     [AddComponentMenu("Scripts/Factory/Factory Ui")]
     public class FactoryUi : MonoBehaviour

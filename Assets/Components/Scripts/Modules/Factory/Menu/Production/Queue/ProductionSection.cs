@@ -1,12 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Components.Scripts.Modules.Factory.Menu.Production.Queue.Cell;
-using Components.Scripts.Modules.General.Item.Production;
 using DG.Tweening;
+using RoboFactory.General.Item.Production;
 using UnityEngine;
 using Zenject;
 
-namespace Components.Scripts.Modules.Factory.Menu.Production.Queue
+namespace RoboFactory.Factory.Menu.Production
 {
     [AddComponentMenu("Scripts/Factory/Menu/Production/Production Section")]
     public class ProductionSection : MonoBehaviour

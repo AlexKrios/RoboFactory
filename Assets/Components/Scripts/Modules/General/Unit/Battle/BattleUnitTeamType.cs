@@ -1,4 +1,4 @@
-﻿namespace Components.Scripts.Modules.General.Unit.Battle.Models
+﻿namespace RoboFactory.General.Unit.Battle
 {
     public enum BattleUnitTeamType
     {

@@ -1,12 +1,11 @@
-﻿using Components.Scripts.Modules.General.Asset;
-using Components.Scripts.Modules.General.Item;
-using Components.Scripts.Modules.General.Item.Models.Recipe;
+﻿using RoboFactory.General.Asset;
+using RoboFactory.General.Item;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-namespace Components.Scripts.Modules.Factory.Menu.Conversion.Parts
+namespace RoboFactory.Factory.Menu.Conversion
 {
     [AddComponentMenu("Scripts/Factory/Menu/Conversion/Part Cell View")]
     public class PartCellView : MonoBehaviour

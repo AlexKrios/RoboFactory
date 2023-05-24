@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Components.Scripts.Modules.General.Scriptable
+namespace RoboFactory.General.Scriptable
 {
     [CreateAssetMenu(fileName = "LevelCaps", menuName = "Scriptable/General/Level Caps", order = 0)]
     public class LevelCapsScriptable : ScriptableObject

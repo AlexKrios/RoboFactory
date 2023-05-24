@@ -1,9 +1,8 @@
 using System.Collections.Generic;
-using Components.Scripts.Modules.General.Item.Models.Recipe;
 using UnityEditor;
 
 #if UNITY_EDITOR
-namespace Components.Scripts.Modules.General.Item.Products.Scriptable
+namespace RoboFactory.General.Item.Products
 {
     public class ProductScriptableEditorBase : Editor
     {

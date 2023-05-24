@@ -1,18 +1,16 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Components.Scripts.Modules.General.Asset;
-using Components.Scripts.Modules.General.Item.Products;
-using Components.Scripts.Modules.General.Item.Products.Object;
-using Components.Scripts.Modules.General.Item.Products.Types;
-using Components.Scripts.Modules.General.Localisation;
-using Components.Scripts.Modules.General.Ui.Common.Menu;
-using Components.Scripts.Modules.General.Unit;
+using RoboFactory.General.Asset;
+using RoboFactory.General.Item.Products;
+using RoboFactory.General.Localisation;
+using RoboFactory.General.Ui.Common;
+using RoboFactory.General.Unit;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-namespace Components.Scripts.Modules.Factory.Menu.Expedition.Selection
+namespace RoboFactory.Factory.Menu.Expedition
 {
     [AddComponentMenu("Scripts/Factory/Menu/Expedition/Selection/Selection Popup View")]
     public class SelectionPopupView : PopupBase

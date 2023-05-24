@@ -2,7 +2,7 @@
 using UnityEngine;
 using Zenject;
 
-namespace Components.Scripts.Modules.Battle.Ui.End
+namespace RoboFactory.Battle.Ui
 {
     public class EndBattleFactory
     {

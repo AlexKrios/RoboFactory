@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
-using Components.Scripts.Modules.Factory.Cameras;
-using Components.Scripts.Modules.Factory.Menu;
-using Components.Scripts.Modules.General.Ui;
 using JetBrains.Annotations;
+using RoboFactory.Factory.Cameras;
+using RoboFactory.Factory.Menu;
+using RoboFactory.General.Ui;
 using UnityEngine;
 using UnityEngine.Rendering;
 using Zenject;
 
-namespace Components.Scripts.Modules.Factory.Building.Floors
+namespace RoboFactory.Factory.Building
 {
     public class BuildingFloorBase : MonoBehaviour
     {

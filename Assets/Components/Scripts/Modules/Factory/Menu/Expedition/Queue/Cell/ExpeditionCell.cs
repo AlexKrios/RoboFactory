@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using Components.Scripts.Modules.Factory.Menu.Expedition.Queue.Cell.State;
-using Components.Scripts.Modules.General.Expedition;
+using RoboFactory.General.Expedition;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using Zenject;
 
-namespace Components.Scripts.Modules.Factory.Menu.Expedition.Queue.Cell
+namespace RoboFactory.Factory.Menu.Expedition
 {
     [AddComponentMenu("Scripts/Factory/Menu/Expedition/Queue/Expedition Cell")]
     public class ExpeditionCell : MonoBehaviour, IPointerClickHandler

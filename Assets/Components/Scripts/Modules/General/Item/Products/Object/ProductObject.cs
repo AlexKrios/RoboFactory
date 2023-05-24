@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Components.Scripts.Modules.General.Item.Models;
-using Components.Scripts.Modules.General.Item.Products.Object.Types;
-using Components.Scripts.Modules.General.Item.Products.Types;
-using Components.Scripts.Modules.General.Scriptable;
-using Components.Scripts.Modules.General.Unit.Type;
+using RoboFactory.General.Scriptable;
+using RoboFactory.General.Unit;
 using UnityEngine;
 
-namespace Components.Scripts.Modules.General.Item.Products.Object
+namespace RoboFactory.General.Item.Products
 {
     [Serializable]
     public class ProductObject : ItemBase

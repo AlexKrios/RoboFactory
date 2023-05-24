@@ -1,19 +1,13 @@
-﻿using Components.Scripts.Modules.Factory.Menu.Production.Header;
-using Components.Scripts.Modules.Factory.Menu.Production.Parts;
-using Components.Scripts.Modules.Factory.Menu.Production.Products;
-using Components.Scripts.Modules.Factory.Menu.Production.Sidebar;
-using Components.Scripts.Modules.Factory.Menu.Production.Tab;
-using Components.Scripts.Modules.General.Item.Products.Object;
-using Components.Scripts.Modules.General.Item.Products.Types;
-using Components.Scripts.Modules.General.Ui;
-using Components.Scripts.Modules.General.Ui.Common.Menu;
-using Components.Scripts.Modules.General.Unit.Type;
+﻿using RoboFactory.General.Item.Products;
+using RoboFactory.General.Ui;
+using RoboFactory.General.Ui.Common;
+using RoboFactory.General.Unit;
 using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-namespace Components.Scripts.Modules.Factory.Menu.Production
+namespace RoboFactory.Factory.Menu.Production
 {
     [AddComponentMenu("Scripts/Factory/Menu/Production/Production Menu")]
     public class ProductionMenuView : MenuBase

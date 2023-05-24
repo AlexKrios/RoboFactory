@@ -1,18 +1,14 @@
 ﻿using System;
-using Components.Scripts.Modules.Factory.Menu.Expedition.Locations;
-using Components.Scripts.Modules.Factory.Menu.Expedition.Queue.Upgrade;
-using Components.Scripts.Modules.Factory.Menu.Expedition.Result;
-using Components.Scripts.Modules.Factory.Menu.Expedition.Selection;
-using Components.Scripts.Modules.General.Asset;
-using Components.Scripts.Modules.General.Expedition;
-using Components.Scripts.Modules.General.Ui;
 using JetBrains.Annotations;
+using RoboFactory.General.Asset;
+using RoboFactory.General.Expedition;
+using RoboFactory.General.Ui;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.UI;
 using Zenject;
 
-namespace Components.Scripts.Modules.Factory.Menu.Expedition
+namespace RoboFactory.Factory.Menu.Expedition
 {
     [UsedImplicitly]
     public class ExpeditionMenuFactory

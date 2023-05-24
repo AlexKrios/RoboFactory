@@ -1,6 +1,6 @@
 using System;
 
-namespace Components.Scripts.Modules.General.Location
+namespace RoboFactory.General.Location
 {
     [Serializable]
     public class LocationDto

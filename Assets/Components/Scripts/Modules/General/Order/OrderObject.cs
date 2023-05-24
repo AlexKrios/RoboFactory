@@ -1,9 +1,8 @@
 using System;
-using Components.Scripts.Modules.General.Item.Models.Recipe;
-using Components.Scripts.Modules.General.Item.Products.Types;
-using Components.Scripts.Modules.General.Order.Scriptable;
+using RoboFactory.General.Item;
+using RoboFactory.General.Item.Products;
 
-namespace Components.Scripts.Modules.General.Order.Object
+namespace RoboFactory.General.Order
 {
     [Serializable]
     public class OrderObject

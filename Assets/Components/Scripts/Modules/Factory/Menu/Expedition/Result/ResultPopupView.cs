@@ -1,19 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using Components.Scripts.Modules.General.Expedition;
-using Components.Scripts.Modules.General.Item.Raw;
-using Components.Scripts.Modules.General.Localisation;
-using Components.Scripts.Modules.General.Location;
-using Components.Scripts.Modules.General.Ui;
-using Components.Scripts.Modules.General.Unit;
 using DG.Tweening;
+using RoboFactory.General.Expedition;
+using RoboFactory.General.Item.Raw;
+using RoboFactory.General.Localisation;
+using RoboFactory.General.Location;
+using RoboFactory.General.Ui;
+using RoboFactory.General.Unit;
 using TMPro;
 using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-namespace Components.Scripts.Modules.Factory.Menu.Expedition.Result
+namespace RoboFactory.Factory.Menu.Expedition
 {
     [RequireComponent(typeof(CanvasGroup))]
     [AddComponentMenu("Scripts/Factory/Menu/Expedition/Result Popup View")]

@@ -1,10 +1,9 @@
 using System.Collections.Generic;
-using Components.Scripts.Modules.General.Item.Products.Types;
-using Components.Scripts.Modules.General.Unit.Type;
+using RoboFactory.General.Item.Products;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
-namespace Components.Scripts.Modules.General.Unit.Scriptable
+namespace RoboFactory.General.Unit
 {
     [CreateAssetMenu(menuName = "Scriptable/General/Unit/Data", order = 81)]
     public class UnitScriptable : ScriptableObject

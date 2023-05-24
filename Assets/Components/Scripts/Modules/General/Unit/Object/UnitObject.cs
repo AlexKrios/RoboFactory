@@ -1,15 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Components.Scripts.Modules.General.Item.Products;
-using Components.Scripts.Modules.General.Item.Products.Types;
-using Components.Scripts.Modules.General.Unit.Scriptable;
-using Components.Scripts.Modules.General.Unit.Type;
 using JetBrains.Annotations;
+using RoboFactory.General.Item.Products;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using Zenject;
 
-namespace Components.Scripts.Modules.General.Unit.Object
+namespace RoboFactory.General.Unit
 {
     [UsedImplicitly]
     public class UnitObject

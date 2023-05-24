@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Components.Scripts.Modules.Battle.Units
+namespace RoboFactory.Battle.Units
 {
     [AddComponentMenu("Scripts/Battle/Unit Marks", 1)]
     public class UnitMarks : MonoBehaviour

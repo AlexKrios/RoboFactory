@@ -1,15 +1,10 @@
-﻿using Components.Scripts.Modules.Factory.Menu.Units.Header;
-using Components.Scripts.Modules.Factory.Menu.Units.Info;
-using Components.Scripts.Modules.Factory.Menu.Units.Roster;
-using Components.Scripts.Modules.Factory.Menu.Units.Sidebar;
-using Components.Scripts.Modules.Factory.Menu.Units.Tab;
-using Components.Scripts.Modules.General.Item.Products.Object;
-using Components.Scripts.Modules.General.Ui.Common.Menu;
-using Components.Scripts.Modules.General.Unit.Object;
-using Components.Scripts.Modules.General.Unit.Type;
+﻿using RoboFactory.Factory.Menu.Units;
+using RoboFactory.General.Item.Products;
+using RoboFactory.General.Ui.Common;
+using RoboFactory.General.Unit;
 using UnityEngine;
 
-namespace Components.Scripts.Modules.Factory.Menu.Units
+namespace RoboFactory.Factory.Menu
 {
     [AddComponentMenu("Scripts/Factory/Menu/Units/Units Menu View")]
     public class UnitsMenuView : MenuBase

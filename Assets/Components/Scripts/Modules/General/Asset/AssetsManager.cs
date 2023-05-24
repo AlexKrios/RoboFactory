@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 
-namespace Components.Scripts.Modules.General.Asset
+namespace RoboFactory.General.Asset
 {
     [UsedImplicitly]
     public class AssetsManager

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Components.Scripts.Modules.General.Money
+namespace RoboFactory.General.Money
 {
     [Serializable]
     public class MoneyObject

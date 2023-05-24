@@ -1,7 +1,6 @@
 ﻿using System;
-using Components.Scripts.Modules.General.Item.Models;
 
-namespace Components.Scripts.Modules.General.Item.Production.Object
+namespace RoboFactory.General.Item.Production
 {
     [Serializable]
     public class ProductionObject

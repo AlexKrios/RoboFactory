@@ -8,7 +8,7 @@ using GooglePlayGames.BasicApi;
 using JetBrains.Annotations;
 using UnityEngine;
 
-namespace Components.Scripts.Modules.Authentication
+namespace RoboFactory.Authentication
 {
     [UsedImplicitly]
     public class AuthenticationManager

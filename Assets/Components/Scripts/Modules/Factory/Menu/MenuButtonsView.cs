@@ -1,21 +1,20 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Components.Scripts.Modules.Factory.Menu.Conversion;
-using Components.Scripts.Modules.Factory.Menu.Expedition;
-using Components.Scripts.Modules.Factory.Menu.Order;
-using Components.Scripts.Modules.Factory.Menu.Production;
-using Components.Scripts.Modules.Factory.Menu.Storage;
-using Components.Scripts.Modules.Factory.Menu.Units;
-using Components.Scripts.Modules.General.Audio;
-using Components.Scripts.Modules.General.Expedition;
-using Components.Scripts.Modules.General.Item.Production;
-using Components.Scripts.Modules.General.Ui;
+using RoboFactory.Factory.Menu.Conversion;
+using RoboFactory.Factory.Menu.Expedition;
+using RoboFactory.Factory.Menu.Order;
+using RoboFactory.Factory.Menu.Production;
+using RoboFactory.Factory.Menu.Storage;
+using RoboFactory.General.Audio;
+using RoboFactory.General.Expedition;
+using RoboFactory.General.Item.Production;
+using RoboFactory.General.Ui;
 using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-namespace Components.Scripts.Modules.Factory.Menu
+namespace RoboFactory.Factory.Menu
 {
     [AddComponentMenu("Scripts/Factory/Menu/Menu Buttons View", 100)]
     public class MenuButtonsView : MonoBehaviour

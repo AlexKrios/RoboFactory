@@ -1,7 +1,6 @@
 ﻿using System;
-using Components.Scripts.Modules.General.Item.Models.Scriptable;
 
-namespace Components.Scripts.Modules.General.Item.Models.Recipe
+namespace RoboFactory.General.Item
 {
     [Serializable]
     public class PartObject

@@ -1,17 +1,17 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Components.Scripts.Modules.General.Asset;
-using Components.Scripts.Modules.General.Localisation;
-using Components.Scripts.Modules.General.Ui;
-using Components.Scripts.Modules.General.Ui.Common.Menu;
-using Components.Scripts.Utils;
 using DG.Tweening;
+using RoboFactory.General.Asset;
+using RoboFactory.General.Localisation;
+using RoboFactory.General.Ui;
+using RoboFactory.General.Ui.Common;
+using RoboFactory.Utils;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-namespace Components.Scripts.Modules.Factory.Menu.Production.Sidebar
+namespace RoboFactory.Factory.Menu.Production
 {
     [AddComponentMenu("Scripts/Factory/Menu/Production/Sidebar View")]
     public class SidebarView : MonoBehaviour

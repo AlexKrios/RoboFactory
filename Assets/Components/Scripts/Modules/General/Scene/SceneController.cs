@@ -1,7 +1,7 @@
 ﻿using JetBrains.Annotations;
 using UnityEngine.SceneManagement;
 
-namespace Components.Scripts.Modules.General.Scene
+namespace RoboFactory.General.Scene
 {
     [UsedImplicitly]
     public class SceneController

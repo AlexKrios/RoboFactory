@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Components.Scripts.Modules.Factory.Api;
-using Components.Scripts.Modules.General.Item.Production.Object;
-using Components.Scripts.Modules.General.Item.Products;
-using Components.Scripts.Modules.General.Scriptable;
 using Cysharp.Threading.Tasks;
 using JetBrains.Annotations;
+using RoboFactory.General.Api;
+using RoboFactory.General.Item.Products;
+using RoboFactory.General.Scriptable;
 using Zenject;
 
-namespace Components.Scripts.Modules.General.Item.Production
+namespace RoboFactory.General.Item.Production
 {
     [UsedImplicitly]
     public class ProductionManager

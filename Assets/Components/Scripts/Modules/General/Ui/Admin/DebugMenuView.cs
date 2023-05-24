@@ -1,13 +1,13 @@
-﻿using Components.Scripts.Modules.General.Item.Raw;
-using Components.Scripts.Modules.General.Level;
-using Components.Scripts.Modules.General.Money;
-using Components.Scripts.Modules.General.Order;
+﻿using RoboFactory.General.Item.Raw;
+using RoboFactory.General.Level;
+using RoboFactory.General.Money;
+using RoboFactory.General.Order;
 using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-namespace Components.Scripts.Modules.General.Ui.Admin
+namespace RoboFactory.General.Ui.Admin
 {
     public class DebugMenuView : MonoBehaviour
     {

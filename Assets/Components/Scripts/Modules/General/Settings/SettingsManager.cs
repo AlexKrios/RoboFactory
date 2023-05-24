@@ -1,7 +1,7 @@
 ﻿using JetBrains.Annotations;
 using UnityEngine;
 
-namespace Components.Scripts.Modules.General.Settings
+namespace RoboFactory.General.Settings
 {
     [UsedImplicitly]
     public class SettingsManager

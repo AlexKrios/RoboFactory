@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
-using Components.Scripts.Modules.General.Item.Models.Recipe;
-using Components.Scripts.Modules.General.Unit.Scriptable;
+using RoboFactory.General.Item;
+using RoboFactory.General.Unit;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
-namespace Components.Scripts.Modules.General.Location
+namespace RoboFactory.General.Location
 {
     [CreateAssetMenu(menuName = "Scriptable/Battle/Data", order = 11)]
     public class LocationScriptable : ScriptableObject

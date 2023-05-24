@@ -1,22 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Components.Scripts.Modules.Factory.Api;
-using Components.Scripts.Modules.General.Item.Models;
-using Components.Scripts.Modules.General.Item.Models.Types;
-using Components.Scripts.Modules.General.Item.Products.Object;
-using Components.Scripts.Modules.General.Item.Products.Object.Types;
-using Components.Scripts.Modules.General.Item.Products.Scriptable;
-using Components.Scripts.Modules.General.Item.Products.Types;
-using Components.Scripts.Modules.General.Level;
-using Components.Scripts.Modules.General.Scriptable;
-using Components.Scripts.Modules.General.Unit.Type;
 using Cysharp.Threading.Tasks;
 using JetBrains.Annotations;
+using RoboFactory.General.Api;
+using RoboFactory.General.Level;
+using RoboFactory.General.Scriptable;
+using RoboFactory.General.Unit;
 using UnityEngine;
 using Zenject;
 
-namespace Components.Scripts.Modules.General.Item.Products
+namespace RoboFactory.General.Item.Products
 {
     [UsedImplicitly]
     public class ProductsManager : IItemManager

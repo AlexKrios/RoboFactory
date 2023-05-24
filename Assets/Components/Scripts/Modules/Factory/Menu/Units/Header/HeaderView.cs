@@ -1,10 +1,10 @@
-﻿using Components.Scripts.Modules.General.Localisation;
-using Components.Scripts.Modules.General.Ui;
+﻿using RoboFactory.General.Localisation;
+using RoboFactory.General.Ui;
 using TMPro;
 using UnityEngine;
 using Zenject;
 
-namespace Components.Scripts.Modules.Factory.Menu.Units.Header
+namespace RoboFactory.Factory.Menu.Units
 {
     [AddComponentMenu("Scripts/Factory/Menu/Units/Header View")]
     public class HeaderView : MonoBehaviour

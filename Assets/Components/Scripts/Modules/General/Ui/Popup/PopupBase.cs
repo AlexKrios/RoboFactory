@@ -3,7 +3,7 @@ using UniRx;
 using UnityEngine;
 using Zenject;
 
-namespace Components.Scripts.Modules.General.Ui.Popup
+namespace RoboFactory.General.Ui.Popup
 {
     [RequireComponent(typeof(CanvasGroup))]
     public abstract class PopupBase : MonoBehaviour

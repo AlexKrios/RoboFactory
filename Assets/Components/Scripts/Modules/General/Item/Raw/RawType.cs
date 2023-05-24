@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace Components.Scripts.Modules.General.Item.Raw
+namespace RoboFactory.General.Item.Raw
 {
     public enum RawType
     {

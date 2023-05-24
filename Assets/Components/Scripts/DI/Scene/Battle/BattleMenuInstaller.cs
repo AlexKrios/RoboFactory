@@ -1,10 +1,9 @@
-using Components.Scripts.Modules.Battle;
-using Components.Scripts.Modules.Battle.Ui;
-using Components.Scripts.Modules.Battle.Ui.End;
+using RoboFactory.Battle;
+using RoboFactory.Battle.Ui;
 using UnityEngine;
 using Zenject;
 
-namespace Components.Scripts.DI.Scene.Battle
+namespace RoboFactory.DI
 {
     [AddComponentMenu("Scripts/Factory/Di/Battle Installer")]
     public class BattleMenuInstaller : MonoInstaller

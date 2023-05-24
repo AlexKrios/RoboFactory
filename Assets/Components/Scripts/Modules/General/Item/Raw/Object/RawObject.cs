@@ -1,8 +1,6 @@
 ﻿using System;
-using Components.Scripts.Modules.General.Item.Models;
-using Components.Scripts.Modules.General.Item.Raw.Scriptable;
 
-namespace Components.Scripts.Modules.General.Item.Raw.Object
+namespace RoboFactory.General.Item.Raw
 {
     [Serializable]
     public class RawObject : ItemBase

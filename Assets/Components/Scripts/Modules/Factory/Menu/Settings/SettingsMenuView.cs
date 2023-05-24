@@ -1,14 +1,13 @@
-﻿using Components.Scripts.Modules.Authentication;
-using Components.Scripts.Modules.Factory.Menu.Settings.Language;
-using Components.Scripts.Modules.General.Localisation;
-using Components.Scripts.Modules.General.Scene;
-using Components.Scripts.Modules.General.Ui.Common.Menu;
+﻿using RoboFactory.Authentication;
+using RoboFactory.General.Localisation;
+using RoboFactory.General.Scene;
+using RoboFactory.General.Ui.Common;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-namespace Components.Scripts.Modules.Factory.Menu.Settings
+namespace RoboFactory.Factory.Menu.Settings
 {
     [AddComponentMenu("Scripts/Factory/Menu/Settings/Settings Menu View")]
     public class SettingsMenuView : PopupBase

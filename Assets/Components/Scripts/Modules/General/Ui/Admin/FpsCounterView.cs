@@ -1,10 +1,10 @@
 ﻿using System.Collections;
-using Components.Scripts.Modules.General.Level;
+using RoboFactory.General.Level;
 using TMPro;
 using UnityEngine;
 using Zenject;
 
-namespace Components.Scripts.Modules.General.Ui.Admin
+namespace RoboFactory.General.Ui.Admin
 {
     [AddComponentMenu("Scripts/General/Ui/Admin/FpsCounterView")]
     public class FpsCounterView : MonoBehaviour

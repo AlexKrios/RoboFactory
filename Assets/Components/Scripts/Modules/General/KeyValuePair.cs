@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Components.Scripts.Modules.General
+namespace RoboFactory.General
 {
     [Serializable]
     public class KeyValuePair<TKey, TValue>

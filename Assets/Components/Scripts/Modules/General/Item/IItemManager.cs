@@ -1,8 +1,6 @@
-﻿using Components.Scripts.Modules.General.Item.Models;
-using Components.Scripts.Modules.General.Item.Models.Types;
-using Cysharp.Threading.Tasks;
+﻿using Cysharp.Threading.Tasks;
 
-namespace Components.Scripts.Modules.General.Item
+namespace RoboFactory.General.Item
 {
     public interface IItemManager
     {

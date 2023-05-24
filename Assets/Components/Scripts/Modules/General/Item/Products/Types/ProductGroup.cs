@@ -1,4 +1,4 @@
-﻿namespace Components.Scripts.Modules.General.Item.Products.Types
+﻿namespace RoboFactory.General.Item.Products
 {
     public enum ProductGroup
     {

@@ -1,10 +1,10 @@
 ﻿using System;
-using Components.Scripts.Modules.Factory.Api;
 using Cysharp.Threading.Tasks;
 using JetBrains.Annotations;
+using RoboFactory.General.Api;
 using Zenject;
 
-namespace Components.Scripts.Modules.General.Money
+namespace RoboFactory.General.Money
 {
     [UsedImplicitly]
     public class MoneyManager

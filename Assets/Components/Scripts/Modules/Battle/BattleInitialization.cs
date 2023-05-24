@@ -1,14 +1,13 @@
 using System.Collections.Generic;
 using System.Linq;
-using Components.Scripts.Modules.Battle.Ui.End;
-using Components.Scripts.Modules.Battle.Units;
-using Components.Scripts.Modules.Battle.Units.Behaviour;
-using Components.Scripts.Modules.General.Unit;
-using Components.Scripts.Modules.General.Unit.Battle.Models;
+using RoboFactory.Battle.Ui;
+using RoboFactory.Battle.Units;
+using RoboFactory.General.Unit;
+using RoboFactory.General.Unit.Battle;
 using UnityEngine;
 using Zenject;
 
-namespace Components.Scripts.Modules.Battle
+namespace RoboFactory.Battle
 {
     [AddComponentMenu("Scripts/Battle/Battle Initialization", 1)]
     public class BattleInitialization : MonoBehaviour

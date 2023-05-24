@@ -1,10 +1,10 @@
 ﻿using System;
-using Components.Scripts.Modules.General.Ui.Common.Menu;
-using Components.Scripts.Modules.General.Unit.Object;
+using RoboFactory.General.Ui.Common;
+using RoboFactory.General.Unit;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Components.Scripts.Modules.Factory.Menu.Expedition.Selection
+namespace RoboFactory.Factory.Menu.Expedition
 {
     [RequireComponent(typeof(Image))]
     [AddComponentMenu("Scripts/Factory/Menu/Expedition/Selection/Selection Cell View")]

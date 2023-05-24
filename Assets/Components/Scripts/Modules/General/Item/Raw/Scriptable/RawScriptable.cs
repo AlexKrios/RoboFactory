@@ -1,10 +1,7 @@
 using System.Collections.Generic;
-using Components.Scripts.Modules.General.Item.Models.Recipe;
-using Components.Scripts.Modules.General.Item.Models.Scriptable;
-using Components.Scripts.Modules.General.Item.Models.Types;
 using UnityEngine;
 
-namespace Components.Scripts.Modules.General.Item.Raw.Scriptable
+namespace RoboFactory.General.Item.Raw
 {
     [CreateAssetMenu(fileName = "RawData", menuName = "Scriptable/General/Raw/Data", order = 61)]
     public class RawScriptable : ItemScriptable

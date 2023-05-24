@@ -1,10 +1,10 @@
 ﻿using System;
-using Components.Scripts.Modules.General.Item.Products.Object;
-using Components.Scripts.Modules.General.Ui.Common.Menu;
+using RoboFactory.General.Item.Products;
+using RoboFactory.General.Ui.Common;
 using TMPro;
 using UnityEngine;
 
-namespace Components.Scripts.Modules.Factory.Menu.Storage.Items
+namespace RoboFactory.Factory.Menu.Storage
 {
     [AddComponentMenu("Scripts/Factory/Menu/Storage/Item Cell View")]
     public class ItemCellView : CellBase

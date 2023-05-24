@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Linq;
-using Components.Scripts.Modules.Factory.Api;
-using Components.Scripts.Modules.General.Scriptable;
 using Cysharp.Threading.Tasks;
 using JetBrains.Annotations;
+using RoboFactory.General.Api;
+using RoboFactory.General.Scriptable;
 using Zenject;
 
-namespace Components.Scripts.Modules.General.Level
+namespace RoboFactory.General.Level
 {
     [UsedImplicitly]
     public class LevelManager

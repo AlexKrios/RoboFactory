@@ -1,14 +1,14 @@
-using Components.Scripts.Modules.Factory.Menu.Conversion;
-using Components.Scripts.Modules.Factory.Menu.Expedition;
-using Components.Scripts.Modules.Factory.Menu.Order;
-using Components.Scripts.Modules.Factory.Menu.Production;
-using Components.Scripts.Modules.Factory.Menu.Settings;
-using Components.Scripts.Modules.Factory.Menu.Storage;
-using Components.Scripts.Modules.Factory.Menu.Units;
+using RoboFactory.Factory.Menu;
+using RoboFactory.Factory.Menu.Conversion;
+using RoboFactory.Factory.Menu.Expedition;
+using RoboFactory.Factory.Menu.Order;
+using RoboFactory.Factory.Menu.Production;
+using RoboFactory.Factory.Menu.Settings;
+using RoboFactory.Factory.Menu.Storage;
 using UnityEngine;
 using Zenject;
 
-namespace Components.Scripts.DI.Scene.Factory
+namespace RoboFactory.DI
 {
     [CreateAssetMenu(menuName = "Scriptable/Factory/Settings", order = 1)]
     public class FactorySettingsInstaller : ScriptableObjectInstaller<FactorySettingsInstaller>

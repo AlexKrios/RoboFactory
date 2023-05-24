@@ -1,7 +1,6 @@
 using System;
-using Components.Scripts.Modules.General.Item.Products.Types;
 
-namespace Components.Scripts.Modules.General.Item.Products.Object
+namespace RoboFactory.General.Item.Products
 {
     [Serializable]
     public class SpecObject

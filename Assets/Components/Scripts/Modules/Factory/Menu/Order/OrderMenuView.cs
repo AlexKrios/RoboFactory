@@ -1,19 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using Components.Scripts.Modules.Factory.Menu.Order.Components;
-using Components.Scripts.Modules.General.Localisation;
-using Components.Scripts.Modules.General.Order;
-using Components.Scripts.Modules.General.Ui;
-using Components.Scripts.Modules.General.Ui.Common.Menu;
-using Components.Scripts.Utils;
 using Cysharp.Threading.Tasks;
+using RoboFactory.General.Localisation;
+using RoboFactory.General.Order;
+using RoboFactory.General.Ui;
+using RoboFactory.General.Ui.Common;
+using RoboFactory.Utils;
 using TMPro;
 using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-namespace Components.Scripts.Modules.Factory.Menu.Order
+namespace RoboFactory.Factory.Menu.Order
 {
     [AddComponentMenu("Scripts/Factory/Menu/Order/Order Menu View")]
     public class OrderMenuView : PopupBase

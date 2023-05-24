@@ -1,5 +1,5 @@
 ﻿using System.Collections;
-using Components.Scripts.Modules.General.Expedition;
+using RoboFactory.General.Expedition;
 using TMPro;
 using UniRx;
 using UnityEngine;
@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Zenject;
 
-namespace Components.Scripts.Modules.Battle.Ui.End
+namespace RoboFactory.Battle.Ui
 {
     [AddComponentMenu("Scripts/Battle/Ui/End Battle Popup View")]
     public class EndBattlePopupView : MonoBehaviour

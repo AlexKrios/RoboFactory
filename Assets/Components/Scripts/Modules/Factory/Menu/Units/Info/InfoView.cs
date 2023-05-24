@@ -1,13 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Components.Scripts.Modules.General.Item.Products;
-using Components.Scripts.Modules.General.Ui;
-using Components.Scripts.Modules.General.Unit;
-using Components.Scripts.Modules.General.Unit.Object;
+using RoboFactory.General.Item.Products;
+using RoboFactory.General.Ui;
+using RoboFactory.General.Unit;
 using UnityEngine;
 using Zenject;
 
-namespace Components.Scripts.Modules.Factory.Menu.Units.Info
+namespace RoboFactory.Factory.Menu.Units
 {
     [AddComponentMenu("Scripts/Factory/Menu/Units/Info View")]
     public class InfoView : MonoBehaviour

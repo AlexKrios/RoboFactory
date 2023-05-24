@@ -1,16 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Components.Scripts.Modules.Battle.Ui.Queue;
-using Components.Scripts.Modules.Battle.Ui.Units;
-using Components.Scripts.Modules.Battle.Units;
-using Components.Scripts.Modules.General.Item.Models.Recipe;
-using Components.Scripts.Modules.General.Item.Raw;
-using Components.Scripts.Modules.General.Unit.Battle.Models;
 using JetBrains.Annotations;
+using RoboFactory.Battle.Ui;
+using RoboFactory.Battle.Units;
+using RoboFactory.General.Item;
+using RoboFactory.General.Item.Raw;
+using RoboFactory.General.Unit.Battle;
 using Zenject;
 
-namespace Components.Scripts.Modules.Battle
+namespace RoboFactory.Battle
 {
     [UsedImplicitly]
     public class BattleController

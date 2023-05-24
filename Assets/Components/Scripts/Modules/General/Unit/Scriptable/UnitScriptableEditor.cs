@@ -1,10 +1,9 @@
-﻿using Components.Scripts.Modules.General.Item.Products.Types;
-using Components.Scripts.Modules.General.Unit.Type;
+﻿using RoboFactory.General.Item.Products;
 using UnityEditor;
 using UnityEngine;
 
 #if UNITY_EDITOR
-namespace Components.Scripts.Modules.General.Unit.Scriptable
+namespace RoboFactory.General.Unit
 {
     [CustomEditor(typeof(UnitScriptable))]
     public class UnitScriptableEditor : Editor

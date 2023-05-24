@@ -1,10 +1,10 @@
-﻿using Components.Scripts.Modules.General.Asset;
-using Components.Scripts.Modules.General.Unit.Battle.Models;
+﻿using RoboFactory.General.Asset;
+using RoboFactory.General.Unit.Battle;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Components.Scripts.Modules.Battle.Ui.Units
+namespace RoboFactory.Battle.Ui
 {
     [AddComponentMenu("Scripts/Battle/Ui/Unit Cell View")]
     public class UnitCellView : MonoBehaviour

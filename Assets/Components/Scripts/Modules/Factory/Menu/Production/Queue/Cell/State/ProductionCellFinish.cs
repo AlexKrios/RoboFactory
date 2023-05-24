@@ -1,10 +1,10 @@
-﻿using Components.Scripts.Modules.General.Item.Production;
-using Components.Scripts.Modules.General.Item.Products;
-using Components.Scripts.Modules.General.Localisation;
-using JetBrains.Annotations;
+﻿using JetBrains.Annotations;
+using RoboFactory.General.Item.Production;
+using RoboFactory.General.Item.Products;
+using RoboFactory.General.Localisation;
 using Zenject;
 
-namespace Components.Scripts.Modules.Factory.Menu.Production.Queue.Cell.State
+namespace RoboFactory.Factory.Menu.Production
 {
     public class ProductionCellFinish : IProductionCellState
     {

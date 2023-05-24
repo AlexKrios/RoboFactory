@@ -1,8 +1,8 @@
 using System.Collections.Generic;
-using Components.Scripts.Modules.General.Item.Models.Recipe;
+using RoboFactory.General.Item;
 using UnityEngine.AddressableAssets;
 
-namespace Components.Scripts.Modules.General.Location
+namespace RoboFactory.General.Location
 {
     public class LocationObject
     {

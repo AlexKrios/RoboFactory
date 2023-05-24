@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Components.Scripts.Modules.General.Level
+namespace RoboFactory.General.Level
 {
     [Serializable]
     public class LevelObject

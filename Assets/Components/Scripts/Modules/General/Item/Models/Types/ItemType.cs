@@ -1,4 +1,4 @@
-﻿namespace Components.Scripts.Modules.General.Item.Models.Types
+﻿namespace RoboFactory.General.Item
 {
     public enum ItemType
     {

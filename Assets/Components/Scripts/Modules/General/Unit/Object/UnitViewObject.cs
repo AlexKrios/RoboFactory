@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Components.Scripts.Modules.General.Item.Products;
-using Components.Scripts.Modules.General.Item.Products.Object;
-using Components.Scripts.Modules.General.Item.Products.Types;
+using RoboFactory.General.Item.Products;
 using UnityEngine;
 using Zenject;
 
-namespace Components.Scripts.Modules.General.Unit.Object
+namespace RoboFactory.General.Unit
 {
     public class UnitViewObject : MonoBehaviour
     {

@@ -1,17 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Components.Scripts.Modules.General.Asset;
-using Components.Scripts.Modules.General.Item.Products.Object;
-using Components.Scripts.Modules.General.Ui;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
+using RoboFactory.General.Asset;
+using RoboFactory.General.Item.Products;
+using RoboFactory.General.Ui;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-namespace Components.Scripts.Modules.Factory.Menu.Production.Parts
+namespace RoboFactory.Factory.Menu.Production
 {
     [AddComponentMenu("Scripts/Factory/Menu/Production/Parts Section View")]
     public class PartsSectionView : MonoBehaviour

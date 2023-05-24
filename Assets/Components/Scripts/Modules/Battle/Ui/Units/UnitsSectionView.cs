@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
-using Components.Scripts.Modules.General.Unit.Battle.Models;
+using RoboFactory.General.Unit.Battle;
 using UnityEngine;
 using Zenject;
 
-namespace Components.Scripts.Modules.Battle.Ui.Units
+namespace RoboFactory.Battle.Ui
 {
     [AddComponentMenu("Scripts/Battle/Ui/Units Section View")]
     public class UnitsSectionView : MonoBehaviour

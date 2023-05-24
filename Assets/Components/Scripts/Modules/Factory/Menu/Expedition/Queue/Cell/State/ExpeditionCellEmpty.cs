@@ -1,6 +1,6 @@
 ﻿using Zenject;
 
-namespace Components.Scripts.Modules.Factory.Menu.Expedition.Queue.Cell.State
+namespace RoboFactory.Factory.Menu.Expedition
 {
     public class ExpeditionCellEmpty : IExpeditionCellState
     {

@@ -1,4 +1,4 @@
-﻿namespace Components.Scripts.Modules.General.Settings
+﻿namespace RoboFactory.General.Settings
 {
     public enum LanguageType
     {

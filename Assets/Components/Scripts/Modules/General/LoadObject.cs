@@ -1,7 +1,7 @@
 ﻿using System;
-using Components.Scripts.Modules.General.Settings;
+using RoboFactory.General.Settings;
 
-namespace Components.Scripts.Modules.General
+namespace RoboFactory.General
 {
     [Serializable]
     public class LoadObject

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
 
-namespace Components.Scripts.Modules.General.Location
+namespace RoboFactory.General.Location
 {
     [UsedImplicitly]
     public class LocationManager

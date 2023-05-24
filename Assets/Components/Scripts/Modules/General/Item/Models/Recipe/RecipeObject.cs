@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using Components.Scripts.Modules.General.Item.Products.Object;
+using RoboFactory.General.Item.Products;
 using UnityEngine;
 
-namespace Components.Scripts.Modules.General.Item.Models.Recipe
+namespace RoboFactory.General.Item
 {
     [Serializable]
     public class RecipeObject

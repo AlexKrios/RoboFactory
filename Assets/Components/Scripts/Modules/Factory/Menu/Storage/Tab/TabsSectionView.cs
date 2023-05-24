@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Components.Scripts.Modules.General.Item.Products.Types;
-using Components.Scripts.Modules.General.Ui;
+using RoboFactory.General.Item.Products;
+using RoboFactory.General.Ui;
 using UnityEngine;
 using Zenject;
 
-namespace Components.Scripts.Modules.Factory.Menu.Storage.Tab
+namespace RoboFactory.Factory.Menu.Storage
 {
     [AddComponentMenu("Scripts/Factory/Menu/Storage/Tabs Section View")]
     public class TabsSectionView : MonoBehaviour

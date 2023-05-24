@@ -1,16 +1,16 @@
-﻿using Components.Scripts.Modules.General.Item.Production;
-using Components.Scripts.Modules.General.Level;
-using Components.Scripts.Modules.General.Localisation;
-using Components.Scripts.Modules.General.Money;
-using Components.Scripts.Modules.General.Scriptable;
-using Components.Scripts.Modules.General.Ui.Common.Menu;
+﻿using RoboFactory.General.Item.Production;
+using RoboFactory.General.Level;
+using RoboFactory.General.Localisation;
+using RoboFactory.General.Money;
+using RoboFactory.General.Scriptable;
+using RoboFactory.General.Ui.Common;
 using TMPro;
 using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-namespace Components.Scripts.Modules.Factory.Menu.Production.Upgrade
+namespace RoboFactory.Factory.Menu.Production
 {
     [AddComponentMenu("Scripts/Factory/Menu/Production/Upgrade/Upgrade Popup View")]
     public class UpgradePopupView : PopupBase

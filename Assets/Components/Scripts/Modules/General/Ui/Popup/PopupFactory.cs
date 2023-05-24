@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Components.Scripts.Modules.General.Ui.Popup.Common;
 using JetBrains.Annotations;
 using UnityEngine;
 using Zenject;
 
-namespace Components.Scripts.Modules.General.Ui.Popup
+namespace RoboFactory.General.Ui.Popup
 {
     [UsedImplicitly]
     public class PopupFactory

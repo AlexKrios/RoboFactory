@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Components.Scripts.Modules.General.Scriptable
+namespace RoboFactory.General.Scriptable
 {
     [CreateAssetMenu(fileName = "UpgradeData", menuName = "Scriptable/General/Upgrade Data", order = 1)]
     public class UpgradeDataScriptable : ScriptableObject

@@ -1,13 +1,13 @@
-﻿using Components.Scripts.Modules.General.Expedition;
-using Components.Scripts.Modules.General.Localisation;
-using Components.Scripts.Modules.General.Scriptable;
-using Components.Scripts.Modules.General.Ui;
-using Components.Scripts.Modules.General.Ui.Common.Menu;
+﻿using RoboFactory.General.Expedition;
+using RoboFactory.General.Localisation;
+using RoboFactory.General.Scriptable;
+using RoboFactory.General.Ui;
+using RoboFactory.General.Ui.Common;
 using TMPro;
 using UnityEngine;
 using Zenject;
 
-namespace Components.Scripts.Modules.Factory.Menu.Expedition.Queue.Upgrade
+namespace RoboFactory.Factory.Menu.Expedition
 {
     [AddComponentMenu("Scripts/Factory/Menu/Expedition/Queue/Upgrade Queue Popup View")]
     public class UpgradeQueuePopupView : PopupBase

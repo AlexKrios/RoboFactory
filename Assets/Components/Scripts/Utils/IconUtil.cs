@@ -1,24 +1,24 @@
-﻿using System.Linq;
-using Components.Scripts.Modules.General;
-using Components.Scripts.Modules.General.Item.Products.Types;
-using Components.Scripts.Modules.General.Item.Raw;
-using Components.Scripts.Modules.General.Unit.Type;
+﻿using System.Collections.Generic;
+using System.Linq;
+using RoboFactory.General.Item.Products;
+using RoboFactory.General.Item.Raw;
+using RoboFactory.General.Unit;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
-namespace Components.Scripts.Utils
+namespace RoboFactory.Utils
 {
     public class IconUtil : MonoBehaviour
     {
-        [SerializeField] private System.Collections.Generic.List<KeyValuePair<RawType, AssetReference>> rawIcons;
-        [SerializeField] private System.Collections.Generic.List<KeyValuePair<UnitType, AssetReference>> unitIcons;
-        [SerializeField] private System.Collections.Generic.List<KeyValuePair<ProductGroup, AssetReference>> productGroupIcons;
-        [SerializeField] private System.Collections.Generic.List<KeyValuePair<SpecType, AssetReference>> specsIcons;
+        [SerializeField] private List<RoboFactory.General.KeyValuePair<RawType, AssetReference>> rawIcons;
+        [SerializeField] private List<RoboFactory.General.KeyValuePair<UnitType, AssetReference>> unitIcons;
+        [SerializeField] private List<RoboFactory.General.KeyValuePair<ProductGroup, AssetReference>> productGroupIcons;
+        [SerializeField] private List<RoboFactory.General.KeyValuePair<SpecType, AssetReference>> specsIcons;
 
-        public System.Collections.Generic.List<KeyValuePair<RawType, AssetReference>> RawIcons => rawIcons;
-        public System.Collections.Generic.List<KeyValuePair<UnitType, AssetReference>> UnitIcons => unitIcons;
-        public System.Collections.Generic.List<KeyValuePair<ProductGroup, AssetReference>> ProductGroupIcons => productGroupIcons;
-        public System.Collections.Generic.List<KeyValuePair<SpecType, AssetReference>> SpecsIcons => specsIcons;
+        public List<RoboFactory.General.KeyValuePair<RawType, AssetReference>> RawIcons => rawIcons;
+        public List<RoboFactory.General.KeyValuePair<UnitType, AssetReference>> UnitIcons => unitIcons;
+        public List<RoboFactory.General.KeyValuePair<ProductGroup, AssetReference>> ProductGroupIcons => productGroupIcons;
+        public List<RoboFactory.General.KeyValuePair<SpecType, AssetReference>> SpecsIcons => specsIcons;
 
         public AssetReference GetRawIcon(RawType raw)
         {
