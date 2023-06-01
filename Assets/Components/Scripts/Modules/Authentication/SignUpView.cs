@@ -112,7 +112,7 @@ namespace RoboFactory.Authentication
         
         private void OnGooglePlayClick()
         {
-            _authenticationManager.GooglePlaySignIn();
+            _authenticationManager.GooglePlaySignManually();
         }
 
         private void ReadEmailField(string text)

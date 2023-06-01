@@ -207,8 +207,14 @@ namespace RoboFactory.Authentication
         
         public void GooglePlaySignIn()
         {
-            PlayGamesPlatform.Instance.ManuallyAuthenticate(_ =>
+            PlayGamesPlatform.Instance.RequestServerSideAccess(true, SignInWithCredential);
+        }
+        
+        public void GooglePlaySignManually()
+        {
+            PlayGamesPlatform.Instance.ManuallyAuthenticate(status =>
             {
+                Debug.LogWarning(status);
                 PlayGamesPlatform.Instance.RequestServerSideAccess(true, SignInWithCredential);
             });
         }

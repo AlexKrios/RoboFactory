@@ -13,7 +13,6 @@ using RoboFactory.General.Level;
 using RoboFactory.General.Money;
 using RoboFactory.General.Order;
 using RoboFactory.General.Unit;
-using UnityEngine;
 using UserProfile = RoboFactory.General.User.UserProfile;
 
 namespace RoboFactory.General.Api
@@ -22,26 +21,22 @@ namespace RoboFactory.General.Api
     public class ApiManager
     {
         private const string UsersRoot = "users";
-        private static readonly string UserRoot = $"{UsersRoot}/{FirebaseUser.UserId}";
-        private static readonly string MoneyRoot = $"{UserRoot}/moneySection";
-        private static readonly string LevelRoot = $"{UserRoot}/levelSection";
-        private static readonly string RawRoot = $"{UserRoot}/storesSection/raw";
-        private static readonly string ProductsRoot = $"{UserRoot}/storesSection/products";
-        private static readonly string UnitsRoot = $"{UserRoot}/unitsSection/units";
-        private static readonly string ProductionsRoot = $"{UserRoot}/productionsSection";
-        private static readonly string ProductionQueueRoot = $"{ProductionsRoot}/queue";
-        private static readonly string ProductionCountRoot = $"{ProductionsRoot}/count";
-        private static readonly string ProductionLevelRoot = $"{ProductionsRoot}/level";
-        private static readonly string ExpeditionRoot = $"{UserRoot}/expeditionSection";
-        private static readonly string ExpeditionQueueRoot = $"{ExpeditionRoot}/queue";
-        private static readonly string ExpeditionCountRoot = $"{ExpeditionRoot}/count";
-        private static readonly string OrdersRoot = $"{UserRoot}/ordersSection";
-        private static readonly string OrdersListRoot = $"{OrdersRoot}/orders";
-        private static readonly string OrdersCountRoot = $"{OrdersRoot}/count";
-        private static readonly string OrdersLevelRoot = $"{OrdersRoot}/level";
+        private const string MoneyRoot = "moneySection";
+        private const string LevelRoot = "levelSection";
+        private const string RawRoot = "storesSection/raw";
+        private const string ProductsRoot = "storesSection/products";
+        private const string UnitsRoot = "unitsSection/units";
+        private const string ProductionQueueRoot = "productionsSection/queue";
+        private const string ProductionCountRoot = "productionsSection/count";
+        private const string ProductionLevelRoot = "productionsSection/level";
+        private const string ExpeditionQueueRoot = "expeditionSection/queue";
+        private const string ExpeditionCountRoot = "expeditionSection/count";
+        private const string OrdersListRoot = "ordersSection/orders";
+        private const string OrdersCountRoot = "ordersSection/count";
+        private const string OrdersLevelRoot = "ordersSection/level";
 
         private static FirebaseDatabase FirebaseDatabase => FirebaseDatabase.DefaultInstance;
-        private static FirebaseUser FirebaseUser => FirebaseAuth.DefaultInstance.CurrentUser;
+        private static string UserId => FirebaseAuth.DefaultInstance.CurrentUser.UserId;
 
         public ApiManager()
         {
@@ -50,9 +45,11 @@ namespace RoboFactory.General.Api
         
         public async UniTask<UserProfile> GetUserProfile()
         {
-            var dataSnapshotTask = FirebaseDatabase.RootReference.Child(UserRoot).GetValueAsync();
+            var dataSnapshotTask = FirebaseDatabase.RootReference
+                .Child($"{UsersRoot}/{UserId}")
+                .GetValueAsync();
+            
             await UniTask.WaitUntil(() => dataSnapshotTask.IsCompleted);
-            Debug.LogWarning(dataSnapshotTask.Result.GetRawJsonValue());
             return dataSnapshotTask.Result.Exists 
                 ? JsonConvert.DeserializeObject<UserProfile>(dataSnapshotTask.Result.GetRawJsonValue()) 
                 : null;
@@ -60,22 +57,22 @@ namespace RoboFactory.General.Api
 
         public async UniTask SetStartUserProfile(UserProfile profile)
         {
-            await FirebaseDatabase.DefaultInstance.RootReference
-                .Child(UserRoot)
+            await FirebaseDatabase.RootReference
+                .Child($"{UsersRoot}/{UserId}")
                 .SetRawJsonValueAsync(JsonConvert.SerializeObject(profile));
         }
 
         public async UniTask SetUserMoney(MoneyObject moneyData)
         {
-            await FirebaseDatabase.DefaultInstance.RootReference
-                .Child(MoneyRoot)
+            await FirebaseDatabase.RootReference
+                .Child($"{UsersRoot}/{UserId}/{MoneyRoot}")
                 .SetRawJsonValueAsync(JsonConvert.SerializeObject(moneyData));
         }
 
         public async UniTask SetUserExperience(LevelObject levelData)
         {
-            await FirebaseDatabase.DefaultInstance.RootReference
-                .Child(LevelRoot)
+            await FirebaseDatabase.RootReference
+                .Child($"{UsersRoot}/{UserId}/{LevelRoot}")
                 .SetRawJsonValueAsync(JsonConvert.SerializeObject(levelData));
         }
 
@@ -83,9 +80,8 @@ namespace RoboFactory.General.Api
 
         public async UniTask SetUserRawSingle(string key, RawDto data)
         {
-            await FirebaseDatabase.DefaultInstance.RootReference
-                .Child(RawRoot)
-                .Child(key)
+            await FirebaseDatabase.RootReference
+                .Child($"{UsersRoot}/{UserId}/{RawRoot}/{key}")
                 .SetRawJsonValueAsync(JsonConvert.SerializeObject(data));
         }
         
@@ -94,9 +90,8 @@ namespace RoboFactory.General.Api
             var tasks = new List<UniTask>();
             foreach (var data in rawData)
             {
-                var task = FirebaseDatabase.DefaultInstance.RootReference
-                    .Child(RawRoot)
-                    .Child(data.Key)
+                var task = FirebaseDatabase.RootReference
+                    .Child($"{UsersRoot}/{UserId}/{RawRoot}/{data.Key}")
                     .SetRawJsonValueAsync(JsonConvert.SerializeObject(data.Value))
                     .AsUniTask();
                 
@@ -112,9 +107,8 @@ namespace RoboFactory.General.Api
 
         public async UniTask SetUserProductSingle(string key, ProductDto data)
         {
-            await FirebaseDatabase.DefaultInstance.RootReference
-                .Child(ProductsRoot)
-                .Child(key)
+            await FirebaseDatabase.RootReference
+                .Child($"{UsersRoot}/{UserId}/{ProductsRoot}/{key}")
                 .SetRawJsonValueAsync(JsonConvert.SerializeObject(data));
         }
         
@@ -123,9 +117,8 @@ namespace RoboFactory.General.Api
             var tasks = new List<UniTask>();
             foreach (var data in productsData)
             {
-                var task = FirebaseDatabase.DefaultInstance.RootReference
-                    .Child(ProductsRoot)
-                    .Child(data.Key)
+                var task = FirebaseDatabase.RootReference
+                    .Child($"{UsersRoot}/{UserId}/{ProductsRoot}/{data.Key}")
                     .SetRawJsonValueAsync(JsonConvert.SerializeObject(data.Value))
                     .AsUniTask();
                 
@@ -141,9 +134,8 @@ namespace RoboFactory.General.Api
 
         public async UniTask SetUserUnitSingle(string key, UnitDto data)
         {
-            await FirebaseDatabase.DefaultInstance.RootReference
-                .Child(UnitsRoot)
-                .Child(key)
+            await FirebaseDatabase.RootReference
+                .Child($"{UsersRoot}/{UserId}/{UnitsRoot}/{key}")
                 .SetRawJsonValueAsync(JsonConvert.SerializeObject(data));
         }
 
@@ -153,31 +145,29 @@ namespace RoboFactory.General.Api
 
         public async UniTask SetUserProductionLevel(int value)
         {
-            await FirebaseDatabase.DefaultInstance.RootReference
-                .Child($"{ProductionLevelRoot}")
+            await FirebaseDatabase.RootReference
+                .Child($"{UsersRoot}/{UserId}/{ProductionLevelRoot}")
                 .SetValueAsync(value);
         }
         
         public async UniTask SetUserProductionQueueCount(int value)
         {
-            await FirebaseDatabase.DefaultInstance.RootReference
-                .Child($"{ProductionCountRoot}")
+            await FirebaseDatabase.RootReference
+                .Child($"{UsersRoot}/{UserId}/{ProductionCountRoot}")
                 .SetValueAsync(value);
         }
         
         public async UniTask AddUserProduction(Guid id, ProductionDto data)
         {
-            await FirebaseDatabase.DefaultInstance.RootReference
-                .Child(ProductionQueueRoot)
-                .Child(id.ToString())
+            await FirebaseDatabase.RootReference
+                .Child($"{UsersRoot}/{UserId}/{ProductionQueueRoot}/{id.ToString()}")
                 .SetRawJsonValueAsync(JsonConvert.SerializeObject(data));
         }
         
         public async UniTask RemoveUserProduction(Guid id)
         {
-            await FirebaseDatabase.DefaultInstance.RootReference
-                .Child(ProductionQueueRoot)
-                .Child(id.ToString())
+            await FirebaseDatabase.RootReference
+                .Child($"{UsersRoot}/{UserId}/{ProductionQueueRoot}/{id.ToString()}")
                 .SetValueAsync(null);
         }
 
@@ -187,24 +177,22 @@ namespace RoboFactory.General.Api
 
         public async UniTask SetUserExpeditionQueueCount(int value)
         {
-            await FirebaseDatabase.DefaultInstance.RootReference
-                .Child($"{ExpeditionCountRoot}")
+            await FirebaseDatabase.RootReference
+                .Child($"{UsersRoot}/{UserId}/{ExpeditionCountRoot}")
                 .SetValueAsync(value);
         }
         
         public async UniTask AddUserExpedition(Guid id, ExpeditionDto data)
         {
-            await FirebaseDatabase.DefaultInstance.RootReference
-                .Child(ExpeditionQueueRoot)
-                .Child(id.ToString())
+            await FirebaseDatabase.RootReference
+                .Child($"{UsersRoot}/{UserId}/{ExpeditionQueueRoot}/{id.ToString()}")
                 .SetRawJsonValueAsync(JsonConvert.SerializeObject(data));
         }
         
         public async UniTask RemoveUserExpedition(Guid id)
         {
-            await FirebaseDatabase.DefaultInstance.RootReference
-                .Child(ExpeditionQueueRoot)
-                .Child(id.ToString())
+            await FirebaseDatabase.RootReference
+                .Child($"{UsersRoot}/{UserId}/{ExpeditionQueueRoot}/{id.ToString()}")
                 .SetValueAsync(null);
         }
 
@@ -217,9 +205,8 @@ namespace RoboFactory.General.Api
             var tasks = new List<UniTask>();
             foreach (var data in ordersData)
             {
-                var task = FirebaseDatabase.DefaultInstance.RootReference
-                    .Child(OrdersListRoot)
-                    .Child(data.Key)
+                var task = FirebaseDatabase.RootReference
+                    .Child($"{UsersRoot}/{UserId}/{OrdersListRoot}/{data.Key}")
                     .SetRawJsonValueAsync(JsonConvert.SerializeObject(data.Value))
                     .AsUniTask();
                 
@@ -231,15 +218,15 @@ namespace RoboFactory.General.Api
         
         public async UniTask SetUserOrdersCount(int value)
         {
-            await FirebaseDatabase.DefaultInstance.RootReference
-                .Child($"{OrdersCountRoot}")
+            await FirebaseDatabase.RootReference
+                .Child($"{UsersRoot}/{UserId}/{OrdersCountRoot}")
                 .SetValueAsync(value);
         }
         
         public async UniTask SetUserOrdersLevel(int value)
         {
-            await FirebaseDatabase.DefaultInstance.RootReference
-                .Child($"{OrdersLevelRoot}")
+            await FirebaseDatabase.RootReference
+                .Child($"{UsersRoot}/{UserId}/{OrdersLevelRoot}")
                 .SetValueAsync(value);
         }
 

@@ -16,8 +16,8 @@ namespace RoboFactory.General.Settings
         public LanguageType Language { get; set; }
         public GraphicsType Graphics { get; set; }
         
-        public float AudioVolume { get; set; }
-        public float MusicVolume { get; set; }
+        public float AudioVolume { get; private set; }
+        public float MusicVolume { get; private set; }
 
         public void InitData()
         {
@@ -41,22 +41,26 @@ namespace RoboFactory.General.Settings
         
         public void SetLanguage(LanguageType value)
         {
+            Language = value;
             PlayerPrefs.SetInt(LanguageName, (int) value);
         }
         
         public void SetGraphics(GraphicsType value)
         {
+            Graphics = value;
             PlayerPrefs.SetInt(GraphicsName, (int) value);
             QualitySettings.SetQualityLevel((int) value);
         }
 
         public void SetMusicVolume(float value)
         {
+            MusicVolume = value;
             PlayerPrefs.SetInt(MusicVolumeName, (int) value);
         }
         
         public void SetAudioVolume(float value)
         {
+            AudioVolume = value;
             PlayerPrefs.SetInt(AudioVolumeName, (int) value);
         }
     }

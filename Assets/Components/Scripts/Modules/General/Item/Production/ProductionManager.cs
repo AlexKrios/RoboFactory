@@ -15,10 +15,10 @@ namespace RoboFactory.General.Item.Production
     {
         #region Zenject
 
+        [Inject] private readonly Settings _settings;
         [Inject] private readonly ApiManager _apiManager;
         [Inject] private readonly ManagersResolver managersResolver;
         [Inject] private readonly ProductsManager _productsManager;
-        [Inject] private readonly Settings _settings;
 
         #endregion
 

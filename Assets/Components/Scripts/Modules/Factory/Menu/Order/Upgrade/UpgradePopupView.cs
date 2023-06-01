@@ -1,7 +1,7 @@
-﻿using RoboFactory.General.Item.Production;
-using RoboFactory.General.Level;
+﻿using RoboFactory.General.Level;
 using RoboFactory.General.Localisation;
 using RoboFactory.General.Money;
+using RoboFactory.General.Order;
 using RoboFactory.General.Scriptable;
 using RoboFactory.General.Ui;
 using RoboFactory.General.Ui.Common;
@@ -22,7 +22,7 @@ namespace RoboFactory.Factory.Menu.Order
         [Inject] private readonly MoneyManager _moneyManager;
         [Inject] private readonly LevelManager _levelManager;
         [Inject] private readonly IUiController _uiController;
-        [Inject] private readonly ProductionManager _productionManager;
+        [Inject] private readonly OrderManager _orderManager;
 
         #endregion
 
@@ -58,15 +58,15 @@ namespace RoboFactory.Factory.Menu.Order
             
             acceptButton.OnClickAsObservable().Subscribe(_ => OnAcceptClick()).AddTo(Disposable);
 
-            currentLevel.text = _productionManager.Level.ToString();
-            nextLevel.text = (_productionManager.Level + 1).ToString();
+            currentLevel.text = _orderManager.Level.ToString();
+            nextLevel.text = (_orderManager.Level + 1).ToString();
 
             titleText.text = _localisationController.GetLanguageValue(LocalisationKeys.UpgradeTitleKey);
         }
         
         private void Start() 
         {
-            _buyData = _productionManager.GetUpgradeQualityData();
+           // _buyData = _orderManager.GetUpgradeQualityData();
             
             if (_moneyManager.Money < _buyData.Cost || _levelManager.Level < _buyData.Level)
                 acceptButton.interactable = false;
@@ -81,7 +81,7 @@ namespace RoboFactory.Factory.Menu.Order
         private async void OnAcceptClick()
         {
             await _moneyManager.MinusMoney(_buyData.Cost);
-            await _productionManager.AddLevel();
+            await _orderManager.IncreaseOrderLevel();
 
             Close();
         }

@@ -80,7 +80,7 @@ namespace RoboFactory.Factory.Menu.Order
                 orders.Clear();
             }
             
-            for (var i = 0; i < _orderManager.OrderCount; i++)
+            for (var i = 0; i < _orderManager.Count; i++)
             {
                 var cell = _orderManagerFactory.CreateItem(parent);
                 orders.Add(cell);

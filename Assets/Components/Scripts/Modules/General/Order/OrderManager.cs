@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Cysharp.Threading.Tasks;
 using JetBrains.Annotations;
 using RoboFactory.General.Api;
 using RoboFactory.General.Item.Products;
@@ -15,6 +16,7 @@ namespace RoboFactory.General.Order
     {
         #region Zenject
 
+        [Inject] private readonly Settings _settings;
         [Inject] private readonly ApiManager _apiManager;
         [Inject] private readonly MoneyManager _moneyManager;
         [Inject] private readonly ProductsManager _productsManager;
@@ -25,8 +27,8 @@ namespace RoboFactory.General.Order
         
         private Dictionary<string, OrderObject> OrdersDictionary { get; }
 
-        public int OrderCount { get; private set; }
-        public int OrderLevel { get; private set; }
+        public int Count { get; private set; }
+        public int Level { get; private set; }
         private long RefreshTime { get; set; }
 
         private bool _isNeedRefreshForce;
@@ -48,7 +50,7 @@ namespace RoboFactory.General.Order
 
         public void LoadData(OrdersLoadObject data)
         {
-            OrderCount = data.count;
+            Count = data.count;
             RefreshTime = data.timeRefresh;
             
             if (data.Orders == null)
@@ -123,14 +125,14 @@ namespace RoboFactory.General.Order
 
         private async void IncreaseOrderCount()
         {
-            OrderCount++;
-            await _apiManager.SetUserOrdersCount(OrderCount);
+            Count++;
+            await _apiManager.SetUserOrdersCount(Count);
         }
         
-        private async void IncreaseOrderLevel()
+        public async UniTask IncreaseOrderLevel()
         {
-            OrderLevel++;
-            await _apiManager.SetUserOrdersLevel(OrderCount);
+            Level++;
+            await _apiManager.SetUserOrdersLevel(Count);
         }
         
         [Serializable]

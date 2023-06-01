@@ -137,6 +137,26 @@ MonoBehaviour:
     m_Address: Assets/Components/Prefabs/Ui/Menu/Conversion/ConversionMenu.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: fff91a21e9de4b44da699a052358eeb9
+    m_Address: Assets/Components/Media/Audio/Boom.mp3
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Music
+  - m_GUID: abc3c92db6178484380627063c2c17f8
+    m_Address: Assets/Components/Media/Audio/ButtonClick.mp3
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Music
+  - m_GUID: 474117141f7ff36478674d23a62206c8
+    m_Address: Assets/Components/Media/Audio/CloseClick.mp3
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Audio
+  - m_GUID: d64ae2f9a52f0dc4ca6ab45961981032
+    m_Address: Assets/Components/Media/Audio/Spartacus.mp3
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Audio
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 43f345baeabe80145b7f64554f5c1876, type: 2}
   m_SchemaSet:

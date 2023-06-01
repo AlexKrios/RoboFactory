@@ -16,17 +16,7 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: adef160a30bce64469657168cc0070cb
-  m_SerializeEntries:
-  - m_GUID: abc3c92db6178484380627063c2c17f8
-    m_Address: Audio/ButtonClick.mp3
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Audio
-  - m_GUID: 474117141f7ff36478674d23a62206c8
-    m_Address: Audio/CloseClick.mp3
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Audio
+  m_SerializeEntries: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 43f345baeabe80145b7f64554f5c1876, type: 2}
   m_SchemaSet:

@@ -62,7 +62,7 @@ namespace RoboFactory.DI
             Container.Bind<ConvertRawController>().AsSingle().NonLazy();
             
             Container.BindInterfacesAndSelfTo<ProductsManager>().AsSingle().NonLazy();
-            Container.BindInterfacesAndSelfTo<LocationManager>().AsSingle().NonLazy();
+            Container.Bind<LocationManager>().AsSingle().NonLazy();
 
             Container.BindFactory<UnitObject, UnitObject.Factory>();
             Container.Bind<UnitsManager>().AsSingle().NonLazy();
