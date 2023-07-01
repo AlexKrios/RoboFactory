@@ -44,16 +44,7 @@ namespace RoboFactory.Factory.Menu.Settings
 
         #endregion
 
-        #region Unity Methods
-
-        private void Awake()
-        {
-            SetData();
-        }
-        
-        #endregion
-
-        private void SetData()
+        public void SetData()
         {
             languages.ForEach(x => x.OnClickEvent += OnLanguageClick);
 
@@ -66,9 +57,7 @@ namespace RoboFactory.Factory.Menu.Settings
                 return;
 
             _settingsController.SetLanguage(type);
-
             ActiveLanguage = cell;
-            
             _localisationController.LoadLocalisationData();
 
             OnClickEvent?.Invoke();

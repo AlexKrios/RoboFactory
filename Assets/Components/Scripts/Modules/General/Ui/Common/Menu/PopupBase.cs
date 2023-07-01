@@ -39,8 +39,6 @@ namespace RoboFactory.General.Ui.Common
             Disposable = new CompositeDisposable();
             _canvasGroup = GetComponent<CanvasGroup>();
             close.OnClickAsObservable().Subscribe(_ => Close()).AddTo(Disposable);
-
-            PlayFadeIn();
         }
 
         protected virtual void OnDestroy()
@@ -49,12 +47,21 @@ namespace RoboFactory.General.Ui.Common
         }
 
         #endregion
+        
+        public virtual void Initialize()
+        {
+            PlayFadeIn();
+        }
 
         private void PlayFadeIn()
         {
             _canvasGroup.alpha = 0f;
             _canvasGroup.DOFade(1, FadeTime).SetEase(Ease.InCubic);
+            
+            UiController.SetCanvasActive(CanvasType.HUD, false);
         }
+        
+        protected virtual void Release() { }
         
         public void Close()
         {
@@ -63,7 +70,12 @@ namespace RoboFactory.General.Ui.Common
             _canvasGroup.alpha = 1f;
             _canvasGroup.DOFade(0, FadeTime)
                 .SetEase(Ease.OutCubic)
-                .OnComplete(() => UiController.RemoveUi(this, gameObject));
+                .OnComplete(() =>
+                {
+                    UiController.SetCanvasActive(CanvasType.HUD);
+                    UiController.RemoveUi(this, gameObject);
+                    Release();
+                });
         }
     }
 }

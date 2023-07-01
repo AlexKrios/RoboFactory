@@ -18,6 +18,7 @@ namespace RoboFactory.Factory.Menu.Production
     {
         #region Zenject
         
+        [Inject] private readonly AssetsManager _assetsManager;
         [Inject] private readonly LocalisationManager _localisationController;
         [Inject] private readonly IUiController _uiController;
 
@@ -38,23 +39,24 @@ namespace RoboFactory.Factory.Menu.Production
 
         #endregion
 
-        #region Unity Methods
-
         private void Awake()
+        {
+            icon.color = new Color(1, 1, 1, 0);
+        }
+        
+        public void Initialize()
         {
             _menu = _uiController.FindUi<ProductionMenuView>();
             
             SetData();
         }
 
-        #endregion
-
         public async void SetData()
         {
             title.text = _localisationController.GetLanguageValue(_menu.ActiveProduct.Key);
             
             icon.color = new Color(1, 1, 1, 0);
-            icon.sprite = await AssetsManager.LoadAsset<Sprite>(_menu.ActiveProduct.IconRef);
+            icon.sprite = await _assetsManager.LoadAssetAsync<Sprite>(_menu.ActiveProduct.IconRef);
             icon.DORestart();
             icon.DOFade(1f, 0.1f);
 

@@ -31,14 +31,10 @@ namespace RoboFactory.Factory.Menu.Expedition
 
         #endregion
 
-        #region Unity Methods
-
-        private void Awake()
+        public void Initialize()
         {
             SetData();
         }
-
-        #endregion
         
         private void SetData()
         {

@@ -36,19 +36,13 @@ namespace RoboFactory.Factory.Menu.Production
 
         #endregion
 
-        #region Unity Methods
-
-        protected override void Awake()
+        public void Initialize()
         {
-            base.Awake();
-
             _menu = _uiController.FindUi<ProductionMenuView>();
             
             ResetStar();
         }
 
-        #endregion
-        
         protected override void Click()
         {
             base.Click();

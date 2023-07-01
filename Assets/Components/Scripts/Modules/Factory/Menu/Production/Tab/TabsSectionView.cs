@@ -44,19 +44,10 @@ namespace RoboFactory.Factory.Menu.Production
 
         #endregion
 
-        #region Unity Methods
-
-        private void Awake()
+        public void Initialize()
         {
             _menu = _uiController.FindUi<ProductionMenuView>();
             
-            SetData();
-        }
-
-        #endregion
-
-        public void SetData()
-        {
             tabs.ForEach(x =>
             {
                 x.SetTabData();

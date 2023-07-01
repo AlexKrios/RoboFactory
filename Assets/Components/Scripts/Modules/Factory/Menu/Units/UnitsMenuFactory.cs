@@ -17,6 +17,7 @@ namespace RoboFactory.Factory.Menu
 
         [Inject] private readonly DiContainer _container;
         [Inject] private readonly Settings _settings;
+        [Inject] private readonly AssetsManager _assetsManager;
         [Inject] private readonly IUiController _uiController;
 
         #endregion                
@@ -28,9 +29,12 @@ namespace RoboFactory.Factory.Menu
         
         public async void CreateMenu()
         {
-            var menu = await AssetsManager.LoadAsset<GameObject>(_settings.menuAsset);
             var canvasT = _uiController.GetCanvas(CanvasType.Ui).transform;
-            _container.InstantiatePrefabForComponent<UnitsMenuView>(menu, canvasT);
+            var menuOriginal = await _assetsManager.InstantiateAssetAsync(_settings.menuAsset, canvasT);
+            var menu = _container.InjectGameObjectForComponent<UnitsMenuView>(menuOriginal);
+            menu.Initialize();
+            
+            _assetsManager.ReleaseAsset(_settings.menuAsset);
         }
         
         public void CreateSelectionMenu(Transform parent)

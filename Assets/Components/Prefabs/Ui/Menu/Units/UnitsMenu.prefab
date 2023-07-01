@@ -1921,12 +1921,12 @@ PrefabInstance:
     - target: {fileID: 8449591313873578452, guid: c70aa13228bb1e0409a3b06ad150b11a,
         type: 3}
       propertyPath: m_Name
-      value: Equipment
+      value: Engine
       objectReference: {fileID: 0}
     - target: {fileID: 8735924568055825950, guid: c70aa13228bb1e0409a3b06ad150b11a,
         type: 3}
       propertyPath: m_Interactable
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c70aa13228bb1e0409a3b06ad150b11a, type: 3}
@@ -4534,12 +4534,12 @@ PrefabInstance:
     - target: {fileID: 8449591313873578452, guid: c70aa13228bb1e0409a3b06ad150b11a,
         type: 3}
       propertyPath: m_Name
-      value: Skill
+      value: Battery
       objectReference: {fileID: 0}
     - target: {fileID: 8735924568055825950, guid: c70aa13228bb1e0409a3b06ad150b11a,
         type: 3}
       propertyPath: m_Interactable
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c70aa13228bb1e0409a3b06ad150b11a, type: 3}

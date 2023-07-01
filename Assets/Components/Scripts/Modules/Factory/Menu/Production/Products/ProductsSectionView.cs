@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Cysharp.Threading.Tasks;
 using RoboFactory.General.Item.Products;
 using RoboFactory.General.Ui;
 using UnityEngine;
@@ -47,16 +48,12 @@ namespace RoboFactory.Factory.Menu.Production
         
         #endregion
 
-        #region Unity Methods
-
-        private void Awake()
+        public void Initialize()
         {
             _menu = _uiController.FindUi<ProductionMenuView>();
 
             CreateProductCells();
         }
-
-        #endregion
 
         public void CreateProductCells()
         {
@@ -77,7 +74,7 @@ namespace RoboFactory.Factory.Menu.Production
                 product.OnClickEvent += OnTabClick;
                 products.Add(product);
             }
-
+            
             ActiveProduct = products.First();
         }
 

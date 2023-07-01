@@ -5,7 +5,6 @@ namespace Assets.MobileOptimizedWater.Scripts
     public class TouchRotator : MonoBehaviour
     {
         [SerializeField] private Transform cameraRoot;
-        [SerializeField] private float speed;
         [SerializeField] private float mouseSpeed;
 
         private Vector3 prevMousePos;
@@ -17,7 +16,7 @@ namespace Assets.MobileOptimizedWater.Scripts
             {
                 var deltaPos = Input.GetTouch(0).deltaPosition;
 
-                var deltaRotation = new Vector3(-deltaPos.y, deltaPos.x) * Time.deltaTime * speed;
+                var deltaRotation = new Vector3(-deltaPos.y, deltaPos.x) * Time.deltaTime;
                 var rotation = cameraRoot.eulerAngles + deltaRotation;
 
                 cameraRoot.eulerAngles = new Vector3(Mathf.Clamp(rotation.x, 0f, 90f), rotation.y);

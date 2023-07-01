@@ -39,8 +39,8 @@ namespace RoboFactory.Factory.Menu.Units
 
         public void SetTabData()
         {
-            var spriteRef = _iconUtil.GetUnitIcon(unitType);
-            SetIconSprite(spriteRef);
+            var iconRef = _iconUtil.GetUnitIcon(unitType);
+            SetIconSprite(iconRef);
         }
     }
 }

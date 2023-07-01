@@ -14,6 +14,7 @@ namespace RoboFactory.Factory.Menu.Order
     {
         #region Zenject
         
+        [Inject] private readonly AssetsManager _assetsManager;
         [Inject] private readonly ProductsManager _productsManager;
 
         #endregion
@@ -30,7 +31,7 @@ namespace RoboFactory.Factory.Menu.Order
         public async void SetPartInfo(PartObject part)
         {
             var itemCount = _productsManager.GetProduct(part.data.Key).Count;
-            var sprite = await AssetsManager.LoadAsset<Sprite>(part.data.IconRef);
+            var sprite = await _assetsManager.LoadAssetAsync<Sprite>(part.data.IconRef);
 
             SetPartIcon(sprite);
             SetPartText($"{itemCount}/{part.count}");

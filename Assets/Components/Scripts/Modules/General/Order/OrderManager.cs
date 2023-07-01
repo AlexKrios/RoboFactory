@@ -16,7 +16,6 @@ namespace RoboFactory.General.Order
     {
         #region Zenject
 
-        [Inject] private readonly Settings _settings;
         [Inject] private readonly ApiManager _apiManager;
         [Inject] private readonly MoneyManager _moneyManager;
         [Inject] private readonly ProductsManager _productsManager;

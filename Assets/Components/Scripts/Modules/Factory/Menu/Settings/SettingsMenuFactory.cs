@@ -2,7 +2,6 @@
 using JetBrains.Annotations;
 using RoboFactory.General.Asset;
 using RoboFactory.General.Ui;
-using UnityEngine;
 using UnityEngine.AddressableAssets;
 using Zenject;
 
@@ -15,15 +14,19 @@ namespace RoboFactory.Factory.Menu.Settings
 
         [Inject] private readonly DiContainer _container;
         [Inject] private readonly Settings _settings;
+        [Inject] private readonly AssetsManager _assetsManager;
         [Inject] private readonly IUiController _uiController;
 
         #endregion
 
         public async void CreateMenu()
         {
-            var menu = await AssetsManager.LoadAsset<GameObject>(_settings.menuAsset);
             var canvasT = _uiController.GetCanvas(CanvasType.Ui).transform;
-            _container.InstantiatePrefabForComponent<SettingsMenuView>(menu, canvasT);
+            var menuOriginal = await _assetsManager.InstantiateAssetAsync(_settings.menuAsset, canvasT);
+            var menu = _container.InjectGameObjectForComponent<SettingsMenuView>(menuOriginal);
+            menu.Initialize();
+            
+            _assetsManager.ReleaseAsset(_settings.menuAsset);
         }
 
         [Serializable]

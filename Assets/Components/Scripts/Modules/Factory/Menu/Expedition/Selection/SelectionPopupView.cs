@@ -17,6 +17,7 @@ namespace RoboFactory.Factory.Menu.Expedition
     {
         #region Zenject
         
+        [Inject] private readonly AssetsManager _assetsManager;
         [Inject] private readonly LocalisationManager _localisationController;
         [Inject] private readonly ProductsManager _productsManager;
         [Inject] private readonly UnitsManager _unitsManager;
@@ -130,7 +131,7 @@ namespace RoboFactory.Factory.Menu.Expedition
         {
             var unit = _unitsManager.GetUnit(ActiveUnit.Data.Key);
             sidebarTitle.text = _localisationController.GetLanguageValue(unit.Key);
-            sidebarIcon.sprite = await AssetsManager.LoadAsset<Sprite>(unit.IconRef);
+            sidebarIcon.sprite = await _assetsManager.LoadAssetAsync<Sprite>(unit.IconRef);
             for (var i = 0; i < unit.Outfit.Count; i++)
             {
                 var spec = unit.Specs[(SpecType) i];

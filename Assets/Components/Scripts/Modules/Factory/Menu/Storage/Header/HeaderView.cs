@@ -38,10 +38,7 @@ namespace RoboFactory.Factory.Menu.Storage
 
         private void Awake()
         {
-            _menu = _uiController.FindUi<StorageMenuView>();
             defaultToggle.onValueChanged.AddListener(OnToggleClick);
-
-            SetData();
         }
 
         private void OnDestroy()
@@ -50,6 +47,13 @@ namespace RoboFactory.Factory.Menu.Storage
         }
 
         #endregion
+
+        public void Initialize()
+        {
+            _menu = _uiController.FindUi<StorageMenuView>();
+            
+            SetData();
+        }
 
         private void OnToggleClick(bool isOn)
         {

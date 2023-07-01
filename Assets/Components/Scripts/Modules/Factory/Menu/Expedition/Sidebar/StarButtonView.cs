@@ -19,7 +19,7 @@ namespace RoboFactory.Factory.Menu.Expedition
         
         #region Variables
 
-        public Action EventClick { get; set; }
+        private Action EventClick { get; set; }
         
         private ExpeditionMenuView _menu;
         private int ActiveStar
@@ -34,18 +34,12 @@ namespace RoboFactory.Factory.Menu.Expedition
 
         #endregion
 
-        #region Unity Methods
-
-        protected override void Awake()
+        public void Initialize()
         {
-            base.Awake();
-            
             _menu = _uiController.FindUi<ExpeditionMenuView>();
             
             ResetStar();
         }
-
-        #endregion
         
         protected override void Click()
         {

@@ -6,6 +6,7 @@ using RoboFactory.Utils;
 using TMPro;
 using UniRx;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using UnityEngine.UI;
 using Zenject;
 
@@ -16,6 +17,7 @@ namespace RoboFactory.Factory.Menu.Order
     {
         #region Zenject
 
+        [Inject] private readonly AssetsManager _assetsManager;
         [Inject] private readonly LocalisationManager _localisationController;
         [Inject] private readonly ProductsManager _productsManager;
         [Inject] private readonly OrderManager _orderManager;
@@ -42,6 +44,8 @@ namespace RoboFactory.Factory.Menu.Order
 
         private OrderObject _orderData;
         private CompositeDisposable _disposable;
+        
+        private AssetReference _iconRef;
 
         #endregion
 
@@ -70,7 +74,7 @@ namespace RoboFactory.Factory.Menu.Order
 
         private async void SetView()
         {
-            icon.sprite = await AssetsManager.LoadAsset<Sprite>(_orderData.Part.data.IconRef);
+            icon.sprite = await _assetsManager.LoadAssetAsync<Sprite>(_orderData.Part.data.IconRef);
             SetTitleText();
             SetPrizeText();
             button.interactable = _orderManager.IsEnoughParts(_orderData);
@@ -117,8 +121,6 @@ namespace RoboFactory.Factory.Menu.Order
             _orderManager.CollectMoney(_orderData);
             
             SetView();
-            
-            //_saveController.SaveOrders();
         }
     }
 }

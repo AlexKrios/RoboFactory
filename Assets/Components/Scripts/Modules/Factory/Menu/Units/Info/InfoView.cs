@@ -36,18 +36,18 @@ namespace RoboFactory.Factory.Menu.Units
 
         #endregion
 
-        #region Unity Methods
-
-        private void Awake()
+        public void Initialize()
         {
             _menu = _uiController.FindUi<UnitsMenuView>();
             
-            equipment.ForEach(x => x.OnClickEvent += OnEquipmentClick);
-
+            equipment.ForEach(x =>
+            {
+                x.OnClickEvent += OnEquipmentClick;
+                x.Initialize();
+            });
+            
             SetData();
         }
-
-        #endregion
 
         public void SetData()
         {
@@ -90,6 +90,7 @@ namespace RoboFactory.Factory.Menu.Units
             if (UnitModel != null)
                 RemoveModel();
 
+            //TODO: Добавить в адресблы
             UnitModel = _container.InstantiatePrefabForComponent<UnitViewObject>(_menu.ActiveUnit.Model, modelParent);
             UnitModel.SetData(_menu.ActiveUnit);
             _container.InstantiateComponent<UnitModel>(UnitModel.gameObject);

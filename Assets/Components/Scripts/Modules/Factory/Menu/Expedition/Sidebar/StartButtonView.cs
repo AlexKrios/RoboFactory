@@ -26,19 +26,13 @@ namespace RoboFactory.Factory.Menu.Expedition
 
         #endregion
 
-        #region Unity Methods
-
-        protected override void Awake()
+        public void Initialize()
         {
-            base.Awake();
-            
             _menu = _uiController.FindUi<ExpeditionMenuView>();
             
             SetState();
         }
 
-        #endregion
-        
         public override void SetState()
         {
             SetInteractable(!_menu.Units.IsAllUnitEmpty());

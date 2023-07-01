@@ -48,17 +48,13 @@ namespace RoboFactory.Factory.Menu.Units
         
         #endregion
 
-        #region Unity Methods
-
-        private void Awake()
+        public void Initialize()
         {
             _menu = _uiController.FindUi<UnitsMenuView>();
 
             CreateUnits();
         }
 
-        #endregion
-        
         public void CreateUnits()
         {
             if (units.Count != 0)

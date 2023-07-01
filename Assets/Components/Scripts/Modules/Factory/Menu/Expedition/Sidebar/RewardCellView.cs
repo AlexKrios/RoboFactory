@@ -3,12 +3,19 @@ using RoboFactory.General.Item;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 namespace RoboFactory.Factory.Menu.Expedition
 {
     [AddComponentMenu("Scripts/Factory/Menu/Expedition/Reward Cell View")]
     public class RewardCellView : MonoBehaviour
     {
+        #region Zenject
+
+        [Inject] private readonly AssetsManager _assetsManager;
+
+        #endregion
+        
         #region Components
         
         [SerializeField] private Image icon;
@@ -21,7 +28,7 @@ namespace RoboFactory.Factory.Menu.Expedition
             icon.gameObject.SetActive(true);
             count.gameObject.SetActive(true);
             
-            icon.sprite = await AssetsManager.LoadAsset<Sprite>(part.data.IconRef);
+            icon.sprite = await _assetsManager.LoadAssetAsync<Sprite>(part.data.IconRef);
             count.text = part.count.ToString();
         }
 

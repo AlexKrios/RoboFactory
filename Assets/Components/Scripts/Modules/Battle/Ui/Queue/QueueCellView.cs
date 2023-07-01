@@ -2,12 +2,19 @@
 using RoboFactory.General.Unit.Battle;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 namespace RoboFactory.Battle.Ui
 {
     [AddComponentMenu("Scripts/Battle/Ui/Queue Cell View")]
     public class QueueCellView : MonoBehaviour
     {
+        #region Zenject
+
+        [Inject] private readonly AssetsManager _assetsManager;
+
+        #endregion
+        
         #region Components
 
         [SerializeField] private Image icon;
@@ -38,7 +45,7 @@ namespace RoboFactory.Battle.Ui
         {
             Data = unit;
             
-            var sprite = await AssetsManager.LoadAsset<Sprite>(unit.Info.IconRef);
+            var sprite = await _assetsManager.LoadAssetAsync<Sprite>(unit.Info.IconRef);
             
             SetCellBg(unit.Team);
             SetCellIcon(sprite);

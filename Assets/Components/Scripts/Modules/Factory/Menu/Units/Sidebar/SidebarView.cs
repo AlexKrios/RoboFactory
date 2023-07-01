@@ -16,6 +16,7 @@ namespace RoboFactory.Factory.Menu.Units
     {
         #region Zenject
 
+        [Inject] private readonly AssetsManager _assetsManager;
         [Inject] private readonly LocalisationManager _localisationController;
         [Inject] private readonly IUiController _uiController;
         [Inject] private readonly ProductsManager _productsManager;
@@ -36,21 +37,17 @@ namespace RoboFactory.Factory.Menu.Units
 
         #endregion
 
-        #region Unity Methods
-
-        private void Awake()
+        public void Initialize()
         {
             _menu = _uiController.FindUi<UnitsMenuView>();
             
             SetData();
         }
 
-        #endregion
-        
         public async void SetData()
         {
             unitName.text = _localisationController.GetLanguageValue(_menu.ActiveUnit.Key);
-            unitIcon.sprite = await AssetsManager.LoadAsset<Sprite>(_menu.ActiveUnit.IconRef);
+            unitIcon.sprite = await _assetsManager.LoadAssetAsync<Sprite>(_menu.ActiveUnit.IconRef);
 
             for (var i = 0; i < _menu.ActiveUnit.Outfit.Count; i++)
             {

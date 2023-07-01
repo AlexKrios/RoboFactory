@@ -38,8 +38,8 @@ namespace RoboFactory.Factory.Menu.Production
 
         public void SetTabData(ProductGroup type)
         {
-            var spriteRef = _iconUtil.GetProductGroupIcon(type);
-            SetIconSprite(spriteRef);
+            var iconRef = _iconUtil.GetProductGroupIcon(type);
+            SetIconSprite(iconRef);
         }
     }
 }

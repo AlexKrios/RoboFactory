@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
+using RoboFactory.General.Asset;
 using RoboFactory.General.Localisation;
 using RoboFactory.General.Order;
 using RoboFactory.General.Ui;
@@ -21,6 +22,7 @@ namespace RoboFactory.Factory.Menu.Order
         
         #region Zenject
 
+        [Inject] private readonly AssetsManager _assetsManager;
         [Inject] private readonly LocalisationManager _localisationController;
         [Inject] private readonly OrderManager _orderManager;
         [Inject] private readonly OrderMenuFactory _orderManagerFactory;
@@ -48,14 +50,19 @@ namespace RoboFactory.Factory.Menu.Order
             base.Awake();
             
             upgrade.OnClickAsObservable().Subscribe(_ => OnUpgradeClick()).AddTo(Disposable);
+        }
+
+        #endregion
+
+        public override void Initialize()
+        {
+            base.Initialize();
             
             title.text = _localisationController.GetLanguageValue(LocalisationKeys.OrderMenuTitleKey);
 
             SetData();
             StartRefreshTimer();
         }
-
-        #endregion
 
         private async void StartRefreshTimer()
         {
@@ -112,6 +119,11 @@ namespace RoboFactory.Factory.Menu.Order
         {
             var canvasT = UiController.GetCanvas(CanvasType.Ui).transform;
             _orderManagerFactory.CreateUpgradePopup(canvasT);
+        }
+        
+        protected override void Release()
+        {
+            _assetsManager.ReleaseAllAsset();
         }
     }
 }

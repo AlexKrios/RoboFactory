@@ -50,20 +50,16 @@ namespace RoboFactory.Factory.Menu.Production
             }
         }
         #endregion
-
-        #region Unity Methods
-
-        private void Awake()
+        
+        public void Initialize()
         {
             _menu = _uiController.FindUi<ProductionMenuView>();
             
             SetTabsData();
-            SetData();
+            SetHeaderData();
         }
-
-        #endregion
-
-        public void SetData()
+        
+        public void SetHeaderData()
         {
             var productKey = LocalisationKeys.ProductKeys[_menu.ActiveProductGroup];
             var unitKey = LocalisationKeys.UnitKeys[_menu.ActiveUnitType];

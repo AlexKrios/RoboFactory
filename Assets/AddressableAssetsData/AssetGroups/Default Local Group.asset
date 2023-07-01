@@ -121,16 +121,8 @@ MonoBehaviour:
     m_Address: Assets/Components/Prefabs/Ui/Menu/Units/UnitsMenu.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
-  - m_GUID: 47fa50b707f5f9541915b2c91ee0ef76
-    m_Address: Assets/Components/Prefabs/Ui/Menu/Settings/SettingsMenu.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
   - m_GUID: c87fbf4fe1c381844b47f2163c958c9e
     m_Address: Assets/Components/Prefabs/Ui/Menu/Order/OrderMenu.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 2238f4f078686ba44b03c162a51db0c0
-    m_Address: Assets/Components/Prefabs/Ui/Menu/Expedition/ExpeditionMenu.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: 7b738a0b7c2318841b10f2a1077b9cfc

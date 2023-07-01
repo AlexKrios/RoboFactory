@@ -1,4 +1,5 @@
-﻿using RoboFactory.General.Localisation;
+﻿using RoboFactory.General.Asset;
+using RoboFactory.General.Localisation;
 using RoboFactory.General.Location;
 using RoboFactory.General.Ui.Common;
 using TMPro;
@@ -12,6 +13,7 @@ namespace RoboFactory.Factory.Menu.Expedition
     {
         #region Zenject
 
+        [Inject] private readonly AssetsManager _assetsManager;
         [Inject] private readonly LocalisationManager _localisationController;
 
         #endregion
@@ -41,14 +43,10 @@ namespace RoboFactory.Factory.Menu.Expedition
         protected override void Awake()
         {
             base.Awake();
-            
-            UiController.AddUi(this);
-            
+
             units.EventClick += OnUnitClick;
             locations.EventClick += OnLocationClick;
             start.EventClick += Close;
-
-            title.text = _localisationController.GetLanguageValue(LocalisationKeys.UnitsMenuTitleKey);
         }
 
         protected override void OnDestroy()
@@ -78,5 +76,25 @@ namespace RoboFactory.Factory.Menu.Expedition
         }
 
         #endregion
+
+        public override void Initialize()
+        {
+            base.Initialize();
+            
+            UiController.AddUi(this);
+            
+            star.Initialize();
+            units.Initialize();
+            locations.Initialize();
+            sidebar.Initialize();
+            start.Initialize();
+            
+            title.text = _localisationController.GetLanguageValue(LocalisationKeys.UnitsMenuTitleKey);
+        }
+        
+        protected override void Release()
+        {
+            _assetsManager.ReleaseAllAsset();
+        }
     }
 }

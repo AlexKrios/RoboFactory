@@ -3,7 +3,6 @@ using RoboFactory.General.Audio;
 using RoboFactory.General.Ui;
 using UnityEngine;
 using Zenject;
-using CameraType = RoboFactory.General.Ui.CameraType;
 
 namespace RoboFactory.Factory
 {
@@ -20,10 +19,6 @@ namespace RoboFactory.Factory
 
         #region Components
 
-        [Header("Camera")]
-        [SerializeField] private GameObject mainCamera;
-        [SerializeField] private GameObject uiCamera;
-        
         [Header("Canvas")]
         [SerializeField] private GameObject adminCanvas;
         [SerializeField] private GameObject hudCanvas;
@@ -33,9 +28,6 @@ namespace RoboFactory.Factory
         
         private void Awake()
         {
-            _uiController.AddCamera(CameraType.Main, mainCamera);
-            _uiController.AddCamera(CameraType.Ui, uiCamera);
-            
             _uiController.AddCanvas(CanvasType.Admin, adminCanvas);
             _uiController.AddCanvas(CanvasType.HUD, hudCanvas);
             _uiController.AddCanvas(CanvasType.Ui, uiCanvas);
@@ -63,7 +55,6 @@ namespace RoboFactory.Factory
 
         private void OnDestroy()
         {
-            _uiController.ClearCamera();
             _uiController.ClearCanvas();
         }
     }

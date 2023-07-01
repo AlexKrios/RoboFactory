@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 468a46d0ae32c3544b7d98094e6448a9, type: 3}
   m_Name: AddressableAssetSettings
   m_EditorClassIdentifier: 
-  m_DefaultGroup: af42ec82797a2e54a9a530cddd70dca7
+  m_DefaultGroup: b49f322b7c1411143abb581cb60a5981
   m_CachedHash:
     serializedVersion: 2
     Hash: 00000000000000000000000000000000
@@ -49,6 +49,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5a0aed5a7a45225479ebb44ee05556b4, type: 2}
   - {fileID: 11400000, guid: 4f0706ce2924b6d46b4c391cfdf14712, type: 2}
   - {fileID: 11400000, guid: b08a5793c78ed594f93284f70c4ee694, type: 2}
+  - {fileID: 11400000, guid: c341cb7814ccb2a4a99012945947cfa7, type: 2}
+  - {fileID: 11400000, guid: 4138c6a62a8c5c341a4c1d44be9f39d7, type: 2}
   m_BuildSettings:
     m_CompileScriptsInVirtualMode: 0
     m_CleanupStreamingAssetsAfterBuilds: 1
@@ -69,7 +71,7 @@ MonoBehaviour:
       - m_Id: aa1e7e6cd7e92db408659df9f1e01a8d
         m_Value: ServerData/[BuildTarget]
       - m_Id: fd0c1bd31d4919c4ba7cb3aeb9a00350
-        m_Value: http://localhost/[BuildTarget]
+        m_Value: gs://robo-factory.appspot.com/Android/[BuildTarget]
     m_ProfileEntryNames:
     - m_Id: f42c9694fd4ab4d449861268d7c67aae
       m_Name: BuildTarget
@@ -93,6 +95,7 @@ MonoBehaviour:
     - Music
     - Audio
     - Products Sprites
+    - Test
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: 840dbda6ecb7c544a83f372c8722ad99, type: 2}

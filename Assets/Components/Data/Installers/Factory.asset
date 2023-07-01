@@ -19,18 +19,18 @@ MonoBehaviour:
       m_SubObjectType: 
       m_EditorAssetChanged: 0
   productionMenu:
-    menuAsset:
+    buttonPrefab: {fileID: 2203690391971903293, guid: bb7b5293727973a409a6a23bbbcde255,
+      type: 3}
+    menuReference:
       m_AssetGUID: 49152d6ec0e2fd840a3f1482dfc0dbe9
       m_SubObjectName: 
       m_SubObjectType: 
       m_EditorAssetChanged: 0
-    buttonPrefab: {fileID: 2203690391971903293, guid: bb7b5293727973a409a6a23bbbcde255,
+    productReference: {fileID: 2791654665713099554, guid: 490c6031b21c2724cb1e7f8c62ff676d,
       type: 3}
-    productPrefab: {fileID: 2791654665713099554, guid: 490c6031b21c2724cb1e7f8c62ff676d,
+    upgradeReference: {fileID: 4758183550124237268, guid: 84dffa0932e0886448db7b955035689c,
       type: 3}
-    upgradePrefab: {fileID: 4758183550124237268, guid: 84dffa0932e0886448db7b955035689c,
-      type: 3}
-    queuePrefab: {fileID: 4758183550124237268, guid: 56cff11359c6baa40af59aa9fbe55cd2,
+    queueReference: {fileID: 4758183550124237268, guid: 56cff11359c6baa40af59aa9fbe55cd2,
       type: 3}
   storageMenu:
     menuAsset:

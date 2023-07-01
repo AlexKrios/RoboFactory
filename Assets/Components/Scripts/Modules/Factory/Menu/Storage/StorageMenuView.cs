@@ -1,12 +1,20 @@
-﻿using RoboFactory.General.Item.Products;
+﻿using RoboFactory.General.Asset;
+using RoboFactory.General.Item.Products;
 using RoboFactory.General.Ui.Common;
 using UnityEngine;
+using Zenject;
 
 namespace RoboFactory.Factory.Menu.Storage
 {
     [AddComponentMenu("Scripts/Factory/Menu/Storage/Storage Menu")]
     public class StorageMenuView : MenuBase
     {
+        #region Zenject
+
+        [Inject] private readonly AssetsManager _assetsManager;
+
+        #endregion
+        
         #region Components
         
         [SerializeField] private HeaderView header;
@@ -31,8 +39,6 @@ namespace RoboFactory.Factory.Menu.Storage
         protected override void Awake()
         {
             base.Awake();
-            
-            UiController.AddUi(this);
 
             header.OnToggleClickEvent += OnDefaultToggleClick;
             tabs.OnTabClickEvent += OnTabClick;
@@ -49,7 +55,19 @@ namespace RoboFactory.Factory.Menu.Storage
         }
 
         #endregion
-        
+
+        public override void Initialize()
+        {
+            base.Initialize();
+            
+            UiController.AddUi(this);
+            
+            header.Initialize();
+            tabs.Initialize();
+            items.Initialize();
+            sidebar.Initialize();
+        }
+
         private void OnDefaultToggleClick()
         {
             items.CreateItemCells();
@@ -67,6 +85,11 @@ namespace RoboFactory.Factory.Menu.Storage
         {
             header.SetData();
             sidebar.SetData();
+        }
+        
+        protected override void Release()
+        {
+            _assetsManager.ReleaseAllAsset();
         }
     }
 }

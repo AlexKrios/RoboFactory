@@ -1,5 +1,56 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1398255592522458181
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7920861026993632838}
+  - component: {fileID: 1884955588972710163}
+  m_Layer: 15
+  m_Name: Projector
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7920861026993632838
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1398255592522458181}
+  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0.75, z: -0.1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5538192371963980351}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!119 &1884955588972710163
+Projector:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1398255592522458181}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_NearClipPlane: 0.1
+  m_FarClipPlane: 5
+  m_FieldOfView: 60
+  m_AspectRatio: 1
+  m_Orthographic: 1
+  m_OrthographicSize: 0.75
+  m_Material: {fileID: 2100000, guid: e30ff3588e719f34bbf0c66f22d97487, type: 2}
+  m_IgnoreLayers:
+    serializedVersion: 2
+    m_Bits: 32768
 --- !u!1 &5538192371387472719
 GameObject:
   m_ObjectHideFlags: 0
@@ -62,6 +113,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5427160687125851815}
+  - {fileID: 7920861026993632838}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -82,11 +134,11 @@ MonoBehaviour:
   - group: 1
     parent: {fileID: 5538192371387472716}
     model: {fileID: 5457048771409607065}
-    animator: {fileID: 7126517003257195388}
+    animator: {fileID: 8452394774168215517}
   - group: 2
     parent: {fileID: 5538192372844707516}
     model: {fileID: 8068529797259609757}
-    animator: {fileID: 8942743879494257457}
+    animator: {fileID: 1697130682528307267}
   - group: 3
     parent: {fileID: 7981467913682616181}
     model: {fileID: 616935395242891781}
@@ -292,9 +344,9 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 3356158118928648194}
   m_PrefabAsset: {fileID: 0}
---- !u!95 &7126517003257195388 stripped
+--- !u!95 &8452394774168215517 stripped
 Animator:
-  m_CorrespondingSourceObject: {fileID: 5509311316485219198, guid: c95d4ea1b14519a4a86eb048e5a0b548,
+  m_CorrespondingSourceObject: {fileID: 6620159805705361375, guid: c95d4ea1b14519a4a86eb048e5a0b548,
     type: 3}
   m_PrefabInstance: {fileID: 3356158118928648194}
   m_PrefabAsset: {fileID: 0}
@@ -655,15 +707,15 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 7937945907236773319}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &8068529797259609757 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 130624888373074778, guid: cba1e8a0a367dcc418f07c2ea016d385,
+--- !u!95 &1697130682528307267 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 8765224112774251908, guid: cba1e8a0a367dcc418f07c2ea016d385,
     type: 3}
   m_PrefabInstance: {fileID: 7937945907236773319}
   m_PrefabAsset: {fileID: 0}
---- !u!95 &8942743879494257457 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 1311178145798346486, guid: cba1e8a0a367dcc418f07c2ea016d385,
+--- !u!1 &8068529797259609757 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 130624888373074778, guid: cba1e8a0a367dcc418f07c2ea016d385,
     type: 3}
   m_PrefabInstance: {fileID: 7937945907236773319}
   m_PrefabAsset: {fileID: 0}

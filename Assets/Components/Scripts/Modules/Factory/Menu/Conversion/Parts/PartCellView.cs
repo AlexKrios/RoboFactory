@@ -12,6 +12,7 @@ namespace RoboFactory.Factory.Menu.Conversion
     {
         #region Zenject
         
+        [Inject] private readonly AssetsManager _assetsManager;
         [Inject] private readonly ManagersResolver managersResolver;
 
         #endregion
@@ -29,7 +30,7 @@ namespace RoboFactory.Factory.Menu.Conversion
             var data = part.data;
             var store = managersResolver.GetManagerByType(data.ItemType);
             var itemCount = store.GetItem(data.Key).Count;
-            var sprite = await AssetsManager.LoadAsset<Sprite>(data.IconRef);
+            var sprite = await _assetsManager.LoadAssetAsync<Sprite>(data.IconRef);
 
             icon.sprite = sprite;
             count.text = $"{itemCount}/{part.count}";

@@ -16,6 +16,7 @@ namespace RoboFactory.Factory.Menu.Storage
     {
         #region Zenject
 
+        [Inject] private readonly AssetsManager _assetsManager;
         [Inject] private readonly LocalisationManager _localisationController;
         [Inject] private readonly IUiController _uiController;
 
@@ -37,16 +38,12 @@ namespace RoboFactory.Factory.Menu.Storage
 
         #endregion
 
-        #region Unity Methods
-
-        private void Awake()
+        public void Initialize()
         {
             _menu = _uiController.FindUi<StorageMenuView>();
             
             SetData();
         }
-
-        #endregion
 
         public async void SetData()
         {
@@ -55,7 +52,7 @@ namespace RoboFactory.Factory.Menu.Storage
                 return;
             
             title.text = _localisationController.GetLanguageValue(_menu.ActiveItem.Key);
-            icon.sprite = await AssetsManager.LoadAsset<Sprite>(_menu.ActiveItem.IconRef);
+            icon.sprite = await _assetsManager.LoadAssetAsync<Sprite>(_menu.ActiveItem.IconRef);
 
             SetSpecsData();
         }

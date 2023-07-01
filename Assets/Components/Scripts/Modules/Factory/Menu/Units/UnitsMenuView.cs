@@ -1,14 +1,22 @@
 ﻿using RoboFactory.Factory.Menu.Units;
+using RoboFactory.General.Asset;
 using RoboFactory.General.Item.Products;
 using RoboFactory.General.Ui.Common;
 using RoboFactory.General.Unit;
 using UnityEngine;
+using Zenject;
 
 namespace RoboFactory.Factory.Menu
 {
     [AddComponentMenu("Scripts/Factory/Menu/Units/Units Menu View")]
     public class UnitsMenuView : MenuBase
     {
+        #region Zenject
+
+        [Inject] private readonly AssetsManager _assetsManager;
+
+        #endregion
+        
         #region Components
         
         [Space]
@@ -35,15 +43,26 @@ namespace RoboFactory.Factory.Menu
         protected override void Awake()
         {
             base.Awake();
-            
-            UiController.AddUi(this);
-            
+
             tabs.OnTabClickEvent += OnTabClick;
             roster.OnUnitClickEvent += OnUnitClick;
         }
 
         #endregion
-        
+
+        public override void Initialize()
+        {
+            base.Initialize();
+            
+            UiController.AddUi(this);
+            
+            header.Initialize();
+            tabs.Initialize();
+            roster.Initialize();
+            info.Initialize();
+            sidebar.Initialize();
+        }
+
         private void OnTabClick()
         {
             header.SetData();
@@ -63,6 +82,11 @@ namespace RoboFactory.Factory.Menu
             base.Close();
          
             info.gameObject.SetActive(false);
+        }
+        
+        protected override void Release()
+        {
+            _assetsManager.ReleaseAllAsset();
         }
     }
 }

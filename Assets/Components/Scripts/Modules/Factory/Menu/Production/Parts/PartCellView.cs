@@ -1,4 +1,5 @@
-﻿using RoboFactory.General.Asset;
+﻿using DG.Tweening;
+using RoboFactory.General.Asset;
 using RoboFactory.General.Item;
 using TMPro;
 using UnityEngine;
@@ -13,6 +14,7 @@ namespace RoboFactory.Factory.Menu.Production
     {
         #region Zenject
 
+        [Inject] private readonly AssetsManager _assetsManager;
         [Inject] private readonly ManagersResolver managersResolver;
 
         #endregion
@@ -31,7 +33,13 @@ namespace RoboFactory.Factory.Menu.Production
         
         #endregion
 
-        public async void SetPartInfo(RecipeObject recipe)
+        private void Awake()
+        {
+            icon.color = new Color(1, 1, 1, 0);
+            SetPartText(string.Empty);
+        }
+
+        public void SetPartInfo(RecipeObject recipe)
         {
             var index = transform.GetSiblingIndex();
             if (index < recipe.Parts.Count)
@@ -40,29 +48,22 @@ namespace RoboFactory.Factory.Menu.Production
                 var data = _part.data;
                 var store = managersResolver.GetManagerByType(data.ItemType);
                 var itemCount = store.GetItem(data.Key).Count;
-                var sprite = await AssetsManager.LoadAsset<Sprite>(data.IconRef);
-
+                
                 gameObject.SetActive(true);
-                SetPartIcon(sprite);
+                SetPartIcon();
                 SetPartText($"{itemCount}/{_part.count}");
                 SetPartStar(_part.star);
             }
             else
-                ResetPartInfo();
+                gameObject.SetActive(false);
         }
 
-        private void ResetPartInfo()
+        private async void SetPartIcon()
         {
-            gameObject.SetActive(false);
-            SetPartIcon(null, 0f);
-            SetPartText(null);
-            SetPartStar(0, false);
-        }
-
-        private void SetPartIcon(Sprite partIcon, float alpha = 1f)
-        {
-            icon.sprite = partIcon;
-            icon.color = new Color(1, 1, 1, alpha);
+            icon.color = new Color(1, 1, 1, 0);
+            icon.sprite = await _assetsManager.LoadAssetAsync<Sprite>(_part.data.IconRef);
+            icon.DORestart();
+            icon.DOFade(1f, 0.1f);
         }
         private void SetPartText(string textString)
         {

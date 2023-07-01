@@ -15,6 +15,7 @@ namespace RoboFactory.Factory.Menu.Expedition
     {
         #region Zenject
         
+        [Inject] private readonly AssetsManager _assetsManager;
         [Inject] private readonly LocalisationManager _localisationController;
         [Inject] private readonly IUiController _uiController;
 
@@ -35,21 +36,17 @@ namespace RoboFactory.Factory.Menu.Expedition
 
         #endregion
 
-        #region Unity Methods
-
-        private void Awake()
+        public void Initialize()
         {
             _menu = _uiController.FindUi<ExpeditionMenuView>();
             
             SetData();
         }
 
-        #endregion
-
         public async void SetData()
         {
             title.text = _localisationController.GetLanguageValue(_menu.ActiveLocation.Key);
-            icon.sprite = await AssetsManager.LoadAsset<Sprite>(_menu.ActiveLocation.IconRef);
+            icon.sprite = await _assetsManager.LoadAssetAsync<Sprite>(_menu.ActiveLocation.IconRef);
             
             timer.text = TimeUtil.DateCraftTimer(_menu.ActiveLocation.Time);
 

@@ -15,6 +15,7 @@ namespace RoboFactory.Factory.Menu.Conversion
     {
         #region Zenject
         
+        [Inject] private readonly AssetsManager _assetsManager;
         [Inject] private readonly IUiController _uiController;
         [Inject] private readonly ConvertRawController _convertRawController;
 
@@ -45,7 +46,7 @@ namespace RoboFactory.Factory.Menu.Conversion
 
         public async void SetResultData(AssetReference iconRef, int star)
         {
-            icon.sprite = await AssetsManager.LoadAsset<Sprite>(iconRef);
+            icon.sprite = await _assetsManager.LoadAssetAsync<Sprite>(iconRef);
             level.text = star.ToString();
         }
         

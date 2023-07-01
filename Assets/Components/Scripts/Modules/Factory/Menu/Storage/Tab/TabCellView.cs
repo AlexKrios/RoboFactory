@@ -3,6 +3,7 @@ using RoboFactory.General.Item.Products;
 using RoboFactory.General.Ui.Common;
 using RoboFactory.Utils;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using Zenject;
 
 namespace RoboFactory.Factory.Menu.Storage
@@ -25,6 +26,8 @@ namespace RoboFactory.Factory.Menu.Storage
         #region Variables
 
         public Action<TabCellView, ProductGroup> OnClickEvent { get; set; }
+        
+        private AssetReference _iconRef;
 
         #endregion
 
@@ -37,8 +40,8 @@ namespace RoboFactory.Factory.Menu.Storage
 
         public void SetTabData(ProductGroup type)
         {
-            var spriteRef = _iconUtil.GetProductGroupIcon(type);
-            SetIconSprite(spriteRef);
+            var iconRef = _iconUtil.GetProductGroupIcon(type);
+            SetIconSprite(iconRef);
         }
     }
 }

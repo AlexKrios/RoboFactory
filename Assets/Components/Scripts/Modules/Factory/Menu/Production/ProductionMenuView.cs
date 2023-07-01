@@ -1,4 +1,5 @@
-﻿using RoboFactory.General.Item.Products;
+﻿using RoboFactory.General.Asset;
+using RoboFactory.General.Item.Products;
 using RoboFactory.General.Ui;
 using RoboFactory.General.Ui.Common;
 using RoboFactory.General.Unit;
@@ -14,6 +15,7 @@ namespace RoboFactory.Factory.Menu.Production
     {
         #region Zenject
         
+        [Inject] private readonly AssetsManager _assetsManager;
         [Inject] private readonly ProductionMenuFactory _productionMenuFactory;
 
         #endregion
@@ -49,8 +51,6 @@ namespace RoboFactory.Factory.Menu.Production
         {
             base.Awake();
 
-            UiController.AddUi(this);
-
             upgrade.OnClickAsObservable().Subscribe(_ => OnUpgradeClick()).AddTo(Disposable);
 
             header.OnTabClickEvent += OnGroupTabClick;
@@ -72,9 +72,9 @@ namespace RoboFactory.Factory.Menu.Production
 
         private void OnGroupTabClick()
         {
-            header.SetData();
+            header.SetHeaderData();
             star.ResetStar();
-            tabs.SetData();
+            tabs.Initialize();
             products.CreateProductCells();
             parts.SetData();
             sidebar.SetData();
@@ -90,7 +90,7 @@ namespace RoboFactory.Factory.Menu.Production
         
         private void OnTypeTabClick()
         {
-            header.SetData();
+            header.SetHeaderData();
             star.ResetStar();
             products.CreateProductCells();
             parts.SetData();
@@ -100,7 +100,7 @@ namespace RoboFactory.Factory.Menu.Production
         
         private void OnProductsClick()
         {
-            header.SetData();
+            header.SetHeaderData();
             star.ResetStar();
             parts.SetData();
             sidebar.SetData();
@@ -122,10 +122,30 @@ namespace RoboFactory.Factory.Menu.Production
 
         #endregion
 
+        public override void Initialize()
+        {
+            base.Initialize();
+            
+            UiController.AddUi(this);
+            
+            header.Initialize();
+            star.Initialize();
+            tabs.Initialize();
+            products.Initialize();
+            parts.Initialize();
+            sidebar.Initialize();
+            create.Initialize();
+        }
+
         private void OnUpgradeClick()
         {
             var canvasT = UiController.GetCanvas(CanvasType.Ui).transform;
             _productionMenuFactory.CreateUpgradePopup(canvasT);
+        }
+
+        protected override void Release()
+        {
+            _assetsManager.ReleaseAllAsset();
         }
     }
 }

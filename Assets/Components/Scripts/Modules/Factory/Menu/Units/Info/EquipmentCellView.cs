@@ -38,17 +38,11 @@ namespace RoboFactory.Factory.Menu.Units
         public ProductObject Data { get; private set; }
 
         #endregion
-        
-        #region Unity Methods
 
-        protected override void Awake()
+        public void Initialize()
         {
-            base.Awake();
-            
             _menu = _uiController.FindUi<UnitsMenuView>();
         }
-
-        #endregion
 
         public void SetEquipmentData(ProductObject product)
         {

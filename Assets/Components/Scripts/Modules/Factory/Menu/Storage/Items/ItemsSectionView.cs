@@ -52,16 +52,12 @@ namespace RoboFactory.Factory.Menu.Storage
 
         #endregion
 
-        #region Unity Methods
-
-        private void Awake()
+        public void Initialize()
         {
             _menu = _uiController.FindUi<StorageMenuView>();
 
             CreateItemCells();
         }
-
-        #endregion
 
         public void CreateItemCells()
         {

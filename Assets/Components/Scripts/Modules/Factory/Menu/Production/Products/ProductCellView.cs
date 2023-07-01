@@ -15,7 +15,7 @@ namespace RoboFactory.Factory.Menu.Production
         public ProductObject Data { get; private set; }
 
         #endregion
-        
+
         protected override void Click()
         {
             base.Click();

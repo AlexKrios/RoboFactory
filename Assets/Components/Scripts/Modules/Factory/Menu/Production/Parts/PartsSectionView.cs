@@ -18,6 +18,7 @@ namespace RoboFactory.Factory.Menu.Production
     {
         #region Zenject
         
+        [Inject] private readonly AssetsManager _assetsManager;
         [Inject] private readonly IUiController _uiController;
 
         #endregion
@@ -43,17 +44,13 @@ namespace RoboFactory.Factory.Menu.Production
 
         #endregion
 
-        #region Unity Methods
-
-        private void Awake()
+        public void Initialize()
         {
             _menu = _uiController.FindUi<ProductionMenuView>();
 
             SetData();
         }
-
-        #endregion
-
+        
         public async void SetData()
         {
             await SetProductIcon();
@@ -65,7 +62,7 @@ namespace RoboFactory.Factory.Menu.Production
         private async UniTask SetProductIcon()
         {
             icon.color = new Color(1, 1, 1, 0);
-            icon.sprite = await AssetsManager.LoadAsset<Sprite>(ActiveProduct.IconRef);
+            icon.sprite = await _assetsManager.LoadAssetAsync<Sprite>(ActiveProduct.IconRef);
             icon.DORestart();
             icon.DOFade(1f, 0.1f);
         }

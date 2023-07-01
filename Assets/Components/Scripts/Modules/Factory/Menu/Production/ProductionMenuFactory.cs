@@ -1,4 +1,5 @@
 ﻿using System;
+using Cysharp.Threading.Tasks;
 using JetBrains.Annotations;
 using RoboFactory.General.Asset;
 using RoboFactory.General.Ui;
@@ -16,6 +17,7 @@ namespace RoboFactory.Factory.Menu.Production
 
         [Inject] private readonly DiContainer _container;
         [Inject] private readonly Settings _settings;
+        [Inject] private readonly AssetsManager _assetsManager;
         [Inject] private readonly IUiController _uiController;
 
         #endregion
@@ -27,42 +29,45 @@ namespace RoboFactory.Factory.Menu.Production
         
         public async void CreateMenu()
         {
-            var menu = await AssetsManager.LoadAsset<GameObject>(_settings.menuAsset);
             var canvasT = _uiController.GetCanvas(CanvasType.Ui).transform;
-            _container.InstantiatePrefabForComponent<ProductionMenuView>(menu, canvasT);
+            var menuOriginal = await _assetsManager.InstantiateAssetAsync(_settings.menuReference, canvasT);
+            var menu = _container.InjectGameObjectForComponent<ProductionMenuView>(menuOriginal);
+            menu.Initialize();
+            
+            _assetsManager.ReleaseAsset(_settings.menuReference);
         }
         
         public ProductCellView CreateProduct(Transform parent)
         {
-            return _container.InstantiatePrefabForComponent<ProductCellView>(_settings.productPrefab, parent);
+            return _container.InstantiatePrefabForComponent<ProductCellView>(_settings.productReference, parent);
         }
         
         public void CreateUpgradePopup(Transform parent)
         {
-            _container.InstantiatePrefabForComponent<UpgradePopupView>(_settings.upgradePrefab, parent);
+            _container.InstantiatePrefabForComponent<UpgradePopupView>(_settings.upgradeReference, parent);
         }
         
         public void CreateUpgradeQueuePopup(Transform parent)
         {
-            _container.InstantiatePrefabForComponent<UpgradeQueuePopupView>(_settings.queuePrefab, parent);
+            _container.InstantiatePrefabForComponent<UpgradeQueuePopupView>(_settings.queueReference, parent);
         }
 
         [Serializable]
         public class Settings
         {
-            public AssetReference menuAsset;
-
-            [Space]
             public GameObject buttonPrefab;
             
             [Space]
-            public GameObject productPrefab;
+            public AssetReference menuReference;
+
+            [Space]
+            public GameObject productReference;
             
             [Space]
-            public GameObject upgradePrefab;
+            public GameObject upgradeReference;
             
             [Space]
-            public GameObject queuePrefab;
+            public GameObject queueReference;
         }
     }
 }

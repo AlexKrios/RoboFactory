@@ -43,17 +43,13 @@ namespace RoboFactory.Factory.Menu.Storage
         }
 
         #endregion
-        
-        #region Unity Methods
 
-        private void Awake()
+        public void Initialize()
         {
             _menu = _uiController.FindUi<StorageMenuView>();
             
             SetTabsData();
         }
-
-        #endregion
 
         private void SetTabsData()
         {

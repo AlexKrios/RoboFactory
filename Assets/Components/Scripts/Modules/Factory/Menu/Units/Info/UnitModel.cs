@@ -1,8 +1,5 @@
 ﻿using JetBrains.Annotations;
-using RoboFactory.General.Ui;
 using UnityEngine;
-using Zenject;
-using CameraType = RoboFactory.General.Ui.CameraType;
 
 namespace RoboFactory.Factory.Menu.Units
 {
@@ -10,12 +7,6 @@ namespace RoboFactory.Factory.Menu.Units
     [AddComponentMenu("Scripts/Factory/Menu/Units/Unit Model")]
     public class UnitModel : MonoBehaviour
     {
-        #region Zenject
-
-        [Inject] private readonly IUiController _uiController;
-
-        #endregion
-        
         #region Variables
 
         private Transform _unitTransform;
@@ -47,6 +38,8 @@ namespace RoboFactory.Factory.Menu.Units
             RotateMobile();
             #endif
         }
+        
+        #endregion
 
         private void RotateEditor()
         {
@@ -60,7 +53,7 @@ namespace RoboFactory.Factory.Menu.Units
             if (Input.touchCount != 1)
                 return;
 
-            var cam = _uiController.GetCamera(CameraType.Ui).GetComponent<Camera>();
+            var cam = Camera.current;
             var touch = Input.GetTouch(0);
             var ray = cam.ScreenPointToRay(touch.position);
             if(Physics.Raycast(ray, out var hit))
@@ -82,7 +75,5 @@ namespace RoboFactory.Factory.Menu.Units
                     break;
             }
         }
-
-        #endregion
     }
 }

@@ -29,17 +29,13 @@ namespace RoboFactory.Factory.Menu.Units
 
         #endregion
 
-        #region Unity Methods
-
-        private void Awake()
+        public void Initialize()
         {
             _menu = _uiController.FindUi<UnitsMenuView>();
             
             SetData();
         }
 
-        #endregion
-        
         public void SetData()
         {
             title.text = _localisationController.GetLanguageValue(LocalisationKeys.UnitsMenuTitleKey);

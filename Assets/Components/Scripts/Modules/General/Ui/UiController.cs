@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using JetBrains.Annotations;
 using UnityEngine;
-using UnityEngine.AddressableAssets;
 using Zenject;
 
 namespace RoboFactory.General.Ui
@@ -11,37 +10,11 @@ namespace RoboFactory.General.Ui
     {
         [Inject] private readonly DiContainer _container;
         
-        private readonly Dictionary<CameraType, GameObject> _cameraDictionary;
         private readonly Dictionary<CanvasType, GameObject> _canvasDictionary;
 
         public UiController()
         {
-            _cameraDictionary = new Dictionary<CameraType, GameObject>();
             _canvasDictionary = new Dictionary<CanvasType, GameObject>();
-        }
-
-        public void AddCamera(CameraType type, GameObject camera)
-        {
-            if (_cameraDictionary.ContainsKey(type))
-                _cameraDictionary[type] = camera;
-            else
-                _cameraDictionary.Add(type, camera);
-        }
-        
-        public GameObject GetCamera(CameraType type)
-        {
-            return _cameraDictionary[type];
-        }
-
-        public void SetCameraActive(CameraType type, bool value = true)
-        {
-            _cameraDictionary[type].SetActive(value);
-        }
-        
-        public void ClearCamera()
-        {
-            if (_cameraDictionary.Count != 0)
-                _cameraDictionary.Clear();
         }
 
         public void AddCanvas(CanvasType type, GameObject canvas)
@@ -85,7 +58,6 @@ namespace RoboFactory.General.Ui
         {
             _container.Unbind<T>();
             Object.Destroy(gameObject, timeout);
-            Addressables.ReleaseInstance(gameObject);
         }
     }
 }

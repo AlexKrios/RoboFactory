@@ -14,6 +14,7 @@ namespace RoboFactory.General.Ui.Common
     {
         #region Zenject
         
+        [Inject] private readonly AssetsManager _assetsManager;
         [Inject] private readonly AudioManager _audioController;
 
         #endregion
@@ -55,7 +56,7 @@ namespace RoboFactory.General.Ui.Common
                 activeImage.transform.Rotate(new Vector3(0, 0, 30) * Time.deltaTime);
         }
 
-        private void OnDestroy()
+        protected virtual void OnDestroy()
         {
             _disposable.Dispose();
         }
@@ -71,7 +72,7 @@ namespace RoboFactory.General.Ui.Common
         {
             var color = icon.color;
             icon.color = new Color(color.r, color.g, color.b, 0);
-            icon.sprite = await AssetsManager.LoadAsset<Sprite>(spriteRef);
+            icon.sprite = await _assetsManager.LoadAssetAsync<Sprite>(spriteRef);
             icon.DORestart();
             icon.DOFade(1f, 0.1f);
             icon.gameObject.SetActive(active);

@@ -27,20 +27,14 @@ namespace RoboFactory.Factory.Menu.Production
         private ProductionObject _productionObject;
 
         #endregion
-        
-        #region Unity Methods
 
-        protected override void Awake()
+        public void Initialize()
         {
-            base.Awake();
-            
             _menu = _uiController.FindUi<ProductionMenuView>();
 
             SetButtonText(_localisationController.GetLanguageValue(LocalisationKeys.ProductionMenuButtonTextKey));
             SetState();
         }
-
-        #endregion
 
         public override void SetState()
         {

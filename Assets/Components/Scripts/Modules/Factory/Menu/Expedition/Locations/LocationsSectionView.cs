@@ -37,6 +37,9 @@ namespace RoboFactory.Factory.Menu.Expedition
             get => _activeLocation;
             set
             {
+                if (_activeLocation == value)
+                    return;
+                
                 if (_activeLocation != null)
                     _activeLocation.SetInactive();
 
@@ -48,16 +51,12 @@ namespace RoboFactory.Factory.Menu.Expedition
 
         #endregion
 
-        #region Unity Methods
-
-        private void Awake()
+        public void Initialize()
         {
             _menu = _uiController.FindUi<ExpeditionMenuView>();
             
             CreateLocations();
         }
-
-        #endregion
 
         private void CreateLocations()
         {

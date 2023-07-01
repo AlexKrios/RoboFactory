@@ -14,6 +14,7 @@ namespace RoboFactory.Factory.Menu.Production
     {
         #region Zenject
 
+        [Inject] private readonly AssetsManager _assetsManager;
         [Inject(Id = "IconUtil")] private readonly IconUtil _iconUtil;
 
         #endregion
@@ -28,7 +29,7 @@ namespace RoboFactory.Factory.Menu.Production
         #region Variables
 
         public Action<TabCellView, UnitType> OnClickEvent { get; set; }
-
+        
         #endregion
 
         protected override void Click()
@@ -40,13 +41,13 @@ namespace RoboFactory.Factory.Menu.Production
 
         public void SetTabData()
         {
-            var spriteRef = _iconUtil.GetUnitIcon(unitType);
-            SetIconSprite(spriteRef);
+            var iconRef = _iconUtil.GetUnitIcon(unitType);
+            SetIconSprite(iconRef);
         }
 
         protected override async void SetIconSprite(AssetReference spriteRef, bool active = true)
         {
-            icon.sprite = await AssetsManager.LoadAsset<Sprite>(spriteRef);
+            icon.sprite = await _assetsManager.LoadAssetAsync<Sprite>(spriteRef);
         }
     }
 }

@@ -3,12 +3,19 @@ using RoboFactory.General.Unit.Battle;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 namespace RoboFactory.Battle.Ui
 {
     [AddComponentMenu("Scripts/Battle/Ui/Unit Cell View")]
     public class UnitCellView : MonoBehaviour
     {
+        #region Zenject
+
+        [Inject] private readonly AssetsManager _assetsManager;
+
+        #endregion
+        
         #region Components
 
         [SerializeField] private Image unitIcon;
@@ -38,7 +45,7 @@ namespace RoboFactory.Battle.Ui
         {
             _data = unit;
             
-            var sprite = await AssetsManager.LoadAsset<Sprite>(_data.Info.IconRef);
+            var sprite = await _assetsManager.LoadAssetAsync<Sprite>(_data.Info.IconRef);
 
             unitIcon.gameObject.SetActive(true);
             unitHealthText.gameObject.SetActive(true);

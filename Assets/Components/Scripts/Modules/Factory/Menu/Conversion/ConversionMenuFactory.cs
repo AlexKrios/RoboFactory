@@ -14,6 +14,7 @@ namespace RoboFactory.Factory.Menu.Conversion
     {
         [Inject] private readonly DiContainer _container;
         [Inject] private readonly Settings _settings;
+        [Inject] private readonly AssetsManager _assetsManager;
         [Inject] private readonly IUiController _uiController;
 
         public Button CreateButton(Transform parent)
@@ -23,7 +24,7 @@ namespace RoboFactory.Factory.Menu.Conversion
         
         public async void CreateMenu()
         {
-            var menu = await AssetsManager.LoadAsset<GameObject>(_settings.menuAsset);
+            var menu = await _assetsManager.LoadAssetAsync<GameObject>(_settings.menuAsset);
             var canvasT = _uiController.GetCanvas(CanvasType.Ui).transform;
             _container.InstantiatePrefabForComponent<ConversionMenuView>(menu, canvasT);
         }

@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using RoboFactory.Authentication;
 using RoboFactory.General.Api;
 using RoboFactory.General.Audio;
@@ -15,6 +16,7 @@ using RoboFactory.General.Settings;
 using RoboFactory.General.Unit;
 using RoboFactory.General.User;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using Zenject;
 
 namespace RoboFactory.Launcher
@@ -42,11 +44,12 @@ namespace RoboFactory.Launcher
         [Inject] private readonly ApiManager _apiManager;
         [Inject] private readonly UserProfile.Factory _userFactory;
 
-        private void Awake()
+        private async void Awake()
         {
             QualitySettings.vSyncCount = 0;
             Application.targetFrameRate = 500;
 
+            await InitAddressables();
             InitAudio();
             InitLocalisation();
             InitAuthentication();
@@ -55,6 +58,11 @@ namespace RoboFactory.Launcher
         private void OnDestroy()
         {
             _authenticationManager.EventSignInFailure -= LoadAuthenticationScene;
+        }
+
+        private async UniTask InitAddressables()
+        {
+            await Addressables.InitializeAsync();
         }
 
         private void InitAudio()
