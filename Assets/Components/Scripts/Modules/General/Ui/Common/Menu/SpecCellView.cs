@@ -13,7 +13,7 @@ namespace RoboFactory.General.Ui.Common
     {
         #region Zenject
         
-        [Inject] private readonly AssetsManager _assetsManager;
+        [Inject] private readonly AddressableService addressableService;
         [Inject(Id = "IconUtil")] private readonly IconUtil _iconUtil;
 
         #endregion
@@ -33,7 +33,7 @@ namespace RoboFactory.General.Ui.Common
         public async void SetData(SpecObject spec)
         {
             var iconRef = _iconUtil.GetSpecIcon(spec.type);
-            icon.sprite = await _assetsManager.LoadAssetAsync<Sprite>(iconRef);
+            icon.sprite = await addressableService.LoadAssetAsync<Sprite>(iconRef);
             count.text = spec.value.ToString();
         }
     }

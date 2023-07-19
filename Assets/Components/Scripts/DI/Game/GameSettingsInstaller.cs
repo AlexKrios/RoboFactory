@@ -16,29 +16,29 @@ namespace RoboFactory.DI
     [CreateAssetMenu(fileName = "Game", menuName = "Scriptable/General/Settings", order = -1)]
     public class GameSettingsInstaller : ScriptableObjectInstaller<GameSettingsInstaller>
     {
-        public LocalisationManager.Settings localization;
-        public AudioManager.Settings audioData;
-        public LevelManager.Settings level;
-        public RawManager.Settings raw;
+        [SerializeField] private LocalizationService.Settings _localization;
+        [SerializeField] private AudioManager.Settings _audioData;
+        [SerializeField] private LevelManager.Settings _level;
+        [SerializeField] private RawManager.Settings _raw;
         public ProductsManager.Settings products;
-        public LocationManager.Settings locations;
+        [SerializeField] private LocationManager.Settings _locations;
         public UnitsManager.Settings units;
-        public ExpeditionManager.Settings expeditions;
-        public ProductionManager.Settings productions;
-        public OrderManager.Settings order;
+        [SerializeField] private ExpeditionManager.Settings _expeditions;
+        [SerializeField] private ProductionManager.Settings _productions;
+        [SerializeField] private OrderManager.Settings _order;
 
         public override void InstallBindings()
         {
-            Container.BindInstance(localization);
-            Container.BindInstance(audioData);
-            Container.BindInstance(level);
-            Container.BindInstance(raw);
+            Container.BindInstance(_localization);
+            Container.BindInstance(_audioData);
+            Container.BindInstance(_level);
+            Container.BindInstance(_raw);
             Container.BindInstance(products);
-            Container.BindInstance(locations);
+            Container.BindInstance(_locations);
             Container.BindInstance(units);
-            Container.BindInstance(expeditions);
-            Container.BindInstance(productions);
-            Container.BindInstance(order);
+            Container.BindInstance(_expeditions);
+            Container.BindInstance(_productions);
+            Container.BindInstance(_order);
         }
     }
 }

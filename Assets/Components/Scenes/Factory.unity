@@ -2152,7 +2152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0ce170c2ce2406d8860facc8a698598, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cellPrototype: {fileID: 5969502881045357387, guid: 7baa3bc1a51b9494dacc668216792710,
+  _cellPrototype: {fileID: 5969502881045357387, guid: 7baa3bc1a51b9494dacc668216792710,
     type: 3}
 --- !u!114 &298218354
 MonoBehaviour:
@@ -7413,8 +7413,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bfcc9f3be846db478e36e2355534870, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainCamera: {fileID: 1199683689}
-  uiCamera: {fileID: 0}
   adminCanvas: {fileID: 271836617}
   hudCanvas: {fileID: 85787646}
   uiCanvas: {fileID: 1863797957}

@@ -6,6 +6,7 @@ using JetBrains.Annotations;
 using RoboFactory.General.Api;
 using RoboFactory.General.Location;
 using RoboFactory.General.Scriptable;
+using UnityEngine;
 using Zenject;
 
 namespace RoboFactory.General.Expedition
@@ -16,7 +17,7 @@ namespace RoboFactory.General.Expedition
         #region Zenject
         
         [Inject] private readonly Settings _settings;
-        [Inject] private readonly ApiManager _apiManager;
+        [Inject] private readonly ApiService apiService;
 
         #endregion
         
@@ -69,7 +70,7 @@ namespace RoboFactory.General.Expedition
         public async UniTask AddExpedition(ExpeditionObject data)
         {
             _expeditionData.Add(data.Id, data);
-            await _apiManager.AddUserExpedition(data.Id, data.ToDto());
+            await apiService.AddUserExpedition(data.Id, data.ToDto());
         }
         public List<ExpeditionObject> GetAllExpeditions() => _expeditionData.Values.ToList();
         public ExpeditionObject GetExpedition(Guid id) => 
@@ -77,26 +78,28 @@ namespace RoboFactory.General.Expedition
         public async UniTask RemoveExpedition(Guid id)
         {
             _expeditionData.Remove(id);
-            await _apiManager.RemoveUserExpedition(id);
+            await apiService.RemoveUserExpedition(id);
             
             OnExpeditionComplete?.Invoke();
         }
         
         public UpgradeDataObject GetUpgradeData()
         {
-            return _settings.upgradeData.Data.First(x => x.Count == CellCount);
+            return _settings.UpgradeData.Data.First(x => x.Count == CellCount);
         }
         
         public async void IncreaseQueueCount()
         {
             CellCount++;
-            await _apiManager.SetUserExpeditionQueueCount(CellCount);
+            await apiService.SetUserExpeditionQueueCount(CellCount);
         }
 
         [Serializable]
         public class Settings
         {
-            public UpgradeDataScriptable upgradeData;
+            [SerializeField] private UpgradeDataScriptable _upgradeData;
+            
+            public UpgradeDataScriptable UpgradeData => _upgradeData;
         }
     }
 }

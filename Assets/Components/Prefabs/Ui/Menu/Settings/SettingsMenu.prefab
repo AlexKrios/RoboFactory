@@ -1433,7 +1433,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 853dbff67131442ba782e1d4560d5712, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  languages:
+  _languages:
   - {fileID: 6890551198641249839}
   - {fileID: 3380827531146716581}
 --- !u!1 &3026920338406034882
@@ -3442,15 +3442,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   close: {fileID: 5872471968908225060}
-  title: {fileID: 1459630553514102282}
-  signOut: {fileID: 8153223331903738858}
-  musicSlider: {fileID: 3026920337654038581}
-  musicSliderText: {fileID: 3026920338317704466}
-  audioSlider: {fileID: 3026920339420172515}
-  audioSliderText: {fileID: 3026920337909158918}
-  graphicSlider: {fileID: 8502478582562674411}
-  graphicSliderText: {fileID: 3932899116089201917}
-  language: {fileID: 6894155167209091680}
+  _title: {fileID: 1459630553514102282}
+  _signOut: {fileID: 8153223331903738858}
+  _musicSlider: {fileID: 3026920337654038581}
+  _musicSliderText: {fileID: 3026920338317704466}
+  _audioSlider: {fileID: 3026920339420172515}
+  _audioSliderText: {fileID: 3026920337909158918}
+  _graphicSlider: {fileID: 8502478582562674411}
+  _graphicSliderText: {fileID: 3932899116089201917}
+  _language: {fileID: 6894155167209091680}
 --- !u!225 &211138864426002424
 CanvasGroup:
   m_ObjectHideFlags: 0

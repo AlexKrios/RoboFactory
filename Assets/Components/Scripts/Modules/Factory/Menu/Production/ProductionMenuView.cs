@@ -1,5 +1,4 @@
-﻿using RoboFactory.General.Asset;
-using RoboFactory.General.Item.Products;
+﻿using RoboFactory.General.Item.Products;
 using RoboFactory.General.Ui;
 using RoboFactory.General.Ui.Common;
 using RoboFactory.General.Unit;
@@ -15,23 +14,22 @@ namespace RoboFactory.Factory.Menu.Production
     {
         #region Zenject
         
-        [Inject] private readonly AssetsManager _assetsManager;
         [Inject] private readonly ProductionMenuFactory _productionMenuFactory;
 
         #endregion
 
         #region Components
 
-        [SerializeField] private Button upgrade;
+        [SerializeField] private Button _upgrade;
         
         [Space]
-        [SerializeField] private HeaderView header;
-        [SerializeField] private StarButtonView star;
-        [SerializeField] private TabsSectionView tabs;
-        [SerializeField] private ProductsSectionView products;
-        [SerializeField] private PartsSectionView parts;
-        [SerializeField] private SidebarView sidebar;
-        [SerializeField] private CreateButtonView create;
+        [SerializeField] private HeaderView _header;
+        [SerializeField] private StarButtonView _star;
+        [SerializeField] private TabsSectionView _tabs;
+        [SerializeField] private ProductsSectionView _products;
+        [SerializeField] private PartsSectionView _parts;
+        [SerializeField] private SidebarView _sidebar;
+        [SerializeField] private CreateButtonView _create;
 
         #endregion
 
@@ -51,14 +49,14 @@ namespace RoboFactory.Factory.Menu.Production
         {
             base.Awake();
 
-            upgrade.OnClickAsObservable().Subscribe(_ => OnUpgradeClick()).AddTo(Disposable);
+            _upgrade.OnClickAsObservable().Subscribe(_ => OnUpgradeClick()).AddTo(Disposable);
 
-            header.OnTabClickEvent += OnGroupTabClick;
-            star.OnClickEvent += OnStarTabClick;
-            tabs.OnTabClickEvent += OnTypeTabClick;
-            products.OnProductClickEvent += OnProductsClick;
-            parts.OnPartClickEvent += OnPartClick;
-            create.OnClickEvent += OnCreateClick;
+            _header.OnTabClickEvent += OnGroupTabClick;
+            _star.OnClickEvent += OnStarTabClick;
+            _tabs.OnTabClickEvent += OnTypeTabClick;
+            _products.OnProductClickEvent += OnProductsClick;
+            _parts.OnPartClickEvent += OnPartClick;
+            _create.OnClickEvent += OnCreateClick;
             
             ActiveProductGroup = ProductGroup.Weapon;
             ActiveUnitType = UnitType.Trooper;
@@ -72,52 +70,52 @@ namespace RoboFactory.Factory.Menu.Production
 
         private void OnGroupTabClick()
         {
-            header.SetHeaderData();
-            star.ResetStar();
-            tabs.Initialize();
-            products.CreateProductCells();
-            parts.SetData();
-            sidebar.SetData();
-            create.SetState();
+            _header.SetHeaderData();
+            _star.ResetStar();
+            _tabs.Initialize();
+            _products.CreateProductCells();
+            _parts.SetData();
+            _sidebar.SetData();
+            _create.SetState();
         }
         
         private void OnStarTabClick()
         {
-            parts.SetData();
-            sidebar.SetData();
-            create.SetState();
+            _parts.SetData();
+            _sidebar.SetData();
+            _create.SetState();
         }
         
         private void OnTypeTabClick()
         {
-            header.SetHeaderData();
-            star.ResetStar();
-            products.CreateProductCells();
-            parts.SetData();
-            sidebar.SetData();
-            create.SetState();
+            _header.SetHeaderData();
+            _star.ResetStar();
+            _products.CreateProductCells();
+            _parts.SetData();
+            _sidebar.SetData();
+            _create.SetState();
         }
         
         private void OnProductsClick()
         {
-            header.SetHeaderData();
-            star.ResetStar();
-            parts.SetData();
-            sidebar.SetData();
-            create.SetState();
+            _header.SetHeaderData();
+            _star.ResetStar();
+            _parts.SetData();
+            _sidebar.SetData();
+            _create.SetState();
         }
         
         private void OnPartClick()
         {
-            parts.SetData();
-            sidebar.SetData();
-            create.SetState();
+            _parts.SetData();
+            _sidebar.SetData();
+            _create.SetState();
         }
 
         private void OnCreateClick()
         {
-            parts.SetData();
-            create.SetState();
+            _parts.SetData();
+            _create.SetState();
         }
 
         #endregion
@@ -128,24 +126,19 @@ namespace RoboFactory.Factory.Menu.Production
             
             UiController.AddUi(this);
             
-            header.Initialize();
-            star.Initialize();
-            tabs.Initialize();
-            products.Initialize();
-            parts.Initialize();
-            sidebar.Initialize();
-            create.Initialize();
+            _header.Initialize();
+            _star.Initialize();
+            _tabs.Initialize();
+            _products.Initialize();
+            _parts.Initialize();
+            _sidebar.Initialize();
+            _create.Initialize();
         }
 
         private void OnUpgradeClick()
         {
             var canvasT = UiController.GetCanvas(CanvasType.Ui).transform;
             _productionMenuFactory.CreateUpgradePopup(canvasT);
-        }
-
-        protected override void Release()
-        {
-            _assetsManager.ReleaseAllAsset();
         }
     }
 }

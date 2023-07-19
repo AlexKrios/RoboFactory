@@ -1,4 +1,5 @@
 using RoboFactory.Authentication;
+using RoboFactory.General;
 using RoboFactory.General.Api;
 using RoboFactory.General.Asset;
 using RoboFactory.General.Audio;
@@ -29,31 +30,26 @@ namespace RoboFactory.DI
     {
         public override void InstallBindings()
         {
-            Container.Bind<GameManager>().AsSingle().NonLazy();
-            Container.Bind<AssetsManager>().AsSingle().NonLazy();
-            Container.Bind<LocalisationManager>().AsSingle().NonLazy();
-            Container.Bind<ApiManager>().AsSingle().NonLazy();
+            Container.BindService<SettingsService>();
+            Container.BindService<LocalizationService>();
+            Container.BindService<ApiService>();
             
+            Container.BindService<AuthenticationService>();
+            Container.BindFactory<UserProfile, UserProfile.Factory>();
+            
+            Container.BindService<AddressableService>();
+
             InstallControllers();
-            InstallUserManager();
 
             InstallUi();
             InstallHelpers();
         }
 
-        private void InstallUserManager()
-        {
-            Container.Bind<AuthenticationManager>().AsSingle().NonLazy();
-            
-            Container.BindFactory<UserProfile, UserProfile.Factory>();
-        }
-
         private void InstallControllers()
         {
-            Container.Bind<SettingsManager>().AsSingle().NonLazy();
             Container.Bind<AudioManager>().AsSingle().NonLazy();
-
-            Container.Bind<SceneController>().AsSingle().NonLazy();
+            
+            Container.BindService<SceneService>();
 
             Container.Bind<MoneyManager>().AsSingle().NonLazy();
             Container.Bind<LevelManager>().AsSingle().NonLazy();

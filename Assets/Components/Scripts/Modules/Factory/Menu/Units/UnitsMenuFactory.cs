@@ -17,56 +17,62 @@ namespace RoboFactory.Factory.Menu
 
         [Inject] private readonly DiContainer _container;
         [Inject] private readonly Settings _settings;
-        [Inject] private readonly AssetsManager _assetsManager;
+        [Inject] private readonly AddressableService addressableService;
         [Inject] private readonly IUiController _uiController;
 
         #endregion                
 
         public Button CreateButton(Transform parent)
         {
-            return _container.InstantiatePrefabForComponent<Button>(_settings.buttonPrefab, parent);
+            return _container.InstantiatePrefabForComponent<Button>(_settings.ButtonPrefab, parent);
         }
         
         public async void CreateMenu()
         {
             var canvasT = _uiController.GetCanvas(CanvasType.Ui).transform;
-            var menuOriginal = await _assetsManager.InstantiateAssetAsync(_settings.menuAsset, canvasT);
+            var menuOriginal = await addressableService.InstantiateAssetAsync(_settings.MenuAsset, canvasT);
             var menu = _container.InjectGameObjectForComponent<UnitsMenuView>(menuOriginal);
             menu.Initialize();
             
-            _assetsManager.ReleaseAsset(_settings.menuAsset);
+            addressableService.ReleaseAsset(_settings.MenuAsset);
         }
         
         public void CreateSelectionMenu(Transform parent)
         {
-            var popup = _container.InstantiatePrefabForComponent<SelectionPopupView>(_settings.selectionPrefab, parent);
+            var popup = _container.InstantiatePrefabForComponent<SelectionPopupView>(_settings.SelectionPrefab, parent);
             popup.transform.localPosition = new Vector3(0, 0, -500);
         }
         
         public SelectionCellView CreateSelectionCell(Transform parent)
         {
-            return _container.InstantiatePrefabForComponent<SelectionCellView>(_settings.selectionCell, parent);
+            return _container.InstantiatePrefabForComponent<SelectionCellView>(_settings.SelectionCell, parent);
         }
         
         public RosterCellView CreateUnit(Transform parent)
         {
-            return _container.InstantiatePrefabForComponent<RosterCellView>(_settings.unitPrefab, parent);
+            return _container.InstantiatePrefabForComponent<RosterCellView>(_settings.UnitPrefab, parent);
         }
 
         [Serializable]
         public class Settings
         {
-            public AssetReference menuAsset;
+            [SerializeField] private GameObject _buttonPrefab;
             
             [Space]
-            public GameObject buttonPrefab;
+            [SerializeField] private AssetReference _menuAsset;
+
+            [Space]
+            [SerializeField] private GameObject _unitPrefab;
             
             [Space]
-            public GameObject unitPrefab;
+            [SerializeField] private GameObject _selectionPrefab;
+            [SerializeField] private GameObject _selectionCell;
             
-            [Space]
-            public GameObject selectionPrefab;
-            public GameObject selectionCell;
+            public GameObject ButtonPrefab => _buttonPrefab;
+            public AssetReference MenuAsset => _menuAsset;
+            public GameObject UnitPrefab => _unitPrefab;
+            public GameObject SelectionPrefab => _selectionPrefab;
+            public GameObject SelectionCell => _selectionCell;
         }
     }
 }

@@ -19,7 +19,7 @@ namespace RoboFactory.Factory.Menu.Production
 
         #region Components
 
-        [SerializeField] private List<TabCellView> tabs;
+        [SerializeField] private List<TabCellView> _tabs;
 
         #endregion
         
@@ -48,13 +48,13 @@ namespace RoboFactory.Factory.Menu.Production
         {
             _menu = _uiController.FindUi<ProductionMenuView>();
             
-            tabs.ForEach(x =>
+            _tabs.ForEach(x =>
             {
                 x.SetTabData();
                 x.OnClickEvent += OnTabClick;
             });
 
-            ActiveTab = tabs.First();
+            ActiveTab = _tabs.First();
         }
         
         private void OnTabClick(TabCellView tab, UnitType unit)

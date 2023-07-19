@@ -14,7 +14,7 @@ namespace RoboFactory.Factory.Menu.Expedition
     {
         #region Zenject
 
-        [Inject] private readonly LocalisationManager _localisationController;
+        [Inject] private readonly LocalizationService localizationController;
         [Inject] private readonly IUiController _uiController;
         [Inject] private readonly ExpeditionManager expeditionManager;
 
@@ -23,14 +23,14 @@ namespace RoboFactory.Factory.Menu.Expedition
         #region Components
         
         [Space]
-        [SerializeField] private TMP_Text titleText;
+        [SerializeField] private TMP_Text _titleText;
 
         [Space]
-        [SerializeField] private TMP_Text currentCount;
-        [SerializeField] private TMP_Text nextCount;
+        [SerializeField] private TMP_Text _currentCount;
+        [SerializeField] private TMP_Text _nextCount;
         
         [Space]
-        [SerializeField] private UpgradeQueueButtonView upgrade;
+        [SerializeField] private UpgradeQueueButtonView _upgrade;
 
         #endregion
 
@@ -48,19 +48,19 @@ namespace RoboFactory.Factory.Menu.Expedition
             
             _uiController.AddUi(this);
 
-            upgrade.OnUpgradeClick += Close;
+            _upgrade.OnUpgradeClick += Close;
             
             var cellCount = expeditionManager.CellCount;
-            currentCount.text = cellCount.ToString();
-            nextCount.text = (cellCount + 1).ToString();
+            _currentCount.text = cellCount.ToString();
+            _nextCount.text = (cellCount + 1).ToString();
             
-            titleText.text = _localisationController.GetLanguageValue(LocalisationKeys.UpgradeTitleKey);
+            _titleText.text = localizationController.GetLanguageValue(LocalizationKeys.UpgradeTitleKey);
         }
         
         private void Start() 
         {
             _buyData = expeditionManager.GetUpgradeData();
-            upgrade.SetData(_buyData.Cost, _buyData.Level);
+            _upgrade.SetData(_buyData.Cost, _buyData.Level);
         }
 
         #endregion

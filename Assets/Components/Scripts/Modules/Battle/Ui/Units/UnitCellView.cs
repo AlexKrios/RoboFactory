@@ -12,15 +12,15 @@ namespace RoboFactory.Battle.Ui
     {
         #region Zenject
 
-        [Inject] private readonly AssetsManager _assetsManager;
+        [Inject] private readonly AddressableService addressableService;
 
         #endregion
         
         #region Components
 
-        [SerializeField] private Image unitIcon;
-        [SerializeField] private TMP_Text unitHealthText;
-        [SerializeField] private Image unitHealth;
+        [SerializeField] private Image _unitIcon;
+        [SerializeField] private TMP_Text _unitHealthText;
+        [SerializeField] private Image _unitHealth;
 
         #endregion
 
@@ -34,9 +34,9 @@ namespace RoboFactory.Battle.Ui
 
         private void Awake()
         {
-            unitIcon.gameObject.SetActive(false);
-            unitHealthText.gameObject.SetActive(false);
-            unitHealth.gameObject.SetActive(false);
+            _unitIcon.gameObject.SetActive(false);
+            _unitHealthText.gameObject.SetActive(false);
+            _unitHealth.gameObject.SetActive(false);
         }
 
         #endregion
@@ -45,11 +45,11 @@ namespace RoboFactory.Battle.Ui
         {
             _data = unit;
             
-            var sprite = await _assetsManager.LoadAssetAsync<Sprite>(_data.Info.IconRef);
+            var sprite = await addressableService.LoadAssetAsync<Sprite>(_data.Info.IconRef);
 
-            unitIcon.gameObject.SetActive(true);
-            unitHealthText.gameObject.SetActive(true);
-            unitHealth.gameObject.SetActive(true);
+            _unitIcon.gameObject.SetActive(true);
+            _unitHealthText.gameObject.SetActive(true);
+            _unitHealth.gameObject.SetActive(true);
             
             SetIcon(sprite);
             SetHealthText();
@@ -61,18 +61,18 @@ namespace RoboFactory.Battle.Ui
 
         private void SetIcon(Sprite sprite)
         {
-            unitIcon.sprite = sprite;
+            _unitIcon.sprite = sprite;
         }
 
         private void SetHealthText()
         {
-            unitHealthText.text = $"{_data.CurrentHealth}/{_data.Info.Health}";
+            _unitHealthText.text = $"{_data.CurrentHealth}/{_data.Info.Health}";
         }
         
         private void SetHealthFill()
         {
             var difference = _data.Info.Health - _data.CurrentHealth;
-            unitHealth.fillAmount = (float)(100 / _data.Info.Health * difference) / 100;
+            _unitHealth.fillAmount = (float)(100 / _data.Info.Health * difference) / 100;
         }
     }
 }

@@ -18,7 +18,7 @@ namespace RoboFactory.Factory.Menu.Production
     {
         #region Zenject
 
-        [Inject] private readonly LocalisationManager _localisationController;
+        [Inject] private readonly LocalizationService localizationController;
         [Inject] private readonly MoneyManager _moneyManager;
         [Inject] private readonly LevelManager _levelManager;
         [Inject] private readonly IUiController _uiController;
@@ -62,7 +62,7 @@ namespace RoboFactory.Factory.Menu.Production
             currentCount.text = cellCount.ToString();
             nextCount.text = (cellCount + 1).ToString();
             
-            titleText.text = _localisationController.GetLanguageValue(LocalisationKeys.UpgradeTitleKey);
+            titleText.text = localizationController.GetLanguageValue(LocalizationKeys.UpgradeTitleKey);
         }
         
         private void Start() 

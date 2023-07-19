@@ -19,7 +19,7 @@ namespace RoboFactory.Factory.Menu.Expedition
 
         #region Components
         
-        [SerializeField] private ExpeditionCell cellPrototype;
+        [SerializeField] private ExpeditionCell _cellPrototype;
 
         #endregion
 
@@ -82,7 +82,7 @@ namespace RoboFactory.Factory.Menu.Expedition
 
         private ExpeditionCell CreateCell()
         {
-            var cell = _container.InstantiatePrefabForComponent<ExpeditionCell>(cellPrototype, transform);
+            var cell = _container.InstantiatePrefabForComponent<ExpeditionCell>(_cellPrototype, transform);
             _cells.Add(cell);
             
             return cell;

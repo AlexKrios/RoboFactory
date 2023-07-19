@@ -16,41 +16,45 @@ namespace RoboFactory.Factory.Menu.Storage
 
         [Inject] private readonly DiContainer _container;
         [Inject] private readonly Settings _settings;
-        [Inject] private readonly AssetsManager _assetsManager;
+        [Inject] private readonly AddressableService addressableService;
         [Inject] private readonly IUiController _uiController;
 
         #endregion                
 
         public Button CreateButton(Transform parent)
         {
-            return _container.InstantiatePrefabForComponent<Button>(_settings.buttonPrefab, parent);
+            return _container.InstantiatePrefabForComponent<Button>(_settings.ButtonPrefab, parent);
         }
         
         public async void CreateMenu()
         {
             var canvasT = _uiController.GetCanvas(CanvasType.Ui).transform;
-            var menuOriginal = await _assetsManager.InstantiateAssetAsync(_settings.menuAsset, canvasT);
+            var menuOriginal = await addressableService.InstantiateAssetAsync(_settings.MenuAsset, canvasT);
             var menu = _container.InjectGameObjectForComponent<StorageMenuView>(menuOriginal);
             menu.Initialize();
             
-            _assetsManager.ReleaseAsset(_settings.menuAsset);
+            addressableService.ReleaseAsset(_settings.MenuAsset);
         }
         
         public ItemCellView CreateItem(Transform parent)
         {
-            return _container.InstantiatePrefabForComponent<ItemCellView>(_settings.itemPrefab, parent);
+            return _container.InstantiatePrefabForComponent<ItemCellView>(_settings.ItemPrefab, parent);
         }
 
         [Serializable]
         public class Settings
         {
-            public AssetReference menuAsset;
-
-            [Space]
-            public GameObject buttonPrefab;
+            [SerializeField] private GameObject _buttonPrefab;
             
             [Space]
-            public GameObject itemPrefab;
+            [SerializeField] private AssetReference _menuAsset;
+
+            [Space]
+            [SerializeField] private GameObject _itemPrefab;
+            
+            public GameObject ButtonPrefab => _buttonPrefab;
+            public AssetReference MenuAsset => _menuAsset;
+            public GameObject ItemPrefab => _itemPrefab;
         }
     }
 }

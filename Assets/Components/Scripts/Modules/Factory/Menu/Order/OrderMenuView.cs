@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
-using RoboFactory.General.Asset;
 using RoboFactory.General.Localisation;
 using RoboFactory.General.Order;
 using RoboFactory.General.Ui;
@@ -22,8 +21,7 @@ namespace RoboFactory.Factory.Menu.Order
         
         #region Zenject
 
-        [Inject] private readonly AssetsManager _assetsManager;
-        [Inject] private readonly LocalisationManager _localisationController;
+        [Inject] private readonly LocalizationService localizationController;
         [Inject] private readonly OrderManager _orderManager;
         [Inject] private readonly OrderMenuFactory _orderManagerFactory;
 
@@ -31,15 +29,15 @@ namespace RoboFactory.Factory.Menu.Order
 
         #region Components
         
-        [SerializeField] private Button upgrade;
+        [SerializeField] private Button _upgrade;
         
         [Space]
-        [SerializeField] private TMP_Text title;
-        [SerializeField] private TMP_Text timer;
-        [SerializeField] private List<ItemCellView> orders;
-
+        [SerializeField] private TMP_Text _title;
+        [SerializeField] private TMP_Text _timer; 
+        [SerializeField] private List<ItemCellView> _orders;
+        
         [Space] 
-        [SerializeField] private Transform parent;
+        [SerializeField] private Transform _parent;
 
         #endregion
 
@@ -49,7 +47,7 @@ namespace RoboFactory.Factory.Menu.Order
         {
             base.Awake();
             
-            upgrade.OnClickAsObservable().Subscribe(_ => OnUpgradeClick()).AddTo(Disposable);
+            _upgrade.OnClickAsObservable().Subscribe(_ => OnUpgradeClick()).AddTo(Disposable);
         }
 
         #endregion
@@ -58,7 +56,7 @@ namespace RoboFactory.Factory.Menu.Order
         {
             base.Initialize();
             
-            title.text = _localisationController.GetLanguageValue(LocalisationKeys.OrderMenuTitleKey);
+            _title.text = localizationController.GetLanguageValue(LocalizationKeys.OrderMenuTitleKey);
 
             SetData();
             StartRefreshTimer();
@@ -69,7 +67,7 @@ namespace RoboFactory.Factory.Menu.Order
             while (true)
             {
                 var ticks = (DateUtil.EndOfTheDay(DateTime.Now) - DateTime.Now).Ticks;
-                timer.text = new DateTime(ticks).ToString(TimerTemplate);
+                _timer.text = new DateTime(ticks).ToString(TimerTemplate);
                 
                 await UniTask.Delay(TimeSpan.FromSeconds(1));
                 
@@ -81,22 +79,22 @@ namespace RoboFactory.Factory.Menu.Order
         
         private void SetData()
         {
-            if (orders.Count != 0)
+            if (_orders.Count != 0)
             {
-                orders.ForEach(x => Destroy(x.gameObject));
-                orders.Clear();
+                _orders.ForEach(x => Destroy(x.gameObject));
+                _orders.Clear();
             }
             
             for (var i = 0; i < _orderManager.Count; i++)
             {
-                var cell = _orderManagerFactory.CreateItem(parent);
-                orders.Add(cell);
+                var cell = _orderManagerFactory.CreateItem(_parent);
+                _orders.Add(cell);
             }
             
             if (_orderManager.IsNeedRefreshOrders())
             {
                 _orderManager.RefreshOrders();
-                foreach (var orderCell in orders)
+                foreach (var orderCell in _orders)
                 {
                     var order = _orderManager.GetRandomOrderByGroup();
                     order.IsActive = true;
@@ -107,7 +105,7 @@ namespace RoboFactory.Factory.Menu.Order
             }
             else
             {
-                foreach (var orderCell in orders)
+                foreach (var orderCell in _orders)
                 {
                     var order = _orderManager.GetActiveOrderByGroup(orderCell.Group);
                     orderCell.SetData(order);
@@ -119,11 +117,6 @@ namespace RoboFactory.Factory.Menu.Order
         {
             var canvasT = UiController.GetCanvas(CanvasType.Ui).transform;
             _orderManagerFactory.CreateUpgradePopup(canvasT);
-        }
-        
-        protected override void Release()
-        {
-            _assetsManager.ReleaseAllAsset();
         }
     }
 }

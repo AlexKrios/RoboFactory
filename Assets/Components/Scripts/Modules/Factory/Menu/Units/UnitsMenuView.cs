@@ -1,32 +1,24 @@
 ﻿using RoboFactory.Factory.Menu.Units;
-using RoboFactory.General.Asset;
 using RoboFactory.General.Item.Products;
 using RoboFactory.General.Ui.Common;
 using RoboFactory.General.Unit;
 using UnityEngine;
-using Zenject;
 
 namespace RoboFactory.Factory.Menu
 {
     [AddComponentMenu("Scripts/Factory/Menu/Units/Units Menu View")]
     public class UnitsMenuView : MenuBase
     {
-        #region Zenject
-
-        [Inject] private readonly AssetsManager _assetsManager;
-
-        #endregion
-        
         #region Components
         
         [Space]
-        [SerializeField] private HeaderView header;
-        [SerializeField] private TabsSectionView tabs;
-        [SerializeField] private RosterSectionView roster;
-        [SerializeField] private InfoView info;
-        [SerializeField] private SidebarView sidebar;
+        [SerializeField] private HeaderView _header;
+        [SerializeField] private TabsSectionView _tabs;
+        [SerializeField] private RosterSectionView _roster;
+        [SerializeField] private InfoView _info;
+        [SerializeField] private SidebarView _sidebar;
         
-        public InfoView Info => info;
+        public InfoView Info => _info;
 
         #endregion
 
@@ -44,8 +36,8 @@ namespace RoboFactory.Factory.Menu
         {
             base.Awake();
 
-            tabs.OnTabClickEvent += OnTabClick;
-            roster.OnUnitClickEvent += OnUnitClick;
+            _tabs.OnTabClickEvent += OnTabClick;
+            _roster.OnUnitClickEvent += OnUnitClick;
         }
 
         #endregion
@@ -56,37 +48,32 @@ namespace RoboFactory.Factory.Menu
             
             UiController.AddUi(this);
             
-            header.Initialize();
-            tabs.Initialize();
-            roster.Initialize();
-            info.Initialize();
-            sidebar.Initialize();
+            _header.Initialize();
+            _tabs.Initialize();
+            _roster.Initialize();
+            _info.Initialize();
+            _sidebar.Initialize();
         }
 
         private void OnTabClick()
         {
-            header.SetData();
-            roster.CreateUnits();
-            info.SetData();
-            sidebar.SetData();
+            _header.SetData();
+            _roster.CreateUnits();
+            _info.SetData();
+            _sidebar.SetData();
         }
         
         private void OnUnitClick()
         {
-            info.SetData();
-            sidebar.SetData();
+            _info.SetData();
+            _sidebar.SetData();
         }
         
         public override void Close()
         {
             base.Close();
          
-            info.gameObject.SetActive(false);
-        }
-        
-        protected override void Release()
-        {
-            _assetsManager.ReleaseAllAsset();
+            _info.gameObject.SetActive(false);
         }
     }
 }

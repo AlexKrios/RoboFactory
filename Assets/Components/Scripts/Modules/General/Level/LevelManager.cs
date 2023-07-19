@@ -4,6 +4,7 @@ using Cysharp.Threading.Tasks;
 using JetBrains.Annotations;
 using RoboFactory.General.Api;
 using RoboFactory.General.Scriptable;
+using UnityEngine;
 using Zenject;
 
 namespace RoboFactory.General.Level
@@ -12,7 +13,7 @@ namespace RoboFactory.General.Level
     public class LevelManager
     {
         [Inject] private readonly Settings _settings;
-        [Inject] private readonly ApiManager _apiManager;
+        [Inject] private readonly ApiService apiService;
 
         private const int DefaultExperience = 0;
         private const int DefaultLevel = 1;
@@ -54,17 +55,17 @@ namespace RoboFactory.General.Level
 
         private int GetCurrentLevel()
         {
-            return _settings.data.Caps.First(x => x.experience > Experience).level;
+            return _settings.Data.Caps.First(x => x.experience > Experience).level;
         }
         
         public int GetPreviousLevelCap()
         {
-            return Level == 1 ? 0 : _settings.data.Caps.First(x => x.level == Level - 1).experience;
+            return Level == 1 ? 0 : _settings.Data.Caps.First(x => x.level == Level - 1).experience;
         }
 
         public int GetCurrentLevelCap()
         {
-            return _settings.data.Caps.First(x => x.level == Level).experience;
+            return _settings.Data.Caps.First(x => x.level == Level).experience;
         }
         
         private async UniTask SendLevelData()
@@ -75,13 +76,15 @@ namespace RoboFactory.General.Level
                 experience = Experience
             };
             
-            await _apiManager.SetUserExperience(levelObject);
+            await apiService.SetUserExperience(levelObject);
         }
         
         [Serializable]
         public class Settings
         {
-            public LevelCapsScriptable data;
+            [SerializeField] private LevelCapsScriptable _data;
+            
+            public LevelCapsScriptable Data => _data;
         }
     }
 }

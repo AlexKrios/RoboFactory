@@ -17,8 +17,8 @@ namespace RoboFactory.Factory.Menu.Expedition
     {
         #region Zenject
         
-        [Inject] private readonly AssetsManager _assetsManager;
-        [Inject] private readonly LocalisationManager _localisationController;
+        [Inject] private readonly AddressableService addressableService;
+        [Inject] private readonly LocalizationService localizationController;
         [Inject] private readonly ProductsManager _productsManager;
         [Inject] private readonly UnitsManager _unitsManager;
         [Inject] private readonly ExpeditionMenuFactory _expeditionMenuFactory;
@@ -28,19 +28,19 @@ namespace RoboFactory.Factory.Menu.Expedition
         #region Components
 
         [Space]
-        [SerializeField] private TMP_Text title;
+        [SerializeField] private TMP_Text _title;
         
         [Space]
-        [SerializeField] private Transform cellsParent;
-        [SerializeField] private List<SelectionCellView> cells;
+        [SerializeField] private Transform _cellsParent;
+        [SerializeField] private List<SelectionCellView> _cells;
         
         [Space]
-        [SerializeField] private TMP_Text sidebarTitle;
-        [SerializeField] private Image sidebarIcon;
-        [SerializeField] private List<SpecCellView> specs;
+        [SerializeField] private TMP_Text _sidebarTitle;
+        [SerializeField] private Image _sidebarIcon;
+        [SerializeField] private List<SpecCellView> _specs;
         
         [Space]
-        [SerializeField] private SelectButtonView select;
+        [SerializeField] private SelectButtonView _select;
 
         #endregion
         
@@ -81,15 +81,15 @@ namespace RoboFactory.Factory.Menu.Expedition
 
         private void SetTitleData()
         {
-            title.text = _localisationController.GetLanguageValue(ActiveUnit.Data.Key);
+            _title.text = localizationController.GetLanguageValue(ActiveUnit.Data.Key);
         }
 
         private void SetSelectionData()
         {
-            if (cells.Count != 0)
+            if (_cells.Count != 0)
             {
-                cells.ForEach(x => Destroy(x.gameObject));
-                cells.Clear();
+                _cells.ForEach(x => Destroy(x.gameObject));
+                _cells.Clear();
             }
             
             var unitAttackType = _menu.Units.ActiveUnit.AttackTypes;
@@ -102,13 +102,13 @@ namespace RoboFactory.Factory.Menu.Expedition
 
             foreach (var data in unitsObject)
             {
-                var cell = _expeditionMenuFactory.CreateSelectionCell(cellsParent);
+                var cell = _expeditionMenuFactory.CreateSelectionCell(_cellsParent);
                 cell.OnUnitClick += OnEquipmentClick;
                 cell.SetUnitData(data);
-                cells.Add(cell);
+                _cells.Add(cell);
             }
 
-            ActiveUnit = cells.First();
+            ActiveUnit = _cells.First();
         }
 
         private void OnEquipmentClick(SelectionCellView cell)
@@ -124,14 +124,14 @@ namespace RoboFactory.Factory.Menu.Expedition
             
             SetTitleData();
             SetSidebarData();
-            select.SetState();
+            _select.SetState();
         }
         
         private async void SetSidebarData()
         {
             var unit = _unitsManager.GetUnit(ActiveUnit.Data.Key);
-            sidebarTitle.text = _localisationController.GetLanguageValue(unit.Key);
-            sidebarIcon.sprite = await _assetsManager.LoadAssetAsync<Sprite>(unit.IconRef);
+            _sidebarTitle.text = localizationController.GetLanguageValue(unit.Key);
+            _sidebarIcon.sprite = await addressableService.LoadAssetAsync<Sprite>(unit.IconRef);
             for (var i = 0; i < unit.Outfit.Count; i++)
             {
                 var spec = unit.Specs[(SpecType) i];
@@ -145,7 +145,7 @@ namespace RoboFactory.Factory.Menu.Expedition
                 specObject.type = (SpecType) i;
                 specObject.value = spec;
                 
-                specs[i].SetData(specObject);
+                _specs[i].SetData(specObject);
             }
         }
     }

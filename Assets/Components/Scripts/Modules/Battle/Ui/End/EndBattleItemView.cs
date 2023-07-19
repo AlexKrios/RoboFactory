@@ -12,23 +12,23 @@ namespace RoboFactory.Battle.Ui
     {
         #region Zenject
 
-        [Inject] private readonly AssetsManager _assetsManager;
+        [Inject] private readonly AddressableService addressableService;
 
         #endregion
         
         #region Components
 
-        [SerializeField] private Image itemIcon;
-        [SerializeField] private TMP_Text itemCount;
-        [SerializeField] private TMP_Text itemLevel;
+        [SerializeField] private Image _itemIcon;
+        [SerializeField] private TMP_Text _itemCount;
+        [SerializeField] private TMP_Text _itemLevel;
 
         #endregion
         
         public async void SetItemData(PartObject reward)
         {
-            itemIcon.sprite = await _assetsManager.LoadAssetAsync<Sprite>(reward.data.IconRef);
-            itemCount.text = reward.count.ToString();
-            itemLevel.text = reward.star.ToString();
+            _itemIcon.sprite = await addressableService.LoadAssetAsync<Sprite>(reward.data.IconRef);
+            _itemCount.text = reward.count.ToString();
+            _itemLevel.text = reward.star.ToString();
         }
     }
 }

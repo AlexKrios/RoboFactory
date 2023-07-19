@@ -19,7 +19,7 @@ namespace RoboFactory.Factory.Menu.Expedition
         
         #region Variables
 
-        private Action EventClick { get; set; }
+        public Action EventClick { get; set; }
         
         private ExpeditionMenuView _menu;
         private int ActiveStar

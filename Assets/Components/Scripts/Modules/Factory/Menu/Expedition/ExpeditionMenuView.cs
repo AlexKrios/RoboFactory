@@ -1,5 +1,4 @@
-﻿using RoboFactory.General.Asset;
-using RoboFactory.General.Localisation;
+﻿using RoboFactory.General.Localisation;
 using RoboFactory.General.Location;
 using RoboFactory.General.Ui.Common;
 using TMPro;
@@ -13,21 +12,22 @@ namespace RoboFactory.Factory.Menu.Expedition
     {
         #region Zenject
 
-        [Inject] private readonly AssetsManager _assetsManager;
-        [Inject] private readonly LocalisationManager _localisationController;
+        [Inject] private readonly LocalizationService localizationController;
 
         #endregion
 
         #region Components
         
-        [SerializeField] private TMP_Text title;
-        [SerializeField] private StarButtonView star;
-        [SerializeField] private UnitsSectionView units;
-        [SerializeField] private LocationsSectionView locations;
-        [SerializeField] private SidebarView sidebar;
-        [SerializeField] private StartButtonView start;
+        [SerializeField] private TMP_Text _title;
+        [SerializeField] private StarButtonView _star;
         
-        public UnitsSectionView Units => units;
+        [Space]
+        [SerializeField] private UnitsSectionView _units;
+        [SerializeField] private LocationsSectionView _locations;
+        [SerializeField] private SidebarView _sidebar;
+        [SerializeField] private StartButtonView _start;
+        
+        public UnitsSectionView Units => _units;
 
         #endregion
 
@@ -44,18 +44,20 @@ namespace RoboFactory.Factory.Menu.Expedition
         {
             base.Awake();
 
-            units.EventClick += OnUnitClick;
-            locations.EventClick += OnLocationClick;
-            start.EventClick += Close;
+            _units.EventClick += OnUnitClick;
+            _locations.EventClick += OnLocationClick;
+            _star.EventClick += OnStarClick;
+            _start.EventClick += Close;
         }
 
         protected override void OnDestroy()
         {
             base.OnDestroy();
             
-            units.EventClick -= OnUnitClick;
-            locations.EventClick -= OnLocationClick;
-            start.EventClick -= Close;
+            _units.EventClick -= OnUnitClick;
+            _locations.EventClick -= OnLocationClick;
+            _star.EventClick -= OnStarClick;
+            _start.EventClick -= Close;
         }
 
         #endregion
@@ -64,15 +66,20 @@ namespace RoboFactory.Factory.Menu.Expedition
 
         private void OnUnitClick()
         {
-            sidebar.SetData();
-            star.ResetStar();
-            start.SetState();
+            _sidebar.SetData();
+            _star.ResetStar();
+            _start.SetState();
+        }
+        
+        private void OnStarClick()
+        {
+            _sidebar.SetData();
         }
         
         private void OnLocationClick()
         {
-            sidebar.SetData();
-            star.ResetStar();
+            _sidebar.SetData();
+            _star.ResetStar();
         }
 
         #endregion
@@ -83,18 +90,13 @@ namespace RoboFactory.Factory.Menu.Expedition
             
             UiController.AddUi(this);
             
-            star.Initialize();
-            units.Initialize();
-            locations.Initialize();
-            sidebar.Initialize();
-            start.Initialize();
+            _star.Initialize();
+            _units.Initialize();
+            _locations.Initialize();
+            _sidebar.Initialize();
+            _start.Initialize();
             
-            title.text = _localisationController.GetLanguageValue(LocalisationKeys.UnitsMenuTitleKey);
-        }
-        
-        protected override void Release()
-        {
-            _assetsManager.ReleaseAllAsset();
+            _title.text = localizationController.GetLanguageValue(LocalizationKeys.UnitsMenuTitleKey);
         }
     }
 }

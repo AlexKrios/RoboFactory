@@ -21,8 +21,8 @@ namespace RoboFactory.Factory.Menu.Units
         
         #region Components
 
-        [SerializeField] private RectTransform unitsParent;
-        [SerializeField] private List<RosterCellView> units;
+        [SerializeField] private RectTransform _unitsParent;
+        [SerializeField] private List<RosterCellView> _units;
 
         #endregion
 
@@ -57,25 +57,25 @@ namespace RoboFactory.Factory.Menu.Units
 
         public void CreateUnits()
         {
-            if (units.Count != 0)
+            if (_units.Count != 0)
                 RemoveUnits();
 
             var allUnits = GetFilteredUnits();
             foreach (var unitData in allUnits)
             {
-                var unit = _unitsMenuFactory.CreateUnit(unitsParent);
+                var unit = _unitsMenuFactory.CreateUnit(_unitsParent);
                 unit.OnClickEvent += OnUnitClick;
                 unit.SetProductData(unitData);
-                units.Add(unit);
+                _units.Add(unit);
             }
             
-            ActiveUnit = units.First();
+            ActiveUnit = _units.First();
         }
 
         private void RemoveUnits()
         {
-            units.ForEach(x => Destroy(x.gameObject));
-            units.Clear();
+            _units.ForEach(x => Destroy(x.gameObject));
+            _units.Clear();
         }
 
         private List<UnitObject> GetFilteredUnits()

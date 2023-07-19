@@ -14,7 +14,7 @@ namespace RoboFactory.Factory.Menu.Production
         #region Zenject
 
         [Inject] private readonly IUiController _uiController;
-        [Inject] private readonly LocalisationManager _localisationController;
+        [Inject] private readonly LocalizationService localizationController;
         [Inject] private readonly ProductionManager _productionManager;
 
         #endregion
@@ -32,7 +32,7 @@ namespace RoboFactory.Factory.Menu.Production
         {
             _menu = _uiController.FindUi<ProductionMenuView>();
 
-            SetButtonText(_localisationController.GetLanguageValue(LocalisationKeys.ProductionMenuButtonTextKey));
+            SetButtonText(localizationController.GetLanguageValue(LocalizationKeys.ProductionMenuButtonTextKey));
             SetState();
         }
 

@@ -21,12 +21,12 @@ namespace RoboFactory.Factory.Menu.Units
         #region Components
 
         [Space]
-        [SerializeField] private ProductGroup equipmentType;
+        [SerializeField] private ProductGroup _equipmentType;
         
         [Space]
-        [SerializeField] private Image starImage;
+        [SerializeField] private Image _starImage;
 
-        public ProductGroup EquipmentType => equipmentType;
+        public ProductGroup EquipmentType => _equipmentType;
 
         #endregion
         
@@ -49,15 +49,15 @@ namespace RoboFactory.Factory.Menu.Units
             Data = product;
             SetIconSprite(product.IconRef);
 
-            starImage.gameObject.SetActive(product.ProductType != 0);
+            _starImage.gameObject.SetActive(product.ProductType != 0);
         }
 
         public void ResetEquipmentData()
         {
-            Data = _productsManager.GetDefaultProduct(equipmentType, _menu.ActiveUnit.UnitType);
+            Data = _productsManager.GetDefaultProduct(_equipmentType, _menu.ActiveUnit.UnitType);
             SetIconSprite(Data.IconRef);
 
-            starImage.gameObject.SetActive(false);
+            _starImage.gameObject.SetActive(false);
         }
         
         protected override void Click()

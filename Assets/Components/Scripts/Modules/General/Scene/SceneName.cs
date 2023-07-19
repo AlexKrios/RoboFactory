@@ -4,8 +4,8 @@
     {
         None = 0,
         Launcher = 1,
-        Authentication = 2,
-        Loader = 3,
+        Loader = 2,
+        Authentication = 3,
         Factory = 4,
         Battle = 5,
         

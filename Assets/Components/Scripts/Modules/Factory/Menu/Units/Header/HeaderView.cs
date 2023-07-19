@@ -11,7 +11,7 @@ namespace RoboFactory.Factory.Menu.Units
     {
         #region Zenject
 
-        [Inject] private readonly LocalisationManager _localisationController;
+        [Inject] private readonly LocalizationService localizationController;
         [Inject] private readonly IUiController _uiController;
 
         #endregion
@@ -38,8 +38,8 @@ namespace RoboFactory.Factory.Menu.Units
 
         public void SetData()
         {
-            title.text = _localisationController.GetLanguageValue(LocalisationKeys.UnitsMenuTitleKey);
-            unitType.text = _localisationController.GetLanguageValue(LocalisationKeys.UnitKeys[_menu.ActiveUnitType]);
+            title.text = localizationController.GetLanguageValue(LocalizationKeys.UnitsMenuTitleKey);
+            unitType.text = localizationController.GetLanguageValue(LocalizationKeys.UnitKeys[_menu.ActiveUnitType]);
         }
     }
 }

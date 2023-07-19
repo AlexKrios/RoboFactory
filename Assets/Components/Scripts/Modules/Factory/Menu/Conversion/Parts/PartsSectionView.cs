@@ -17,9 +17,9 @@ namespace RoboFactory.Factory.Menu.Conversion
 
         #region Components
         
-        [SerializeField] private PartCellView part1;
-        [SerializeField] private PartCellView part2;
-        [SerializeField] private PartResultCellView result;
+        [SerializeField] private PartCellView _part1;
+        [SerializeField] private PartCellView _part2;
+        [SerializeField] private PartResultCellView _result;
 
         #endregion
 
@@ -41,14 +41,14 @@ namespace RoboFactory.Factory.Menu.Conversion
         public void SetData()
         {
             var recipe = _rawManager.GetRaw(_menu.ActiveRaw.Key).Recipe;
-            part1.SetPartData(recipe.Parts[0]);
-            part2.SetPartData(recipe.Parts[1]);
-            result.SetResultData(_menu.ActiveRaw.IconRef, _menu.ActiveStar);
+            _part1.SetPartData(recipe.Parts[0]);
+            _part2.SetPartData(recipe.Parts[1]);
+            _result.SetResultData(_menu.ActiveRaw.IconRef, _menu.ActiveStar);
         }
         
         public void StartConvertAnimation()
         {
-            result.StartConvertAnimation();
+            _result.StartConvertAnimation();
         }
     }
 }

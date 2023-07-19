@@ -772,13 +772,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   close: {fileID: 5811213696876113187}
-  upgrade: {fileID: 2410157281470385297}
-  title: {fileID: 1881293914136722415}
-  timer: {fileID: 4051680505075994593}
-  orders:
+  _upgrade: {fileID: 2410157281470385297}
+  _title: {fileID: 1881293914136722415}
+  _timer: {fileID: 4051680505075994593}
+  _orders:
   - {fileID: 1693987721238656815}
   - {fileID: 560895155115608486}
-  parent: {fileID: 6721842954820261404}
+  _parent: {fileID: 6721842954820261404}
 --- !u!225 &-869689923002282129
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -1142,6 +1142,11 @@ PrefabInstance:
       propertyPath: group
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6657098001241565873, guid: 83283d749f5831345a1941d39a24be9e,
+        type: 3}
+      propertyPath: _group
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8366820692665648833, guid: 83283d749f5831345a1941d39a24be9e,
         type: 3}
       propertyPath: m_Name
@@ -1282,6 +1287,11 @@ PrefabInstance:
     - target: {fileID: 6657098001241565873, guid: 83283d749f5831345a1941d39a24be9e,
         type: 3}
       propertyPath: group
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6657098001241565873, guid: 83283d749f5831345a1941d39a24be9e,
+        type: 3}
+      propertyPath: _group
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8366820692665648833, guid: 83283d749f5831345a1941d39a24be9e,

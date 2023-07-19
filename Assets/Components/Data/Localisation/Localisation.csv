@@ -1,4 +1,9 @@
 "key","English","Russian"
+/---------- Localisation ----------/
+"initialize_default","Initialize","Инициализация"
+"initialize_user","Initialize User","Инициализация Пользователя"
+"initialize_addressables","Initialize Resources","Инициализация Ресурсов"
+"initialize_scenes","Initialize Scenes","Инициализация Сцен"
 /---------- Menu ----------/
 "settings_menu_title","Settings","Настройки"
 "production_menu_title","Production","Создание"
@@ -56,3 +61,5 @@
 "auth_missing_password","Missing Password","Пароли не совпадают"
 "auth_user_not_found","User not found","Пользователь не найден"
 "auth_unverified_email","Unverified Email","Email неверефицирован"
+/---------- Other ----------/
+"button_need_level","Need Level:","Необходим уровень:"

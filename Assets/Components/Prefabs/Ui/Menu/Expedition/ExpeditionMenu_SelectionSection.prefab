@@ -243,6 +243,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3673148422514412041}
   - component: {fileID: 7834615878693720435}
+  - component: {fileID: 7120975213362277527}
   m_Layer: 5
   m_Name: ExpeditionMenu_SelectionSection
   m_TagString: Untagged
@@ -284,11 +285,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c5f1194ea594dd6815fd6017d863e5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 161
   close: {fileID: 8807087765496294839}
-  title: {fileID: 6769662054202551844}
-  cellsParent: {fileID: 8008384591280705591}
-  cells:
+  _title: {fileID: 6769662054202551844}
+  _cellsParent: {fileID: 8008384591280705591}
+  _cells:
   - {fileID: 2108925457052602714}
   - {fileID: 606008597219578389}
   - {fileID: 2555501173364748970}
@@ -298,14 +298,26 @@ MonoBehaviour:
   - {fileID: 8744966500123529688}
   - {fileID: 2484345859563543561}
   - {fileID: 8979827030005698733}
-  sidebarTitle: {fileID: 4990394201860429964}
-  sidebarIcon: {fileID: 1144968863347565960}
-  specs:
+  _sidebarTitle: {fileID: 4990394201860429964}
+  _sidebarIcon: {fileID: 1144968863347565960}
+  _specs:
   - {fileID: 6622695110041904045}
   - {fileID: 8074582654275780810}
   - {fileID: 4119335660746622277}
   - {fileID: 762035644589746955}
-  select: {fileID: 3617554648232256277}
+  _select: {fileID: 3617554648232256277}
+--- !u!225 &7120975213362277527
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2304976658524223300}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &2489720184304949844
 GameObject:
   m_ObjectHideFlags: 0
@@ -2132,12 +2144,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5061287501461040053}
     m_Modifications:
-    - target: {fileID: 1862241477084934520, guid: 1d639de878797d44389ebdade20b7585,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 1862308789, guid: 4b02a20004ae0ca47aca6850eff73879,
-        type: 3}
     - target: {fileID: 4410736521600302587, guid: 1d639de878797d44389ebdade20b7585,
         type: 3}
       propertyPath: m_Name
@@ -2725,12 +2731,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5061287501461040053}
     m_Modifications:
-    - target: {fileID: 1862241477084934520, guid: 1d639de878797d44389ebdade20b7585,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: -1657778688, guid: 4b02a20004ae0ca47aca6850eff73879,
-        type: 3}
     - target: {fileID: 4410736521600302587, guid: 1d639de878797d44389ebdade20b7585,
         type: 3}
       propertyPath: m_Name
@@ -3010,12 +3010,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5061287501461040053}
     m_Modifications:
-    - target: {fileID: 1862241477084934520, guid: 1d639de878797d44389ebdade20b7585,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: -1074712080, guid: 4b02a20004ae0ca47aca6850eff73879,
-        type: 3}
     - target: {fileID: 4410736521600302587, guid: 1d639de878797d44389ebdade20b7585,
         type: 3}
       propertyPath: m_Name

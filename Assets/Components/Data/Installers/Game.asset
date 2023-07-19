@@ -12,26 +12,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1efb584a2084a3eac349e11f71dbfb7, type: 3}
   m_Name: Game
   m_EditorClassIdentifier: 
-  localization:
-    localization:
+  _localization:
+    _localization:
     - {fileID: 4900000, guid: b7d23f6d0c8935645ad0b8e3df107c89, type: 3}
     - {fileID: 4900000, guid: cf404107966f70a40b84c9e11b5ae28c, type: 3}
     - {fileID: 4900000, guid: a85b2d5bfe487524eb38af895c7499fd, type: 3}
     - {fileID: 4900000, guid: 41ed39318bc61fd4f819d5f78b8a438d, type: 3}
     - {fileID: 4900000, guid: 7cdd4e9639ab4e049b7d84f791949b97, type: 3}
     - {fileID: 4900000, guid: 839019e6448c9c94abca5ad7fff49a36, type: 3}
-  audioData:
-    musicList: {fileID: 11400000, guid: 0b351388f9e1afd4cb3700c402629534, type: 2}
-    audioList: {fileID: 11400000, guid: c56ce9aaacaba384d933f5a400c2ca56, type: 2}
-  level:
-    data: {fileID: 11400000, guid: 2c73ccf4757c8c94489bae9131d8c651, type: 2}
-  raw:
-    data:
-    - {fileID: 11400000, guid: 6300c373c37ff704280af8326ad222a6, type: 2}
+  _audioData:
+    _musicList: {fileID: 11400000, guid: 0b351388f9e1afd4cb3700c402629534, type: 2}
+    _audioList: {fileID: 11400000, guid: c56ce9aaacaba384d933f5a400c2ca56, type: 2}
+  _level:
+    _data: {fileID: 11400000, guid: 2c73ccf4757c8c94489bae9131d8c651, type: 2}
+  _raw:
+    _data:
     - {fileID: 11400000, guid: d93f5a32beae9f84081da35a39b1468f, type: 2}
     - {fileID: 11400000, guid: 5ad746f0d5cb8934bab3c515a0e98a15, type: 2}
     - {fileID: 11400000, guid: c388d79c890c79a4e91afa7254e850af, type: 2}
-    settings: {fileID: 11400000, guid: d4920f32d1a39c744b67aef7f2022f55, type: 2}
+    - {fileID: 11400000, guid: 6300c373c37ff704280af8326ad222a6, type: 2}
   products:
     items:
     - {fileID: 11400000, guid: 61f183309e5723544a7555eb4b85076d, type: 2}
@@ -51,8 +50,8 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 56f50fc87eca5fb4cbee0ad91e79b685, type: 2}
     - {fileID: 11400000, guid: 468d530f10c91da479cb62af133dbd63, type: 2}
     levels: {fileID: 11400000, guid: 5e54ff9765855f44d8e281bbdb34fc77, type: 2}
-  locations:
-    locations:
+  _locations:
+    _locations:
     - {fileID: 11400000, guid: 1f6271ca99bfddd449ba0c861e45a280, type: 2}
     - {fileID: 11400000, guid: aedf127617cf6c346ae6dc3ff48fb8e5, type: 2}
   units:
@@ -72,12 +71,14 @@ MonoBehaviour:
       value: {fileID: 2100000, guid: 717ffb028c427854ea02cd3a67a88a82, type: 2}
     - key: 5
       value: {fileID: 2100000, guid: 830a1377c568bfc4ca0ee3d4762597a1, type: 2}
-  expeditions:
-    upgradeData: {fileID: 11400000, guid: 5072e6947a629c647baf637025f51003, type: 2}
-  productions:
-    upgradeQueueData: {fileID: 0}
-    upgradeQualityData: {fileID: 0}
-  order:
-    orders:
+  _expeditions:
+    _upgradeData: {fileID: 11400000, guid: 5072e6947a629c647baf637025f51003, type: 2}
+  _productions:
+    _upgradeQueueData: {fileID: 11400000, guid: 5f62e1c220c8bfc498061e554ff1155a,
+      type: 2}
+    _upgradeQualityData: {fileID: 11400000, guid: fb19fe9a7f83b344e8dd8b740b5acab8,
+      type: 2}
+  _order:
+    _orders:
     - {fileID: 11400000, guid: 96e4b3d8567d0b047a6dccf1e8bd8786, type: 2}
     - {fileID: 11400000, guid: 2f14dd258f1387040b50aa96ca5882ce, type: 2}

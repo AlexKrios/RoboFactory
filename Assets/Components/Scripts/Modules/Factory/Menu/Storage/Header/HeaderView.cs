@@ -13,7 +13,7 @@ namespace RoboFactory.Factory.Menu.Storage
     {
         #region Zenject
 
-        [Inject] private readonly LocalisationManager _localisationController;
+        [Inject] private readonly LocalizationService localizationController;
         [Inject] private readonly IUiController _uiController;
 
         #endregion
@@ -64,10 +64,10 @@ namespace RoboFactory.Factory.Menu.Storage
         
         public void SetData()
         {
-            var productKey = LocalisationKeys.ProductKeys[_menu.ActiveProductGroup];
+            var productKey = LocalizationKeys.ProductKeys[_menu.ActiveProductGroup];
 
-            title.text = _localisationController.GetLanguageValue(LocalisationKeys.StorageMenuTitleKey);
-            productGroup.text = _localisationController.GetLanguageValue(productKey);
+            title.text = localizationController.GetLanguageValue(LocalizationKeys.StorageMenuTitleKey);
+            productGroup.text = localizationController.GetLanguageValue(productKey);
         }
     }
 }

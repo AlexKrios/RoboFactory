@@ -11,16 +11,15 @@ namespace RoboFactory.Battle.Ui
     {
         #region Zenject
 
-        [Inject] private readonly AssetsManager _assetsManager;
+        [Inject] private readonly AddressableService addressableService;
 
         #endregion
         
         #region Components
 
-        [SerializeField] private Image icon;
-
-        [SerializeField] private Color allyColor;
-        [SerializeField] private Color enemyColor;
+        [SerializeField] private Image _icon;
+        [SerializeField] private Color _allyColor;
+        [SerializeField] private Color _enemyColor;
 
         #endregion
 
@@ -45,7 +44,7 @@ namespace RoboFactory.Battle.Ui
         {
             Data = unit;
             
-            var sprite = await _assetsManager.LoadAssetAsync<Sprite>(unit.Info.IconRef);
+            var sprite = await addressableService.LoadAssetAsync<Sprite>(unit.Info.IconRef);
             
             SetCellBg(unit.Team);
             SetCellIcon(sprite);
@@ -54,14 +53,14 @@ namespace RoboFactory.Battle.Ui
         private void SetCellBg(BattleUnitTeamType team)
         {
             if (team == BattleUnitTeamType.Ally)
-                _background.color = allyColor;
+                _background.color = _allyColor;
             
             if (team == BattleUnitTeamType.Enemy)
-                _background.color = enemyColor;
+                _background.color = _enemyColor;
         }
         private void SetCellIcon(Sprite sprite)
         {
-            icon.sprite = sprite;
+            _icon.sprite = sprite;
         }
     }
 }

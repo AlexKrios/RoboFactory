@@ -11,8 +11,6 @@ namespace RoboFactory.General.Item.Raw
         
         public bool IsRefill { get; set; }
 
-        public RawSettingsObject Settings { get; set; }
-
         public RawObject SetInitData(RawScriptable data)
         {
             Key = data.Key;

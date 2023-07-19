@@ -18,20 +18,20 @@ namespace RoboFactory.Factory.Menu.Production
     {
         #region Zenject
         
-        [Inject] private readonly AssetsManager _assetsManager;
+        [Inject] private readonly AddressableService addressableService;
         [Inject] private readonly IUiController _uiController;
 
         #endregion
 
         #region Components
 
-        [SerializeField] private Image icon;
-        [SerializeField] private TMP_Text star;
-        [SerializeField] private List<PartCellView> parts;
+        [SerializeField] private Image _icon;
+        [SerializeField] private TMP_Text _star;
+        [SerializeField] private List<PartCellView> _parts;
         
         [Space]
-        [SerializeField] private Image levelBar;
-        [SerializeField] private TMP_Text levelCount;
+        [SerializeField] private Image _levelBar;
+        [SerializeField] private TMP_Text _levelCount;
 
         #endregion
 
@@ -54,17 +54,17 @@ namespace RoboFactory.Factory.Menu.Production
         public async void SetData()
         {
             await SetProductIcon();
-            star.text = _menu.ActiveStar.ToString();
+            _star.text = _menu.ActiveStar.ToString();
             SetLevelData();
-            parts.ForEach(x => x.SetPartInfo(ActiveProduct.Recipe));
+            _parts.ForEach(x => x.SetPartInfo(ActiveProduct.Recipe));
         }
 
         private async UniTask SetProductIcon()
         {
-            icon.color = new Color(1, 1, 1, 0);
-            icon.sprite = await _assetsManager.LoadAssetAsync<Sprite>(ActiveProduct.IconRef);
-            icon.DORestart();
-            icon.DOFade(1f, 0.1f);
+            _icon.color = new Color(1, 1, 1, 0);
+            _icon.sprite = await addressableService.LoadAssetAsync<Sprite>(ActiveProduct.IconRef);
+            _icon.DORestart();
+            _icon.DOFade(1f, 0.1f);
         }
 
         private void SetLevelData()
@@ -74,8 +74,8 @@ namespace RoboFactory.Factory.Menu.Production
 
             if (ActiveProduct.Caps.Last().level <= level)
             {
-                levelBar.fillAmount = 1f;
-                levelCount.text = (level + 1).ToString();
+                _levelBar.fillAmount = 1f;
+                _levelCount.text = (level + 1).ToString();
             }
             else
             {
@@ -85,9 +85,9 @@ namespace RoboFactory.Factory.Menu.Production
                     : ActiveProduct.Caps.First(x => x.level == level).experience;
                 var step = 1f / (currentCap - prevCup);
 
-                levelBar.fillAmount = step * (experience - prevCup);
+                _levelBar.fillAmount = step * (experience - prevCup);
                 
-                levelCount.text = level.ToString();
+                _levelCount.text = level.ToString();
             }
         }
     }

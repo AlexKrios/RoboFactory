@@ -6,19 +6,19 @@ namespace RoboFactory.Authentication
     [AddComponentMenu("Scripts/Authentication/Authentication Initialization", 0)]
     public class AuthenticationInitialization : MonoBehaviour
     {
-        [Inject] private readonly AuthenticationManager _authenticationManager;
+        [Inject] private readonly AuthenticationService authenticationService;
 
         [Inject(Id = "SignUp")] private readonly SignUpView _signUpView;
         [Inject(Id = "Verification")] private readonly VerificationView _verificationView;
 
         private void Awake()
         {
-            _authenticationManager.EventSignUpSuccess += SignUpSuccess;
+            authenticationService.EventSignUpSuccess += SignUpSuccess;
         }
 
         private void OnDestroy()
         {
-            _authenticationManager.EventSignUpSuccess -= SignUpSuccess;
+            authenticationService.EventSignUpSuccess -= SignUpSuccess;
         }
 
         private void SignUpSuccess()

@@ -14,24 +14,26 @@ namespace RoboFactory.Factory.Menu.Order
     {
         #region Zenject
         
-        [Inject] private readonly AssetsManager _assetsManager;
+        [Inject] private readonly AddressableService addressableService;
         [Inject] private readonly ProductsManager _productsManager;
 
         #endregion
 
         #region Components
 
-        [SerializeField] private Image icon;
-        [SerializeField] private TMP_Text count;
-        [SerializeField] private Image starIcon;
-        [SerializeField] private TMP_Text starLevel;
+        [SerializeField] private Image _icon;
+        [SerializeField] private TMP_Text _count;
+        
+        [Space]
+        [SerializeField] private Image _starIcon;
+        [SerializeField] private TMP_Text _starLevel;
 
         #endregion
 
         public async void SetPartInfo(PartObject part)
         {
             var itemCount = _productsManager.GetProduct(part.data.Key).Count;
-            var sprite = await _assetsManager.LoadAssetAsync<Sprite>(part.data.IconRef);
+            var sprite = await addressableService.LoadAssetAsync<Sprite>(part.data.IconRef);
 
             SetPartIcon(sprite);
             SetPartText($"{itemCount}/{part.count}");
@@ -40,19 +42,19 @@ namespace RoboFactory.Factory.Menu.Order
 
         private void SetPartIcon(Sprite partIcon, float alpha = 1f)
         {
-            icon.sprite = partIcon;
-            icon.color = new Color(1, 1, 1, alpha);
+            _icon.sprite = partIcon;
+            _icon.color = new Color(1, 1, 1, alpha);
         }
 
         private void SetPartText(string text)
         {
-            count.text = text;
+            _count.text = text;
         }
         
         private void SetPartStar(int star, bool isActive = true)
         {
-            starIcon.gameObject.SetActive(isActive);
-            starLevel.text = star.ToString();
+            _starIcon.gameObject.SetActive(isActive);
+            _starLevel.text = star.ToString();
         }
     }
 }

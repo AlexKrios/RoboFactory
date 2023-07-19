@@ -7,7 +7,9 @@ using RoboFactory.General.Api;
 using RoboFactory.General.Item.Products;
 using RoboFactory.General.Money;
 using RoboFactory.Utils;
+using UnityEngine;
 using Zenject;
+using Random = System.Random;
 
 namespace RoboFactory.General.Order
 {
@@ -16,7 +18,7 @@ namespace RoboFactory.General.Order
     {
         #region Zenject
 
-        [Inject] private readonly ApiManager _apiManager;
+        [Inject] private readonly ApiService apiService;
         [Inject] private readonly MoneyManager _moneyManager;
         [Inject] private readonly ProductsManager _productsManager;
 
@@ -37,7 +39,7 @@ namespace RoboFactory.General.Order
         public OrderManager(Settings settings)
         {
             OrdersDictionary = new Dictionary<string, OrderObject>();
-            foreach (var fileData in settings.orders)
+            foreach (var fileData in settings.Orders)
             {
                 foreach (var data in fileData.Orders)
                 {
@@ -100,7 +102,7 @@ namespace RoboFactory.General.Order
             var orders = OrdersDictionary.Where(x => x.Value.IsActive)
                 .ToDictionary(x => x.Key, z => z.Value.ToDto());
 
-            await _apiManager.SetUserOrders(orders);
+            await apiService.SetUserOrders(orders);
         }
 
         public bool IsEnoughParts(OrderObject orderObject)
@@ -122,22 +124,24 @@ namespace RoboFactory.General.Order
             _moneyManager.PlusMoney(item.Recipe.Cost * orderObject.Part.count);
         }
 
-        private async void IncreaseOrderCount()
+        /*private async void IncreaseOrderCount()
         {
             Count++;
             await _apiManager.SetUserOrdersCount(Count);
-        }
+        }*/
         
         public async UniTask IncreaseOrderLevel()
         {
             Level++;
-            await _apiManager.SetUserOrdersLevel(Count);
+            await apiService.SetUserOrdersLevel(Count);
         }
         
         [Serializable]
         public class Settings
         {
-            public List<OrderScriptable> orders;
+            [SerializeField] private List<OrderScriptable> _orders;
+            
+            public List<OrderScriptable> Orders => _orders;
         }
     }
 }

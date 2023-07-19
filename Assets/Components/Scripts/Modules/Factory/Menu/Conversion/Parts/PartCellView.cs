@@ -12,16 +12,16 @@ namespace RoboFactory.Factory.Menu.Conversion
     {
         #region Zenject
         
-        [Inject] private readonly AssetsManager _assetsManager;
+        [Inject] private readonly AddressableService addressableService;
         [Inject] private readonly ManagersResolver managersResolver;
 
         #endregion
 
         #region Components
         
-        [SerializeField] private Image icon;
-        [SerializeField] private TMP_Text count;
-        [SerializeField] private TMP_Text level;
+        [SerializeField] private Image _icon;
+        [SerializeField] private TMP_Text _count;
+        [SerializeField] private TMP_Text _level;
 
         #endregion
 
@@ -30,11 +30,11 @@ namespace RoboFactory.Factory.Menu.Conversion
             var data = part.data;
             var store = managersResolver.GetManagerByType(data.ItemType);
             var itemCount = store.GetItem(data.Key).Count;
-            var sprite = await _assetsManager.LoadAssetAsync<Sprite>(data.IconRef);
+            var sprite = await addressableService.LoadAssetAsync<Sprite>(data.IconRef);
 
-            icon.sprite = sprite;
-            count.text = $"{itemCount}/{part.count}";
-            level.text = part.star.ToString();
+            _icon.sprite = sprite;
+            _count.text = $"{itemCount}/{part.count}";
+            _level.text = part.star.ToString();
         }
     }
 }

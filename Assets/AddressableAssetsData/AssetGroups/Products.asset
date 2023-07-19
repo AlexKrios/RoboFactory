@@ -21,87 +21,87 @@ MonoBehaviour:
     m_Address: Assets/Components/Images/Sprite/Item/Product/Trooper/TrooperWeapon.png
     m_ReadOnly: 0
     m_SerializedLabels:
-    - Products Sprites
+    - Core
   - m_GUID: 7e4d507bf545c8e43b79c378f25ac6c0
     m_Address: Assets/Components/Images/Sprite/Item/Product/Trooper/TrooperEngine.png
     m_ReadOnly: 0
     m_SerializedLabels:
-    - Products Sprites
+    - Core
   - m_GUID: 22d1ccf963095b04c82d9ae5535aa8df
     m_Address: Assets/Components/Images/Sprite/Item/Product/Trooper/TrooperBattery.png
     m_ReadOnly: 0
     m_SerializedLabels:
-    - Products Sprites
+    - Core
   - m_GUID: 0151d479850dec64cb1772835345e19a
     m_Address: Assets/Components/Images/Sprite/Item/Product/Trooper/TrooperArmor.png
     m_ReadOnly: 0
     m_SerializedLabels:
-    - Products Sprites
+    - Core
   - m_GUID: 6a1db7dc653941f4c9f989bc8f310d5f
     m_Address: Assets/Components/Images/Sprite/Item/Product/Support/SupportWeapon.png
     m_ReadOnly: 0
     m_SerializedLabels:
-    - Products Sprites
+    - Core
   - m_GUID: b1701e2ecb08a21438321d9af2b7a663
     m_Address: Assets/Components/Images/Sprite/Item/Product/Support/SupportEngine.png
     m_ReadOnly: 0
     m_SerializedLabels:
-    - Products Sprites
+    - Core
   - m_GUID: bbd01f80ca5ad5d40b956b3b93da6f77
     m_Address: Assets/Components/Images/Sprite/Item/Product/Support/SupportBattery.png
     m_ReadOnly: 0
     m_SerializedLabels:
-    - Products Sprites
+    - Core
   - m_GUID: e5024f8a9c6569e4c89d0a043d827425
     m_Address: Assets/Components/Images/Sprite/Item/Product/Support/SupportArmor.png
     m_ReadOnly: 0
     m_SerializedLabels:
-    - Products Sprites
+    - Core
   - m_GUID: 261629d4fd5c9a1408f79a50c0f224cd
     m_Address: Assets/Components/Images/Sprite/Item/Product/Sniper/SniperWeapon.png
     m_ReadOnly: 0
     m_SerializedLabels:
-    - Products Sprites
+    - Core
   - m_GUID: 53be831e4b0faa043a3cfcf9af2b29d2
     m_Address: Assets/Components/Images/Sprite/Item/Product/Sniper/SniperEngine.png
     m_ReadOnly: 0
     m_SerializedLabels:
-    - Products Sprites
+    - Core
   - m_GUID: b7377a7b96ea166428934145311b16b2
     m_Address: Assets/Components/Images/Sprite/Item/Product/Sniper/SniperBattery.png
     m_ReadOnly: 0
     m_SerializedLabels:
-    - Products Sprites
+    - Core
   - m_GUID: c44f7d8a76b78914bab8fccd3e773a93
     m_Address: Assets/Components/Images/Sprite/Item/Product/Sniper/SniperArmor.png
     m_ReadOnly: 0
     m_SerializedLabels:
-    - Products Sprites
+    - Core
   - m_GUID: a5f35de28ca0fcc4aa51964cddeab5c9
     m_Address: Assets/Components/Images/Sprite/Item/Product/Defender/DefenderWeapon.png
     m_ReadOnly: 0
     m_SerializedLabels:
-    - Products Sprites
+    - Core
   - m_GUID: ce87a4f0a8b26d84d88b84cb597202e7
     m_Address: Assets/Components/Images/Sprite/Item/Product/Defender/DefenderEngine.png
     m_ReadOnly: 0
     m_SerializedLabels:
-    - Products Sprites
+    - Core
   - m_GUID: a96c1d1d18e90804485ce03e627a02f2
     m_Address: Assets/Components/Images/Sprite/Item/Product/Defender/DefenderBattery.png
     m_ReadOnly: 0
     m_SerializedLabels:
-    - Products Sprites
+    - Core
   - m_GUID: d8a3a2fb60f2b4b4dbbcf4acd38e4752
     m_Address: Assets/Components/Images/Sprite/Item/Product/Defender/DefenderArmor.png
     m_ReadOnly: 0
     m_SerializedLabels:
-    - Products Sprites
+    - Core
   - m_GUID: 144efc02586ae384e9bc4c6cbe77e313
     m_Address: Assets/Components/Images/Sprite/Item/Product/ProductType.png
     m_ReadOnly: 0
     m_SerializedLabels:
-    - Products Sprites
+    - Core
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 43f345baeabe80145b7f64554f5c1876, type: 2}
   m_SchemaSet:

@@ -18,8 +18,7 @@ namespace RoboFactory.Factory.Menu.Production
 
         #region Components
         
-        [SerializeField] private ProductGroup group;
-        public ProductGroup Group => group;
+        [SerializeField] private ProductGroup _group;
 
         #endregion
         
@@ -33,7 +32,7 @@ namespace RoboFactory.Factory.Menu.Production
         {
             base.Click();
             
-            OnClickEvent?.Invoke(this, group);
+            OnClickEvent?.Invoke(this, _group);
         }
 
         public void SetTabData(ProductGroup type)

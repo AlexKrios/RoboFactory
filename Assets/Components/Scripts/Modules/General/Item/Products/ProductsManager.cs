@@ -15,7 +15,7 @@ namespace RoboFactory.General.Item.Products
     [UsedImplicitly]
     public class ProductsManager : IItemManager
     {
-        [Inject] private readonly ApiManager _apiManager;
+        [Inject] private readonly ApiService apiService;
         [Inject] private readonly LevelManager _levelManager;
         
         public ItemType ItemType { get; }
@@ -89,21 +89,21 @@ namespace RoboFactory.General.Item.Products
             _levelManager.SetExperience(product.Recipe.Experience);
             product.IncrementCount();
             product.IncrementExperience();
-            await _apiManager.SetUserProductSingle(key, product.ToDto());
+            await apiService.SetUserProductSingle(key, product.ToDto());
         }
 
         public async UniTask AddItem(string key, int count = 1)
         {
             var product = _productsDictionary[key];
             product.IncrementCount(count);
-            await _apiManager.SetUserProductSingle(key, product.ToDto());
+            await apiService.SetUserProductSingle(key, product.ToDto());
         }
 
         public async UniTask RemoveItem(string key, int count = 1)
         {
             var product = _productsDictionary[key];
             product.DecrementCount(count);
-            await _apiManager.SetUserProductSingle(key, product.ToDto());
+            await apiService.SetUserProductSingle(key, product.ToDto());
         }
 
         [Serializable]

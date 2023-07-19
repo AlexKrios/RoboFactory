@@ -920,12 +920,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   group: 0
-  icon: {fileID: 4550368967936073261}
-  title: {fileID: 873128982523300571}
-  prize: {fileID: 8075761478543650236}
-  button: {fileID: 6517824856027887804}
-  bar: {fileID: 3477333699086428394}
-  count: {fileID: 2658532533835092675}
+  _icon: {fileID: 4550368967936073261}
+  _title: {fileID: 873128982523300571}
+  _prize: {fileID: 8075761478543650236}
+  _button: {fileID: 6517824856027887804}
+  _bar: {fileID: 3477333699086428394}
+  _count: {fileID: 2658532533835092675}
 --- !u!222 &428881067373197017
 CanvasRenderer:
   m_ObjectHideFlags: 0

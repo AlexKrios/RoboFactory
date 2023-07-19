@@ -17,8 +17,8 @@ namespace RoboFactory.Factory.Menu.Units
     {
         #region Zenject
         
-        [Inject] private readonly AssetsManager _assetsManager;
-        [Inject] private readonly LocalisationManager _localisationController;
+        [Inject] private readonly AddressableService addressableService;
+        [Inject] private readonly LocalizationService localizationController;
         [Inject] private readonly IUiController _uiController;
         [Inject] private readonly ProductsManager _productsManager;
         [Inject] private readonly UnitsMenuFactory _unitsMenuFactory;
@@ -28,19 +28,19 @@ namespace RoboFactory.Factory.Menu.Units
         #region Components
 
         [Space]
-        [SerializeField] private TMP_Text title;
+        [SerializeField] private TMP_Text _title;
 
         [Space]
-        [SerializeField] private Transform cellsParent;
-        [SerializeField] private List<SelectionCellView> cells;
+        [SerializeField] private Transform _cellsParent;
+        [SerializeField] private List<SelectionCellView> _cells;
         
         [Space]
-        [SerializeField] private TMP_Text sidebarTitle;
-        [SerializeField] private Image sidebarIcon;
-        [SerializeField] private List<SpecCellView> specs;
+        [SerializeField] private TMP_Text _sidebarTitle;
+        [SerializeField] private Image _sidebarIcon;
+        [SerializeField] private List<SpecCellView> _specs;
         
         [Space]
-        [SerializeField] private SelectButtonView select;
+        [SerializeField] private SelectButtonView _select;
 
         #endregion
         
@@ -81,15 +81,15 @@ namespace RoboFactory.Factory.Menu.Units
 
         private void SetTitleData()
         {
-            title.text = _localisationController.GetLanguageValue(ActiveItem.Data.Key);
+            _title.text = localizationController.GetLanguageValue(ActiveItem.Data.Key);
         }
 
         private void SetSelectionData()
         {
-            if (cells.Count != 0)
+            if (_cells.Count != 0)
             {
-                cells.ForEach(x => Destroy(x.gameObject));
-                cells.Clear();
+                _cells.ForEach(x => Destroy(x.gameObject));
+                _cells.Clear();
             }
             
             var equipments = _productsManager.GetAllProducts()
@@ -100,13 +100,13 @@ namespace RoboFactory.Factory.Menu.Units
 
             foreach (var data in equipments)
             {
-                var cell = _unitsMenuFactory.CreateSelectionCell(cellsParent);
+                var cell = _unitsMenuFactory.CreateSelectionCell(_cellsParent);
                 cell.OnEquipmentClick += OnEquipmentClick;
                 cell.SetEquipmentData(data);
-                cells.Add(cell);
+                _cells.Add(cell);
             }
 
-            ActiveItem = cells.First();
+            ActiveItem = _cells.First();
         }
 
         private void OnEquipmentClick(SelectionCellView cell)
@@ -122,17 +122,17 @@ namespace RoboFactory.Factory.Menu.Units
             
             SetTitleData();
             SetSidebarData();
-            select.SetState();
+            _select.SetState();
         }
         
         private async void SetSidebarData()
         {
             var product = _productsManager.GetProduct(ActiveItem.Data.Key);
-            sidebarTitle.text = _localisationController.GetLanguageValue(product.Key);
-            sidebarIcon.sprite = await _assetsManager.LoadAssetAsync<Sprite>(product.IconRef);
+            _sidebarTitle.text = localizationController.GetLanguageValue(product.Key);
+            _sidebarIcon.sprite = await addressableService.LoadAssetAsync<Sprite>(product.IconRef);
             foreach (var specData in product.Recipe.Specs)
             {
-                var spec = specs.First(x => x.SpecType == specData.type);
+                var spec = _specs.First(x => x.SpecType == specData.type);
                 spec.SetData(specData);
             }
         }

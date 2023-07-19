@@ -1,0 +1,170 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Core
+  m_EditorClassIdentifier: 
+  m_GroupName: Core
+  m_Data:
+    m_SerializedData: []
+  m_GUID: cfa15ec4273cc0848afca3309328b6f4
+  m_SerializeEntries:
+  - m_GUID: 47fa50b707f5f9541915b2c91ee0ef76
+    m_Address: Assets/Components/Prefabs/Ui/Menu/Settings/SettingsMenu.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Core
+  - m_GUID: 2238f4f078686ba44b03c162a51db0c0
+    m_Address: Assets/Components/Prefabs/Ui/Menu/Expedition/ExpeditionMenu.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Core
+  - m_GUID: 49152d6ec0e2fd840a3f1482dfc0dbe9
+    m_Address: Assets/Components/Prefabs/Ui/Menu/Production/ProductionMenu.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Core
+  - m_GUID: 06d39f8192ab8fc4d8d41f3586c9c4cc
+    m_Address: Assets/Components/Images/Sprite/Ui/Menu/Border/Border2px.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Core
+  - m_GUID: d14816bd1c66d5f4fbafc4de56d99115
+    m_Address: Assets/Components/Images/Sprite/Ui/Menu/Border/BorderBack.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Core
+  - m_GUID: 5e99cd1cad4e6a64e8afc27b24f9aba7
+    m_Address: Assets/Components/Images/Sprite/Ui/Menu/Border/Border4px.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Core
+  - m_GUID: 230c6748d55a40146ad5521a1ddf1373
+    m_Address: Assets/Components/Images/Sprite/Ui/Menu/Border/Border3px.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Core
+  - m_GUID: 264cc47520bb57549bf8d1ddd49d6060
+    m_Address: Assets/Components/Images/Sprite/Ui/Menu/Border/Border1px.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Core
+  - m_GUID: 66452e2e862fd0c42b27a084a20b6fef
+    m_Address: Assets/Components/Images/Sprite/Ui/Menu/Settings/LanguageIcon.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Core
+  - m_GUID: f8057a479ee2ef341ae45da88978caa6
+    m_Address: Assets/Components/Images/Sprite/Ui/Menu/Settings/GraphicIcon.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Core
+  - m_GUID: da1ddebf41436c14f9551ffec83f9e0d
+    m_Address: Assets/Components/Images/Sprite/Ui/Menu/Settings/MusicIcon.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Core
+  - m_GUID: e80aea9c8f3258b4d889df41b75cdb28
+    m_Address: Assets/Components/Images/Sprite/Ui/Menu/Settings/AudioIcon.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Core
+  - m_GUID: 7395c3a81e97b3a4abbccbd632b73838
+    m_Address: Assets/Components/Images/Sprite/Ui/SignIn.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Core
+  - m_GUID: 5bc11980fba99c445a08d08f53cb5cd2
+    m_Address: Assets/Components/Images/Sprite/Ui/StarIcon.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Core
+  - m_GUID: 6494a5cbba43f82488d7599917c1be56
+    m_Address: Assets/Components/Images/Sprite/Ui/Menu/Border/DefaultGlow.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Core
+  - m_GUID: 441941c4a2f83514297efb9e16134c7a
+    m_Address: Assets/Components/Images/Sprite/Ui/SignOut.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Core
+  - m_GUID: 4b02a20004ae0ca47aca6850eff73879
+    m_Address: Assets/Components/Images/Sprite/Item/Product/SpecsIcons.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Core
+  - m_GUID: 3b4d4547d01f39c429b186952282b8dc
+    m_Address: Assets/Components/Images/Sprite/Ui/Menu/Production/BlueprintCraftProduct.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Core
+  - m_GUID: 7b738a0b7c2318841b10f2a1077b9cfc
+    m_Address: Assets/Components/Prefabs/Ui/Menu/Conversion/ConversionMenu.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Core
+  - m_GUID: c87fbf4fe1c381844b47f2163c958c9e
+    m_Address: Assets/Components/Prefabs/Ui/Menu/Order/OrderMenu.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Core
+  - m_GUID: c5dd78a8a7266bf458db432b0570b1d4
+    m_Address: Assets/Components/Prefabs/Ui/Menu/Storage/StorageMenu.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Core
+  - m_GUID: 0c36dae8d0b3a8b44844ace73ba46a1e
+    m_Address: Assets/Components/Prefabs/Ui/Menu/Units/UnitsMenu.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Core
+  - m_GUID: 84dffa0932e0886448db7b955035689c
+    m_Address: Assets/Components/Prefabs/Ui/Menu/Production/ProductionMenu_UpgradePopup.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Core
+  - m_GUID: 56cff11359c6baa40af59aa9fbe55cd2
+    m_Address: Assets/Components/Prefabs/Ui/Menu/Production/ProductionQueue_UpgradePopup.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Core
+  - m_GUID: 16d03c305c253b64db3fedafaaeabe9d
+    m_Address: RawArmor
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Core
+  - m_GUID: 3e54da3b0b863c140845430cb89f6aec
+    m_Address: RawBattery
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Core
+  - m_GUID: dc9c1d0cded8ac64590d9913657bfdc4
+    m_Address: RawEngine
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Core
+  - m_GUID: 7cebe9a3c0e99c54b955b7f8a1499bfa
+    m_Address: RawWeapon
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Core
+  - m_GUID: 114d1c7c5dc27d0428359f3a678a6533
+    m_Address: Assets/Components/Images/Sprite/CharachterType.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Core
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 43f345baeabe80145b7f64554f5c1876, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: bafc8e749a5334d42ac3db5893fe5145, type: 2}
+    - {fileID: 11400000, guid: 1d67744f3652eb04fa4b6b8793da4077, type: 2}

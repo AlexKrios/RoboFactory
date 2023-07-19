@@ -960,14 +960,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b9c9fd249d846678e07777cac82c1ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 121
   close: {fileID: 1050140044957386784}
   titleText: {fileID: 2980804403553695998}
   currentLevel: {fileID: 7775539011280111598}
   nextLevel: {fileID: 1721109374323675665}
   acceptButton: {fileID: 3316847358324619569}
-  acceptLevelText: {fileID: 977873395646621750}
-  acceptMoneyText: {fileID: 4447072597211557146}
+  acceptText: {fileID: 977873395646621750}
 --- !u!225 &4758183550124237273
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -1368,36 +1366,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4758183550101416907}
     m_Modifications:
-    - target: {fileID: 1373399698669024097, guid: ca2ccd5923d411b48915fbeb9c6c438a,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1373399698669024097, guid: ca2ccd5923d411b48915fbeb9c6c438a,
-        type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1373399698669024097, guid: ca2ccd5923d411b48915fbeb9c6c438a,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1373399698669024097, guid: ca2ccd5923d411b48915fbeb9c6c438a,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1373399698669024097, guid: ca2ccd5923d411b48915fbeb9c6c438a,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1373399698669024097, guid: ca2ccd5923d411b48915fbeb9c6c438a,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5977401071244761863, guid: ca2ccd5923d411b48915fbeb9c6c438a,
         type: 3}
       propertyPath: m_Name
@@ -1508,36 +1476,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8635914243969632417, guid: ca2ccd5923d411b48915fbeb9c6c438a,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8635914243969632417, guid: ca2ccd5923d411b48915fbeb9c6c438a,
-        type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8635914243969632417, guid: ca2ccd5923d411b48915fbeb9c6c438a,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8635914243969632417, guid: ca2ccd5923d411b48915fbeb9c6c438a,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8635914243969632417, guid: ca2ccd5923d411b48915fbeb9c6c438a,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8635914243969632417, guid: ca2ccd5923d411b48915fbeb9c6c438a,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ca2ccd5923d411b48915fbeb9c6c438a, type: 3}
 --- !u!224 &904916722653473768 stripped
@@ -1568,18 +1506,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &4447072597211557146 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7859319976319754064, guid: ca2ccd5923d411b48915fbeb9c6c438a,
-    type: 3}
-  m_PrefabInstance: {fileID: 5811549075694203466}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &7879724323770615662

@@ -7,16 +7,15 @@ using RoboFactory.General.Item.Production;
 using RoboFactory.General.Item.Products;
 using RoboFactory.General.Item.Raw;
 using RoboFactory.General.Level;
-using RoboFactory.General.Localisation;
 using RoboFactory.General.Location;
 using RoboFactory.General.Money;
 using RoboFactory.General.Order;
 using RoboFactory.General.Scene;
-using RoboFactory.General.Settings;
+using RoboFactory.General.Services;
 using RoboFactory.General.Unit;
 using RoboFactory.General.User;
 using UnityEngine;
-using UnityEngine.AddressableAssets;
+using UnityEngine.SceneManagement;
 using Zenject;
 
 namespace RoboFactory.Launcher
@@ -24,10 +23,10 @@ namespace RoboFactory.Launcher
     [AddComponentMenu("Scripts/Launcher/Launcher Initialization", 0)]
     public class LauncherInitialization : MonoBehaviour
     {
-        [Inject] private readonly LocalisationManager _localisationManager;
+        [Inject] private readonly DiContainer _container;
+        
         [Inject] private readonly AudioManager _audioController;
-        [Inject] private readonly AuthenticationManager _authenticationManager;
-        [Inject] private readonly SettingsManager _settingsManager;
+        [Inject] private readonly AuthenticationService _authenticationService;
 
         [Inject] private readonly MoneyManager _moneyManager;
         [Inject] private readonly LevelManager _levelManager;
@@ -39,30 +38,38 @@ namespace RoboFactory.Launcher
         [Inject] private readonly ProductionManager _productionManager;
         [Inject] private readonly ExpeditionManager _expeditionManager;
 
-        [Inject] private readonly SceneController _sceneController;
+        [Inject] private readonly SceneService _sceneService;
         
-        [Inject] private readonly ApiManager _apiManager;
+        [Inject] private readonly ApiService _apiService;
         [Inject] private readonly UserProfile.Factory _userFactory;
 
         private async void Awake()
         {
             QualitySettings.vSyncCount = 0;
-            Application.targetFrameRate = 500;
+            Application.targetFrameRate = 60;
 
-            await InitAddressables();
+            await SceneManager.LoadSceneAsync(SceneName.Loader.ToString(), LoadSceneMode.Additive).ToUniTask();
+
             InitAudio();
-            InitLocalisation();
             InitAuthentication();
+            
+            var services = _container.ResolveAll<Service>();
+            foreach (var service in services)
+            {
+                await service.Initialize();
+            }
+            
+            foreach (var service in services)
+            {
+                await service.Load();
+            }
+
+            _sceneService.ProgressText.Value = "initialize_default";
         }
 
         private void OnDestroy()
         {
-            _authenticationManager.EventSignInFailure -= LoadAuthenticationScene;
-        }
-
-        private async UniTask InitAddressables()
-        {
-            await Addressables.InitializeAsync();
+            _authenticationService.EventSignInFailure -= LoadAuthenticationScene;
         }
 
         private void InitAudio()
@@ -73,35 +80,27 @@ namespace RoboFactory.Launcher
             DontDestroyOnLoad(musicGameObject);
         }
 
-        private void InitLocalisation()
-        {
-            _localisationManager.LoadLocalisationData();
-        }
-        
         private void InitAuthentication()
         {
-            _authenticationManager.EventSignInSuccess += LoadServicesData;
-            _authenticationManager.EventSignInFailure += LoadAuthenticationScene;
-            _authenticationManager.Initialize();
+            _authenticationService.EventSignInSuccess += LoadServicesData;
+            _authenticationService.EventSignInFailure += LoadAuthenticationScene;
+            //authenticationService.Initialize();
         }
         
         private void LoadAuthenticationScene()
         {
-            _sceneController.LoadScene(SceneName.Authentication, 1f);
+            //_sceneService.LoadScene(SceneName.Authentication, 1f);
         }
         
         private async void LoadServicesData()
         {
-            var userProfile = await _apiManager.GetUserProfile();
+            var userProfile = await _apiService.GetUserProfile();
             if (userProfile == null)
             {
                 userProfile = _userFactory.Create().GetStartUserProfile();
-                _settingsManager.InitData();
-                await _apiManager.SetStartUserProfile(userProfile);
+                await _apiService.SetStartUserProfile(userProfile);
             }
-                
-            _settingsManager.LoadData();
-                
+
             _moneyManager.LoadData(userProfile.MoneySection);
             _levelManager.LoadData(userProfile.LevelSection);
 
@@ -115,7 +114,7 @@ namespace RoboFactory.Launcher
 
             _orderManager.LoadData(userProfile.OrdersSection);
 
-            _sceneController.LoadScene(SceneName.Factory, 1f);
+            _sceneService.LoadScene(SceneName.Factory, 1f);
         }
     }
 }

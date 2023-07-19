@@ -17,8 +17,8 @@ namespace RoboFactory.Factory.Menu.Order
     {
         #region Zenject
 
-        [Inject] private readonly AssetsManager _assetsManager;
-        [Inject] private readonly LocalisationManager _localisationController;
+        [Inject] private readonly AddressableService addressableService;
+        [Inject] private readonly LocalizationService localizationController;
         [Inject] private readonly ProductsManager _productsManager;
         [Inject] private readonly OrderManager _orderManager;
 
@@ -26,17 +26,17 @@ namespace RoboFactory.Factory.Menu.Order
 
         #region Components
 
-        [SerializeField] private ProductGroup group;
+        [SerializeField] private ProductGroup _group;
         
         [Space]
-        [SerializeField] private Image icon;
-        [SerializeField] private TMP_Text title;
-        [SerializeField] private TMP_Text prize;
-        [SerializeField] private Button button;
-        [SerializeField] private Image bar;
-        [SerializeField] private TMP_Text count;
+        [SerializeField] private Image _icon;
+        [SerializeField] private TMP_Text _title;
+        [SerializeField] private TMP_Text _prize;
+        [SerializeField] private Button _button;
+        [SerializeField] private Image _bar;
+        [SerializeField] private TMP_Text _count;
         
-        public ProductGroup Group => group;
+        public ProductGroup Group => _group;
 
         #endregion
         
@@ -55,7 +55,7 @@ namespace RoboFactory.Factory.Menu.Order
         {
             _disposable = new CompositeDisposable();
             
-            button.OnClickAsObservable().Subscribe(_ => Click()).AddTo(_disposable);
+            _button.OnClickAsObservable().Subscribe(_ => Click()).AddTo(_disposable);
         }
         
         private void OnDestroy()
@@ -74,10 +74,10 @@ namespace RoboFactory.Factory.Menu.Order
 
         private async void SetView()
         {
-            icon.sprite = await _assetsManager.LoadAssetAsync<Sprite>(_orderData.Part.data.IconRef);
+            _icon.sprite = await addressableService.LoadAssetAsync<Sprite>(_orderData.Part.data.IconRef);
             SetTitleText();
             SetPrizeText();
-            button.interactable = _orderManager.IsEnoughParts(_orderData);
+            _button.interactable = _orderManager.IsEnoughParts(_orderData);
             SetBarProgress();
             SetCountText();
         }
@@ -85,15 +85,15 @@ namespace RoboFactory.Factory.Menu.Order
         private void SetTitleText()
         {
             var titleKey = $"{_orderData.Key}_title";
-            var text = _localisationController.GetLanguageValue(titleKey);
-            var item = _localisationController.GetLanguageValue(_orderData.Part.data.Key);
-            title.text = string.Format(text, item);
+            var text = localizationController.GetLanguageValue(titleKey);
+            var item = localizationController.GetLanguageValue(_orderData.Part.data.Key);
+            _title.text = string.Format(text, item);
         }
 
         private void SetPrizeText()
         {
             var cost = _productsManager.GetProduct(_orderData.Part.data.Key).Recipe.Cost;
-            prize.text = StringUtil.PriceShortFormat(_orderData.Part.count * cost);
+            _prize.text = StringUtil.PriceShortFormat(_orderData.Part.count * cost);
         }
 
         private void SetBarProgress()
@@ -101,17 +101,17 @@ namespace RoboFactory.Factory.Menu.Order
             var itemKey = _orderData.Part.data.Key;
             var currentCount = _productsManager.GetProduct(itemKey).Count;
             var step = 1f / _orderData.Part.count;
-            bar.fillAmount = step * currentCount;
+            _bar.fillAmount = step * currentCount;
 
-            if (bar.fillAmount > 1)
-                bar.fillAmount = 1;
+            if (_bar.fillAmount > 1)
+                _bar.fillAmount = 1;
         }
         
         private void SetCountText()
         {
             var itemKey = _orderData.Part.data.Key;
             var currentCount = _productsManager.GetProduct(itemKey).Count;
-            count.text = $"{currentCount}/{_orderData.Part.count}";
+            _count.text = $"{currentCount}/{_orderData.Part.count}";
         }
 
         private void Click()

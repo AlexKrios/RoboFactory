@@ -21,7 +21,7 @@ namespace RoboFactory.Factory.Menu.Expedition
     {
         #region Zenject
         
-        [Inject] private readonly LocalisationManager _localisationController;
+        [Inject] private readonly LocalizationService localizationController;
         [Inject] private readonly IUiController _uiController;
         [Inject] private readonly UnitsManager _unitsManager;
         [Inject] private readonly RawManager _rawManager;
@@ -81,7 +81,7 @@ namespace RoboFactory.Factory.Menu.Expedition
         {
             _data = data;
             
-            title.text = _localisationController.GetLanguageValue("expedition_complete");
+            title.text = localizationController.GetLanguageValue("expedition_complete");
             StartCoroutine(CreateRewardsCell());
             StartCoroutine(CreateUnitsCell());
         }

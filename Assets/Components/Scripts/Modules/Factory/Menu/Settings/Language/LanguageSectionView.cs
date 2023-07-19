@@ -13,14 +13,14 @@ namespace RoboFactory.Factory.Menu.Settings
     {
         #region Zenject
 
-        [Inject] private readonly SettingsManager _settingsController;
-        [Inject] private readonly LocalisationManager _localisationController;
+        [Inject] private readonly SettingsService _settingsController;
+        [Inject] private readonly LocalizationService localizationController;
 
         #endregion
         
         #region Components
 
-        [SerializeField] private List<LanguageCellView> languages;
+        [SerializeField] private List<LanguageCellView> _languages;
 
         #endregion
 
@@ -46,9 +46,9 @@ namespace RoboFactory.Factory.Menu.Settings
 
         public void SetData()
         {
-            languages.ForEach(x => x.OnClickEvent += OnLanguageClick);
+            _languages.ForEach(x => x.OnClickEvent += OnLanguageClick);
 
-            ActiveLanguage = languages.First(x => x.Type == _settingsController.Language);
+            ActiveLanguage = _languages.First(x => x.Type == _settingsController.Language);
         }
 
         private void OnLanguageClick(LanguageCellView cell, LanguageType type)
@@ -58,7 +58,7 @@ namespace RoboFactory.Factory.Menu.Settings
 
             _settingsController.SetLanguage(type);
             ActiveLanguage = cell;
-            _localisationController.LoadLocalisationData();
+            localizationController.LoadLocalisationData();
 
             OnClickEvent?.Invoke();
         }

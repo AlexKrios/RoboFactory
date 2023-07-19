@@ -8,16 +8,16 @@ namespace RoboFactory.General.Ui.Popup
     [AddComponentMenu("Scripts/General/Popup/Small Notification View")]
     public class SmallNotificationView : PopupBase
     {
-        [Inject] private readonly LocalisationManager _localisationController;
+        [Inject] private readonly LocalizationService localizationController;
 
-        [SerializeField] private TMP_Text messageText;
+        [SerializeField] private TMP_Text _messageText;
 
         protected override void Awake()
         {
             base.Awake();
             
-            var popupKey = LocalisationKeys.UiKeys[type];
-            messageText.text = _localisationController.GetLanguageValue(popupKey);
+            var popupKey = LocalizationKeys.UiKeys[_type];
+            _messageText.text = localizationController.GetLanguageValue(popupKey);
             
             Close(3f);
         }

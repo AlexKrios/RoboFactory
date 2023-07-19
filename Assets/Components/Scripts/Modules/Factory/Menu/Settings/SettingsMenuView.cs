@@ -19,33 +19,33 @@ namespace RoboFactory.Factory.Menu.Settings
         
         #region Zenject
 
-        [Inject] private readonly LocalisationManager _localisationController;
+        [Inject] private readonly LocalizationService localizationController;
         [Inject] private readonly AudioManager _audioManager;
-        [Inject] private readonly AuthenticationManager _authenticationManager;
-        [Inject] private readonly SceneController _sceneController;
-        [Inject] private readonly SettingsManager _settingsManager;
+        [Inject] private readonly AuthenticationService authenticationService;
+        [Inject] private readonly SceneService sceneService;
+        [Inject] private readonly SettingsService settingsService;
 
         #endregion
 
         #region Components
         
-        [SerializeField] private TMP_Text title;
-        [SerializeField] private Button signOut;
+        [SerializeField] private TMP_Text _title;
+        [SerializeField] private Button _signOut;
 
         [Header("Music Slider Components")]
-        [SerializeField] private Slider musicSlider;
-        [SerializeField] private TMP_Text musicSliderText;
+        [SerializeField] private Slider _musicSlider;
+        [SerializeField] private TMP_Text _musicSliderText;
         
         [Header("Audio Slider Components")]
-        [SerializeField] private Slider audioSlider;
-        [SerializeField] private TMP_Text audioSliderText;
+        [SerializeField] private Slider _audioSlider;
+        [SerializeField] private TMP_Text _audioSliderText;
         
         [Header("Graphic Slider Components")]
-        [SerializeField] private Slider graphicSlider;
-        [SerializeField] private TMP_Text graphicSliderText;
+        [SerializeField] private Slider _graphicSlider;
+        [SerializeField] private TMP_Text _graphicSliderText;
         
         [Space]
-        [SerializeField] private LanguageSectionView language;
+        [SerializeField] private LanguageSectionView _language;
 
         #endregion
 
@@ -55,22 +55,22 @@ namespace RoboFactory.Factory.Menu.Settings
         {
             base.Awake();
             
-            musicSlider.onValueChanged.AddListener(ChangeMusicSliderValue);
-            audioSlider.onValueChanged.AddListener(ChangeAudioSliderValue);
-            graphicSlider.onValueChanged.AddListener(ChangeGraphicSliderValue);
+            _musicSlider.onValueChanged.AddListener(ChangeMusicSliderValue);
+            _audioSlider.onValueChanged.AddListener(ChangeAudioSliderValue);
+            _graphicSlider.onValueChanged.AddListener(ChangeGraphicSliderValue);
 
-            language.OnClickEvent += OnLanguageClick;
+            _language.OnClickEvent += OnLanguageClick;
         }
 
         protected override void OnDestroy()
         {
             base.OnDestroy();
             
-            musicSlider.onValueChanged.RemoveListener(ChangeMusicSliderValue);
-            audioSlider.onValueChanged.RemoveListener(ChangeAudioSliderValue);
-            graphicSlider.onValueChanged.RemoveListener(ChangeGraphicSliderValue);
+            _musicSlider.onValueChanged.RemoveListener(ChangeMusicSliderValue);
+            _audioSlider.onValueChanged.RemoveListener(ChangeAudioSliderValue);
+            _graphicSlider.onValueChanged.RemoveListener(ChangeGraphicSliderValue);
             
-            language.OnClickEvent -= OnLanguageClick;
+            _language.OnClickEvent -= OnLanguageClick;
         }
 
         #endregion
@@ -79,49 +79,49 @@ namespace RoboFactory.Factory.Menu.Settings
         {
             base.Initialize();
             
-            musicSlider.value = _settingsManager.MusicVolume;
-            audioSlider.value = _settingsManager.AudioVolume;
-            graphicSlider.value = (float)_settingsManager.Graphics;
-            language.SetData();
+            _musicSlider.value = settingsService.MusicVolume;
+            _audioSlider.value = settingsService.AudioVolume;
+            _graphicSlider.value = (float)settingsService.Graphics;
+            _language.SetData();
             
-            if (!_authenticationManager.IsGooglePlayConnected())
-                signOut.onClick.AddListener(OnSignOutClick);
+            if (!authenticationService.IsGooglePlayConnected())
+                _signOut.onClick.AddListener(OnSignOutClick);
             else
-                signOut.gameObject.SetActive(false);
+                _signOut.gameObject.SetActive(false);
             
-            title.text = _localisationController.GetLanguageValue(LocalisationKeys.SettingsMenuTitleKey);
+            _title.text = localizationController.GetLanguageValue(LocalizationKeys.SettingsMenuTitleKey);
         }
 
         private void OnSignOutClick()
         {
-            _authenticationManager.SignOut();
-            _sceneController.LoadScene(SceneName.Authentication);
+            authenticationService.SignOut();
+            sceneService.LoadScene(SceneName.Authentication);
         }
         
         private void ChangeMusicSliderValue(float value)
         {
             var musicValue = value * VolumeStep;
-            musicSliderText.text = musicValue.ToString(CultureInfo.CurrentCulture);
+            _musicSliderText.text = musicValue.ToString(CultureInfo.CurrentCulture);
             _audioManager.ChangeMusicVolume(value);
         }
         
         private void ChangeAudioSliderValue(float value)
         {
             var audioValue = value * VolumeStep;
-            audioSliderText.text = audioValue.ToString(CultureInfo.CurrentCulture);
+            _audioSliderText.text = audioValue.ToString(CultureInfo.CurrentCulture);
             _audioManager.ChangeAudioVolume(value);
         }
         
         private void ChangeGraphicSliderValue(float value)
         {
             var graphics = (GraphicsType) value;
-            graphicSliderText.text = graphics.ToString();
-            _settingsManager.SetGraphics(graphics);
+            _graphicSliderText.text = graphics.ToString();
+            settingsService.SetGraphics(graphics);
         }
         
         private void OnLanguageClick()
         {
-            title.text = _localisationController.GetLanguageValue(LocalisationKeys.SettingsMenuTitleKey);
+            _title.text = localizationController.GetLanguageValue(LocalizationKeys.SettingsMenuTitleKey);
         }
     }
 }

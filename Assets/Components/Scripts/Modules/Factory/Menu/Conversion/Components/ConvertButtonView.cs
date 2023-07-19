@@ -18,7 +18,7 @@ namespace RoboFactory.Factory.Menu.Conversion
     {
         #region Zenject
 
-        [Inject] private readonly LocalisationManager _localisationController;
+        [Inject] private readonly LocalizationService localizationController;
         [Inject] private readonly IUiController _uiController;
         [Inject] private readonly RawManager _rawManager;
         [Inject] private readonly ConvertRawController _convertRawController;
@@ -42,7 +42,7 @@ namespace RoboFactory.Factory.Menu.Conversion
 
             _menu = _uiController.FindUi<ConversionMenuView>();
 
-            SetButtonText(_localisationController.GetLanguageValue(LocalisationKeys.ConversionMenuButtonTitleKey));
+            SetButtonText(localizationController.GetLanguageValue(LocalizationKeys.ConversionMenuButtonTitleKey));
         }
 
         private void OnDestroy()

@@ -9,7 +9,7 @@ namespace RoboFactory.General.Money
     [UsedImplicitly]
     public class MoneyManager
     {
-        [Inject] private readonly ApiManager _apiManager;
+        [Inject] private readonly ApiService apiService;
         
         public Action OnMoneySet { get; set; }
 
@@ -48,7 +48,7 @@ namespace RoboFactory.General.Money
         private async UniTask SendMoneyData(int newMoney)
         {
             var moneyObject = new MoneyObject { money = newMoney };
-            await _apiManager.SetUserMoney(moneyObject);
+            await apiService.SetUserMoney(moneyObject);
         }
     }
 }

@@ -16,8 +16,8 @@ namespace RoboFactory.Factory.Menu.Units
     {
         #region Zenject
 
-        [Inject] private readonly AssetsManager _assetsManager;
-        [Inject] private readonly LocalisationManager _localisationController;
+        [Inject] private readonly AddressableService addressableService;
+        [Inject] private readonly LocalizationService localizationController;
         [Inject] private readonly IUiController _uiController;
         [Inject] private readonly ProductsManager _productsManager;
 
@@ -25,9 +25,9 @@ namespace RoboFactory.Factory.Menu.Units
 
         #region Components
 
-        [SerializeField] private TMP_Text unitName;
-        [SerializeField] private Image unitIcon;
-        [SerializeField] private List<SpecCellView> specs;
+        [SerializeField] private TMP_Text _unitName;
+        [SerializeField] private Image _unitIcon;
+        [SerializeField] private List<SpecCellView> _specs;
 
         #endregion
         
@@ -46,8 +46,8 @@ namespace RoboFactory.Factory.Menu.Units
 
         public async void SetData()
         {
-            unitName.text = _localisationController.GetLanguageValue(_menu.ActiveUnit.Key);
-            unitIcon.sprite = await _assetsManager.LoadAssetAsync<Sprite>(_menu.ActiveUnit.IconRef);
+            _unitName.text = localizationController.GetLanguageValue(_menu.ActiveUnit.Key);
+            _unitIcon.sprite = await addressableService.LoadAssetAsync<Sprite>(_menu.ActiveUnit.IconRef);
 
             for (var i = 0; i < _menu.ActiveUnit.Outfit.Count; i++)
             {
@@ -63,7 +63,7 @@ namespace RoboFactory.Factory.Menu.Units
                 specObject.type = (SpecType) i;
                 specObject.value = spec;
                 
-                specs[i].SetData(specObject);
+                _specs[i].SetData(specObject);
             }
         }
     }

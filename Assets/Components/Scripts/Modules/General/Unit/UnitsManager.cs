@@ -14,7 +14,7 @@ namespace RoboFactory.General.Unit
     [UsedImplicitly]
     public class UnitsManager
     {
-        [Inject] private readonly ApiManager _apiManager;
+        [Inject] private readonly ApiService apiService;
         
         private readonly Dictionary<string, UnitObject> _allUnits;
         private readonly Dictionary<FaceType, Material> _faceUnits;
@@ -73,7 +73,7 @@ namespace RoboFactory.General.Unit
         {
             var unit = _allUnits[unitKey];
             unit.Outfit[group] = itemKey;
-            await _apiManager.SetUserUnitSingle(unitKey, unit.ToDto());
+            await apiService.SetUserUnitSingle(unitKey, unit.ToDto());
         }
         
         [Serializable]

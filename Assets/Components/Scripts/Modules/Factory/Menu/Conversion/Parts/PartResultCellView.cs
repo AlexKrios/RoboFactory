@@ -15,7 +15,7 @@ namespace RoboFactory.Factory.Menu.Conversion
     {
         #region Zenject
         
-        [Inject] private readonly AssetsManager _assetsManager;
+        [Inject] private readonly AddressableService addressableService;
         [Inject] private readonly IUiController _uiController;
         [Inject] private readonly ConvertRawController _convertRawController;
 
@@ -23,9 +23,9 @@ namespace RoboFactory.Factory.Menu.Conversion
 
         #region Components
         
-        [SerializeField] private Image icon;
-        [SerializeField] private TMP_Text level;
-        [SerializeField] private Image progress;
+        [SerializeField] private Image _icon;
+        [SerializeField] private TMP_Text _level;
+        [SerializeField] private Image _progress;
 
         #endregion
 
@@ -46,17 +46,17 @@ namespace RoboFactory.Factory.Menu.Conversion
 
         public async void SetResultData(AssetReference iconRef, int star)
         {
-            icon.sprite = await _assetsManager.LoadAssetAsync<Sprite>(iconRef);
-            level.text = star.ToString();
+            _icon.sprite = await addressableService.LoadAssetAsync<Sprite>(iconRef);
+            _level.text = star.ToString();
         }
         
         public void StartConvertAnimation()
         {
             _menu.Convert.SetInteractable(false);
-            progress.DOFillAmount(1, 1).SetEase(Ease.OutCubic).OnComplete(() =>
+            _progress.DOFillAmount(1, 1).SetEase(Ease.OutCubic).OnComplete(() =>
             {
                 _menu.Convert.SetState();
-                progress.fillAmount = 0;
+                _progress.fillAmount = 0;
 
                 _convertRawController.AddRaw();
             });

@@ -13,7 +13,7 @@ namespace RoboFactory.Factory.Menu.Expedition
     {
         #region Zenject
         
-        [Inject] private readonly AssetsManager _assetsManager;
+        [Inject] private readonly AddressableService addressableService;
         [Inject] private readonly LocationManager _locationManager;
         [Inject] private readonly ExpeditionManager _expeditionManager;
 
@@ -35,7 +35,7 @@ namespace RoboFactory.Factory.Menu.Expedition
             var expedition = _expeditionManager.GetExpedition(_cell.Data.Id);
             var location = _locationManager.GetLocation(expedition.Key);
 
-            var sprite = await _assetsManager.LoadAssetAsync<Sprite>(location.IconRef);
+            var sprite = await addressableService.LoadAssetAsync<Sprite>(location.IconRef);
             _cell.SetCellIcon(sprite);
             StartExpeditionTimer();
         }

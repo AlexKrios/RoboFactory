@@ -28,6 +28,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3253125992508115158}
   m_RootOrder: 0
@@ -104,6 +105,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3253125992145524155}
   m_Father: {fileID: 0}
@@ -164,6 +166,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b260cb4f0d943f09dd83b2772822de4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  icon: {fileID: 3253125992145524156}
-  allyColor: {r: 0.08025527, g: 1, b: 0, a: 0.5882353}
-  enemyColor: {r: 1, g: 0, b: 0, a: 0.5882353}
+  _icon: {fileID: 3253125992145524156}
+  _allyColor: {r: 0, g: 1, b: 0, a: 0.5882353}
+  _enemyColor: {r: 1, g: 0, b: 0, a: 0.5882353}

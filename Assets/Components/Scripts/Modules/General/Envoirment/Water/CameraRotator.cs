@@ -4,7 +4,7 @@ namespace Assets.MobileOptimizedWater.Scripts
 {
     public class CameraRotator : MonoBehaviour
     {
-        [SerializeField] private float speed = 5f;
+        [SerializeField] private float _speed = 5f;
 
         private Transform transformComponent;
 
@@ -16,7 +16,7 @@ namespace Assets.MobileOptimizedWater.Scripts
         public void Update()
         {
             var angles = transformComponent.eulerAngles;
-            angles.y += Time.deltaTime * speed;
+            angles.y += Time.deltaTime * _speed;
 
             transformComponent.eulerAngles = angles;
         }

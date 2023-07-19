@@ -19,7 +19,7 @@ namespace RoboFactory.General.Ui.Popup
 
         #region Components
 
-        [SerializeField] protected UiType type;
+        [SerializeField] protected UiType _type;
 
         #endregion
 

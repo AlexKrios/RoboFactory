@@ -4,6 +4,7 @@ using System.Linq;
 using Cysharp.Threading.Tasks;
 using JetBrains.Annotations;
 using RoboFactory.General.Api;
+using UnityEngine;
 using Zenject;
 
 namespace RoboFactory.General.Item.Raw
@@ -11,11 +12,10 @@ namespace RoboFactory.General.Item.Raw
     [UsedImplicitly]
     public class RawManager : IItemManager
     {
-        [Inject] private readonly ApiManager _apiManager;
+        [Inject] private readonly ApiService apiService;
 
         public ItemType ItemType { get; }
         
-        private readonly Settings _settings;
         private readonly Dictionary<string, RawObject> _rawDictionary;
 
         public Action OnRawSet { get; set; }
@@ -23,11 +23,9 @@ namespace RoboFactory.General.Item.Raw
         public RawManager(Settings settings)
         {
             ItemType = ItemType.Raw;
-
-            _settings = settings;
             _rawDictionary = new Dictionary<string, RawObject>();
             
-            foreach (var rawData in _settings.data)
+            foreach (var rawData in settings.Data)
             {
                 var rawObj = new RawObject().SetInitData(rawData);
                 _rawDictionary.Add(rawObj.Key, rawObj);
@@ -43,7 +41,6 @@ namespace RoboFactory.General.Item.Raw
             {
                 _rawDictionary[raw.Key].Count = raw.Value.count;
                 _rawDictionary[raw.Key].Level = raw.Value.level;
-                _rawDictionary[raw.Key].Settings = _settings.settings.Settings[raw.Value.level];
             }
             
             OnRawSet?.Invoke();
@@ -73,7 +70,7 @@ namespace RoboFactory.General.Item.Raw
         {
             var raw = _rawDictionary[key];
             raw.IncrementCount(count);
-            await _apiManager.SetUserRawSingle(key, raw.ToDto());
+            await apiService.SetUserRawSingle(key, raw.ToDto());
             
             OnRawSet?.Invoke();
         }
@@ -90,7 +87,7 @@ namespace RoboFactory.General.Item.Raw
         {
             var raw = _rawDictionary[key];
             raw.DecrementCount(count);
-            await _apiManager.SetUserRawSingle(key, raw.ToDto());
+            await apiService.SetUserRawSingle(key, raw.ToDto());
             
             OnRawSet?.Invoke();
         }
@@ -98,12 +95,12 @@ namespace RoboFactory.General.Item.Raw
         private async UniTask SendRawOnServer()
         {
             var rawData = GetAllRawDto();
-            await _apiManager.SetUserRaw(rawData);
+            await apiService.SetUserRaw(rawData);
         }
 
         public bool CheckIfRawStoreFull(string key)
         {
-            return _rawDictionary[key].Count >= _rawDictionary[key].Settings.cap;
+            return _rawDictionary[key].Count >= 25;
         }
 
         public async void SetMaxRaw()
@@ -129,8 +126,11 @@ namespace RoboFactory.General.Item.Raw
         [Serializable]
         public class Settings
         {
-            public List<RawScriptable> data;
-            public RawSettingsScriptable settings;
+            [SerializeField] private List<RawScriptable> _data;
+            //[SerializeField] private RawSettingsScriptable _settings;
+            
+            public List<RawScriptable> Data => _data;
+            //public RawSettingsScriptable Settings => _settings;
         }
     }
 }

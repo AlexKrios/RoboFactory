@@ -8,7 +8,7 @@ namespace RoboFactory.Factory.Menu.Expedition
     {
         #region Zenject
         
-        [Inject] private readonly LocalisationManager _localisationController;
+        [Inject] private readonly LocalizationService localizationController;
         [Inject] private readonly IUiController _uiController;
         [Inject] private readonly ExpeditionMenuFactory _expeditionMenuFactory;
 
@@ -27,7 +27,7 @@ namespace RoboFactory.Factory.Menu.Expedition
 
         public void Enter()
         {
-            var text = _localisationController.GetLanguageValue(LocalisationKeys.ProductionCompleteKey);
+            var text = localizationController.GetLanguageValue(LocalizationKeys.ProductionCompleteKey);
             _cell.SetCellTimer(text);
         }
 

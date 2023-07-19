@@ -1,5 +1,4 @@
 ﻿using System;
-using Cysharp.Threading.Tasks;
 using JetBrains.Annotations;
 using RoboFactory.General.Asset;
 using RoboFactory.General.Ui;
@@ -17,57 +16,67 @@ namespace RoboFactory.Factory.Menu.Production
 
         [Inject] private readonly DiContainer _container;
         [Inject] private readonly Settings _settings;
-        [Inject] private readonly AssetsManager _assetsManager;
+        [Inject] private readonly AddressableService addressableService;
         [Inject] private readonly IUiController _uiController;
 
         #endregion
 
         public Button CreateButton(Transform parent)
         {
-            return _container.InstantiatePrefabForComponent<Button>(_settings.buttonPrefab, parent);
+            return _container.InstantiatePrefabForComponent<Button>(_settings.ButtonPrefab, parent);
         }
         
         public async void CreateMenu()
         {
             var canvasT = _uiController.GetCanvas(CanvasType.Ui).transform;
-            var menuOriginal = await _assetsManager.InstantiateAssetAsync(_settings.menuReference, canvasT);
+            var menuOriginal = await addressableService.InstantiateAssetAsync(_settings.MenuReference, canvasT);
             var menu = _container.InjectGameObjectForComponent<ProductionMenuView>(menuOriginal);
             menu.Initialize();
             
-            _assetsManager.ReleaseAsset(_settings.menuReference);
+            //addressableManager.ReleaseAsset(_settings.menuReference);
         }
         
         public ProductCellView CreateProduct(Transform parent)
         {
-            return _container.InstantiatePrefabForComponent<ProductCellView>(_settings.productReference, parent);
+            return _container.InstantiatePrefabForComponent<ProductCellView>(_settings.ProductPrefab, parent);
         }
         
-        public void CreateUpgradePopup(Transform parent)
+        public async void CreateUpgradePopup(Transform parent)
         {
-            _container.InstantiatePrefabForComponent<UpgradePopupView>(_settings.upgradeReference, parent);
+            var popupOriginal = await addressableService.InstantiateAssetAsync(_settings.UpgradeReference, parent);
+            var popup = _container.InjectGameObjectForComponent<UpgradePopupView>(popupOriginal);
+            popup.Initialize();
         }
         
-        public void CreateUpgradeQueuePopup(Transform parent)
+        public async void CreateUpgradeQueuePopup(Transform parent)
         {
-            _container.InstantiatePrefabForComponent<UpgradeQueuePopupView>(_settings.queueReference, parent);
+            var popupOriginal = await addressableService.InstantiateAssetAsync(_settings.QueueReference, parent);
+            var popup = _container.InjectGameObjectForComponent<UpgradeQueuePopupView>(popupOriginal);
+            popup.Initialize();
         }
 
         [Serializable]
         public class Settings
         {
-            public GameObject buttonPrefab;
+            [SerializeField] private GameObject _buttonPrefab;
             
             [Space]
-            public AssetReference menuReference;
+            [SerializeField] private AssetReference _menuReference;
 
             [Space]
-            public GameObject productReference;
+            [SerializeField] private GameObject _productPrefab;
             
             [Space]
-            public GameObject upgradeReference;
+            [SerializeField] private AssetReference _upgradeReference;
             
             [Space]
-            public GameObject queueReference;
+            [SerializeField] private AssetReference _queueReference;
+            
+            public GameObject ButtonPrefab => _buttonPrefab;
+            public AssetReference MenuReference => _menuReference;
+            public GameObject ProductPrefab => _productPrefab;
+            public AssetReference UpgradeReference => _upgradeReference;
+            public AssetReference QueueReference => _queueReference;
         }
     }
 }

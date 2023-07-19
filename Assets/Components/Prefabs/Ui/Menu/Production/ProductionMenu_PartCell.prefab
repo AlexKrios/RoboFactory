@@ -54,9 +54,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f66dca8646a4a6c47a5f4fb68a1250ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  icon: {fileID: 8773045412818156061}
-  star: {fileID: 247044254736294201}
-  count: {fileID: 8691856538447166649}
+  _icon: {fileID: 8773045412818156061}
+  _star: {fileID: 247044254736294201}
+  _count: {fileID: 8691856538447166649}
 --- !u!222 &6875233606450580044
 CanvasRenderer:
   m_ObjectHideFlags: 0

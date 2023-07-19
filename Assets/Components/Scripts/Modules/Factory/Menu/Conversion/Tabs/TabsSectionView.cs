@@ -18,7 +18,7 @@ namespace RoboFactory.Factory.Menu.Conversion
         
         #region Components
         
-        [SerializeField] private List<TabCellView> tabs;
+        [SerializeField] private List<TabCellView> _tabs;
 
         #endregion
 
@@ -46,7 +46,7 @@ namespace RoboFactory.Factory.Menu.Conversion
 
         private void Awake()
         {
-            tabs.ForEach(x => x.OnTabClick += OnTabClick);
+            _tabs.ForEach(x => x.OnTabClick += OnTabClick);
         }
 
         #endregion
@@ -66,11 +66,11 @@ namespace RoboFactory.Factory.Menu.Conversion
             var mainRaw = _rawManager.GetMainRaw();
             foreach (var rawData in mainRaw)
             {
-                var tab = tabs.First(x => x.RawType == rawData.RawType);
+                var tab = _tabs.First(x => x.RawType == rawData.RawType);
                 tab.SetTabData(rawData);
             }
 
-            ActiveTab = tabs.First();
+            ActiveTab = _tabs.First();
         }
     }
 }

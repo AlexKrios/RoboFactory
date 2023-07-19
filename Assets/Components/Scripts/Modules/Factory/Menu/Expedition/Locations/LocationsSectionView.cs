@@ -21,8 +21,8 @@ namespace RoboFactory.Factory.Menu.Expedition
 
         #region Components
 
-        [SerializeField] private RectTransform unitParent;
-        [SerializeField] private List<LocationCellView> locations;
+        [SerializeField] private RectTransform _unitParent;
+        [SerializeField] private List<LocationCellView> _locations;
 
         #endregion
 
@@ -60,27 +60,27 @@ namespace RoboFactory.Factory.Menu.Expedition
 
         private void CreateLocations()
         {
-            if (locations.Count != 0)
+            if (_locations.Count != 0)
                 RemoveLocations();
             
             foreach (var location in _locationManager.GetLocations())
             {
-                var cell = _expeditionMenuFactory.CreateLocationCell(unitParent);
+                var cell = _expeditionMenuFactory.CreateLocationCell(_unitParent);
                 cell.OnClickEvent += OnLocationClick;
                 cell.SetData(location);
-                locations.Add(cell);
+                _locations.Add(cell);
             }
 
-            var width = 240 * locations.Count + 10 * (locations.Count - 1);
-            unitParent.sizeDelta = new Vector2(width, 240);
+            var width = 240 * _locations.Count + 10 * (_locations.Count - 1);
+            _unitParent.sizeDelta = new Vector2(width, 240);
 
-            ActiveLocation = locations.First();
+            ActiveLocation = _locations.First();
         }
         
         private void RemoveLocations()
         {
-            locations.ForEach(x => Destroy(x.gameObject));
-            locations.Clear();
+            _locations.ForEach(x => Destroy(x.gameObject));
+            _locations.Clear();
         }
 
         private void OnLocationClick(LocationCellView location)

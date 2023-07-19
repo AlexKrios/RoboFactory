@@ -16,7 +16,7 @@ namespace RoboFactory.General.Item.Production
         #region Zenject
 
         [Inject] private readonly Settings _settings;
-        [Inject] private readonly ApiManager _apiManager;
+        [Inject] private readonly ApiService apiService;
         [Inject] private readonly ManagersResolver managersResolver;
         [Inject] private readonly ProductsManager _productsManager;
 
@@ -58,7 +58,7 @@ namespace RoboFactory.General.Item.Production
         public async UniTask AddLevel()
         {
             Level++;
-            await _apiManager.SetUserProductionLevel(Level);
+            await apiService.SetUserProductionLevel(Level);
         }
 
         public bool IsHaveFreeCell()
@@ -78,7 +78,7 @@ namespace RoboFactory.General.Item.Production
         public async UniTask AddProduction(ProductionObject data)
         {
             _productionData.Add(data.Id, data);
-            await _apiManager.AddUserProduction(data.Id, data.ToDto());
+            await apiService.AddUserProduction(data.Id, data.ToDto());
             
             RemoveParts(data);
         }
@@ -89,25 +89,25 @@ namespace RoboFactory.General.Item.Production
         public async void RemoveProduction(Guid id)
         {
             _productionData.Remove(id);
-            await _apiManager.RemoveUserProduction(id);
+            await apiService.RemoveUserProduction(id);
             
             OnProductionComplete?.Invoke();
         }
 
         public UpgradeDataObject GetUpgradeQueueData()
         {
-            return _settings.upgradeQueueData.Data.First(x => x.Count == CellCount);
+            return _settings._upgradeQueueData.Data.First(x => x.Count == CellCount);
         }
 
         public async UniTask IncreaseQueueCount()
         {
             CellCount++;
-            await _apiManager.SetUserProductionQueueCount(CellCount);
+            await apiService.SetUserProductionQueueCount(CellCount);
         }
         
         public UpgradeDataObject GetUpgradeQualityData()
         {
-            return _settings.upgradeQualityData.Data.First(x => x.Count == Level);
+            return _settings._upgradeQualityData.Data.First(x => x.Count == Level);
         }
 
         public bool IsEnoughParts(ProductionObject productionObj)
@@ -126,7 +126,7 @@ namespace RoboFactory.General.Item.Production
             return true;
         }
 
-        public void RemoveParts(ProductionObject productionObj)
+        private void RemoveParts(ProductionObject productionObj)
         {
             if (productionObj.IsLoad)
                 return;
@@ -143,8 +143,8 @@ namespace RoboFactory.General.Item.Production
         [Serializable]
         public class Settings
         {
-            public UpgradeDataScriptable upgradeQueueData;
-            public UpgradeDataScriptable upgradeQualityData;
+            public UpgradeDataScriptable _upgradeQueueData;
+            public UpgradeDataScriptable _upgradeQualityData;
         }
     }
 }

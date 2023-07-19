@@ -13,7 +13,7 @@ namespace RoboFactory.Factory.Menu.Production
     {
         #region Zenject
 
-        [Inject] private readonly AssetsManager _assetsManager;
+        [Inject] private readonly AddressableService addressableService;
         [Inject] private readonly ProductsManager _productsManager;
         [Inject] private readonly ProductionManager _productionManager;
 
@@ -35,7 +35,7 @@ namespace RoboFactory.Factory.Menu.Production
             var craftObj = _productionManager.GetProduction(_cell.Data.Id);
             var craftItem = _productsManager.GetProduct(craftObj.Key);
 
-            var sprite = await _assetsManager.LoadAssetAsync<Sprite>(craftItem.IconRef);
+            var sprite = await addressableService.LoadAssetAsync<Sprite>(craftItem.IconRef);
             _cell.SetCellIcon(sprite);
             StartProductionTimer();
         }

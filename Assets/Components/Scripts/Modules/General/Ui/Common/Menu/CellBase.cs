@@ -14,7 +14,7 @@ namespace RoboFactory.General.Ui.Common
     {
         #region Zenject
         
-        [Inject] private readonly AssetsManager _assetsManager;
+        [Inject] private readonly AddressableService addressableService;
         [Inject] private readonly AudioManager _audioController;
 
         #endregion
@@ -72,7 +72,7 @@ namespace RoboFactory.General.Ui.Common
         {
             var color = icon.color;
             icon.color = new Color(color.r, color.g, color.b, 0);
-            icon.sprite = await _assetsManager.LoadAssetAsync<Sprite>(spriteRef);
+            icon.sprite = await addressableService.LoadAssetAsync<Sprite>(spriteRef);
             icon.DORestart();
             icon.DOFade(1f, 0.1f);
             icon.gameObject.SetActive(active);

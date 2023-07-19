@@ -12,30 +12,30 @@ namespace RoboFactory.Factory.Menu.Expedition
     {
         #region Zenject
 
-        [Inject] private readonly AssetsManager _assetsManager;
+        [Inject] private readonly AddressableService addressableService;
 
         #endregion
         
         #region Components
         
-        [SerializeField] private Image icon;
-        [SerializeField] private TMP_Text count;
+        [SerializeField] private Image _icon;
+        [SerializeField] private TMP_Text _count;
         
         #endregion
 
         public async void SetData(PartObject part)
         {
-            icon.gameObject.SetActive(true);
-            count.gameObject.SetActive(true);
+            _icon.gameObject.SetActive(true);
+            _count.gameObject.SetActive(true);
             
-            icon.sprite = await _assetsManager.LoadAssetAsync<Sprite>(part.data.IconRef);
-            count.text = part.count.ToString();
+            _icon.sprite = await addressableService.LoadAssetAsync<Sprite>(part.data.IconRef);
+            _count.text = part.count.ToString();
         }
 
         public void Reset()
         {
-            icon.gameObject.SetActive(false);
-            count.gameObject.SetActive(false);
+            _icon.gameObject.SetActive(false);
+            _count.gameObject.SetActive(false);
         }
     }
 }

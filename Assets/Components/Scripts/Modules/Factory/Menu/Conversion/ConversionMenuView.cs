@@ -12,21 +12,21 @@ namespace RoboFactory.Factory.Menu.Conversion
     {
         #region Zenject
 
-        [Inject] private readonly LocalisationManager _localisationController;
+        [Inject] private readonly LocalizationService localizationController;
 
         #endregion
 
         #region Components
         
-        [SerializeField] private TMP_Text title;
-        [SerializeField] private StarButtonView star;
-
-        [Space]
-        [SerializeField] private TabsSectionView tabs;
-        [SerializeField] private PartsSectionView parts;
-        [SerializeField] private ConvertButtonView convert;
+        [SerializeField] private TMP_Text _title;
+        [SerializeField] private StarButtonView _star;
         
-        public ConvertButtonView Convert => convert;
+        [Space]
+        [SerializeField] private TabsSectionView _tabs;
+        [SerializeField] private PartsSectionView _parts;
+        [SerializeField] private ConvertButtonView _convert;
+        
+        public ConvertButtonView Convert => _convert;
 
         #endregion
 
@@ -43,17 +43,17 @@ namespace RoboFactory.Factory.Menu.Conversion
         {
             base.Awake();
             
-            star.OnClickEvent += OnStarClick;
-            tabs.OnClickEvent += OnTabClick;
-            convert.OnClickEvent += OnConvertClick;
+            _star.OnClickEvent += OnStarClick;
+            _tabs.OnClickEvent += OnTabClick;
+            _convert.OnClickEvent += OnConvertClick;
         }
 
         private void Start()
         {
             SetTitle();
-            tabs.SetData();
-            parts.SetData();
-            convert.SetState();
+            _tabs.SetData();
+            _parts.SetData();
+            _convert.SetState();
         }
 
         #endregion
@@ -63,27 +63,27 @@ namespace RoboFactory.Factory.Menu.Conversion
         private void OnTabClick()
         {
             SetTitle();
-            parts.SetData();
-            convert.SetState();
+            _parts.SetData();
+            _convert.SetState();
         }
 
         private void OnStarClick()
         {
-            parts.SetData();
-            convert.SetState();
+            _parts.SetData();
+            _convert.SetState();
         }
 
         private void OnConvertClick()
         {
-            parts.SetData();
-            parts.StartConvertAnimation();
+            _parts.SetData();
+            _parts.StartConvertAnimation();
         }
 
         #endregion
         
         private void SetTitle()
         {
-            title.text = _localisationController.GetLanguageValue(LocalisationKeys.ConversionMenuTitleKey);
+            _title.text = localizationController.GetLanguageValue(LocalizationKeys.ConversionMenuTitleKey);
         }
     }
 }

@@ -15,15 +15,31 @@ MonoBehaviour:
   m_GroupName: Units
   m_Data:
     m_SerializedData: []
-  m_GUID: 55cd4f410c216484689abadac6472f90
+  m_GUID: 998c5edd949b5694abb06590f2759753
   m_SerializeEntries:
-  - m_GUID: 114d1c7c5dc27d0428359f3a678a6533
-    m_Address: Assets/Components/Images/Sprite/CharachterType.png
+  - m_GUID: 516f3bc4a2f026743936c1859f9708f4
+    m_Address: Assets/Components/Materials/Units/Face/AngryFaceMaterial.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 717ffb028c427854ea02cd3a67a88a82
+    m_Address: Assets/Components/Materials/Units/Face/DeadFaceMaterial.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 830a1377c568bfc4ca0ee3d4762597a1
+    m_Address: Assets/Components/Materials/Units/Face/PokerFaceMaterial.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 19b8dd20df0a3c74a8be2c7eb4862870
+    m_Address: Assets/Components/Materials/Units/Face/SadFaceMaterial.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 639ea160989b12346888d4e593f39f52
+    m_Address: Assets/Components/Materials/Units/Face/SmileFaceMaterial.mat
     m_ReadOnly: 0
     m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 43f345baeabe80145b7f64554f5c1876, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: a9025aec0478dc94b91428472c972dfb, type: 2}
-    - {fileID: 11400000, guid: f5967c948a0981644be0b06835a55f86, type: 2}
+    - {fileID: 11400000, guid: fa877dcdb66bc5b41bd185d020ed94ff, type: 2}
+    - {fileID: 11400000, guid: c709b90bb23bc504b8916bf016746923, type: 2}

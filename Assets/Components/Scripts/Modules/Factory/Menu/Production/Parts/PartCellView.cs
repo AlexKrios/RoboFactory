@@ -14,16 +14,16 @@ namespace RoboFactory.Factory.Menu.Production
     {
         #region Zenject
 
-        [Inject] private readonly AssetsManager _assetsManager;
+        [Inject] private readonly AddressableService addressableService;
         [Inject] private readonly ManagersResolver managersResolver;
 
         #endregion
 
         #region Components
         
-        [SerializeField] private Image icon;
-        [SerializeField] private TMP_Text star;
-        [SerializeField] private TMP_Text count;
+        [SerializeField] private Image _icon;
+        [SerializeField] private TMP_Text _star;
+        [SerializeField] private TMP_Text _count;
 
         #endregion
         
@@ -35,7 +35,7 @@ namespace RoboFactory.Factory.Menu.Production
 
         private void Awake()
         {
-            icon.color = new Color(1, 1, 1, 0);
+            _icon.color = new Color(1, 1, 1, 0);
             SetPartText(string.Empty);
         }
 
@@ -60,19 +60,19 @@ namespace RoboFactory.Factory.Menu.Production
 
         private async void SetPartIcon()
         {
-            icon.color = new Color(1, 1, 1, 0);
-            icon.sprite = await _assetsManager.LoadAssetAsync<Sprite>(_part.data.IconRef);
-            icon.DORestart();
-            icon.DOFade(1f, 0.1f);
+            _icon.color = new Color(1, 1, 1, 0);
+            _icon.sprite = await addressableService.LoadAssetAsync<Sprite>(_part.data.IconRef);
+            _icon.DORestart();
+            _icon.DOFade(1f, 0.1f);
         }
         private void SetPartText(string textString)
         {
-            count.text = textString;
+            _count.text = textString;
         }
         private void SetPartStar(int level, bool isActive = true)
         {
-            star.text = level.ToString();
-            star.gameObject.SetActive(isActive);
+            _star.text = level.ToString();
+            _star.gameObject.SetActive(isActive);
         }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
+using UnityEngine;
 
 namespace RoboFactory.General.Location
 {
@@ -17,7 +18,7 @@ namespace RoboFactory.General.Location
         public LocationManager(Settings settings)
         {
             _locationDictionary = new Dictionary<string, LocationObject>();
-            foreach (var locationData in settings.locations)
+            foreach (var locationData in settings.Locations)
             {
                 var locationObject = new LocationObject().SetStartData(locationData);
                 AddLocation(locationObject);
@@ -45,7 +46,9 @@ namespace RoboFactory.General.Location
         [Serializable]
         public class Settings
         {
-            public List<LocationScriptable> locations;
+            [SerializeField] private List<LocationScriptable> _locations;
+            
+            public List<LocationScriptable> Locations => _locations;
         }
     }
 }

@@ -15,19 +15,19 @@ namespace RoboFactory.Factory.Menu.Production
     {
         #region Zenject
 
-        [Inject] private readonly LocalisationManager _localisationController;
+        [Inject] private readonly LocalizationService localizationController;
         [Inject] private readonly IUiController _uiController;
 
         #endregion
 
         #region Components
 
-        [SerializeField] private TMP_Text title;
-        [SerializeField] private TMP_Text productGroup;
-        [SerializeField] private TMP_Text productType;
+        [SerializeField] private TMP_Text _title;
+        [SerializeField] private TMP_Text _productGroup;
+        [SerializeField] private TMP_Text _productType;
         
         [Space]
-        [SerializeField] private List<HeaderTabCellView> tabs;
+        [SerializeField] private List<HeaderTabCellView> _tabs;
 
         #endregion
         
@@ -61,12 +61,12 @@ namespace RoboFactory.Factory.Menu.Production
         
         public void SetHeaderData()
         {
-            var productKey = LocalisationKeys.ProductKeys[_menu.ActiveProductGroup];
-            var unitKey = LocalisationKeys.UnitKeys[_menu.ActiveUnitType];
+            var productKey = LocalizationKeys.ProductKeys[_menu.ActiveProductGroup];
+            var unitKey = LocalizationKeys.UnitKeys[_menu.ActiveUnitType];
 
-            title.text = _localisationController.GetLanguageValue(LocalisationKeys.ProductionMenuTitleKey);
-            productGroup.text = _localisationController.GetLanguageValue(productKey);
-            productType.text = _localisationController.GetLanguageValue(unitKey);
+            _title.text = localizationController.GetLanguageValue(LocalizationKeys.ProductionMenuTitleKey);
+            _productGroup.text = localizationController.GetLanguageValue(productKey);
+            _productType.text = localizationController.GetLanguageValue(unitKey);
         }
 
         private void SetTabsData()
@@ -74,11 +74,11 @@ namespace RoboFactory.Factory.Menu.Production
             var productGroupCount = Enum.GetValues(typeof(ProductGroup)).Length - 1;
             for (var i = 1; i < productGroupCount; i++)
             {
-                tabs[i - 1].SetTabData((ProductGroup) i);
-                tabs[i - 1].OnClickEvent += OnTabClick;
+                _tabs[i - 1].SetTabData((ProductGroup) i);
+                _tabs[i - 1].OnClickEvent += OnTabClick;
             }
             
-            ActiveTab = tabs.First();
+            ActiveTab = _tabs.First();
         }
         
         private void OnTabClick(HeaderTabCellView tab, ProductGroup group)

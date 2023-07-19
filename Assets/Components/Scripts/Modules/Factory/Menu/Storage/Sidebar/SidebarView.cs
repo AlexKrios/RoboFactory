@@ -16,19 +16,19 @@ namespace RoboFactory.Factory.Menu.Storage
     {
         #region Zenject
 
-        [Inject] private readonly AssetsManager _assetsManager;
-        [Inject] private readonly LocalisationManager _localisationController;
+        [Inject] private readonly AddressableService addressableService;
+        [Inject] private readonly LocalizationService localizationController;
         [Inject] private readonly IUiController _uiController;
 
         #endregion
 
         #region Components
 
-        [SerializeField] private TMP_Text title;
-        [SerializeField] private Image icon;
+        [SerializeField] private TMP_Text _title;
+        [SerializeField] private Image _icon;
 
         [Space]
-        [SerializeField] private List<SpecCellView> specs;
+        [SerializeField] private List<SpecCellView> _specs;
 
         #endregion
 
@@ -51,8 +51,8 @@ namespace RoboFactory.Factory.Menu.Storage
             if (_menu.IsItemEmpty)
                 return;
             
-            title.text = _localisationController.GetLanguageValue(_menu.ActiveItem.Key);
-            icon.sprite = await _assetsManager.LoadAssetAsync<Sprite>(_menu.ActiveItem.IconRef);
+            _title.text = localizationController.GetLanguageValue(_menu.ActiveItem.Key);
+            _icon.sprite = await addressableService.LoadAssetAsync<Sprite>(_menu.ActiveItem.IconRef);
 
             SetSpecsData();
         }
@@ -61,7 +61,7 @@ namespace RoboFactory.Factory.Menu.Storage
         {
             foreach (var specData in _menu.ActiveItem.Recipe.Specs)
             {
-                var spec = specs.First(x => x.SpecType == specData.type);
+                var spec = _specs.First(x => x.SpecType == specData.type);
                 spec.SetData(specData);
             }
         }

@@ -17,6 +17,6 @@ namespace RoboFactory.General.Item.Raw
         Engine = 3,
         
         [JsonProperty("battery")]
-        Battery = 4,
+        Battery = 4
     }
 }

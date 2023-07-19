@@ -29,6 +29,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2283940154907644209}
   - {fileID: 8962577896758354534}
@@ -52,8 +53,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b82db8d548eb4f7689e783737e2c714e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  icon: {fileID: 733220901073530302}
-  count: {fileID: 1533291910050075159}
+  _icon: {fileID: 733220901073530302}
+  _count: {fileID: 1533291910050075159}
 --- !u!222 &4438061934897516253
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -120,6 +121,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6991446441462890013}
   m_RootOrder: 0
@@ -196,6 +198,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6991446441462890013}
   m_RootOrder: 1
@@ -260,7 +263,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 44.75
+  m_fontSize: 18
   m_fontSizeBase: 46
   m_fontWeight: 400
   m_enableAutoSizing: 1

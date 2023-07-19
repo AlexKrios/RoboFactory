@@ -20,8 +20,8 @@ namespace RoboFactory.Authentication
         
         #region Zenject
         
-        [Inject] private readonly LocalisationManager _localisationController;
-        [Inject] private readonly AuthenticationManager _authenticationManager;
+        [Inject] private readonly LocalizationService localizationController;
+        [Inject] private readonly AuthenticationService authenticationService;
 
         [Inject(Id = "SignUp")] private readonly SignUpView signUpForm;
 
@@ -76,21 +76,21 @@ namespace RoboFactory.Authentication
             emailField.onValueChanged.AddListener(ReadEmailField);
             passwordField.onValueChanged.AddListener(ReadPasswordField);
 
-            _authenticationManager.EventSignInError += AddError;
+            authenticationService.EventSignInError += AddError;
         }
 
         private void Start()
         { 
             LayoutRebuilder.ForceRebuildLayoutImmediate(transform as RectTransform);
             
-            headerText.text = _localisationController.GetLanguageValue(HeaderTitleKey);
-            emailPlaceholder.text = _localisationController.GetLanguageValue(EmailKey);
-            passwordPlaceholder.text = _localisationController.GetLanguageValue(PasswordKey);
+            headerText.text = localizationController.GetLanguageValue(HeaderTitleKey);
+            emailPlaceholder.text = localizationController.GetLanguageValue(EmailKey);
+            passwordPlaceholder.text = localizationController.GetLanguageValue(PasswordKey);
         }
 
         private void OnDestroy()
         {
-            _authenticationManager.EventSignInError -= AddError;
+            authenticationService.EventSignInError -= AddError;
             
             _disposable.Dispose();
         }
@@ -99,13 +99,13 @@ namespace RoboFactory.Authentication
         
         private void OnLogInClick()
         {
-            _authenticationManager.SignIn(_email, _password);
+            authenticationService.SignIn(_email, _password);
         }
 
         private void ReadEmailField(string text)
         {
             _email = text;
-            var isMatch = Regex.IsMatch(text, AuthenticationManager.MatchEmailPattern);
+            var isMatch = Regex.IsMatch(text, AuthenticationService.MatchEmailPattern);
             if (!string.IsNullOrEmpty(text) && !isMatch)
                 AddError(AuthError.InvalidEmail);
             else
@@ -115,7 +115,7 @@ namespace RoboFactory.Authentication
         private void ReadPasswordField(string text)
         {
             _password = text;
-            if (text?.Length < AuthenticationManager.MinPasswordLength)
+            if (text?.Length < AuthenticationService.MinPasswordLength)
                 AddError(AuthError.WeakPassword);
             else
                 RemoveError(AuthError.WeakPassword);
@@ -144,8 +144,8 @@ namespace RoboFactory.Authentication
             }
             
             errorWrapper.SetActive(true);
-            var localKey = _authenticationManager.GetErrorLocalizationKey(errors.First());
-            errorText.text = _localisationController.GetLanguageValue(localKey);
+            var localKey = authenticationService.GetErrorLocalizationKey(errors.First());
+            errorText.text = localizationController.GetLanguageValue(localKey);
         }
 
         private void AddError(AuthError error, bool isError = false)

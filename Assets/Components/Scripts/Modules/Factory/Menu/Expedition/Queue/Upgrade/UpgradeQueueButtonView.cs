@@ -17,7 +17,7 @@ namespace RoboFactory.Factory.Menu.Expedition
     {
         #region Zenject
 
-        [Inject] private readonly LocalisationManager _localisationController;
+        [Inject] private readonly LocalizationService localizationController;
         [Inject] private readonly MoneyManager _moneyManager;
         [Inject] private readonly LevelManager _levelManager;
         [Inject] private readonly ExpeditionManager _expeditionManager;
@@ -49,7 +49,7 @@ namespace RoboFactory.Factory.Menu.Expedition
         {
             base.Awake();
 
-            SetButtonText(_localisationController.GetLanguageValue(LocalisationKeys.UpgradeButtonTitleKey));
+            SetButtonText(localizationController.GetLanguageValue(LocalizationKeys.UpgradeButtonTitleKey));
             _buyData = _expeditionManager.GetUpgradeData();
             
             SetState();

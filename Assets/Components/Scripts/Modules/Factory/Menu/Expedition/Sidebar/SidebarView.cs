@@ -15,18 +15,18 @@ namespace RoboFactory.Factory.Menu.Expedition
     {
         #region Zenject
         
-        [Inject] private readonly AssetsManager _assetsManager;
-        [Inject] private readonly LocalisationManager _localisationController;
+        [Inject] private readonly AddressableService addressableService;
+        [Inject] private readonly LocalizationService localizationController;
         [Inject] private readonly IUiController _uiController;
 
         #endregion
 
         #region Components
         
-        [SerializeField] private TMP_Text title;
-        [SerializeField] private Image icon;
-        [SerializeField] private TMP_Text timer;
-        [SerializeField] private List<RewardCellView> rewards;
+        [SerializeField] private TMP_Text _title;
+        [SerializeField] private Image _icon;
+        [SerializeField] private TMP_Text _timer;
+        [SerializeField] private List<RewardCellView> _rewards;
 
         #endregion
         
@@ -45,15 +45,15 @@ namespace RoboFactory.Factory.Menu.Expedition
 
         public async void SetData()
         {
-            title.text = _localisationController.GetLanguageValue(_menu.ActiveLocation.Key);
-            icon.sprite = await _assetsManager.LoadAssetAsync<Sprite>(_menu.ActiveLocation.IconRef);
+            _title.text = localizationController.GetLanguageValue(_menu.ActiveLocation.Key);
+            _icon.sprite = await addressableService.LoadAssetAsync<Sprite>(_menu.ActiveLocation.IconRef);
             
-            timer.text = TimeUtil.DateCraftTimer(_menu.ActiveLocation.Time);
+            _timer.text = TimeUtil.DateCraftTimer(_menu.ActiveLocation.Time);
 
-            rewards.ForEach(x => x.Reset());
+            _rewards.ForEach(x => x.Reset());
             for (var i = 0; i < _menu.ActiveLocation.Reward.Count; i++)
             {
-                rewards[i].SetData(_menu.ActiveLocation.Reward[i]);
+                _rewards[i].SetData(_menu.ActiveLocation.Reward[i]);
             }
         }
     }

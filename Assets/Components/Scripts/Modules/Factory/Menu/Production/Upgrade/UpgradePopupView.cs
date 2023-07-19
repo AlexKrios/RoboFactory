@@ -15,9 +15,12 @@ namespace RoboFactory.Factory.Menu.Production
     [AddComponentMenu("Scripts/Factory/Menu/Production/Upgrade/Upgrade Popup View")]
     public class UpgradePopupView : PopupBase
     {
+        private const string NeedLevelTextKey = "button_need_level";
+        private const string NeedMoneyTextKey = "<sprite name=MoneyIcon>";
+        
         #region Zenject
 
-        [Inject] private readonly LocalisationManager _localisationController;
+        [Inject] private readonly LocalizationService localizationService;
         [Inject] private readonly MoneyManager _moneyManager;
         [Inject] private readonly LevelManager _levelManager;
         [Inject] private readonly ProductionManager _productionManager;
@@ -35,8 +38,7 @@ namespace RoboFactory.Factory.Menu.Production
         
         [Header("Accept Button")]
         [SerializeField] private Button acceptButton;
-        [SerializeField] private TMP_Text acceptLevelText;
-        [SerializeField] private TMP_Text acceptMoneyText;
+        [SerializeField] private TMP_Text acceptText;
 
         #endregion
         
@@ -45,34 +47,27 @@ namespace RoboFactory.Factory.Menu.Production
         private UpgradeDataObject _buyData;
 
         #endregion
-
-        #region Unity Methods
-
-        protected override void Awake()
+        
+        public override void Initialize()
         {
-            base.Awake();
+            base.Initialize();
             
             acceptButton.OnClickAsObservable().Subscribe(_ => OnAcceptClick()).AddTo(Disposable);
-
+            _buyData = _productionManager.GetUpgradeQualityData();
+            
             currentLevel.text = _productionManager.Level.ToString();
             nextLevel.text = (_productionManager.Level + 1).ToString();
 
-            titleText.text = _localisationController.GetLanguageValue(LocalisationKeys.UpgradeTitleKey);
-        }
-        
-        private void Start() 
-        {
-            _buyData = _productionManager.GetUpgradeQualityData();
-            
+            titleText.text = localizationService.GetLanguageValue(LocalizationKeys.UpgradeTitleKey);
+
             if (_moneyManager.Money < _buyData.Cost || _levelManager.Level < _buyData.Level)
                 acceptButton.interactable = false;
-            
-            acceptLevelText.gameObject.SetActive(_levelManager.Level < _buyData.Level);
-            acceptLevelText.text = $"Need level: {_buyData.Level}";
-            acceptMoneyText.text = $"<sprite name=MoneyIcon> {_buyData.Cost}";
-        }
 
-        #endregion
+            if (_levelManager.Level < _buyData.Level)
+                acceptText.text = $"{localizationService.GetLanguageValue(NeedLevelTextKey)} {_buyData.Level}";
+            else if (_moneyManager.Money < _buyData.Cost)
+                acceptText.text = $"{NeedMoneyTextKey} {_buyData.Cost}";
+        }
 
         private async void OnAcceptClick()
         {

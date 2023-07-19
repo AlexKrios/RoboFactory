@@ -28,6 +28,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6667381389121540690}
   m_Father: {fileID: 3281926471231574971}
@@ -105,6 +106,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5294179644178346962}
   - {fileID: 805557435732061400}
@@ -129,9 +131,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8097e8aaca1947cc8fb1672478230aa2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  icon: {fileID: 8069135532994806544}
-  count: {fileID: 907383924597793600}
-  level: {fileID: 704466298038675022}
+  _icon: {fileID: 8069135532994806544}
+  _count: {fileID: 907383924597793600}
+  _level: {fileID: 704466298038675022}
 --- !u!222 &1568868508927474358
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -198,6 +200,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 805557435732061400}
   m_RootOrder: 0
@@ -332,6 +335,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 427428817409546226}
   m_RootOrder: 0
@@ -466,6 +470,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4346724446746540697}
   m_Father: {fileID: 3281926471231574971}
@@ -542,6 +547,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3281926471231574971}
   m_RootOrder: 0

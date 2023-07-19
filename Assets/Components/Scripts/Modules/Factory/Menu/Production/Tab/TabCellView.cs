@@ -14,15 +14,14 @@ namespace RoboFactory.Factory.Menu.Production
     {
         #region Zenject
 
-        [Inject] private readonly AssetsManager _assetsManager;
+        [Inject] private readonly AddressableService addressableService;
         [Inject(Id = "IconUtil")] private readonly IconUtil _iconUtil;
 
         #endregion
 
         #region Components
 
-        [SerializeField] private UnitType unitType;
-        public UnitType UnitType => unitType;
+        [SerializeField] private UnitType _unitType;
 
         #endregion
         
@@ -36,18 +35,18 @@ namespace RoboFactory.Factory.Menu.Production
         {
             base.Click();
             
-            OnClickEvent?.Invoke(this, unitType);
+            OnClickEvent?.Invoke(this, _unitType);
         }
 
         public void SetTabData()
         {
-            var iconRef = _iconUtil.GetUnitIcon(unitType);
+            var iconRef = _iconUtil.GetUnitIcon(_unitType);
             SetIconSprite(iconRef);
         }
 
         protected override async void SetIconSprite(AssetReference spriteRef, bool active = true)
         {
-            icon.sprite = await _assetsManager.LoadAssetAsync<Sprite>(spriteRef);
+            icon.sprite = await addressableService.LoadAssetAsync<Sprite>(spriteRef);
         }
     }
 }

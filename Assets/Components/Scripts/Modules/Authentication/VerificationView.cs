@@ -16,8 +16,8 @@ namespace RoboFactory.Authentication
         
         #region Zenject
         
-        [Inject] private readonly LocalisationManager _localisationController;
-        [Inject] private readonly AuthenticationManager _authenticationManager;
+        [Inject] private readonly LocalizationService localizationController;
+        [Inject] private readonly AuthenticationService authenticationService;
 
         [Inject(Id = "SignIn")] private readonly SignInView signInForm;
 
@@ -25,12 +25,12 @@ namespace RoboFactory.Authentication
 
         #region Components
         
-        [SerializeField] private TMP_Text headerText;
-        [SerializeField] private TMP_Text verificationText;
+        [SerializeField] private TMP_Text _headerText;
+        [SerializeField] private TMP_Text _verificationText;
 
         [Space]
-        [SerializeField] private Button backButton;
-        [SerializeField] private Button resendButton;
+        [SerializeField] private Button _backButton;
+        [SerializeField] private Button _resendButton;
 
         #endregion
         
@@ -46,16 +46,16 @@ namespace RoboFactory.Authentication
         {
             _disposable = new CompositeDisposable();
             
-            backButton.OnClickAsObservable().Subscribe(_ => OnBackClick()).AddTo(_disposable);
-            resendButton.OnClickAsObservable().Subscribe(_ => OnResendClick()).AddTo(_disposable);
+            _backButton.OnClickAsObservable().Subscribe(_ => OnBackClick()).AddTo(_disposable);
+            _resendButton.OnClickAsObservable().Subscribe(_ => OnResendClick()).AddTo(_disposable);
         }
 
         private void Start()
         { 
             LayoutRebuilder.ForceRebuildLayoutImmediate(transform as RectTransform);
             
-            headerText.text = _localisationController.GetLanguageValue(HeaderTitleKey);
-            verificationText.text = _localisationController.GetLanguageValue(VerificationTitleKey);
+            _headerText.text = localizationController.GetLanguageValue(HeaderTitleKey);
+            _verificationText.text = localizationController.GetLanguageValue(VerificationTitleKey);
         }
 
         private void OnDestroy()
@@ -73,7 +73,7 @@ namespace RoboFactory.Authentication
         
         private void OnResendClick()
         {
-            _authenticationManager.EmailVerification().Forget();
+            authenticationService.EmailVerification().Forget();
         }
     }
 }

@@ -1080,9 +1080,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4619e9ed734a408e8ef930eb5c2f449a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  title: {fileID: 1301489779364347835}
-  icon: {fileID: 4954906063701662369}
-  specs:
+  _title: {fileID: 1301489779364347835}
+  _icon: {fileID: 4954906063701662369}
+  _specs:
   - {fileID: 7166831520681997355}
   - {fileID: 6614720859119314067}
   - {fileID: 940287096744664846}
@@ -1850,12 +1850,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4db83c2fca1b4cf583cffb713a70caa5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 3
-  close: {fileID: 4464252820969268553}
-  header: {fileID: 3869014863790242119}
-  tabs: {fileID: 6433271776032673707}
-  items: {fileID: 2249853246639784223}
-  sidebar: {fileID: 6781040779111448734}
+  _close: {fileID: 4464252820969268553}
+  _header: {fileID: 3869014863790242119}
+  _tabs: {fileID: 6433271776032673707}
+  _items: {fileID: 2249853246639784223}
+  _sidebar: {fileID: 6781040779111448734}
 --- !u!225 &3651218446647899486
 CanvasGroup:
   m_ObjectHideFlags: 0

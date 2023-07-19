@@ -13,7 +13,7 @@ namespace RoboFactory.Factory.Menu.Units
     {
         #region Zenject
 
-        [Inject] private readonly LocalisationManager _localisationController;
+        [Inject] private readonly LocalizationService localizationController;
         [Inject] private readonly ProductsManager _productsManager;
         [Inject] private readonly UnitsManager _unitsManager;
         [Inject] private readonly IUiController _uiController;
@@ -37,7 +37,7 @@ namespace RoboFactory.Factory.Menu.Units
             _menu = _uiController.FindUi<UnitsMenuView>();
             _selectionMenu = _uiController.FindUi<SelectionPopupView>();
 
-            SetButtonText(_localisationController.GetLanguageValue(LocalisationKeys.SelectButtonTitleKey));
+            SetButtonText(localizationController.GetLanguageValue(LocalizationKeys.SelectButtonTitleKey));
         }
 
         private void Start()

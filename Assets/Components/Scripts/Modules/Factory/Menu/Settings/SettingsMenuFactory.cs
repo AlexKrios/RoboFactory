@@ -14,25 +14,27 @@ namespace RoboFactory.Factory.Menu.Settings
 
         [Inject] private readonly DiContainer _container;
         [Inject] private readonly Settings _settings;
-        [Inject] private readonly AssetsManager _assetsManager;
+        [Inject] private readonly AddressableService addressableService;
         [Inject] private readonly IUiController _uiController;
 
         #endregion
 
         public async void CreateMenu()
         {
-            var canvasT = _uiController.GetCanvas(CanvasType.Ui).transform;
-            var menuOriginal = await _assetsManager.InstantiateAssetAsync(_settings.menuAsset, canvasT);
+            var parent = _uiController.GetCanvas(CanvasType.Ui);
+            var menuOriginal = await addressableService.InstantiateAssetAsync(_settings.MenuAsset, parent.transform);
             var menu = _container.InjectGameObjectForComponent<SettingsMenuView>(menuOriginal);
             menu.Initialize();
             
-            _assetsManager.ReleaseAsset(_settings.menuAsset);
+            addressableService.ReleaseAsset(_settings.MenuAsset);
         }
 
         [Serializable]
         public class Settings
         {
-            public AssetReference menuAsset;
+            public AssetReference _menuAsset;
+            
+            public AssetReference MenuAsset => _menuAsset;
         }
     }
 }

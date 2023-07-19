@@ -11,9 +11,9 @@ namespace RoboFactory.Factory.Menu.Conversion
         #region Components
 
         [Space]
-        [SerializeField] private RawType rawType;
+        [SerializeField] private RawType _rawType;
         
-        public RawType RawType => rawType;
+        public RawType RawType => _rawType;
 
         #endregion
         

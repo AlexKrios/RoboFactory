@@ -14,12 +14,12 @@ namespace RoboFactory.Factory.Menu.Expedition
     {
         #region Zenject
 
-        [Inject] private readonly AssetsManager _assetsManager;
+        [Inject] private readonly AddressableService addressableService;
 
         #endregion
         
-        [SerializeField] private Image icon;
-        [SerializeField] private TMP_Text count;
+        [SerializeField] private Image _icon;
+        [SerializeField] private TMP_Text _count;
 
         private CanvasGroup _canvasGroup;
 
@@ -29,8 +29,8 @@ namespace RoboFactory.Factory.Menu.Expedition
             _canvasGroup.alpha = 0;
             _canvasGroup.DOFade(1, 0.5f).SetEase(Ease.OutCubic);
             
-            icon.sprite = await _assetsManager.LoadAssetAsync<Sprite>(part.data.IconRef);
-            count.text = part.count.ToString();
+            _icon.sprite = await addressableService.LoadAssetAsync<Sprite>(part.data.IconRef);
+            _count.text = part.count.ToString();
         }
     }
 }
