@@ -1,5 +1,4 @@
-using Cysharp.Threading.Tasks;
-using RoboFactory.Authentication;
+using RoboFactory.Auth;
 using RoboFactory.General.Api;
 using RoboFactory.General.Audio;
 using RoboFactory.General.Expedition;
@@ -15,18 +14,16 @@ using RoboFactory.General.Services;
 using RoboFactory.General.Unit;
 using RoboFactory.General.User;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using Zenject;
 
 namespace RoboFactory.Launcher
 {
-    [AddComponentMenu("Scripts/Launcher/Launcher Initialization", 0)]
     public class LauncherInitialization : MonoBehaviour
     {
         [Inject] private readonly DiContainer _container;
         
         [Inject] private readonly AudioManager _audioController;
-        [Inject] private readonly AuthenticationService _authenticationService;
+        [Inject] private readonly AuthService authService;
 
         [Inject] private readonly MoneyManager _moneyManager;
         [Inject] private readonly LevelManager _levelManager;
@@ -48,7 +45,8 @@ namespace RoboFactory.Launcher
             QualitySettings.vSyncCount = 0;
             Application.targetFrameRate = 60;
 
-            await SceneManager.LoadSceneAsync(SceneName.Loader.ToString(), LoadSceneMode.Additive).ToUniTask();
+            _sceneService.LoadScene(SceneName.Factory);
+            //await SceneManager.LoadSceneAsync(SceneName.Loader.ToString(), LoadSceneMode.Additive).ToUniTask();
 
             InitAudio();
             InitAuthentication();
@@ -65,11 +63,12 @@ namespace RoboFactory.Launcher
             }
 
             _sceneService.ProgressText.Value = "initialize_default";
+            _sceneService.LoadState.Value = SceneLoadState.Finish;
         }
 
         private void OnDestroy()
         {
-            _authenticationService.EventSignInFailure -= LoadAuthenticationScene;
+            authService.EventSignInFailure -= LoadAuthenticationScene;
         }
 
         private void InitAudio()
@@ -82,8 +81,8 @@ namespace RoboFactory.Launcher
 
         private void InitAuthentication()
         {
-            _authenticationService.EventSignInSuccess += LoadServicesData;
-            _authenticationService.EventSignInFailure += LoadAuthenticationScene;
+            authService.EventSignInSuccess += LoadServicesData;
+            authService.EventSignInFailure += LoadAuthenticationScene;
             //authenticationService.Initialize();
         }
         
@@ -113,8 +112,6 @@ namespace RoboFactory.Launcher
             _expeditionManager.LoadData(userProfile.ExpeditionsSection);
 
             _orderManager.LoadData(userProfile.OrdersSection);
-
-            _sceneService.LoadScene(SceneName.Factory, 1f);
         }
     }
 }

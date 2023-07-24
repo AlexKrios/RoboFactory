@@ -12,16 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 243070b3937941c9a9a1b9825a3b7ac9, type: 3}
   m_Name: ProductionQueueUpgradeData
   m_EditorClassIdentifier: 
-  data:
-  - count: 1
-    cost: 50
-    level: 3
-  - count: 2
-    cost: 150
-    level: 5
-  - count: 3
-    cost: 500
-    level: 7
-  - count: 4
-    cost: 1500
-    level: 9
+  _data:
+  - _count: 0
+    _cost: 0
+    _level: 0

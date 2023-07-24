@@ -1,11 +1,16 @@
 ﻿using System;
+using Newtonsoft.Json;
+
+// ReSharper disable InconsistentNaming
 
 namespace RoboFactory.General.Item.Raw
 {
     [Serializable]
     public class RawDto
     {
-        public int count;
-        public int level;
+        [JsonProperty("count")]
+        public int Count;
+        [JsonProperty("level")]
+        public int Level;
     }
 }

@@ -3,17 +3,22 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 using RoboFactory.General.Item.Products;
 
+// ReSharper disable InconsistentNaming
+
 namespace RoboFactory.General.Unit
 {
     [Serializable]
     public class UnitDto
     {
-        public string key;
-        public int experience;
-        public int level;
+        [JsonProperty("key")] 
+        public string Key;
+        [JsonProperty("experience")] 
+        public int Experience;
+        [JsonProperty("level")] 
+        public int Level;
         
         [JsonProperty("outfit")]
         public Dictionary<ProductGroup, string> Outfit;
-        public bool isLocked;
+        public bool IsLocked { get; set; }
     }
 }

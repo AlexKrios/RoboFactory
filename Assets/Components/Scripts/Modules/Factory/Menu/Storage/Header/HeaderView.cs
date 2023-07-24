@@ -1,5 +1,5 @@
 ﻿using System;
-using RoboFactory.General.Localisation;
+using RoboFactory.General.Localization;
 using RoboFactory.General.Ui;
 using TMPro;
 using UnityEngine;
@@ -8,45 +8,28 @@ using Zenject;
 
 namespace RoboFactory.Factory.Menu.Storage
 {
-    [AddComponentMenu("Scripts/Factory/Menu/Storage/Header View")]
     public class HeaderView : MonoBehaviour
     {
-        #region Zenject
-
-        [Inject] private readonly LocalizationService localizationController;
+        [Inject] private readonly LocalizationService _localizationService;
         [Inject] private readonly IUiController _uiController;
 
-        #endregion
-
-        #region Components
-
-        [SerializeField] private TMP_Text title;
-        [SerializeField] private TMP_Text productGroup;
-        [SerializeField] private Toggle defaultToggle;
-
-        #endregion
-
-        #region Variables
+        [SerializeField] private TMP_Text _title;
+        [SerializeField] private TMP_Text _productGroup;
+        [SerializeField] private Toggle _defaultToggle;
 
         public Action OnToggleClickEvent { get; set; }
         
         private StorageMenuView _menu;
 
-        #endregion
-
-        #region Unity Methods
-
         private void Awake()
         {
-            defaultToggle.onValueChanged.AddListener(OnToggleClick);
+            _defaultToggle.onValueChanged.AddListener(OnToggleClick);
         }
 
         private void OnDestroy()
         {
-            defaultToggle.onValueChanged.RemoveListener(OnToggleClick);
+            _defaultToggle.onValueChanged.RemoveListener(OnToggleClick);
         }
-
-        #endregion
 
         public void Initialize()
         {
@@ -66,8 +49,8 @@ namespace RoboFactory.Factory.Menu.Storage
         {
             var productKey = LocalizationKeys.ProductKeys[_menu.ActiveProductGroup];
 
-            title.text = localizationController.GetLanguageValue(LocalizationKeys.StorageMenuTitleKey);
-            productGroup.text = localizationController.GetLanguageValue(productKey);
+            _title.text = _localizationService.GetLanguageValue(LocalizationKeys.StorageMenuTitleKey);
+            _productGroup.text = _localizationService.GetLanguageValue(productKey);
         }
     }
 }

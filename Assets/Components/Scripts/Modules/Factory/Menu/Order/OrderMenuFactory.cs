@@ -12,14 +12,10 @@ namespace RoboFactory.Factory.Menu.Order
     [UsedImplicitly]
     public class OrderMenuFactory
     {
-        #region Zenject
-
         [Inject] private readonly DiContainer _container;
         [Inject] private readonly Settings _settings;
-        [Inject] private readonly AddressableService addressableService;
+        [Inject] private readonly AddressableService _addressableService;
         [Inject] private readonly IUiController _uiController;
-
-        #endregion
         
         public Button CreateButton(Transform parent)
         { 
@@ -29,11 +25,11 @@ namespace RoboFactory.Factory.Menu.Order
         public async void CreateMenu()
         { 
             var canvasT = _uiController.GetCanvas(CanvasType.Ui).transform;
-            var menuOriginal = await addressableService.InstantiateAssetAsync(_settings.MenuAsset, canvasT);
+            var menuOriginal = await _addressableService.InstantiateAssetAsync(_settings.MenuAsset, canvasT);
             var menu = _container.InjectGameObjectForComponent<OrderMenuView>(menuOriginal);
             menu.Initialize();
             
-            addressableService.ReleaseAsset(_settings.MenuAsset);
+            _addressableService.ReleaseAsset(_settings.MenuAsset);
         }
         
         public ItemCellView CreateItem(Transform parent)

@@ -12,17 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42a0c6e56bbe4c09b8960911a2b6610c, type: 3}
   m_Name: UnitTrooper
   m_EditorClassIdentifier: 
-  key: unit_trooper
-  unitType: 1
-  attackType: 0
-  specType: 0
-  iconRef:
-    m_AssetGUID: 07c21296f688bff42afbe3502b8787f5
-    m_SubObjectName: TrooperWeaponProduct
+  _key: unit_trooper
+  _unitType: 1
+  _attackType: 0
+  _specType: 0
+  _iconRef:
+    m_AssetGUID: 114d1c7c5dc27d0428359f3a678a6533
+    m_SubObjectName: CharachterTypeTrooper
     m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
     m_EditorAssetChanged: 0
-  model: {fileID: 5538192371963980350, guid: 2b6b79f0ead6e3a419825b2fbcbf6cca, type: 3}
-  specifications: 0a00000032000000000000000f000000
-  unlockCost: 0
-  unlockLevel: 0
+  _model: {fileID: 5538192371963980350, guid: 2b6b79f0ead6e3a419825b2fbcbf6cca, type: 3}
+  _specs: 00000000000000000000000000000000
+  _unlockCost: 0
+  _unlockLevel: 0

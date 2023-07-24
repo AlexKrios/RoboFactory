@@ -18,7 +18,7 @@ namespace RoboFactory.General.Item.Raw.Convert
 
             var store = managersResolver.GetManagerByType(ItemType.Raw);
             return store.GetItem(key).Recipe.Parts
-                .Select(partObj => store.GetItem(partObj.data.Key).IsEnoughCount(partObj))
+                .Select(partObj => store.GetItem(partObj.Data.Key).IsEnoughCount(partObj))
                 .All(isEnough => isEnough);
         }
 
@@ -29,7 +29,7 @@ namespace RoboFactory.General.Item.Raw.Convert
             foreach (var part in recipe.Parts)
             {
                 //TODO В один запрос сделать
-                await _rawManager.RemoveItem(part.data.Key, part.count);
+                await _rawManager.RemoveItem(part.Data.Key, part.Count);
             }
         }
         

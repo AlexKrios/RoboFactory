@@ -9,42 +9,25 @@ using Zenject;
 
 namespace RoboFactory.Factory.Menu.Expedition
 {
-    [AddComponentMenu("Scripts/Factory/Menu/Expedition/Queue/Expedition Cell")]
     public class ExpeditionCell : MonoBehaviour, IPointerClickHandler
     {
-        #region Zenject
-
         [Inject] private readonly ExpeditionCellEmpty.Factory _emptyFactory;
         [Inject] private readonly ExpeditionCellBusy.Factory _busyFactory;
         [Inject] private readonly ExpeditionCellFinish.Factory _finishFactory;
-
-        #endregion
         
-        #region Components
-
         [SerializeField] private Image _icon;
         [SerializeField] private TMP_Text _timer;
-
-        #endregion
         
-        #region Variables
-
         private Dictionary<Type, IExpeditionCellState> _stateMap;
         private IExpeditionCellState _currentState;
 
         public ExpeditionObject Data { get; private set; }
-
-        #endregion
-
-        #region Unity Methods
 
         private void Awake()
         {
             InitStates();
             SetStateByDefault();
         }
-
-        #endregion
 
         private void InitStates()
         {

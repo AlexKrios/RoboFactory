@@ -1,9 +1,11 @@
 ﻿using System;
+using JetBrains.Annotations;
 using UnityEngine;
 using Zenject;
 
 namespace RoboFactory.Battle.Ui
 {
+    [UsedImplicitly]
     public class EndBattleFactory
     {
         #region Zenject
@@ -15,23 +17,22 @@ namespace RoboFactory.Battle.Ui
 
         public EndBattlePopupView CreateEndPopup(Transform parent)
         {
-            return _container.InstantiatePrefabForComponent<EndBattlePopupView>(_settings.popupPrefab, parent);
+            return _container.InstantiatePrefabForComponent<EndBattlePopupView>(_settings.PopupPrefab, parent);
         }
         
         public EndBattleItemView CreateItemCell(Transform parent)
         {
-            return _container.InstantiatePrefabForComponent<EndBattleItemView>(_settings.itemCellPrefab, parent);
+            return _container.InstantiatePrefabForComponent<EndBattleItemView>(_settings.ItemCellPrefab, parent);
         }
 
         [Serializable]
         public class Settings
         {
-            public string popupName;
-            public GameObject popupPrefab;
+            [SerializeField] private GameObject _popupPrefab;
+            [SerializeField] private GameObject _itemCellPrefab;
             
-            [Space]
-            public string itemCellName;
-            public GameObject itemCellPrefab;
+            public GameObject PopupPrefab => _popupPrefab;
+            public GameObject ItemCellPrefab => _itemCellPrefab;
         }
     }
 }

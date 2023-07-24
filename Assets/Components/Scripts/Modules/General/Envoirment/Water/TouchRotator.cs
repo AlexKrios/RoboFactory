@@ -4,8 +4,8 @@ namespace Assets.MobileOptimizedWater.Scripts
 
     public class TouchRotator : MonoBehaviour
     {
-        [SerializeField] private Transform cameraRoot;
-        [SerializeField] private float mouseSpeed;
+        [SerializeField] private Transform _cameraRoot;
+        [SerializeField] private float _mouseSpeed;
 
         private Vector3 prevMousePos;
 
@@ -17,9 +17,9 @@ namespace Assets.MobileOptimizedWater.Scripts
                 var deltaPos = Input.GetTouch(0).deltaPosition;
 
                 var deltaRotation = new Vector3(-deltaPos.y, deltaPos.x) * Time.deltaTime;
-                var rotation = cameraRoot.eulerAngles + deltaRotation;
+                var rotation = _cameraRoot.eulerAngles + deltaRotation;
 
-                cameraRoot.eulerAngles = new Vector3(Mathf.Clamp(rotation.x, 0f, 90f), rotation.y);
+                _cameraRoot.eulerAngles = new Vector3(Mathf.Clamp(rotation.x, 0f, 90f), rotation.y);
             }
         }
 #else
@@ -29,10 +29,10 @@ namespace Assets.MobileOptimizedWater.Scripts
             {
                 var deltaPos = Input.mousePosition - prevMousePos;
 
-                var deltaRotation = new Vector3(-deltaPos.y, deltaPos.x) * (Time.deltaTime * mouseSpeed);
-                var rotation = cameraRoot.eulerAngles + deltaRotation;
+                var deltaRotation = new Vector3(-deltaPos.y, deltaPos.x) * (Time.deltaTime * _mouseSpeed);
+                var rotation = _cameraRoot.eulerAngles + deltaRotation;
 
-                cameraRoot.eulerAngles = new Vector3(Mathf.Clamp(rotation.x, 0f, 90f), rotation.y);
+                _cameraRoot.eulerAngles = new Vector3(Mathf.Clamp(rotation.x, 0f, 90f), rotation.y);
             }
 
             prevMousePos = Input.mousePosition;

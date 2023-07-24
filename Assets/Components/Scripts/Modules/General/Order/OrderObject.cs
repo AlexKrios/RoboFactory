@@ -26,8 +26,8 @@ namespace RoboFactory.General.Order
         
         public OrderObject SetLoadData(OrderDto dto)
         {
-            IsActive = dto.isActive;
-            IsComplete = dto.isComplete;
+            IsActive = dto.IsActive;
+            IsComplete = dto.IsComplete;
 
             return this;
         }
@@ -36,9 +36,9 @@ namespace RoboFactory.General.Order
         {
             return new OrderDto
             {
-                key = Key,
-                isActive = IsActive,
-                isComplete = IsComplete
+                Key = Key,
+                IsActive = IsActive,
+                IsComplete = IsComplete
             };
         }
     }

@@ -19,7 +19,7 @@ namespace RoboFactory.General.Ui.Common
         #region Variables
 
         private Button _buttonComponent;
-        private CompositeDisposable _disposable;
+        private readonly CompositeDisposable _disposable = new();
 
         #endregion
 
@@ -27,8 +27,6 @@ namespace RoboFactory.General.Ui.Common
 
         protected virtual void Awake()
         {
-            _disposable = new CompositeDisposable();
-
             _buttonComponent = GetComponent<Button>();
             _buttonComponent.OnClickAsObservable().Subscribe(_ => Click()).AddTo(_disposable);
         }

@@ -27,14 +27,14 @@ namespace RoboFactory.Factory.Menu.Conversion
 
         public async void SetPartData(PartObject part)
         {
-            var data = part.data;
+            var data = part.Data;
             var store = managersResolver.GetManagerByType(data.ItemType);
             var itemCount = store.GetItem(data.Key).Count;
             var sprite = await addressableService.LoadAssetAsync<Sprite>(data.IconRef);
 
             _icon.sprite = sprite;
-            _count.text = $"{itemCount}/{part.count}";
-            _level.text = part.star.ToString();
+            _count.text = $"{itemCount}/{part.Count}";
+            _level.text = part.Star.ToString();
         }
     }
 }

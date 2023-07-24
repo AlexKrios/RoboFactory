@@ -1,4 +1,4 @@
-﻿using RoboFactory.General.Localisation;
+﻿using RoboFactory.General.Localization;
 using RoboFactory.General.Scene;
 using TMPro;
 using UniRx;
@@ -24,7 +24,7 @@ namespace RoboFactory.General
                 .Subscribe(v => _progressText.text = _localizationService.GetLanguageValue(v.ToString()))
                 .AddTo(_disposable);
             
-            _sceneService.ProgressValue
+            _sceneService.ProgressMainValue
                 .Subscribe(v => _progressSlider.value = v)
                 .AddTo(_disposable);
         }

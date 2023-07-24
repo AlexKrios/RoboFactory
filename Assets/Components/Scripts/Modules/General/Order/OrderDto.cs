@@ -1,12 +1,18 @@
 using System;
+using Newtonsoft.Json;
+
+// ReSharper disable InconsistentNaming
 
 namespace RoboFactory.General.Order
 {
     [Serializable]
     public class OrderDto
     {
-        public string key;
-        public bool isActive;
-        public bool isComplete;
+        [JsonProperty("key")]
+        public string Key;
+        [JsonProperty("isActive")]
+        public bool IsActive;
+        [JsonProperty("isComplete")]
+        public bool IsComplete;
     }
 }

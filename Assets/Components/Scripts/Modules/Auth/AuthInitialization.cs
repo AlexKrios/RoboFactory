@@ -1,24 +1,23 @@
 using UnityEngine;
 using Zenject;
 
-namespace RoboFactory.Authentication
+namespace RoboFactory.Auth
 {
-    [AddComponentMenu("Scripts/Authentication/Authentication Initialization", 0)]
-    public class AuthenticationInitialization : MonoBehaviour
+    public class AuthInitialization : MonoBehaviour
     {
-        [Inject] private readonly AuthenticationService authenticationService;
+        [Inject] private readonly AuthService authService;
 
         [Inject(Id = "SignUp")] private readonly SignUpView _signUpView;
         [Inject(Id = "Verification")] private readonly VerificationView _verificationView;
 
         private void Awake()
         {
-            authenticationService.EventSignUpSuccess += SignUpSuccess;
+            authService.EventSignUpSuccess += SignUpSuccess;
         }
 
         private void OnDestroy()
         {
-            authenticationService.EventSignUpSuccess -= SignUpSuccess;
+            authService.EventSignUpSuccess -= SignUpSuccess;
         }
 
         private void SignUpSuccess()

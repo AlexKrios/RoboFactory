@@ -16,9 +16,9 @@ namespace RoboFactory.General.Expedition
         public ExpeditionObject SetDtoData(ExpeditionDto data)
         {
             Id = data.Id;
-            Key = data.key;
-            Star = data.star;
-            TimeEnd = data.timeEnd;
+            Key = data.Key;
+            Star = data.Star;
+            TimeEnd = data.TimeEnd;
 
             return this;
         }
@@ -28,9 +28,9 @@ namespace RoboFactory.General.Expedition
             return new ExpeditionDto
             {
                 Id = Id,
-                key = Key,
-                star = Star,
-                timeEnd = TimeEnd
+                Key = Key,
+                Star = Star,
+                TimeEnd = TimeEnd
             };
         }
     }

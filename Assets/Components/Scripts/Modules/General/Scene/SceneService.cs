@@ -1,8 +1,12 @@
-﻿using Cysharp.Threading.Tasks;
+﻿using System;
+using Cysharp.Threading.Tasks;
 using JetBrains.Annotations;
 using RoboFactory.General.Services;
 using UniRx;
+using UnityEngine;
 using UnityEngine.SceneManagement;
+using Zenject;
+using Object = UnityEngine.Object;
 
 namespace RoboFactory.General.Scene
 {
@@ -10,38 +14,35 @@ namespace RoboFactory.General.Scene
     public class SceneService : Service
     {
         protected override string LoadingTextKey => "initialize_scenes";
-
-        public StringReactiveProperty ProgressText { get; }
-        public FloatReactiveProperty ProgressValue { get; }
-        public ReactiveProperty<SceneLoadState> LoadState { get; }
-
-        public float TimeLoad { get; set; }
-        public SceneName SceneLoad { get; set; }
-
-        public SceneService()
-        {
-            ProgressText = new StringReactiveProperty();
-            ProgressValue = new FloatReactiveProperty();
-
-            ProgressText.Value = string.Empty;
-        }
         
+        [Inject] private readonly DiContainer _container;
+        [Inject] private readonly Settings _settings;
+        [Inject(Id = Constants.ScreenParentKey)] private readonly Transform _sceneParent;
+
+        public StringReactiveProperty ProgressText { get; } = new(string.Empty);
+        public FloatReactiveProperty ProgressMainValue { get; } = new();
+        public FloatReactiveProperty ProgressSecondaryValue { get; } = new();
+        public ReactiveProperty<SceneLoadState> LoadState { get; } = new();
+
+        private GameObject _loaderScreen;
+
         public async void LoadScene(SceneName scene)
         {
-            SceneManager.LoadScene(SceneName.Loader.ToString(), LoadSceneMode.Additive);
+            _loaderScreen = _container.InstantiatePrefab(_settings.LoaderPrefab, _sceneParent);
             LoadState.Value = SceneLoadState.Loading;
-            SceneLoad = scene;
 
             await UniTask.WaitUntil(() => LoadState.Value == SceneLoadState.Finish);
+            await SceneManager.LoadSceneAsync(scene.ToString());
             
-            SceneManager.LoadScene(SceneLoad.ToString());
+            Object.Destroy(_loaderScreen);
         }
-        
-        public void LoadScene(SceneName name, float time = 0f)
+
+        [Serializable]
+        public class Settings
         {
-            SceneLoad = name;
-            TimeLoad = time;
-            SceneManager.LoadScene(SceneLoad.ToString());
+            [SerializeField] private GameObject _loaderPrefab;
+            
+            public GameObject LoaderPrefab => _loaderPrefab;
         }
     }
 }

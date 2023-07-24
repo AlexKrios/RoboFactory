@@ -1,20 +1,18 @@
 ﻿using System;
 using RoboFactory.General.Item.Production;
-using RoboFactory.General.Localisation;
+using RoboFactory.General.Localization;
 using RoboFactory.General.Ui;
 using RoboFactory.General.Ui.Common;
-using UnityEngine;
 using Zenject;
 
 namespace RoboFactory.Factory.Menu.Production
 {
-    [AddComponentMenu("Scripts/Factory/Menu/Production/Create Button View")]
     public class CreateButtonView : ButtonBase
     {
         #region Zenject
 
         [Inject] private readonly IUiController _uiController;
-        [Inject] private readonly LocalizationService localizationController;
+        [Inject] private readonly LocalizationService _localizationService;
         [Inject] private readonly ProductionManager _productionManager;
 
         #endregion
@@ -32,7 +30,7 @@ namespace RoboFactory.Factory.Menu.Production
         {
             _menu = _uiController.FindUi<ProductionMenuView>();
 
-            SetButtonText(localizationController.GetLanguageValue(LocalizationKeys.ProductionMenuButtonTextKey));
+            SetButtonText(_localizationService.GetLanguageValue(LocalizationKeys.ProductionMenuButtonTextKey));
             SetState();
         }
 

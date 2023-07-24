@@ -1,24 +1,16 @@
 ﻿using System;
 using RoboFactory.General.Ui;
 using RoboFactory.General.Ui.Common;
-using UnityEngine;
 using Zenject;
 
 namespace RoboFactory.Factory.Menu.Expedition
 {
-    [AddComponentMenu("Scripts/Factory/Menu/Expedition/Star Button View")]
     public class StarButtonView : StarButtonBase
     {
         private const int DefaultStar = 1;
         
-        #region Zenject
-
         [Inject] private readonly IUiController _uiController;
-
-        #endregion
         
-        #region Variables
-
         public Action EventClick { get; set; }
         
         private ExpeditionMenuView _menu;
@@ -31,8 +23,6 @@ namespace RoboFactory.Factory.Menu.Expedition
                 SetStarLevel(value);
             } 
         }
-
-        #endregion
 
         public void Initialize()
         {

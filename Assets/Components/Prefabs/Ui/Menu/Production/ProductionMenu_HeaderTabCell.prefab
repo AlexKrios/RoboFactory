@@ -52,11 +52,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a1eae609d994108a438ef221fd2cb78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  background: {fileID: 2663343917707486062}
-  icon: {fileID: 8919941533893911380}
-  activeImage: {fileID: 4525079442649647317}
-  locked: {fileID: 9004473974824054302}
-  group: 0
+  _icon: {fileID: 8919941533893911380}
+  _active: {fileID: 4525079442649647317}
+  _locked: {fileID: 9004473974824054302}
+  _group: 0
 --- !u!114 &6478614740655021577
 MonoBehaviour:
   m_ObjectHideFlags: 0

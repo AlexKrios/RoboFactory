@@ -23,25 +23,25 @@ namespace RoboFactory.General.Ui.Admin
         #region Components
         
         [Header("Money")]
-        [SerializeField] private Button moneyPlus;
-        [SerializeField] private Button bankrupt;
+        [SerializeField] private Button _moneyPlus;
+        [SerializeField] private Button _bankrupt;
 
         [Header("Experience")]
-        [SerializeField] private Button experiencePlus;
-        [SerializeField] private Button experiencePlusDouble;
+        [SerializeField] private Button _experiencePlus;
+        [SerializeField] private Button _experiencePlusDouble;
 
         [Header("Raw")]
-        [SerializeField] private Button rawMax;
-        [SerializeField] private Button rawMin;
+        [SerializeField] private Button _rawMax;
+        [SerializeField] private Button _rawMin;
         
         [Space]
-        [SerializeField] private Button resetOrder;
+        [SerializeField] private Button _resetOrder;
 
         #endregion
 
         #region Variables
 
-        private CompositeDisposable _disposable;
+        private readonly CompositeDisposable _disposable = new();
 
         #endregion
         
@@ -49,15 +49,13 @@ namespace RoboFactory.General.Ui.Admin
 
         private void Awake()
         {
-            _disposable = new CompositeDisposable();
-            
-            moneyPlus.OnClickAsObservable().Subscribe(_ => OnMoneyPlus()).AddTo(_disposable);
-            bankrupt.OnClickAsObservable().Subscribe(_ => OnBankrupt()).AddTo(_disposable);
-            experiencePlus.OnClickAsObservable().Subscribe(_ => OnExperiencePlus()).AddTo(_disposable);
-            experiencePlusDouble.OnClickAsObservable().Subscribe(_ => OnExperiencePlusDouble()).AddTo(_disposable);
-            rawMax.OnClickAsObservable().Subscribe(_ => OnRawMax()).AddTo(_disposable);
-            rawMin.OnClickAsObservable().Subscribe(_ => OnRawMin()).AddTo(_disposable);
-            resetOrder.OnClickAsObservable().Subscribe(_ => OnResetOrder()).AddTo(_disposable);
+            _moneyPlus.OnClickAsObservable().Subscribe(_ => OnMoneyPlus()).AddTo(_disposable);
+            _bankrupt.OnClickAsObservable().Subscribe(_ => OnBankrupt()).AddTo(_disposable);
+            _experiencePlus.OnClickAsObservable().Subscribe(_ => OnExperiencePlus()).AddTo(_disposable);
+            _experiencePlusDouble.OnClickAsObservable().Subscribe(_ => OnExperiencePlusDouble()).AddTo(_disposable);
+            _rawMax.OnClickAsObservable().Subscribe(_ => OnRawMax()).AddTo(_disposable);
+            _rawMin.OnClickAsObservable().Subscribe(_ => OnRawMin()).AddTo(_disposable);
+            _resetOrder.OnClickAsObservable().Subscribe(_ => OnResetOrder()).AddTo(_disposable);
         }
         
         private void OnDestroy()
@@ -100,7 +98,6 @@ namespace RoboFactory.General.Ui.Admin
         private void OnResetOrder()
         {
             _orderManager.RefreshOrdersForce();
-            //_saveController.SaveOrders();
         }
     }
 }

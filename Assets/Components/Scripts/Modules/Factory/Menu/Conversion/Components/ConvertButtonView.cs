@@ -1,7 +1,7 @@
 ﻿using System;
 using RoboFactory.General.Item.Raw;
 using RoboFactory.General.Item.Raw.Convert;
-using RoboFactory.General.Localisation;
+using RoboFactory.General.Localization;
 using RoboFactory.General.Ui;
 using RoboFactory.General.Ui.Common;
 using RoboFactory.General.Ui.Popup;

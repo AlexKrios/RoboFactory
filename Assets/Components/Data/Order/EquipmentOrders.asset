@@ -12,24 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b08113566274f7ab5090a6f5c3fcbf1, type: 3}
   m_Name: EquipmentOrders
   m_EditorClassIdentifier: 
-  orders:
-  - key: order_equipment_1
-    parts:
-    - data: {fileID: 11400000, guid: 24c380984eb1e66448da1f76b925f569, type: 2}
-      star: 1
-      count: 1
-  - key: order_equipment_1
-    parts:
-    - data: {fileID: 11400000, guid: 24c380984eb1e66448da1f76b925f569, type: 2}
-      star: 2
-      count: 1
-  - key: order_equipment_1
-    parts:
-    - data: {fileID: 11400000, guid: 24c380984eb1e66448da1f76b925f569, type: 2}
-      star: 2
-      count: 1
-  - key: order_equipment_1
-    parts:
-    - data: {fileID: 11400000, guid: 24c380984eb1e66448da1f76b925f569, type: 2}
-      star: 2
-      count: 1
+  _orders:
+  - _key: order_equipment_1_title
+    _group: 3
+    _part:
+      Data: {fileID: 11400000, guid: 688f4947010fa17479e9ec642d5aafe3, type: 2}
+      Star: 1
+      Count: 2

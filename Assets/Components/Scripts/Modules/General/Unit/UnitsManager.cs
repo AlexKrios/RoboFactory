@@ -20,7 +20,7 @@ namespace RoboFactory.General.Unit
         private readonly Dictionary<FaceType, Material> _faceUnits;
         private readonly List<BattleUnitObject> _battleUnits;
 
-        public int GroupCount { get; private set; }
+        //public int GroupCount { get; private set; }
 
         public UnitsManager(Settings settings, UnitObject.Factory unitFactory)
         {
@@ -28,15 +28,15 @@ namespace RoboFactory.General.Unit
             _faceUnits = new Dictionary<FaceType, Material>();
             _battleUnits = new List<BattleUnitObject>();
             
-            foreach (var data in settings.units)
+            foreach (var data in settings.Units)
             {
                 var unit = unitFactory.Create().SetData(data);
                 _allUnits.Add(unit.Key, unit);
             }
             
-            foreach (var data in settings.faces)
+            foreach (var data in settings.Faces)
             {
-                _faceUnits.Add(data.Key, data.Value);
+                _faceUnits.Add(data.Type, data.Face);
             }
         }
 
@@ -45,11 +45,11 @@ namespace RoboFactory.General.Unit
             if (unitsData == null)
                 return;
             
-            GroupCount = unitsData.groupCount;
+            //GroupCount = unitsData.groupCount;
             foreach (var unit in unitsData.Units)
             {
-                _allUnits[unit.Key].Level = unit.Value.level;
-                _allUnits[unit.Key].Experience = unit.Value.experience;
+                _allUnits[unit.Key].Level = unit.Value.Level;
+                _allUnits[unit.Key].Experience = unit.Value.Experience;
                 _allUnits[unit.Key].Outfit = unit.Value.Outfit;
             }
         }
@@ -79,8 +79,11 @@ namespace RoboFactory.General.Unit
         [Serializable]
         public class Settings
         {
-            public List<UnitScriptable> units;
-            public List<KeyValuePair<FaceType, Material>> faces;
+            [SerializeField] private List<UnitScriptable> _units;
+            [SerializeField] private List<FaceTypeObject> _faces;
+            
+            public List<UnitScriptable> Units => _units;
+            public List<FaceTypeObject> Faces => _faces;
         }
     }
 }

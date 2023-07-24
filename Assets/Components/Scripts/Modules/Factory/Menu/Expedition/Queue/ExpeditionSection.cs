@@ -7,37 +7,21 @@ using Zenject;
 
 namespace RoboFactory.Factory.Menu.Expedition
 {
-    [AddComponentMenu("Scripts/Factory/Menu/Expedition/Queue/Expedition Section")]
     public class ExpeditionSection : MonoBehaviour
     {
-        #region Zenject
-
         [Inject] private readonly DiContainer _container;
-        [Inject] private readonly ExpeditionManager expeditionManager;
+        [Inject] private readonly ExpeditionManager _expeditionManager;
 
-        #endregion
-
-        #region Components
-        
         [SerializeField] private ExpeditionCell _cellPrototype;
 
-        #endregion
-
-        #region Variables
-        
-        private List<ExpeditionCell> _cells;
-        
         private CanvasGroup _canvasGroup;
-
-        #endregion
-
-        #region Unity Methods
+        private List<ExpeditionCell> _cells;
 
         private void Awake()
         {
             _cells = new List<ExpeditionCell>();
 
-            expeditionManager.OnExpeditionComplete += InitCells;
+            _expeditionManager.OnExpeditionComplete += InitCells;
         }
 
         private void OnEnable()
@@ -59,20 +43,18 @@ namespace RoboFactory.Factory.Menu.Expedition
         
         private void OnDestroy()
         {
-            expeditionManager.OnExpeditionComplete -= InitCells;
+            _expeditionManager.OnExpeditionComplete -= InitCells;
         }
-
-        #endregion
 
         private void InitCells()
         {
             if (_cells.Count != 0)
                 RemoveCells();
 
-            var expeditions = expeditionManager.GetAllExpeditions()
+            var expeditions = _expeditionManager.GetAllExpeditions()
                 .OrderBy(x => x.TimeEnd).ToList();
 
-            for (var i = 0; i < expeditionManager.CellCount; i++)
+            for (var i = 0; i < _expeditionManager.CellCount; i++)
             {
                 var cell = CreateCell();
                 if (i < expeditions.Count)
@@ -96,7 +78,7 @@ namespace RoboFactory.Factory.Menu.Expedition
 
         public void IncreaseCellCount()
         {
-            expeditionManager.CellCount++;
+            _expeditionManager.CellCount++;
         }
     }
 }

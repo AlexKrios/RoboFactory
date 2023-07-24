@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using RoboFactory.General.Asset;
-using RoboFactory.General.Localisation;
+using RoboFactory.General.Localization;
 using RoboFactory.General.Ui;
 using RoboFactory.General.Ui.Common;
 using TMPro;
@@ -11,18 +11,11 @@ using Zenject;
 
 namespace RoboFactory.Factory.Menu.Storage
 {
-    [AddComponentMenu("Scripts/Factory/Menu/Storage/Sidebar View")]
     public class SidebarView : MonoBehaviour
     {
-        #region Zenject
-
-        [Inject] private readonly AddressableService addressableService;
-        [Inject] private readonly LocalizationService localizationController;
+        [Inject] private readonly AddressableService _addressableService;
+        [Inject] private readonly LocalizationService _localizationService;
         [Inject] private readonly IUiController _uiController;
-
-        #endregion
-
-        #region Components
 
         [SerializeField] private TMP_Text _title;
         [SerializeField] private Image _icon;
@@ -30,13 +23,7 @@ namespace RoboFactory.Factory.Menu.Storage
         [Space]
         [SerializeField] private List<SpecCellView> _specs;
 
-        #endregion
-
-        #region Variables
-
         private StorageMenuView _menu;
-
-        #endregion
 
         public void Initialize()
         {
@@ -48,11 +35,10 @@ namespace RoboFactory.Factory.Menu.Storage
         public async void SetData()
         {
             gameObject.SetActive(!_menu.IsItemEmpty);
-            if (_menu.IsItemEmpty)
-                return;
+            if (_menu.IsItemEmpty) return;
             
-            _title.text = localizationController.GetLanguageValue(_menu.ActiveItem.Key);
-            _icon.sprite = await addressableService.LoadAssetAsync<Sprite>(_menu.ActiveItem.IconRef);
+            _title.text = _localizationService.GetLanguageValue(_menu.ActiveItem.Key);
+            _icon.sprite = await _addressableService.LoadAssetAsync<Sprite>(_menu.ActiveItem.IconRef);
 
             SetSpecsData();
         }
@@ -61,7 +47,7 @@ namespace RoboFactory.Factory.Menu.Storage
         {
             foreach (var specData in _menu.ActiveItem.Recipe.Specs)
             {
-                var spec = _specs.First(x => x.SpecType == specData.type);
+                var spec = _specs.First(x => x.SpecType == specData.Type);
                 spec.SetData(specData);
             }
         }

@@ -1584,8 +1584,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5725b27b1cce447e900930585d3722c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 1
-  active: {fileID: 3026920338952582158}
+  _type: 1
+  _active: {fileID: 3026920338952582158}
 --- !u!1 &3026920338710901940
 GameObject:
   m_ObjectHideFlags: 0
@@ -2075,8 +2075,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5725b27b1cce447e900930585d3722c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
-  active: {fileID: 3026920339728356474}
+  _type: 0
+  _active: {fileID: 3026920339728356474}
 --- !u!1 &3026920339420172513
 GameObject:
   m_ObjectHideFlags: 0
@@ -3441,7 +3441,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bc2a1952ad34dde8eb1b8f92af7bce6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  close: {fileID: 5872471968908225060}
+  _close: {fileID: 5872471968908225060}
   _title: {fileID: 1459630553514102282}
   _signOut: {fileID: 8153223331903738858}
   _musicSlider: {fileID: 3026920337654038581}

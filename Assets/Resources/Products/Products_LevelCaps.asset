@@ -12,12 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23b93b2d52ecfec4fb109f539655c767, type: 3}
   m_Name: Products_LevelCaps
   m_EditorClassIdentifier: 
-  caps:
-  - level: 1
-    experience: 10
-  - level: 2
-    experience: 20
-  - level: 3
-    experience: 30
-  - level: 4
-    experience: 40
+  _caps:
+  - Level: 1
+    Experience: 10
+  - Level: 2
+    Experience: 20
+  - Level: 3
+    Experience: 30
+  - Level: 4
+    Experience: 40
+  - Level: 5
+    Experience: 50

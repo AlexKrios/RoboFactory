@@ -13,14 +13,10 @@ namespace RoboFactory.Factory.Menu.Expedition
     [UsedImplicitly]
     public class ExpeditionMenuFactory
     {
-        #region Zenject
-
         [Inject] private readonly DiContainer _container;
         [Inject] private readonly Settings _settings;
-        [Inject] private readonly AddressableService addressableService;
+        [Inject] private readonly AddressableService _addressableService;
         [Inject] private readonly IUiController _uiController;
-
-        #endregion
 
         public Button CreateButton(Transform parent)
         {
@@ -30,74 +26,81 @@ namespace RoboFactory.Factory.Menu.Expedition
         public async void CreateMenu()
         { 
             var canvasT = _uiController.GetCanvas(CanvasType.Ui).transform;
-            var menuOriginal = await addressableService.InstantiateAssetAsync(_settings.MenuAsset, canvasT);
+            var menuOriginal = await _addressableService.InstantiateAssetAsync(_settings.MenuAsset, canvasT);
             var menu = _container.InjectGameObjectForComponent<ExpeditionMenuView>(menuOriginal);
             menu.Initialize();
             
-            addressableService.ReleaseAsset(_settings.MenuAsset);
+            _addressableService.ReleaseAsset(_settings.MenuAsset);
         }
         
         public LocationCellView CreateLocationCell(Transform parent)
         { 
-            return _container.InstantiatePrefabForComponent<LocationCellView>(_settings.locationPrefab, parent);
+            return _container.InstantiatePrefabForComponent<LocationCellView>(_settings.LocationPrefab, parent);
         }
         
         public void CreateSelectionMenu(Transform parent)
         {
-            var popup = _container.InstantiatePrefabForComponent<SelectionPopupView>(_settings.selectionPopupPrefab, parent);
+            var popup = _container.InstantiatePrefabForComponent<SelectionPopupView>(_settings.SelectionPopupPrefab, parent);
             popup.transform.localPosition = new Vector3(0, 0, -500);
         }
         
         public SelectionCellView CreateSelectionCell(Transform parent)
         {
-            return _container.InstantiatePrefabForComponent<SelectionCellView>(_settings.selectionCellPrefab, parent);
+            return _container.InstantiatePrefabForComponent<SelectionCellView>(_settings.SelectionCellPrefab, parent);
         }
         
         public void CreateUpgradeQueuePopup(Transform parent)
         {
-            _container.InstantiatePrefabForComponent<UpgradeQueuePopupView>(_settings.queuePrefab, parent);
+            _container.InstantiatePrefabForComponent<UpgradeQueuePopupView>(_settings.QueuePrefab, parent);
         }
         
         public ResultPopupView CreateResultPopup(Transform parent, ExpeditionObject expedition)
         {
-            var popup = _container.InstantiatePrefabForComponent<ResultPopupView>(_settings.resultPopupPrefab, parent);
+            var popup = _container.InstantiatePrefabForComponent<ResultPopupView>(_settings.ResultPopupPrefab, parent);
             popup.SetData(expedition);
             return popup;
         }
         public ResultRewardCellView CreateResultRewardCell(Transform parent)
         {
-            return _container.InstantiatePrefabForComponent<ResultRewardCellView>(_settings.resultRewardPrefab, parent);
+            return _container.InstantiatePrefabForComponent<ResultRewardCellView>(_settings.ResultRewardPrefab, parent);
         }
         public ResultUnitCellView CreateResultUnitCell(Transform parent)
         {
-            return _container.InstantiatePrefabForComponent<ResultUnitCellView>(_settings.resultUnitPrefab, parent);
+            return _container.InstantiatePrefabForComponent<ResultUnitCellView>(_settings.ResultUnitPrefab, parent);
         }
 
         [Serializable]
         public class Settings
         {
-            public GameObject _buttonPrefab;
+            [SerializeField] private GameObject _buttonPrefab;
             
             [Space]
-            public AssetReference _menuAsset;
+            [SerializeField] private AssetReference _menuAsset;
 
             [Space]
-            public GameObject locationPrefab;
+            [SerializeField] private GameObject _locationPrefab;
 
             [Space]
-            public GameObject selectionPopupPrefab;
-            public GameObject selectionCellPrefab;
+            [SerializeField] private GameObject _selectionPopupPrefab;
+            [SerializeField] private GameObject _selectionCellPrefab;
             
             [Space]
-            public GameObject queuePrefab;
+            [SerializeField] private GameObject _queuePrefab;
             
             [Space]
-            public GameObject resultPopupPrefab;
-            public GameObject resultRewardPrefab;
-            public GameObject resultUnitPrefab;
+            [SerializeField] private GameObject _resultPopupPrefab;
+            [SerializeField] private GameObject _resultRewardPrefab;
+            [SerializeField] private GameObject _resultUnitPrefab;
             
             public GameObject ButtonPrefab => _buttonPrefab;
             public AssetReference MenuAsset => _menuAsset;
+            public GameObject LocationPrefab => _locationPrefab;
+            public GameObject SelectionPopupPrefab => _selectionPopupPrefab;
+            public GameObject SelectionCellPrefab => _selectionCellPrefab;
+            public GameObject QueuePrefab => _queuePrefab;
+            public GameObject ResultPopupPrefab => _resultPopupPrefab;
+            public GameObject ResultRewardPrefab => _resultRewardPrefab;
+            public GameObject ResultUnitPrefab => _resultUnitPrefab;
         }
     }
 }

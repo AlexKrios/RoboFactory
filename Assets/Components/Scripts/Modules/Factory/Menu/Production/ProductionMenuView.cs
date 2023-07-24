@@ -9,7 +9,6 @@ using Zenject;
 
 namespace RoboFactory.Factory.Menu.Production
 {
-    [AddComponentMenu("Scripts/Factory/Menu/Production/Production Menu")]
     public class ProductionMenuView : MenuBase
     {
         #region Zenject

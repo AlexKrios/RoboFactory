@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using DG.Tweening;
 using RoboFactory.General.Expedition;
 using RoboFactory.General.Item.Raw;
-using RoboFactory.General.Localisation;
+using RoboFactory.General.Localization;
 using RoboFactory.General.Location;
 using RoboFactory.General.Ui;
 using RoboFactory.General.Unit;
@@ -16,12 +16,9 @@ using Zenject;
 namespace RoboFactory.Factory.Menu.Expedition
 {
     [RequireComponent(typeof(CanvasGroup))]
-    [AddComponentMenu("Scripts/Factory/Menu/Expedition/Result Popup View")]
     public class ResultPopupView : MonoBehaviour
     {
-        #region Zenject
-        
-        [Inject] private readonly LocalizationService localizationController;
+        [Inject] private readonly LocalizationService _localizationService;
         [Inject] private readonly IUiController _uiController;
         [Inject] private readonly UnitsManager _unitsManager;
         [Inject] private readonly RawManager _rawManager;
@@ -29,43 +26,29 @@ namespace RoboFactory.Factory.Menu.Expedition
         [Inject] private readonly ExpeditionMenuFactory _expeditionMenuFactory;
         [Inject] private readonly ExpeditionManager _expeditionManager;
 
-        #endregion
-
-        #region Components
-        
-        [SerializeField] private TMP_Text title;
+        [SerializeField] private TMP_Text _title;
         
         [Space]
-        [SerializeField] private RectTransform rewardsParent;
-        [SerializeField] private List<ResultRewardCellView> rewards;
+        [SerializeField] private RectTransform _rewardsParent;
+        [SerializeField] private List<ResultRewardCellView> _rewards;
         
         [Space]
-        [SerializeField] private RectTransform unitsParent;
-        [SerializeField] private List<ResultUnitCellView> units;
+        [SerializeField] private RectTransform _unitsParent;
+        [SerializeField] private List<ResultUnitCellView> _units;
         
         [Space] 
-        [SerializeField] private Button acceptButton;
-
-        #endregion
-
-        #region Variables
+        [SerializeField] private Button _acceptButton;
 
         private CanvasGroup _canvasGroup;
+        private readonly CompositeDisposable _disposable = new();
         
         private ExpeditionObject _data;
-        
-        private CompositeDisposable _disposable;
-
-        #endregion
-
-        #region Unity Methods
 
         private void Awake()
         {
-            _disposable = new CompositeDisposable();
             _canvasGroup = GetComponent<CanvasGroup>();
             
-            acceptButton.OnClickAsObservable().Subscribe(_ => AcceptButtonClick()).AddTo(_disposable);
+            _acceptButton.OnClickAsObservable().Subscribe(_ => AcceptButtonClick()).AddTo(_disposable);
 
             _uiController.AddUi(this);
         }
@@ -75,20 +58,18 @@ namespace RoboFactory.Factory.Menu.Expedition
             _disposable.Dispose();
         }
 
-        #endregion
-
         public void SetData(ExpeditionObject data)
         {
             _data = data;
             
-            title.text = localizationController.GetLanguageValue("expedition_complete");
+            _title.text = _localizationService.GetLanguageValue("expedition_complete");
             StartCoroutine(CreateRewardsCell());
             StartCoroutine(CreateUnitsCell());
         }
 
         private IEnumerator CreateRewardsCell()
         {
-            if (rewards.Count != 0)
+            if (_rewards.Count != 0)
                 RemoveResultCells();
             
             var locationData = _locationManager.GetLocation(_data.Key);
@@ -96,7 +77,7 @@ namespace RoboFactory.Factory.Menu.Expedition
             {
                 yield return new WaitForSeconds(.2f);
                 
-                var rewardCell = _expeditionMenuFactory.CreateResultRewardCell(rewardsParent);
+                var rewardCell = _expeditionMenuFactory.CreateResultRewardCell(_rewardsParent);
                 rewardCell.SetData(rewardData);
             }
 
@@ -105,13 +86,13 @@ namespace RoboFactory.Factory.Menu.Expedition
         
         private void RemoveResultCells()
         {
-            rewards.ForEach(x => Destroy(x.gameObject));
-            rewards.Clear();
+            _rewards.ForEach(x => Destroy(x.gameObject));
+            _rewards.Clear();
         }
         
         private IEnumerator CreateUnitsCell()
         {
-            if (units.Count != 0)
+            if (_units.Count != 0)
                 RemoveUnitCells();
             
             foreach (var unitData in _data.Units)
@@ -119,7 +100,7 @@ namespace RoboFactory.Factory.Menu.Expedition
                 yield return new WaitForSeconds(.2f);
 
                 var unit = _unitsManager.GetUnit(unitData);
-                var unitCell = _expeditionMenuFactory.CreateResultUnitCell(unitsParent);
+                var unitCell = _expeditionMenuFactory.CreateResultUnitCell(_unitsParent);
                 unitCell.SetData(unit);
             }
 
@@ -128,8 +109,8 @@ namespace RoboFactory.Factory.Menu.Expedition
         
         private void RemoveUnitCells()
         {
-            units.ForEach(x => Destroy(x.gameObject));
-            units.Clear();
+            _units.ForEach(x => Destroy(x.gameObject));
+            _units.Clear();
         }
 
         private async void AcceptButtonClick()

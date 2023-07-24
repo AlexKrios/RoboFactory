@@ -8,8 +8,6 @@ namespace RoboFactory.General.Item.Raw
         public RawType RawType { get; set; }
 
         public int Level { get; set; }
-        
-        public bool IsRefill { get; set; }
 
         public RawObject SetInitData(RawScriptable data)
         {
@@ -23,8 +21,6 @@ namespace RoboFactory.General.Item.Raw
             Count = 0;
             Level = 1;
 
-            IsRefill = data.IsMain;
-
             return this;
         }
         
@@ -32,8 +28,8 @@ namespace RoboFactory.General.Item.Raw
         {
             return new RawDto
             {
-                count = Count,
-                level = Level
+                Count = Count,
+                Level = Level
             };
         }
     }

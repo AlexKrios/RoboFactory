@@ -6,18 +6,18 @@ namespace RoboFactory.General
     [Serializable]
     public class KeyValuePair<TKey, TValue>
     {
-        [SerializeField] private TKey key;
-        [SerializeField] private TValue value;
+        [SerializeField] private TKey _key;
+        [SerializeField] private TValue _value;
 
         public TKey Key
         {
-            get => key;
-            set => key = value;
+            get => _key;
+            set => _key = value;
         }
         public TValue Value
         {
-            get => value;
-            set => this.value = value;
+            get => _value;
+            set => _value = value;
         }
     }
 }

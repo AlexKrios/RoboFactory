@@ -24,7 +24,7 @@ namespace RoboFactory.General.Unit
             _unit.UnitType = (UnitType) EditorGUILayout.EnumPopup("Unit Type:", _unit.UnitType);
             _unit.AttackType = (AttackType) EditorGUILayout.EnumPopup("Attack Type:", _unit.AttackType);
             _unit.SpecType = (SpecType) EditorGUILayout.EnumPopup("Specification Type:", _unit.SpecType);
-            EditorGUILayout.PropertyField(serializedObject.FindProperty("iconRef"), new GUIContent("Icon"));
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("_iconRef"), new GUIContent("Icon"));
             _unit.Model = (GameObject) EditorGUILayout.ObjectField("Model:", _unit.Model, typeof(GameObject), false);
             EditorGUILayout.EndVertical();
 

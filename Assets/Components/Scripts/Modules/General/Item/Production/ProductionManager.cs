@@ -42,8 +42,8 @@ namespace RoboFactory.General.Item.Production
         
         public void LoadData(ProductionSectionDto data)
         {
-            Level = data.level;
-            CellCount = data.count;
+            Level = data.Level;
+            CellCount = data.Count;
             
             if (data.Production == null)
                 return;
@@ -115,7 +115,7 @@ namespace RoboFactory.General.Item.Production
             var recipe = _productsManager.GetProduct(productionObj.Key).Recipe;
             foreach (var partObj in recipe.Parts)
             {
-                var data = partObj.data;
+                var data = partObj.Data;
                 var store = managersResolver.GetManagerByType(data.ItemType);
                 var isEnough = store.GetItem(data.Key).IsEnoughCount(partObj);
 
@@ -134,9 +134,9 @@ namespace RoboFactory.General.Item.Production
             var recipe = _productsManager.GetProduct(productionObj.Key).Recipe;
             foreach (var partObj in recipe.Parts)
             {
-                var data = partObj.data;
+                var data = partObj.Data;
                 var store = managersResolver.GetManagerByType(data.ItemType);
-                store.RemoveItem(partObj.data.Key, partObj.count);
+                store.RemoveItem(partObj.Data.Key, partObj.Count);
             }
         }
 

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using RoboFactory.General.Item.Products;
-using RoboFactory.General.Localisation;
+using RoboFactory.General.Localization;
 using RoboFactory.General.Ui;
 using TMPro;
 using UnityEngine;
@@ -10,17 +10,10 @@ using Zenject;
 
 namespace RoboFactory.Factory.Menu.Production
 {
-    [AddComponentMenu("Scripts/Factory/Menu/Production/Header View")]
     public class HeaderView : MonoBehaviour
     {
-        #region Zenject
-
-        [Inject] private readonly LocalizationService localizationController;
+        [Inject] private readonly LocalizationService _localizationService;
         [Inject] private readonly IUiController _uiController;
-
-        #endregion
-
-        #region Components
 
         [SerializeField] private TMP_Text _title;
         [SerializeField] private TMP_Text _productGroup;
@@ -28,10 +21,6 @@ namespace RoboFactory.Factory.Menu.Production
         
         [Space]
         [SerializeField] private List<HeaderTabCellView> _tabs;
-
-        #endregion
-        
-        #region Variables
         
         public Action OnTabClickEvent { get; set; }
 
@@ -49,7 +38,6 @@ namespace RoboFactory.Factory.Menu.Production
                 _activeTab.SetActive();
             }
         }
-        #endregion
         
         public void Initialize()
         {
@@ -64,9 +52,9 @@ namespace RoboFactory.Factory.Menu.Production
             var productKey = LocalizationKeys.ProductKeys[_menu.ActiveProductGroup];
             var unitKey = LocalizationKeys.UnitKeys[_menu.ActiveUnitType];
 
-            _title.text = localizationController.GetLanguageValue(LocalizationKeys.ProductionMenuTitleKey);
-            _productGroup.text = localizationController.GetLanguageValue(productKey);
-            _productType.text = localizationController.GetLanguageValue(unitKey);
+            _title.text = _localizationService.GetLanguageValue(LocalizationKeys.ProductionMenuTitleKey);
+            _productGroup.text = _localizationService.GetLanguageValue(productKey);
+            _productType.text = _localizationService.GetLanguageValue(unitKey);
         }
 
         private void SetTabsData()

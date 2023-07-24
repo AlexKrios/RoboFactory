@@ -4,7 +4,7 @@ using RoboFactory.General.Item.Raw;
 using RoboFactory.General.Ui;
 using RoboFactory.General.Unit;
 
-namespace RoboFactory.General.Localisation
+namespace RoboFactory.General.Localization
 {
     public static class LocalizationKeys
     {

@@ -1,11 +1,9 @@
 using RoboFactory.Battle;
 using RoboFactory.Battle.Ui;
-using UnityEngine;
 using Zenject;
 
 namespace RoboFactory.DI
 {
-    [AddComponentMenu("Scripts/Factory/Di/Battle Installer")]
     public class BattleMenuInstaller : MonoInstaller
     {
         public override void InstallBindings()

@@ -1,6 +1,8 @@
 ﻿using System;
 using Newtonsoft.Json;
 
+// ReSharper disable InconsistentNaming
+
 namespace RoboFactory.General.Expedition
 {
     [Serializable]
@@ -8,8 +10,11 @@ namespace RoboFactory.General.Expedition
     {
         [JsonProperty("id")]
         public Guid Id;
-        public string key;
-        public string star;
-        public long timeEnd;
+        [JsonProperty("key")]
+        public string Key;
+        [JsonProperty("star")]
+        public string Star;
+        [JsonProperty("timeEnd")]
+        public long TimeEnd;
     }
 }

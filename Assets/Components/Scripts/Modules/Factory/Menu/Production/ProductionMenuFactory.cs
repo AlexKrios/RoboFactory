@@ -12,14 +12,10 @@ namespace RoboFactory.Factory.Menu.Production
     [UsedImplicitly]
     public class ProductionMenuFactory
     {
-        #region Zenject
-
         [Inject] private readonly DiContainer _container;
         [Inject] private readonly Settings _settings;
         [Inject] private readonly AddressableService addressableService;
         [Inject] private readonly IUiController _uiController;
-
-        #endregion
 
         public Button CreateButton(Transform parent)
         {

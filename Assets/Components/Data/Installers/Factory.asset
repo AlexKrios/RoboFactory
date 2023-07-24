@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 101be8b209a8471bad248aef92423098, type: 3}
   m_Name: Factory
   m_EditorClassIdentifier: 
-  settingsMenu:
+  _settingsMenu:
     _menuAsset:
       m_AssetGUID: 47fa50b707f5f9541915b2c91ee0ef76
       m_SubObjectName: 
       m_SubObjectType: 
       m_EditorAssetChanged: 0
-  productionMenu:
+  _productionMenu:
     _buttonPrefab: {fileID: 2203690391971903293, guid: bb7b5293727973a409a6a23bbbcde255,
       type: 3}
     _menuReference:
@@ -38,7 +38,7 @@ MonoBehaviour:
       m_SubObjectName: 
       m_SubObjectType: 
       m_EditorAssetChanged: 0
-  storageMenu:
+  _storageMenu:
     _buttonPrefab: {fileID: 3459144111282502811, guid: 06f4ef2abef99304cb5bf8e015f5f288,
       type: 3}
     _menuAsset:
@@ -48,15 +48,15 @@ MonoBehaviour:
       m_EditorAssetChanged: 0
     _itemPrefab: {fileID: 2269509507701881592, guid: c17d2ac3e3b45df48a448c61c30fc349,
       type: 3}
-  conversionMenu:
+  _conversionMenu:
+    _buttonPrefab: {fileID: 2203690391971903293, guid: 1d6bbc7a3ced29a4db3c8220e97be9b5,
+      type: 3}
     _menuAsset:
       m_AssetGUID: 7b738a0b7c2318841b10f2a1077b9cfc
       m_SubObjectName: 
       m_SubObjectType: 
       m_EditorAssetChanged: 0
-    _buttonPrefab: {fileID: 2203690391971903293, guid: 1d6bbc7a3ced29a4db3c8220e97be9b5,
-      type: 3}
-  orderMenu:
+  _orderMenu:
     _buttonPrefab: {fileID: 6559392812196120198, guid: a59da38048275114f82defc42a25c448,
       type: 3}
     _menuAsset:
@@ -68,7 +68,7 @@ MonoBehaviour:
       type: 3}
     _upgradePrefab: {fileID: 4758183550124237268, guid: 1c34fca68240af04d9b56659db4b772e,
       type: 3}
-  unitsMenu:
+  _unitsMenu:
     _buttonPrefab: {fileID: 2911338016652506731, guid: 007d43e4d46866843a36408e663677c7,
       type: 3}
     _menuAsset:
@@ -82,7 +82,7 @@ MonoBehaviour:
       type: 3}
     _selectionCell: {fileID: 856711308128087706, guid: 0d797f2939dc144419c30827e99bd1a5,
       type: 3}
-  expeditionMenu:
+  _expeditionMenu:
     _buttonPrefab: {fileID: 4023009808813899420, guid: 2a8e5d8ee4cd8474d8da5aa212db1fd3,
       type: 3}
     _menuAsset:
@@ -90,17 +90,17 @@ MonoBehaviour:
       m_SubObjectName: 
       m_SubObjectType: 
       m_EditorAssetChanged: 0
-    locationPrefab: {fileID: 2791654665713099554, guid: 86262d85a6e741a4a9194f996c969458,
+    _locationPrefab: {fileID: 2791654665713099554, guid: 86262d85a6e741a4a9194f996c969458,
       type: 3}
-    selectionPopupPrefab: {fileID: 2304976658524223300, guid: 175079862e4d7914186c368bb0b32d3b,
+    _selectionPopupPrefab: {fileID: 2304976658524223300, guid: 175079862e4d7914186c368bb0b32d3b,
       type: 3}
-    selectionCellPrefab: {fileID: 856711308128087706, guid: 725c774cec2c6dc468475ec6b43a0b40,
+    _selectionCellPrefab: {fileID: 856711308128087706, guid: 725c774cec2c6dc468475ec6b43a0b40,
       type: 3}
-    queuePrefab: {fileID: 4758183550124237268, guid: 0bf0aa54007c06546bf4031140da168e,
+    _queuePrefab: {fileID: 4758183550124237268, guid: 0bf0aa54007c06546bf4031140da168e,
       type: 3}
-    resultPopupPrefab: {fileID: 4758183550124237268, guid: a2ef61f35ce37a240a5aac2265f0864f,
+    _resultPopupPrefab: {fileID: 4758183550124237268, guid: a2ef61f35ce37a240a5aac2265f0864f,
       type: 3}
-    resultRewardPrefab: {fileID: 2791654665713099554, guid: 724b99933ca8e884987867f4c6be2df6,
+    _resultRewardPrefab: {fileID: 2791654665713099554, guid: 724b99933ca8e884987867f4c6be2df6,
       type: 3}
-    resultUnitPrefab: {fileID: 2791654665713099554, guid: 581ddda93e0358147a135dd1d2f6ca56,
+    _resultUnitPrefab: {fileID: 2791654665713099554, guid: 581ddda93e0358147a135dd1d2f6ca56,
       type: 3}

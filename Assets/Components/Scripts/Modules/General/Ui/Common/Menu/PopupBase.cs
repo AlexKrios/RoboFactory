@@ -21,7 +21,7 @@ namespace RoboFactory.General.Ui.Common
 
         #region Components
         
-        [SerializeField] private Button close;
+        [SerializeField] private Button _close;
 
         #endregion
         
@@ -38,7 +38,7 @@ namespace RoboFactory.General.Ui.Common
         {
             Disposable = new CompositeDisposable();
             _canvasGroup = GetComponent<CanvasGroup>();
-            close.OnClickAsObservable().Subscribe(_ => Close()).AddTo(Disposable);
+            _close.OnClickAsObservable().Subscribe(_ => Close()).AddTo(Disposable);
         }
 
         protected virtual void OnDestroy()
@@ -60,8 +60,12 @@ namespace RoboFactory.General.Ui.Common
             
             UiController.SetCanvasActive(CanvasType.HUD, false);
         }
-        
-        protected virtual void Release() { }
+
+        protected virtual void Release()
+        {
+            UiController.SetCanvasActive(CanvasType.HUD);
+            UiController.RemoveUi(this, gameObject);
+        }
         
         public void Close()
         {
@@ -70,12 +74,7 @@ namespace RoboFactory.General.Ui.Common
             _canvasGroup.alpha = 1f;
             _canvasGroup.DOFade(0, FadeTime)
                 .SetEase(Ease.OutCubic)
-                .OnComplete(() =>
-                {
-                    UiController.SetCanvasActive(CanvasType.HUD);
-                    UiController.RemoveUi(this, gameObject);
-                    Release();
-                });
+                .OnComplete(Release);
         }
     }
 }

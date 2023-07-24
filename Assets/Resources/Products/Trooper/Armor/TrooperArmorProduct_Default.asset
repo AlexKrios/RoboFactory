@@ -12,34 +12,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c510de7351c1b0b4aa5e3e6e9cb327bf, type: 3}
   m_Name: TrooperArmorProduct_Default
   m_EditorClassIdentifier: 
-  itemType: 1
-  key: trooper_armor_product_default
-  iconRef:
+  _itemType: 1
+  _key: trooper_armor_product_default
+  _iconRef:
     m_AssetGUID: 0151d479850dec64cb1772835345e19a
     m_SubObjectName: TrooperArmorProduct
     m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
     m_EditorAssetChanged: 0
-  index: 0
-  productName: Trooper Armor Product Default
-  star: 1
-  unitType: 1
-  productGroup: 2
-  productType: 0
-  isProduct: 1
-  model: {fileID: 130624888373074778, guid: cba1e8a0a367dcc418f07c2ea016d385, type: 3}
-  recipe:
-    star: 0
-    parts: []
-    cost: 1000
-    experience: 10
-    craftTime: 10
-    specs:
-    - type: 0
-      value: 25
-    - type: 1
-      value: 0
-    - type: 2
-      value: 0
-    - type: 3
-      value: 10
+  _index: 0
+  _productName: Trooper Armor Product Default
+  _star: 0
+  _unitType: 1
+  _productGroup: 2
+  _productType: 0
+  _isProduct: 1
+  _model: {fileID: 130624888373074778, guid: cba1e8a0a367dcc418f07c2ea016d385, type: 3}
+  _recipe:
+    _star: 0
+    _parts: []
+    _cost: 0
+    _experience: 0
+    _craftTime: 0
+    _specs:
+    - Type: 0
+      Value: 0
+    - Type: 1
+      Value: 0
+    - Type: 2
+      Value: 0
+    - Type: 3
+      Value: 0

@@ -3,29 +3,18 @@ using System.Linq;
 using RoboFactory.General.Expedition;
 using RoboFactory.General.Ui;
 using RoboFactory.General.Ui.Common;
-using UnityEngine;
 using Zenject;
 
 namespace RoboFactory.Factory.Menu.Expedition
 {
-    [AddComponentMenu("Scripts/Factory/Menu/Expedition/Start Button View")]
     public class StartButtonView : ButtonBase
     {
-        #region Zenject
-        
         [Inject] private readonly IUiController _uiController;
-        [Inject] private readonly ExpeditionManager expeditionManager;
-
-        #endregion
-
-        #region Variables
+        [Inject] private readonly ExpeditionManager _expeditionManager;
 
         public Action EventClick { get; set; }
         
         private ExpeditionMenuView _menu;
-
-        #endregion
-
         public void Initialize()
         {
             _menu = _uiController.FindUi<ExpeditionMenuView>();
@@ -42,7 +31,7 @@ namespace RoboFactory.Factory.Menu.Expedition
         {
             base.Click();
             
-            expeditionManager.CurrentBattleLocation = _menu.ActiveLocation;
+            _expeditionManager.CurrentBattleLocation = _menu.ActiveLocation;
 
             var allyUnits = _menu.Units.GetUnitsWithData();
             var allyKey = allyUnits.Select(x => x.Data.Key).ToList();
@@ -56,7 +45,7 @@ namespace RoboFactory.Factory.Menu.Expedition
                 TimeEnd = DateTime.Now.AddSeconds(expeditionTime).ToFileTime()
             };
             
-            await expeditionManager.AddExpedition(expedition);
+            await _expeditionManager.AddExpedition(expedition);
         }
     }
 }

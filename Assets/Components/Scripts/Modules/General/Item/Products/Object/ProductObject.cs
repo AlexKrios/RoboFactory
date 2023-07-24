@@ -26,13 +26,13 @@ namespace RoboFactory.General.Item.Products
 
         public int GetLevel()
         {
-            if (Caps.First().experience > Experience)
+            if (Caps == null || Caps.First().Experience > Experience)
                 return 1;
             
-            if (Caps.Last().experience <= Experience)
-                return Caps.Last().level;
+            if (Caps.Last().Experience <= Experience)
+                return Caps.Last().Level;
 
-            Level = Caps.First(x => x.experience > Experience).level;
+            Level = Caps.First(x => x.Experience > Experience).Level;
             return Level;
         }
         
@@ -42,8 +42,8 @@ namespace RoboFactory.General.Item.Products
         {
             return new ProductDto
             {
-                count = Count,
-                experience = Experience
+                Count = Count,
+                Experience = Experience
             };
         }
     }

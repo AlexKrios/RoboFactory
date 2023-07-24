@@ -1,4 +1,4 @@
-﻿namespace RoboFactory.General.Localisation
+﻿namespace RoboFactory.General.Localization
 {
     public enum LocalizationLanguage
     {

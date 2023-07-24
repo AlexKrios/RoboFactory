@@ -7,6 +7,7 @@ using RoboFactory.General.Services;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
+using Zenject;
 using Object = UnityEngine.Object;
 
 namespace RoboFactory.General.Asset
@@ -16,9 +17,7 @@ namespace RoboFactory.General.Asset
     {
         private enum DownloadResult
         {
-            Success,
-            NoInternetError,
-            UnknownError
+            Success
         }
         
         protected override string LoadingTextKey => "initialize_addressables";
@@ -26,6 +25,9 @@ namespace RoboFactory.General.Asset
         private const string CoreLabel = "Core";
         private const string MusicLabel = "Music";
         private const string AudioLabel = "Audio";
+
+        [Inject] private Settings _settings;
+        public AssetsScriptable Assets => _settings.Data;
 
         private static readonly HashSet<AssetReference> AssetCache = new();
 
@@ -138,6 +140,14 @@ namespace RoboFactory.General.Asset
         private void ReleaseFromCache(AssetReference assetRef)
         {
             AssetCache.Remove(assetRef);
+        }
+        
+        [Serializable]
+        public class Settings
+        {
+            [SerializeField] private AssetsScriptable _data;
+
+            public AssetsScriptable Data => _data;
         }
     }
 }

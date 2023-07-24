@@ -54,11 +54,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff0d6eb5822aa6347b1f9626663517e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  background: {fileID: 5566092497270577091}
-  icon: {fileID: 7100297533746232872}
-  activeImage: {fileID: 5933586649114898474}
-  locked: {fileID: 2900209394853480835}
-  unitType: 0
+  _icon: {fileID: 7100297533746232872}
+  _active: {fileID: 5933586649114898474}
+  _locked: {fileID: 2900209394853480835}
+  _unitType: 0
 --- !u!222 &3093241438801158180
 CanvasRenderer:
   m_ObjectHideFlags: 0

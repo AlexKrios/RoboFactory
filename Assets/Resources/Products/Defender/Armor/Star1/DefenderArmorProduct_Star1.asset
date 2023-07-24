@@ -12,46 +12,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c510de7351c1b0b4aa5e3e6e9cb327bf, type: 3}
   m_Name: DefenderArmorProduct_Star1
   m_EditorClassIdentifier: 
-  itemType: 1
-  key: defender_armor_product_star1
-  iconRef:
+  _itemType: 1
+  _key: defender_armor_product_star1
+  _iconRef:
     m_AssetGUID: d8a3a2fb60f2b4b4dbbcf4acd38e4752
     m_SubObjectName: DefenderArmorProduct
     m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
     m_EditorAssetChanged: 0
-  index: 0
-  productName: Defender Armor Product Star1
-  star: 1
-  unitType: 2
-  productGroup: 2
-  productType: 1
-  isProduct: 1
-  model: {fileID: 0}
-  recipe:
-    star: 0
-    parts:
-    - data: {fileID: 11400000, guid: 68d0dd69490c5004aafb45c851f6b1c1, type: 2}
-      star: 1
-      count: 1
-    - data: {fileID: 11400000, guid: 45fdd76e53474954a943e0932c083322, type: 2}
-      star: 1
-      count: 1
-    - data: {fileID: 11400000, guid: 0de56f83ea6549f4996312a96ee9c77e, type: 2}
-      star: 1
-      count: 1
-    - data: {fileID: 11400000, guid: 0d6f91b874f600a4aa085a1057f2f286, type: 2}
-      star: 1
-      count: 1
-    cost: 1000
-    experience: 10
-    craftTime: 10
-    specs:
-    - type: 0
-      value: 25
-    - type: 1
-      value: 0
-    - type: 2
-      value: 0
-    - type: 3
-      value: 10
+  _index: 0
+  _productName: Defender Armor Product Star 1
+  _star: 1
+  _unitType: 2
+  _productGroup: 2
+  _productType: 1
+  _isProduct: 1
+  _model: {fileID: 0}
+  _recipe:
+    _star: 0
+    _parts:
+    - Data: {fileID: 11400000, guid: 68d0dd69490c5004aafb45c851f6b1c1, type: 2}
+      Star: 1
+      Count: 1
+    - Data: {fileID: 11400000, guid: 45fdd76e53474954a943e0932c083322, type: 2}
+      Star: 1
+      Count: 1
+    - Data: {fileID: 11400000, guid: 0de56f83ea6549f4996312a96ee9c77e, type: 2}
+      Star: 1
+      Count: 1
+    - Data: {fileID: 11400000, guid: 0d6f91b874f600a4aa085a1057f2f286, type: 2}
+      Star: 1
+      Count: 1
+    _cost: 1000
+    _experience: 100
+    _craftTime: 60
+    _specs: []

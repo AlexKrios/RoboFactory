@@ -1,6 +1,5 @@
 using DG.Tweening;
 using RoboFactory.Factory.Cameras;
-using RoboFactory.Factory.Menu.Production;
 using RoboFactory.Factory.Menu.Settings;
 using RoboFactory.General.Audio;
 using RoboFactory.General.Level;
@@ -16,75 +15,49 @@ using Zenject;
 
 namespace RoboFactory.Factory.Menu
 {
-    [AddComponentMenu("Scripts/Factory/Factory Ui")]
     public class FactoryUi : MonoBehaviour
     {
-        #region Zenject
-
         [Inject] private readonly AudioManager _audioController;
         [Inject] private readonly MoneyManager _moneyManager;
         [Inject] private readonly LevelManager _levelManager;
         [Inject] private readonly SettingsMenuFactory _settingsMenuFactory;
         [Inject] private readonly FactoryCameraController _factoryCameraController;
 
-        #endregion
-
-        #region Components
-        
-        [SerializeField] private DebugMenuView debug;
+        [SerializeField] private DebugMenuView _debug;
         
         [Header("Money")]
-        [SerializeField] private TMP_Text moneyCount;
+        [SerializeField] private TMP_Text _moneyCount;
         
         [Header("Level")]
-        [SerializeField] private TMP_Text levelCount;
-        [SerializeField] private Slider levelSlider;
+        [SerializeField] private TMP_Text _levelCount;
+        [SerializeField] private Slider _levelSlider;
         
         [Header("Avatar")]
-        [SerializeField] private Button avatarButton;
+        [SerializeField] private Button _avatarButton;
         
         [Header("Settings")]
-        [SerializeField] private Button settingsButton;
+        [SerializeField] private Button _settingsButton;
 
         [Header("Elevator")]
-        [SerializeField] private Button floorUpButton;
-        [SerializeField] private Button floorDownButton;
+        [SerializeField] private Button _floorUpButton;
+        [SerializeField] private Button _floorDownButton;
+
+        private readonly CompositeDisposable _disposable = new();
         
-        [Header("Production")]
-        [SerializeField] private ProductionSection production;
-        
-        [Header("Menu Buttons")]
-        [SerializeField] private MenuButtonsView menuButtons;
-
-        public ProductionSection Production => production;
-        public MenuButtonsView MenuButtons => menuButtons;
-
-        #endregion
-
-        #region Variables
-
-        private CompositeDisposable _disposable;
-
-        #endregion
-        
-        #region Unity Methods
-
         private void Awake()
         {
-            _disposable = new CompositeDisposable();
-            
             _moneyManager.OnMoneySet += SetMoneyData;
             _levelManager.OnExperienceSet += SetExperienceData;
             _levelManager.OnLevelSet += SetLevelData;
             
-            settingsButton.OnClickAsObservable().Subscribe(_ => OnSettingsClick()).AddTo(_disposable);
-            floorUpButton.OnClickAsObservable().Subscribe(_ => OnFloorUpClick()).AddTo(_disposable);
-            floorDownButton.OnClickAsObservable().Subscribe(_ => OnFloorDownClick()).AddTo(_disposable);
-            avatarButton.OnClickAsObservable().Subscribe(_ => OnAvatarClick()).AddTo(_disposable);
+            _settingsButton.OnClickAsObservable().Subscribe(_ => OnSettingsClick()).AddTo(_disposable);
+            _floorUpButton.OnClickAsObservable().Subscribe(_ => OnFloorUpClick()).AddTo(_disposable);
+            _floorDownButton.OnClickAsObservable().Subscribe(_ => OnFloorDownClick()).AddTo(_disposable);
+            _avatarButton.OnClickAsObservable().Subscribe(_ => OnAvatarClick()).AddTo(_disposable);
 
-            debug.gameObject.SetActive(true);
+            _debug.gameObject.SetActive(true);
             
-            levelSlider.value = 0;
+            _levelSlider.value = 0;
         }
         
         private void Start()
@@ -103,35 +76,33 @@ namespace RoboFactory.Factory.Menu
             _disposable.Dispose();
         }
 
-        #endregion
-
         private void SetMoneyData()
         {
-            moneyCount.text = StringUtil.PriceFullFormat(_moneyManager.Money);
+            _moneyCount.text = StringUtil.PriceFullFormat(_moneyManager.Money);
         }
         
         private void SetExperienceData()
         {
             var currentExperience = _levelManager.Experience - _levelManager.GetPreviousLevelCap();
-            levelSlider.maxValue = _levelManager.GetCurrentLevelCap() - _levelManager.GetPreviousLevelCap();
-            if (currentExperience < levelSlider.value)
+            _levelSlider.maxValue = _levelManager.GetCurrentLevelCap() - _levelManager.GetPreviousLevelCap();
+            if (currentExperience < _levelSlider.value)
             {
                 var sequence = DOTween.Sequence();
                 sequence
-                    .Append(levelSlider.DOValue(1, 0.1f).SetEase(Ease.OutCubic))
+                    .Append(_levelSlider.DOValue(1, 0.1f).SetEase(Ease.OutCubic))
                     .AppendInterval(0.1f)
-                    .Append(levelSlider.DOValue(0, 0))
-                    .Append(levelSlider.DOValue(currentExperience, 0.5f).SetEase(Ease.OutCubic)); 
+                    .Append(_levelSlider.DOValue(0, 0))
+                    .Append(_levelSlider.DOValue(currentExperience, 0.5f).SetEase(Ease.OutCubic)); 
             }
             else
             {
-                levelSlider.DOValue(currentExperience, 1f).SetEase(Ease.OutCubic);
+                _levelSlider.DOValue(currentExperience, 1f).SetEase(Ease.OutCubic);
             }
         }
 
         private void SetLevelData()
         {
-            levelCount.text = _levelManager.Level.ToString();
+            _levelCount.text = _levelManager.Level.ToString();
         }
         
         private void OnAvatarClick()

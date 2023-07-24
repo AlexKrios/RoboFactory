@@ -5,23 +5,23 @@ namespace RoboFactory.Battle.Units
     [AddComponentMenu("Scripts/Battle/Unit Marks", 1)]
     public class UnitMarks : MonoBehaviour
     {
-        [SerializeField] private SpriteRenderer turnMark;
-        [SerializeField] private SpriteRenderer allyMark;
-        [SerializeField] private SpriteRenderer enemyMark;
+        [SerializeField] private SpriteRenderer _turnMark;
+        [SerializeField] private SpriteRenderer _allyMark;
+        [SerializeField] private SpriteRenderer _enemyMark;
 
         public void ActivateTurnMark(bool value)
         {
-            turnMark.gameObject.SetActive(value);
+            _turnMark.gameObject.SetActive(value);
         }
         
         public void ActivateAllyMark(bool value)
         {
-            allyMark.gameObject.SetActive(value);
+            _allyMark.gameObject.SetActive(value);
         }
         
         public void ActivateEnemyMark(bool value)
         {
-            enemyMark.gameObject.SetActive(value);
+            _enemyMark.gameObject.SetActive(value);
         }
     }
 }

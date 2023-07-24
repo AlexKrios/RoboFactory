@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿using Cysharp.Threading.Tasks;
 using RoboFactory.General.Level;
 using TMPro;
 using UnityEngine;
@@ -6,33 +6,32 @@ using Zenject;
 
 namespace RoboFactory.General.Ui.Admin
 {
-    [AddComponentMenu("Scripts/General/Ui/Admin/FpsCounterView")]
     public class FpsCounterView : MonoBehaviour
     {
         [Inject] private readonly LevelManager levelManager;
         
-        [SerializeField] private TMP_Text fps;
+        [SerializeField] private TMP_Text _fps;
 
         private void Awake()
         {
-            StartCoroutine(UpdateCounter());
+            UpdateCounter();
         }
 
         private void Update()
         {
             if (Input.GetKeyDown(KeyCode.Q))
-                levelManager.SetExperience(10);
+                levelManager.SetExperience(500);
         }
 
-        private IEnumerator UpdateCounter()
+        private async void UpdateCounter()
         {
             while (true)
             {
-                fps.text = $"{(int)(1f / Time.unscaledDeltaTime)}fps";
-            
-                yield return new WaitForSeconds(0.1f);
+                _fps.text = $"{(int)(1f / Time.unscaledDeltaTime)}fps";
+
+                await UniTask.Delay(100);
             }
-            // ReSharper disable once IteratorNeverReturns
+            // ReSharper disable once FunctionNeverReturns
         }
     }
 }

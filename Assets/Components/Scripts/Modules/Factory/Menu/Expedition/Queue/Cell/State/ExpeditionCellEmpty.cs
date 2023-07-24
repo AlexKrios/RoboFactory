@@ -1,4 +1,5 @@
-﻿using Zenject;
+﻿using JetBrains.Annotations;
+using Zenject;
 
 namespace RoboFactory.Factory.Menu.Expedition
 {
@@ -20,6 +21,7 @@ namespace RoboFactory.Factory.Menu.Expedition
 
         public void Exit() { }
 
+        [UsedImplicitly]
         public class Factory : PlaceholderFactory<ExpeditionCell, ExpeditionCellEmpty> { }
     }
 }

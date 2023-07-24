@@ -63,7 +63,7 @@ namespace RoboFactory.Factory.Menu.Conversion
         
         public void SetData()
         {
-            var mainRaw = _rawManager.GetMainRaw();
+            var mainRaw = _rawManager.GetAllRaw();
             foreach (var rawData in mainRaw)
             {
                 var tab = _tabs.First(x => x.RawType == rawData.RawType);

@@ -16,14 +16,8 @@ namespace RoboFactory.Factory.Menu.Production
     [AddComponentMenu("Scripts/Factory/Menu/Production/Parts Section View")]
     public class PartsSectionView : MonoBehaviour
     {
-        #region Zenject
-        
-        [Inject] private readonly AddressableService addressableService;
+        [Inject] private readonly AddressableService _addressableService;
         [Inject] private readonly IUiController _uiController;
-
-        #endregion
-
-        #region Components
 
         [SerializeField] private Image _icon;
         [SerializeField] private TMP_Text _star;
@@ -33,16 +27,10 @@ namespace RoboFactory.Factory.Menu.Production
         [SerializeField] private Image _levelBar;
         [SerializeField] private TMP_Text _levelCount;
 
-        #endregion
-
-        #region Variables
-
         public Action OnPartClickEvent { get; set; }
 
         private ProductionMenuView _menu;
         private ProductObject ActiveProduct => _menu.ActiveProduct;
-
-        #endregion
 
         public void Initialize()
         {
@@ -62,7 +50,7 @@ namespace RoboFactory.Factory.Menu.Production
         private async UniTask SetProductIcon()
         {
             _icon.color = new Color(1, 1, 1, 0);
-            _icon.sprite = await addressableService.LoadAssetAsync<Sprite>(ActiveProduct.IconRef);
+            _icon.sprite = await _addressableService.LoadAssetAsync<Sprite>(ActiveProduct.IconRef);
             _icon.DORestart();
             _icon.DOFade(1f, 0.1f);
         }
@@ -72,17 +60,17 @@ namespace RoboFactory.Factory.Menu.Production
             var level = ActiveProduct.GetLevel();
             var experience = ActiveProduct.Experience;
 
-            if (ActiveProduct.Caps.Last().level <= level)
+            if (ActiveProduct.Caps.Last().Level <= level)
             {
                 _levelBar.fillAmount = 1f;
                 _levelCount.text = (level + 1).ToString();
             }
             else
             {
-                var prevCup = level == 1 ? 0 : ActiveProduct.Caps.First(x => x.level == level - 1).experience;
+                var prevCup = level == 1 ? 0 : ActiveProduct.Caps.First(x => x.Level == level - 1).Experience;
                 var currentCap = level == 1 
-                    ? ActiveProduct.Caps.First().experience  
-                    : ActiveProduct.Caps.First(x => x.level == level).experience;
+                    ? ActiveProduct.Caps.First().Experience  
+                    : ActiveProduct.Caps.First(x => x.Level == level).Experience;
                 var step = 1f / (currentCap - prevCup);
 
                 _levelBar.fillAmount = step * (experience - prevCup);

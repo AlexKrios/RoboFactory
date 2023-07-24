@@ -16,11 +16,8 @@ using Zenject;
 
 namespace RoboFactory.Factory.Menu
 {
-    [AddComponentMenu("Scripts/Factory/Menu/Menu Buttons View", 100)]
     public class MenuButtonsView : MonoBehaviour
     {
-        #region Zenject
-        
         [Inject] private readonly AudioManager _audioController;
         [Inject] private readonly IUiController _uiController;
         [Inject] private readonly ProductionManager _productionManager;
@@ -32,20 +29,11 @@ namespace RoboFactory.Factory.Menu
         [Inject] private readonly ExpeditionMenuFactory _expeditionMenuFactory;
         [Inject] private readonly OrderMenuFactory _orderMenuFactory;
 
-        #endregion
-
-        #region Variables
-
         private Dictionary<UiType, Button> _menuButtonsDictionary;
-        private CompositeDisposable _disposable;
-
-        #endregion
+        private readonly CompositeDisposable _disposable = new();
         
-        #region Unity Methods
-
         private void Awake()
         {
-            _disposable = new CompositeDisposable();
             _menuButtonsDictionary = new Dictionary<UiType, Button>
             {
                 { UiType.Production, _productionMenuFactory.CreateButton(transform) },
@@ -68,8 +56,6 @@ namespace RoboFactory.Factory.Menu
         {
             _disposable.Dispose();
         }
-
-        #endregion
 
         public void SetMenuButtonsActive(bool value, List<UiType> types = null)
         {

@@ -12,29 +12,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c510de7351c1b0b4aa5e3e6e9cb327bf, type: 3}
   m_Name: TrooperArmorComponent2_Star1
   m_EditorClassIdentifier: 
-  itemType: 1
-  key: trooper_armor_component2_star1
-  iconRef:
+  _itemType: 1
+  _key: trooper_armor_component2_star1
+  _iconRef:
     m_AssetGUID: 0151d479850dec64cb1772835345e19a
     m_SubObjectName: TrooperArmorComponent2
     m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
     m_EditorAssetChanged: 0
-  index: 2
-  productName: "Trooper Armor Component2 \u2605"
-  star: 1
-  unitType: 1
-  productGroup: 2
-  productType: 1
-  isProduct: 0
-  model: {fileID: 0}
-  recipe:
-    star: 0
-    parts:
-    - data: {fileID: 11400000, guid: 5ad746f0d5cb8934bab3c515a0e98a15, type: 2}
-      star: 1
-      count: 5
-    cost: 50
-    experience: 5
-    craftTime: 5
-    specs: []
+  _index: 2
+  _productName: Trooper Armor Component 2 Star 1
+  _star: 1
+  _unitType: 1
+  _productGroup: 2
+  _productType: 1
+  _isProduct: 0
+  _model: {fileID: 0}
+  _recipe:
+    _star: 0
+    _parts:
+    - Data: {fileID: 11400000, guid: 5ad746f0d5cb8934bab3c515a0e98a15, type: 2}
+      Star: 1
+      Count: 5
+    _cost: 100
+    _experience: 10
+    _craftTime: 10
+    _specs: []

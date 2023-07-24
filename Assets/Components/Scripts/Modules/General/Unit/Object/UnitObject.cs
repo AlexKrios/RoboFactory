@@ -13,7 +13,7 @@ namespace RoboFactory.General.Unit
     {
         [Inject] private readonly ProductsManager _productsManager;
 
-        public string Key { get; set; }
+        public string Key { get; private set; }
 
         public UnitType UnitType { get; set; }
         public AttackType AttackType { get; set; }
@@ -26,8 +26,6 @@ namespace RoboFactory.General.Unit
 
         public bool IsLocked { get; set; }
 
-        //public List<string> Outfit { get; set; }
-        
         public Dictionary<ProductGroup, string> Outfit { get; set; }
         public Dictionary<SpecType, int> Specs { get; set; }
 
@@ -49,14 +47,6 @@ namespace RoboFactory.General.Unit
             Experience = 0;
             Level = 1;
             IsLocked = false;
-            /*Outfit = new List<string>
-            {
-                products.First(x => x.ProductGroup == ProductGroup.Weapon).Key,
-                products.First(x => x.ProductGroup == ProductGroup.Armor).Key,
-                products.First(x => x.ProductGroup == ProductGroup.Engine).Key,
-                products.First(x => x.ProductGroup == ProductGroup.Battery).Key,
-            };*/
-
             Outfit = new Dictionary<ProductGroup, string>
             {
                 [ProductGroup.Weapon] = products.First(x => x.ProductGroup == ProductGroup.Weapon).Key,
@@ -83,11 +73,11 @@ namespace RoboFactory.General.Unit
         {
             return new UnitDto
             {
-                key = Key,
-                experience = Experience,
-                level = Level,
+                Key = Key,
+                Experience = Experience,
+                Level = Level,
                 Outfit = Outfit,
-                isLocked = IsLocked
+                IsLocked = IsLocked
             };
         }
         

@@ -11,38 +11,22 @@ namespace RoboFactory.Factory.Menu.Settings
     [AddComponentMenu("Scripts/Factory/Menu/Settings/Language Cell View")]
     public class LanguageCellView : MonoBehaviour
     {
-        #region Zenject
+        [Inject] private readonly AudioManager _audioManager;
         
-        [Inject] private readonly AudioManager _audioController;
-
-        #endregion
-        
-        #region Components
-
-        [SerializeField] private LanguageType type;
+        [SerializeField] private LanguageType _type;
 
         [Space]
-        [SerializeField] private Image active;
+        [SerializeField] private Image _active;
 
-        public LanguageType Type => type;
-
-        #endregion
-
-        #region Variables
+        public LanguageType Type => _type;
 
         public Action<LanguageCellView, LanguageType> OnClickEvent { get; set; }
 
         private Button _button;
-        private CompositeDisposable _disposable;
-
-        #endregion
-
-        #region Unity Methods
-
+        private readonly CompositeDisposable _disposable = new();
+        
         private void Awake()
         {
-            _disposable = new CompositeDisposable();
-            
             _button = GetComponent<Button>();
             _button.OnClickAsObservable().Subscribe(_ => Click()).AddTo(_disposable);
         }
@@ -52,18 +36,16 @@ namespace RoboFactory.Factory.Menu.Settings
             _disposable.Dispose();
         }
 
-        #endregion
-
         public void Click()
         {
-            _audioController.PlayAudio(AudioClipType.ButtonClick);
+            _audioManager.PlayAudio(AudioClipType.ButtonClick);
             
-            OnClickEvent?.Invoke(this, type);
+            OnClickEvent?.Invoke(this, _type);
         }
         
         public void SetActive(bool value)
         {
-            active.gameObject.SetActive(value);
+            _active.gameObject.SetActive(value);
         }
     }
 }

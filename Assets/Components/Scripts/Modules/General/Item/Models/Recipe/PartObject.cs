@@ -1,12 +1,14 @@
 ﻿using System;
 
+// ReSharper disable InconsistentNaming
+
 namespace RoboFactory.General.Item
 {
     [Serializable]
     public class PartObject
     {
-        public ItemScriptable data;
-        public int star;
-        public int count;
+        public ItemScriptable Data;
+        public int Star;
+        public int Count;
     }
 }

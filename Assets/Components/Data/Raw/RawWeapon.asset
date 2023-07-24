@@ -12,27 +12,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ae4749186b454c40aff59c9428c9e43, type: 3}
   m_Name: RawWeapon
   m_EditorClassIdentifier: 
-  itemType: 0
-  key: raw_weapon
-  iconRef:
+  _itemType: 0
+  _key: raw_weapon
+  _iconRef:
     m_AssetGUID: 7cebe9a3c0e99c54b955b7f8a1499bfa
     m_SubObjectName: RawWeapon
     m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
     m_EditorAssetChanged: 0
-  rawName: Raw Weapon
-  rawType: 1
-  isMain: 1
-  recipes:
-  - star: 2
-    parts:
-    - data: {fileID: 11400000}
-      star: 1
-      count: 5
-    - data: {fileID: 11400000}
-      star: 1
-      count: 2
-    cost: 50
-    experience: 0
-    craftTime: 0
-    specs: []
+  _rawName: Raw Weapon
+  _rawType: 1
+  _recipe:
+    _star: 0
+    _parts:
+    - Data: {fileID: 0}
+      Star: 0
+      Count: 0
+    _cost: 0
+    _experience: 0
+    _craftTime: 0
+    _specs: []

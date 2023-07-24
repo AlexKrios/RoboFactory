@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace RoboFactory.General.Item.Raw
@@ -11,15 +10,13 @@ namespace RoboFactory.General.Item.Raw
             ItemType = ItemType.Raw;
         }
 
-        [SerializeField] private string rawName;
-        [SerializeField] private RawType rawType;
-        [SerializeField] private bool isMain;
-        [SerializeField] private List<RecipeObject> recipes;
+        [SerializeField] private string _rawName;
+        [SerializeField] private RawType _rawType;
+        [SerializeField] private RecipeObject _recipe;
 
         public int Index { get; set; }
-        public string RawName { get => rawName; set => rawName = value; }
-        public RawType RawType { get => rawType; set => rawType = value; }
-        public bool IsMain { get => isMain; set => isMain = value; }
-        public List<RecipeObject> Recipes { get => recipes; set => recipes = value; }
+        public string RawName { get => _rawName; set => _rawName = value; }
+        public RawType RawType { get => _rawType; set => _rawType = value; }
+        public RecipeObject Recipe { get => _recipe; set => _recipe = value; }
     }
 }

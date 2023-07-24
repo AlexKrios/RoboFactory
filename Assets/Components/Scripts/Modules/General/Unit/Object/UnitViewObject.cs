@@ -11,8 +11,8 @@ namespace RoboFactory.General.Unit
     {
         [Inject] private readonly ProductsManager _productsManager;
 
-        [SerializeField] private Animator bodyAnimator;
-        [SerializeField] private List<ProductViewData> parts;
+        [SerializeField] private Animator _bodyAnimator;
+        [SerializeField] private List<ProductViewData> _parts;
 
         public void SetData(UnitObject unit)
         {
@@ -24,26 +24,26 @@ namespace RoboFactory.General.Unit
 
         public void SetEquipment(ProductObject product)
         {
-            var partObject = parts.First(x => x.group == product.ProductGroup);
-            if (partObject.model != null)
-                Destroy(partObject.model);
+            var partObject = _parts.First(x => x._group == product.ProductGroup);
+            if (partObject._model != null)
+                Destroy(partObject._model);
             
-            partObject.model = Instantiate(product.Model, partObject.parent);
-            parts.ForEach(x =>
+            partObject._model = Instantiate(product.Model, partObject._parent);
+            _parts.ForEach(x =>
             {
-                if (x.animator != null)
-                    x.animator.Play("Idle", -1, 0f);
+                if (x._animator != null)
+                    x._animator.Play("Idle", -1, 0f);
             });
-            bodyAnimator.Play("Idle", -1 , 0f);
+            _bodyAnimator.Play("Idle", -1 , 0f);
         }
     }
 
     [Serializable]
     public class ProductViewData
     {
-        public ProductGroup group;
-        public Transform parent;
-        public GameObject model;
-        public Animator animator;
+        public ProductGroup _group;
+        public Transform _parent;
+        public GameObject _model;
+        public Animator _animator;
     }
 }

@@ -7,11 +7,11 @@ namespace RoboFactory.DI
     [CreateAssetMenu(menuName = "Scriptable/Popup/Settings", order = 3)]
     public class PopupSettingsInstaller : ScriptableObjectInstaller<PopupSettingsInstaller>
     {
-        public PopupFactory.Settings popup;
+        [SerializeField] private PopupFactory.Settings _popup;
 
         public override void InstallBindings()
         {
-            Container.BindInstance(popup);
+            Container.BindInstance(_popup);
         }
     }
 }

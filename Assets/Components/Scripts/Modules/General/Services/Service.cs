@@ -12,9 +12,11 @@ namespace RoboFactory.General.Services
         [Inject] private readonly SceneService _sceneService;
         
         public ServiceState State { get; private set; } = ServiceState.Disabled;
+        
+        protected virtual string InitializeTextKey => string.Empty;
         protected virtual string LoadingTextKey => string.Empty;
 
-        public virtual async UniTask Initialize()
+        public async UniTask Initialize()
         {
             try
             {
@@ -22,7 +24,6 @@ namespace RoboFactory.General.Services
                 
                 SetState(ServiceState.Initializing);
                 await InitializeAsync();
-                SetState(ServiceState.Ready);
             }
             catch (Exception e)
             {
@@ -31,15 +32,17 @@ namespace RoboFactory.General.Services
             }
         }
         
-        public virtual async UniTask Load()
+        public async UniTask Load()
         {
             try
             {
                 await LoadAsync();
+                SetState(ServiceState.Ready);
             }
             catch (Exception e)
             {
                 Debug.LogException(e);
+                SetState(ServiceState.Failed);
             }
         }
         

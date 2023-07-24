@@ -4,12 +4,12 @@ namespace RoboFactory
 {
     public class UnitTest : MonoBehaviour
     {
-        [SerializeField] private Camera mainCamera;
-        [SerializeField] private Transform cameraTarget;
+        [SerializeField] private Camera _mainCamera;
+        [SerializeField] private Transform _cameraTarget;
 
         private void Update()
         {
-            mainCamera.transform.RotateAround(cameraTarget.position, Vector3.up, 15 * Time.deltaTime);
+            _mainCamera.transform.RotateAround(_cameraTarget.position, Vector3.up, 15 * Time.deltaTime);
             //mainCamera.transform.LookAt(cameraTarget);
         }
     }

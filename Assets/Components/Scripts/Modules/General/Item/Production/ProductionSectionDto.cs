@@ -2,13 +2,17 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
+// ReSharper disable InconsistentNaming
+
 namespace RoboFactory.General.Item.Production
 {
     [Serializable]
     public class ProductionSectionDto
     {
-        public int level;
-        public int count;
+        [JsonProperty("level")]
+        public int Level;
+        [JsonProperty("count")]
+        public int Count;
         
         [JsonProperty("queue")]
         public Dictionary<string, ProductionDto> Production;

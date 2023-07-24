@@ -12,34 +12,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b979013991c86044bb6fe155f4b7d61, type: 3}
   m_Name: DefenderBatteryProduct_Default
   m_EditorClassIdentifier: 
-  itemType: 1
-  key: defender_battery_product_default
-  iconRef:
-    m_AssetGUID: a96c1d1d18e90804485ce03e627a02f2
-    m_SubObjectName: DefenderBatteryProduct
-    m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
+  _itemType: 1
+  _key: defender_battery_product_default
+  _iconRef:
+    m_AssetGUID: 
+    m_SubObjectName: 
+    m_SubObjectType: 
     m_EditorAssetChanged: 0
-  index: 0
-  productName: Defender Battery Product Default
-  star: 1
-  unitType: 2
-  productGroup: 4
-  productType: 0
-  isProduct: 1
-  model: {fileID: 4632015324462860131, guid: debaf4325bba4b94db325f70cbcc7e00, type: 3}
-  recipe:
-    star: 0
-    parts: []
-    cost: 1000
-    experience: 10
-    craftTime: 10
-    specs:
-    - type: 0
-      value: 25
-    - type: 1
-      value: 0
-    - type: 2
-      value: 0
-    - type: 3
-      value: 10
+  _index: 0
+  _productName: 
+  _star: 0
+  _unitType: 2
+  _productGroup: 4
+  _productType: 0
+  _isProduct: 0
+  _model: {fileID: 0}
+  _recipe:
+    _star: 0
+    _parts: []
+    _cost: 0
+    _experience: 0
+    _craftTime: 0
+    _specs: []

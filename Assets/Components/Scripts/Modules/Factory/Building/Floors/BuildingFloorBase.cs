@@ -14,34 +14,34 @@ namespace RoboFactory.Factory.Building
         #region Zenject
         
         [Inject] private readonly FactoryCameraController _factoryCameraController;
-        [Inject] private readonly FactoryUi _factoryUi;
+        [Inject] private readonly MenuButtonsView _menuButtonsView;
 
         #endregion
 
         #region Components
 
-        [SerializeField] private int floorNumber;
-        [SerializeField] private List<UiType> menuButtons;
+        [SerializeField] private int _floorNumber;
+        [SerializeField] private List<UiType> _menuButtons;
         
         [Header("Links")]
-        [SerializeField] private Transform cameraPoint;
+        [SerializeField] private Transform _cameraPoint;
 
         [Header("Walls")]
-        [SerializeField, UsedImplicitly] private MeshRenderer ground;
-        [SerializeField, UsedImplicitly] private MeshRenderer roof;
-        [SerializeField, UsedImplicitly] private List<MeshRenderer> leftWall;
-        [SerializeField, UsedImplicitly] private List<MeshRenderer> rightWall;
-        [SerializeField, UsedImplicitly] private List<MeshRenderer> frontWall;
-        [SerializeField, UsedImplicitly] private List<MeshRenderer> backWall;
+        [SerializeField, UsedImplicitly] private MeshRenderer _ground;
+        [SerializeField, UsedImplicitly] private MeshRenderer _roof;
+        [SerializeField, UsedImplicitly] private List<MeshRenderer> _leftWall;
+        [SerializeField, UsedImplicitly] private List<MeshRenderer> _rightWall;
+        [SerializeField, UsedImplicitly] private List<MeshRenderer> _frontWall;
+        [SerializeField, UsedImplicitly] private List<MeshRenderer> _backWall;
 
         [Header("Columns")]
-        [SerializeField, UsedImplicitly] private MeshRenderer columnFrontLeft;
-        [SerializeField, UsedImplicitly] private MeshRenderer columnFrontRight;
-        [SerializeField, UsedImplicitly] private MeshRenderer columnBackLeft;
-        [SerializeField, UsedImplicitly] private MeshRenderer columnBackRight;
+        [SerializeField, UsedImplicitly] private MeshRenderer _columnFrontLeft;
+        [SerializeField, UsedImplicitly] private MeshRenderer _columnFrontRight;
+        [SerializeField, UsedImplicitly] private MeshRenderer _columnBackLeft;
+        [SerializeField, UsedImplicitly] private MeshRenderer _columnBackRight;
         
-        public int FloorNumber => floorNumber;
-        public Transform CameraPoint => cameraPoint;
+        public int FloorNumber => _floorNumber;
+        public Transform CameraPoint => _cameraPoint;
 
         #endregion
 
@@ -49,7 +49,7 @@ namespace RoboFactory.Factory.Building
 
         private void Awake()
         {
-            _factoryCameraController.FloorsDictionary.Add(floorNumber, this);
+            _factoryCameraController.FloorsDictionary.Add(_floorNumber, this);
         }
 
         #endregion
@@ -58,30 +58,30 @@ namespace RoboFactory.Factory.Building
         {
             SetFloorVisible(true);
 
-            leftWall.ForEach(x => x.shadowCastingMode = ShadowCastingMode.ShadowsOnly);
-            frontWall.ForEach(x => x.shadowCastingMode = ShadowCastingMode.ShadowsOnly);
-            if (roof != null)
-                roof.shadowCastingMode = ShadowCastingMode.ShadowsOnly;
-            if (columnFrontLeft != null)
-                columnFrontLeft.shadowCastingMode = ShadowCastingMode.ShadowsOnly;
+            _leftWall.ForEach(x => x.shadowCastingMode = ShadowCastingMode.ShadowsOnly);
+            _frontWall.ForEach(x => x.shadowCastingMode = ShadowCastingMode.ShadowsOnly);
+            if (_roof != null)
+                _roof.shadowCastingMode = ShadowCastingMode.ShadowsOnly;
+            if (_columnFrontLeft != null)
+                _columnFrontLeft.shadowCastingMode = ShadowCastingMode.ShadowsOnly;
         }
 
         public void SetFloorVisible(bool value)
         {
             gameObject.SetActive(value);
             
-            leftWall.ForEach(x => x.shadowCastingMode = ShadowCastingMode.On);
-            frontWall.ForEach(x => x.shadowCastingMode = ShadowCastingMode.On);
-            if (roof != null)
-                roof.shadowCastingMode = ShadowCastingMode.On;
-            if (columnFrontLeft != null)
-                columnFrontLeft.shadowCastingMode = ShadowCastingMode.On;
+            _leftWall.ForEach(x => x.shadowCastingMode = ShadowCastingMode.On);
+            _frontWall.ForEach(x => x.shadowCastingMode = ShadowCastingMode.On);
+            if (_roof != null)
+                _roof.shadowCastingMode = ShadowCastingMode.On;
+            if (_columnFrontLeft != null)
+                _columnFrontLeft.shadowCastingMode = ShadowCastingMode.On;
         }
 
         public void SetMenuButtonsActive()
         {
-            _factoryUi.MenuButtons.SetMenuButtonsActive(false);
-            _factoryUi.MenuButtons.SetMenuButtonsActive(true, menuButtons);
+            _menuButtonsView.SetMenuButtonsActive(false);
+            _menuButtonsView.SetMenuButtonsActive(true, _menuButtons);
         }
     }
 }

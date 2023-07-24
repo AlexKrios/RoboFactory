@@ -5,12 +5,12 @@ namespace RoboFactory.General.Item
 {
     public class ItemScriptable : ScriptableObject
     {
-        [SerializeField] private ItemType itemType;
-        [SerializeField] private string key;
-        [SerializeField] private AssetReference iconRef;
+        [SerializeField] private ItemType _itemType;
+        [SerializeField] private string _key;
+        [SerializeField] private AssetReference _iconRef;
 
-        public ItemType ItemType { get => itemType; set => itemType = value; }
-        public string Key { get => key; set => key = value; }
-        public AssetReference IconRef { get => iconRef; set => iconRef = value; }
+        public ItemType ItemType { get => _itemType; set => _itemType = value; }
+        public string Key { get => _key; set => _key = value; }
+        public AssetReference IconRef { get => _iconRef; set => _iconRef = value; }
     }
 }

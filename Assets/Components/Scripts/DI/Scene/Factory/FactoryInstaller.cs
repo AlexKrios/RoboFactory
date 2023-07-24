@@ -11,15 +11,16 @@ using Zenject;
 
 namespace RoboFactory.DI
 {
-    [AddComponentMenu("Scripts/Factory/Di/Factory Installer")]
     public class FactoryInstaller : MonoInstaller
     {
-        [SerializeField] private FactoryUi factoryUi;
+        [SerializeField] private FactoryUi _factoryUi;
+        [SerializeField] private MenuButtonsView _menuButtons;
 
         public override void InstallBindings()
         {
             Container.Bind<FactoryCameraController>().AsSingle().NonLazy();
-            Container.Bind<FactoryUi>().FromInstance(factoryUi).AsSingle().NonLazy();
+            Container.Bind<FactoryUi>().FromInstance(_factoryUi).AsSingle().NonLazy();
+            Container.Bind<MenuButtonsView>().FromInstance(_menuButtons).AsSingle().NonLazy();
 
             InstallUiFactory();
             InstallMenu();

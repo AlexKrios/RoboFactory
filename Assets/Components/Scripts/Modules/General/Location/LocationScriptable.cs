@@ -5,42 +5,44 @@ using RoboFactory.General.Unit;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
+// ReSharper disable InconsistentNaming
+
 namespace RoboFactory.General.Location
 {
     [CreateAssetMenu(menuName = "Scriptable/Battle/Data", order = 11)]
     public class LocationScriptable : ScriptableObject
     {
-        [SerializeField] private string key;
-        [SerializeField] private int time;
-        [SerializeField] private AssetReference iconRef;
-        [SerializeField] private List<LocationUnitData> enemies;
-        [SerializeField] private List<PartObject> reward;
+        [SerializeField] private string _key;
+        [SerializeField] private int _time;
+        [SerializeField] private AssetReference _iconRef;
+        [SerializeField] private List<LocationUnitData> _enemies;
+        [SerializeField] private List<PartObject> _reward;
         
-        public string Key => key;
-        public int Time => time;
-        public AssetReference IconRef => iconRef;
-        public List<LocationUnitData> Enemies => enemies;
-        public List<PartObject> Reward => reward;
+        public string Key => _key;
+        public int Time => _time;
+        public AssetReference IconRef => _iconRef;
+        public List<LocationUnitData> Enemies => _enemies;
+        public List<PartObject> Reward => _reward;
     }
     
     [Serializable]
     public class LocationsScriptable
     {
-        [SerializeField] private int star;
-        [SerializeField] private int time;
-        [SerializeField] private List<LocationUnitData> enemies;
-        [SerializeField] private List<PartObject> reward;
+        [SerializeField] private int _star;
+        [SerializeField] private int _time;
+        [SerializeField] private List<LocationUnitData> _enemies;
+        [SerializeField] private List<PartObject> _reward;
         
-        public int Star => star;
-        public int Time => time;
-        public List<LocationUnitData> Enemies => enemies;
-        public List<PartObject> Reward => reward;
+        public int Star => _star;
+        public int Time => _time;
+        public List<LocationUnitData> Enemies => _enemies;
+        public List<PartObject> Reward => _reward;
     }
 
     [Serializable]
     public class LocationUnitData
     {
-        public UnitScriptable data;
-        public int place;
+        public UnitScriptable Data;
+        public int Place;
     }
 }

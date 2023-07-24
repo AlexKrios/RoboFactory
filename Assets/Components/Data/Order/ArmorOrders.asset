@@ -12,28 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b08113566274f7ab5090a6f5c3fcbf1, type: 3}
   m_Name: ArmorOrders
   m_EditorClassIdentifier: 
-  orders:
-  - key: order_armor_1
-    group: 2
-    part:
-      data: {fileID: 11400000, guid: 53cb75f4562612c4096e092b197b5bfd, type: 2}
-      star: 1
-      count: 2
-  - key: order_armor_2
-    group: 2
-    part:
-      data: {fileID: 11400000, guid: a757b28ea0d20c5428a5ac37a6973c3e, type: 2}
-      star: 1
-      count: 2
-  - key: order_armor_3
-    group: 2
-    part:
-      data: {fileID: 11400000, guid: 515983d8272a720498955292bd5bc4ed, type: 2}
-      star: 1
-      count: 2
-  - key: order_armor_4
-    group: 2
-    part:
-      data: {fileID: 11400000, guid: db054546f110b1643848e201027f21cf, type: 2}
-      star: 1
-      count: 2
+  _orders:
+  - _key: order_armor_1
+    _group: 2
+    _part:
+      Data: {fileID: 11400000, guid: 53cb75f4562612c4096e092b197b5bfd, type: 2}
+      Star: 1
+      Count: 2

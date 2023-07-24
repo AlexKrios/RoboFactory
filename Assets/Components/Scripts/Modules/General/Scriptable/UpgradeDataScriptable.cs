@@ -7,20 +7,20 @@ namespace RoboFactory.General.Scriptable
     [CreateAssetMenu(fileName = "UpgradeData", menuName = "Scriptable/General/Upgrade Data", order = 1)]
     public class UpgradeDataScriptable : ScriptableObject
     {
-        [SerializeField] private List<UpgradeDataObject> data;
+        [SerializeField] private List<UpgradeDataObject> _data;
         
-        public List<UpgradeDataObject> Data { get => data; set => data = value; }
+        public List<UpgradeDataObject> Data { get => _data; set => _data = value; }
     }
     
     [Serializable]
     public class UpgradeDataObject
     {
-        [SerializeField] private int count;
-        [SerializeField] private int cost;
-        [SerializeField] private int level;
+        [SerializeField] private int _count;
+        [SerializeField] private int _cost;
+        [SerializeField] private int _level;
         
-        public int Count { get => count; set => count = value; }
-        public int Cost { get => cost; set => cost = value; }
-        public int Level { get => level; set => level = value; }
+        public int Count { get => _count; set => _count = value; }
+        public int Cost { get => _cost; set => _cost = value; }
+        public int Level { get => _level; set => _level = value; }
     }
 }

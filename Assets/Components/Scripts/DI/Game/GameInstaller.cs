@@ -1,4 +1,4 @@
-using RoboFactory.Authentication;
+using RoboFactory.Auth;
 using RoboFactory.General;
 using RoboFactory.General.Api;
 using RoboFactory.General.Asset;
@@ -10,10 +10,11 @@ using RoboFactory.General.Item.Products;
 using RoboFactory.General.Item.Raw;
 using RoboFactory.General.Item.Raw.Convert;
 using RoboFactory.General.Level;
-using RoboFactory.General.Localisation;
+using RoboFactory.General.Localization;
 using RoboFactory.General.Location;
 using RoboFactory.General.Money;
 using RoboFactory.General.Order;
+using RoboFactory.General.Profile;
 using RoboFactory.General.Scene;
 using RoboFactory.General.Settings;
 using RoboFactory.General.Ui;
@@ -25,16 +26,31 @@ using Zenject;
 
 namespace RoboFactory.DI
 {
-    [AddComponentMenu("Scripts/General/Di/Game Installer")]
     public class GameInstaller : MonoInstaller
     {
+        [SerializeField] private Transform _popupParent;
+        [SerializeField] private Transform _screenParent;
+        
+        [SerializeField] private SignInView _signInForm;
+        [SerializeField] private SignUpView _signUpForm;
+        [SerializeField] private VerificationView _verificationForm;
+        
         public override void InstallBindings()
         {
+            Container.Bind<Transform>().WithId(Constants.ScreenParentKey).FromInstance(_popupParent);
+            Container.Bind<Transform>().WithId(Constants.PopupParentKey).FromInstance(_screenParent);
+            
+            Container.Bind<SignInView>().WithId(Constants.SignInKey).FromInstance(_signInForm);
+            Container.Bind<SignUpView>().WithId(Constants.SignUpKey).FromInstance(_signUpForm);
+            Container.Bind<VerificationView>().WithId(Constants.VerificationKey).FromInstance(_verificationForm);
+            
+            InstallProfiles();
+            
             Container.BindService<SettingsService>();
             Container.BindService<LocalizationService>();
             Container.BindService<ApiService>();
             
-            Container.BindService<AuthenticationService>();
+            Container.BindService<AuthService>();
             Container.BindFactory<UserProfile, UserProfile.Factory>();
             
             Container.BindService<AddressableService>();
@@ -43,6 +59,11 @@ namespace RoboFactory.DI
 
             InstallUi();
             InstallHelpers();
+        }
+
+        private void InstallProfiles()
+        {
+            Container.Bind<CommonProfile>().AsSingle().NonLazy();
         }
 
         private void InstallControllers()

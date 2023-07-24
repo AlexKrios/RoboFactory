@@ -93,40 +93,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4ad885f10174cad969281199fed2464, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  floorNumber: 0
-  menuButtons: 02000000
-  cameraPoint: {fileID: 2381566327097013451}
-  ground: {fileID: 7324103064044192464}
-  roof: {fileID: 2983353012508090821}
-  leftWall:
+  _floorNumber: 0
+  _menuButtons: 02000000
+  _cameraPoint: {fileID: 2381566327097013451}
+  _ground: {fileID: 7324103064044192464}
+  _roof: {fileID: 2983353012508090821}
+  _leftWall:
   - {fileID: 8424163798259469798}
   - {fileID: 8270044413855557453}
   - {fileID: 8000243499329329246}
   - {fileID: 5366556325433566802}
   - {fileID: 5300332759993136801}
-  rightWall:
+  _rightWall:
   - {fileID: 6660343172212237670}
   - {fileID: 152397701610858068}
   - {fileID: 3570107157337217168}
   - {fileID: 7136513535801381472}
   - {fileID: 7484458878016054159}
-  frontWall:
+  _frontWall:
   - {fileID: 3675479156215682514}
   - {fileID: 7895181334493926076}
   - {fileID: 5977905437220478522}
   - {fileID: 2883635804132901824}
   - {fileID: 164353981917008993}
-  backWall:
+  _backWall:
   - {fileID: 8161715934600008882}
   - {fileID: 4518169403756745844}
   - {fileID: 709356114562299693}
   - {fileID: 4190909560988421914}
   - {fileID: 6306477885168983455}
   - {fileID: 1841634292684058693}
-  columnFrontLeft: {fileID: 5851237870167664900}
-  columnFrontRight: {fileID: 7183228337878857127}
-  columnBackLeft: {fileID: 1290770388143115154}
-  columnBackRight: {fileID: 8081632971350976783}
+  _columnFrontLeft: {fileID: 5851237870167664900}
+  _columnFrontRight: {fileID: 7183228337878857127}
+  _columnBackLeft: {fileID: 1290770388143115154}
+  _columnBackRight: {fileID: 8081632971350976783}
 --- !u!1 &5177092150805665971
 GameObject:
   m_ObjectHideFlags: 0

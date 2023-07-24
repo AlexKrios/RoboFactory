@@ -7,16 +7,11 @@ using UnityEngine.UI;
 namespace RoboFactory.Factory.Menu.Units
 {
     [RequireComponent(typeof(Button))]
-    [AddComponentMenu("Scripts/Factory/Menu/Units/Roster Cell View")]
     public class RosterCellView : CellBase
     {
-        #region Variables
-
         public Action<RosterCellView, UnitType> OnClickEvent { get; set; }
         
         public UnitObject Data { get; private set; }
-
-        #endregion
 
         protected override void Click()
         {

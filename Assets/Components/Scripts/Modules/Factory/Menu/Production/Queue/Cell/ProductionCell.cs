@@ -9,7 +9,6 @@ using Zenject;
 
 namespace RoboFactory.Factory.Menu.Production
 {
-    [AddComponentMenu("Scripts/Factory/Menu/Production/Queue/Production Cell")]
     public class ProductionCell : MonoBehaviour, IPointerClickHandler
     {
         #region Zenject
@@ -22,11 +21,8 @@ namespace RoboFactory.Factory.Menu.Production
         
         #region Components
 
-        [SerializeField] private Image icon;
-        [SerializeField] private TMP_Text timer;
-        [SerializeField] private RectTransform rectTransform;
-        
-        public RectTransform RectTransform => rectTransform;
+        [SerializeField] private Image _icon;
+        [SerializeField] private TMP_Text _timer;
 
         #endregion
         
@@ -110,21 +106,21 @@ namespace RoboFactory.Factory.Menu.Production
 
         public void ResetCell()
         {
-            icon.color = new Color(1, 1, 1, 0);
-            icon.sprite = null;
+            _icon.color = new Color(1, 1, 1, 0);
+            _icon.sprite = null;
 
-            timer.text = null;
+            _timer.text = null;
         }
 
         public void SetCellIcon(Sprite itemIcon)
         {
-            icon.color = new Color(1, 1, 1, 1);
-            icon.sprite = itemIcon;
+            _icon.color = new Color(1, 1, 1, 1);
+            _icon.sprite = itemIcon;
         }
 
         public void SetCellTimer(string itemTimer)
         {
-            timer.text = itemTimer;
+            _timer.text = itemTimer;
         }
     }
 }

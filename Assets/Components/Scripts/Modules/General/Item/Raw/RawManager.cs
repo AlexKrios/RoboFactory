@@ -39,8 +39,8 @@ namespace RoboFactory.General.Item.Raw
             
             foreach (var raw in rawData)
             {
-                _rawDictionary[raw.Key].Count = raw.Value.count;
-                _rawDictionary[raw.Key].Level = raw.Value.level;
+                _rawDictionary[raw.Key].Count = raw.Value.Count;
+                _rawDictionary[raw.Key].Level = raw.Value.Level;
             }
             
             OnRawSet?.Invoke();
@@ -55,15 +55,6 @@ namespace RoboFactory.General.Item.Raw
             var rawDto = new Dictionary<string, RawDto>();
             _rawDictionary.ToList().ForEach(x => rawDto.Add(x.Key, x.Value.ToDto()));
             return rawDto;
-        } 
-        
-        public List<RawObject> GetRawByType(RawType type)
-        {
-            return _rawDictionary.Values.Where(x => x.RawType == type).ToList();
-        }
-        public List<RawObject> GetMainRaw()
-        {
-            return _rawDictionary.Values.Where(x => x.IsRefill).ToList();
         }
 
         public async UniTask AddItem(string key, int count = 1)
@@ -77,7 +68,7 @@ namespace RoboFactory.General.Item.Raw
 
         public async UniTask AddItemsThenSend(List<PartObject> data)
         {
-            data.ForEach(x => _rawDictionary[x.data.Key].IncrementCount(x.count));
+            data.ForEach(x => _rawDictionary[x.Data.Key].IncrementCount(x.Count));
             await SendRawOnServer();
             
             OnRawSet?.Invoke();

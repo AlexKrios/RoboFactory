@@ -8,22 +8,11 @@ using Zenject;
 
 namespace RoboFactory.Factory.Menu.Production
 {
-    [AddComponentMenu("Scripts/Factory/Menu/Production/Tabs Section View")]
     public class TabsSectionView : MonoBehaviour
     {
-        #region Zenject
-
         [Inject] private readonly IUiController _uiController;
 
-        #endregion
-
-        #region Components
-
         [SerializeField] private List<TabCellView> _tabs;
-
-        #endregion
-        
-        #region Variables
         
         public Action OnTabClickEvent { get; set; }
 
@@ -41,8 +30,6 @@ namespace RoboFactory.Factory.Menu.Production
                 _activeTab.SetActive();
             }
         }
-
-        #endregion
 
         public void Initialize()
         {

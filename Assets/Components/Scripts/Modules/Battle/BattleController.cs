@@ -117,7 +117,7 @@ namespace RoboFactory.Battle
         
         public void CollectItems(List<PartObject> parts)
         {
-            parts.ForEach(x => _rawManager.GetRaw(x.data.Key).IncrementCount(x.count));
+            parts.ForEach(x => _rawManager.GetRaw(x.Data.Key).IncrementCount(x.Count));
         }
     }
     

@@ -11,45 +11,27 @@ namespace RoboFactory.General.Ui.Common
     [RequireComponent(typeof(Button))]
     public abstract class StarButtonBase : MonoBehaviour
     {
-        #region Zenject
-        
         [Inject] private readonly AudioManager _audioController;
 
-        #endregion
-
-        #region Components
-
-        [SerializeField] private TMP_Text level;
-        [SerializeField] private GameObject locked;
-
-        #endregion
-
-        #region Variables
+        [SerializeField] private TMP_Text _level;
+        [SerializeField] private GameObject _locked;
 
         private Button _buttonComponent;
-        private CompositeDisposable _disposable;
-
-        #endregion
+        private readonly CompositeDisposable _disposable = new();
         
-        #region Unity Methods
-
         protected virtual void Awake()
         {
-            _disposable = new CompositeDisposable();
-            
             _buttonComponent = GetComponent<Button>();
             _buttonComponent.OnClickAsObservable().Subscribe(_ => Click()).AddTo(_disposable);
 
             if (!_buttonComponent.interactable)
-                locked.SetActive(true);
+                _locked.SetActive(true);
         }
 
         private void OnDestroy()
         {
             _disposable.Dispose();
         }
-
-        #endregion
 
         protected virtual void Click()
         {
@@ -58,7 +40,7 @@ namespace RoboFactory.General.Ui.Common
 
         protected void SetStarLevel(int levelValue)
         {
-            level.text = levelValue.ToString();
+            _level.text = levelValue.ToString();
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
-using RoboFactory.General.Localisation;
+using RoboFactory.General.Localization;
 using RoboFactory.General.Order;
 using RoboFactory.General.Ui;
 using RoboFactory.General.Ui.Common;
@@ -14,20 +14,13 @@ using Zenject;
 
 namespace RoboFactory.Factory.Menu.Order
 {
-    [AddComponentMenu("Scripts/Factory/Menu/Order/Order Menu View")]
     public class OrderMenuView : PopupBase
     {
         private const string TimerTemplate = "HH:mm:ss";
         
-        #region Zenject
-
-        [Inject] private readonly LocalizationService localizationController;
+        [Inject] private readonly LocalizationService _localizationService;
         [Inject] private readonly OrderManager _orderManager;
         [Inject] private readonly OrderMenuFactory _orderManagerFactory;
-
-        #endregion
-
-        #region Components
         
         [SerializeField] private Button _upgrade;
         
@@ -39,10 +32,6 @@ namespace RoboFactory.Factory.Menu.Order
         [Space] 
         [SerializeField] private Transform _parent;
 
-        #endregion
-
-        #region Unity Methods
-
         protected override void Awake()
         {
             base.Awake();
@@ -50,13 +39,11 @@ namespace RoboFactory.Factory.Menu.Order
             _upgrade.OnClickAsObservable().Subscribe(_ => OnUpgradeClick()).AddTo(Disposable);
         }
 
-        #endregion
-
         public override void Initialize()
         {
             base.Initialize();
             
-            _title.text = localizationController.GetLanguageValue(LocalizationKeys.OrderMenuTitleKey);
+            _title.text = _localizationService.GetLanguageValue(LocalizationKeys.OrderMenuTitleKey);
 
             SetData();
             StartRefreshTimer();

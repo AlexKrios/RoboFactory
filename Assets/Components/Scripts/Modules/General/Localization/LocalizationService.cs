@@ -8,7 +8,7 @@ using RoboFactory.General.Settings;
 using UnityEngine;
 using Zenject;
 
-namespace RoboFactory.General.Localisation
+namespace RoboFactory.General.Localization
 {
     [UsedImplicitly]
     public class LocalizationService : Service
@@ -30,11 +30,11 @@ namespace RoboFactory.General.Localisation
         
         protected override UniTask InitializeAsync()
         {
-            LoadLocalisationData();
+            LoadLocalizationData();
             return UniTask.CompletedTask;
         }
 
-        public void LoadLocalisationData()
+        public void LoadLocalizationData()
         {
             if (_localizationDictionary.Count != 0)
                 _localizationDictionary.Clear();

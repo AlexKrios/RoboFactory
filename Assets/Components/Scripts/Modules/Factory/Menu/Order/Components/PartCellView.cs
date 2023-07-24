@@ -9,17 +9,10 @@ using Zenject;
 namespace RoboFactory.Factory.Menu.Order
 {
     [RequireComponent(typeof(Image))]
-    [AddComponentMenu("Scripts/Factory/Menu/Order/Part Cell View")]
     public class PartCellView : MonoBehaviour
     {
-        #region Zenject
-        
-        [Inject] private readonly AddressableService addressableService;
+        [Inject] private readonly AddressableService _addressableService;
         [Inject] private readonly ProductsManager _productsManager;
-
-        #endregion
-
-        #region Components
 
         [SerializeField] private Image _icon;
         [SerializeField] private TMP_Text _count;
@@ -28,16 +21,14 @@ namespace RoboFactory.Factory.Menu.Order
         [SerializeField] private Image _starIcon;
         [SerializeField] private TMP_Text _starLevel;
 
-        #endregion
-
         public async void SetPartInfo(PartObject part)
         {
-            var itemCount = _productsManager.GetProduct(part.data.Key).Count;
-            var sprite = await addressableService.LoadAssetAsync<Sprite>(part.data.IconRef);
+            var itemCount = _productsManager.GetProduct(part.Data.Key).Count;
+            var sprite = await _addressableService.LoadAssetAsync<Sprite>(part.Data.IconRef);
 
             SetPartIcon(sprite);
-            SetPartText($"{itemCount}/{part.count}");
-            SetPartStar(part.star);
+            SetPartText($"{itemCount}/{part.Count}");
+            SetPartStar(part.Star);
         }
 
         private void SetPartIcon(Sprite partIcon, float alpha = 1f)

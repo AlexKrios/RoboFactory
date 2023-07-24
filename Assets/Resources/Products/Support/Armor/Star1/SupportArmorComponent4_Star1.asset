@@ -12,29 +12,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c510de7351c1b0b4aa5e3e6e9cb327bf, type: 3}
   m_Name: SupportArmorComponent4_Star1
   m_EditorClassIdentifier: 
-  itemType: 1
-  key: support_armor_component4_star1
-  iconRef:
+  _itemType: 1
+  _key: support_armor_component4_star1
+  _iconRef:
     m_AssetGUID: e5024f8a9c6569e4c89d0a043d827425
     m_SubObjectName: SupportArmorComponent4
     m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
     m_EditorAssetChanged: 0
-  index: 4
-  productName: Support Armor Component4 Star1
-  star: 1
-  unitType: 3
-  productGroup: 2
-  productType: 1
-  isProduct: 0
-  model: {fileID: 0}
-  recipe:
-    star: 0
-    parts:
-    - data: {fileID: 11400000, guid: 5ad746f0d5cb8934bab3c515a0e98a15, type: 2}
-      star: 1
-      count: 5
-    cost: 50
-    experience: 5
-    craftTime: 5
-    specs: []
+  _index: 4
+  _productName: Support Armor Component 4 Star 1
+  _star: 1
+  _unitType: 3
+  _productGroup: 2
+  _productType: 1
+  _isProduct: 0
+  _model: {fileID: 0}
+  _recipe:
+    _star: 0
+    _parts:
+    - Data: {fileID: 11400000, guid: 5ad746f0d5cb8934bab3c515a0e98a15, type: 2}
+      Star: 1
+      Count: 5
+    _cost: 100
+    _experience: 10
+    _craftTime: 10
+    _specs: []

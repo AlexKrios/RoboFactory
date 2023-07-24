@@ -2,12 +2,10 @@
 using RoboFactory.General.Item.Production;
 using RoboFactory.General.Ui;
 using RoboFactory.General.Ui.Common;
-using UnityEngine;
 using Zenject;
 
 namespace RoboFactory.Factory.Menu.Production
 {
-    [AddComponentMenu("Scripts/Factory/Menu/Production/Star Button View")]
     public class StarButtonView : StarButtonBase
     {
         private const int DefaultStar = 1;

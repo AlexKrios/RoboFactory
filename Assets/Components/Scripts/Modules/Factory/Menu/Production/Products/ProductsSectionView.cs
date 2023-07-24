@@ -8,24 +8,13 @@ using Zenject;
 
 namespace RoboFactory.Factory.Menu.Production
 {
-    [AddComponentMenu("Scripts/Factory/Menu/Production/Products Section View")]
     public class ProductsSectionView : MonoBehaviour
     {
-        #region Zenject
-        
         [Inject] private readonly IUiController _uiController;
         [Inject] private readonly ProductsManager _productsManager;
         [Inject] private readonly ProductionMenuFactory _productionMenuFactory;
         
-        #endregion
-        
-        #region Components
-
-        [SerializeField] private List<ProductCellView> products;
-
-        #endregion
-
-        #region Variables
+        [SerializeField] private List<ProductCellView> _products;
 
         public Action OnProductClickEvent { get; set; }
 
@@ -44,8 +33,6 @@ namespace RoboFactory.Factory.Menu.Production
                 _activeProduct.SetActive();
             }
         }
-        
-        #endregion
 
         public void Initialize()
         {
@@ -56,7 +43,7 @@ namespace RoboFactory.Factory.Menu.Production
 
         public void CreateProductCells()
         {
-            if (products.Count != 0)
+            if (_products.Count != 0)
                 RemoveProductCells();
             
             var productsWithComponents = _productsManager.GetAllProducts()
@@ -71,16 +58,16 @@ namespace RoboFactory.Factory.Menu.Production
                 var product = _productionMenuFactory.CreateProduct(transform);
                 product.SetProductData(productData);
                 product.OnClickEvent += OnTabClick;
-                products.Add(product);
+                _products.Add(product);
             }
             
-            ActiveProduct = products.First();
+            ActiveProduct = _products.First();
         }
 
         private void RemoveProductCells()
         {
-            products.ForEach(x => Destroy(x.gameObject));
-            products.Clear();
+            _products.ForEach(x => Destroy(x.gameObject));
+            _products.Clear();
         }
         
         private void OnTabClick(ProductCellView tab, int productType)

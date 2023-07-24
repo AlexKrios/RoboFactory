@@ -1,4 +1,6 @@
 ﻿using DG.Tweening;
+using DG.Tweening.Core;
+using DG.Tweening.Plugins.Options;
 using RoboFactory.General.Asset;
 using RoboFactory.General.Audio;
 using UniRx;
@@ -12,56 +14,36 @@ namespace RoboFactory.General.Ui.Common
     [RequireComponent(typeof(Button))]
     public abstract class CellBase : MonoBehaviour
     {
-        #region Zenject
+        private const float RotateTime = 10; 
         
-        [Inject] private readonly AddressableService addressableService;
+        [Inject] private readonly AddressableService _addressableService;
         [Inject] private readonly AudioManager _audioController;
 
-        #endregion
-
-        #region Components
-
-        [SerializeField] protected Image background;
-        [SerializeField] protected Image icon;
-        [SerializeField] private Image activeImage;
+        [SerializeField] protected Image _icon;
+        [SerializeField] private Image _active;
         
         [Space]
-        [SerializeField] private GameObject locked;
-
-        #endregion
+        [SerializeField] private GameObject _locked;
         
-        #region Variables
-
         private Button _buttonComponent;
-        private CompositeDisposable _disposable;
-
-        #endregion
-
-        #region Unity Methods
+        private readonly CompositeDisposable _disposable = new();
+        
+        private TweenerCore<Quaternion, Vector3, QuaternionOptions> _rotateAnim;
 
         protected virtual void Awake()
         {
-            _disposable = new CompositeDisposable();
-            
             _buttonComponent = GetComponent<Button>();
             _buttonComponent.OnClickAsObservable().Subscribe(_ => Click()).AddTo(_disposable);
             
             if (!_buttonComponent.interactable)
-                locked.SetActive(true);
+                _locked.SetActive(true);
         }
-
-        private void Update()
-        {
-            if (activeImage != null && activeImage.gameObject.activeSelf)
-                activeImage.transform.Rotate(new Vector3(0, 0, 30) * Time.deltaTime);
-        }
-
+        
         protected virtual void OnDestroy()
         {
+            _rotateAnim?.Kill();
             _disposable.Dispose();
         }
-
-        #endregion
         
         protected virtual void Click()
         {
@@ -70,23 +52,34 @@ namespace RoboFactory.General.Ui.Common
 
         protected virtual async void SetIconSprite(AssetReference spriteRef, bool active = true)
         {
-            var color = icon.color;
-            icon.color = new Color(color.r, color.g, color.b, 0);
-            icon.sprite = await addressableService.LoadAssetAsync<Sprite>(spriteRef);
-            icon.DORestart();
-            icon.DOFade(1f, 0.1f);
-            icon.gameObject.SetActive(active);
+            var color = _icon.color;
+            _icon.color = new Color(color.r, color.g, color.b, 0);
+            _icon.sprite = await _addressableService.LoadAssetAsync<Sprite>(spriteRef);
+            _icon.DORestart();
+            _icon.DOFade(1f, 0.1f);
+            _icon.gameObject.SetActive(active);
         }
 
         public void SetInactive()
         {
-            activeImage.gameObject.SetActive(false);
-            activeImage.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 0));
+            if (_active == null) return;
+            
+            _rotateAnim?.Kill();
+            _active.gameObject.SetActive(false);
         }
 
         public void SetActive()
         {
-            activeImage.gameObject.SetActive(true);
+            if (_active == null) return;
+            
+            _rotateAnim?.Kill();
+            _rotateAnim = _active.transform
+                .DOLocalRotate(new Vector3(0, 0, 360), RotateTime, RotateMode.FastBeyond360)
+                .SetRelative(true)
+                .SetEase(Ease.Linear)
+                .SetLoops(-1, LoopType.Restart);
+
+            _active.gameObject.SetActive(true);
         }
     }
 }

@@ -733,7 +733,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 550, y: 500}
+  m_SizeDelta: {x: 550, y: 450}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4758183550101416909
 CanvasRenderer:
@@ -826,12 +826,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   close: {fileID: 5574451142072659607}
-  titleText: {fileID: 2980804403553695998}
-  currentLevel: {fileID: 2601401412764700494}
-  nextLevel: {fileID: 519613940007127076}
-  acceptButton: {fileID: 6811761383045107094}
-  acceptLevelText: {fileID: 9015618586568514705}
-  acceptMoneyText: {fileID: 0}
+  _titleText: {fileID: 2980804403553695998}
+  _currentLevel: {fileID: 2601401412764700494}
+  _nextLevel: {fileID: 519613940007127076}
+  _acceptButton: {fileID: 6811761383045107094}
+  _acceptText: {fileID: 9015618586568514705}
 --- !u!225 &4758183550124237273
 CanvasGroup:
   m_ObjectHideFlags: 0

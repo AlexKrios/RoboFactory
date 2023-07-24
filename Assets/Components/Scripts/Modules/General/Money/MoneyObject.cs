@@ -1,10 +1,14 @@
 ﻿using System;
+using Newtonsoft.Json;
+
+// ReSharper disable InconsistentNaming
 
 namespace RoboFactory.General.Money
 {
     [Serializable]
     public class MoneyObject
     {
-        public int money;
+        [JsonProperty("money")]
+        public int Money;
     }
 }

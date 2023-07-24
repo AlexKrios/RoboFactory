@@ -11,24 +11,24 @@ namespace RoboFactory.General.Item
             ItemType = ItemType.Product;
         }
         
-        [SerializeField] private int index;
-        [SerializeField] private string productName;
-        [SerializeField] private int star;
-        [SerializeField] private UnitType unitType;
-        [SerializeField] private ProductGroup productGroup;
-        [SerializeField] private int productType;
-        [SerializeField] private bool isProduct;
-        [SerializeField] private GameObject model;
-        [SerializeField] private RecipeObject recipe;
+        [SerializeField] private int _index;
+        [SerializeField] private string _productName;
+        [SerializeField] private int _star;
+        [SerializeField] private UnitType _unitType;
+        [SerializeField] private ProductGroup _productGroup;
+        [SerializeField] private int _productType;
+        [SerializeField] private bool _isProduct;
+        [SerializeField] private GameObject _model;
+        [SerializeField] private RecipeObject _recipe;
         
-        public int Index { get => index; set => index = value; }
-        public string ProductName { get => productName; set => productName = value; }
-        public int Star { get => star; set => star = value; }
-        public UnitType UnitType { get => unitType; set => unitType = value; }
-        public ProductGroup ProductGroup { get => productGroup; set => productGroup = value; }
-        public int ProductType { get => productType; set => productType = value; }
-        public bool IsProduct { get => isProduct; set => isProduct = value; }
-        public GameObject Model { get => model; set => model = value; }
-        public RecipeObject Recipe { get => recipe; set => recipe = value; }
+        public int Index { get => _index; set => _index = value; }
+        public string ProductName { get => _productName; set => _productName = value; }
+        public int Star { get => _star; set => _star = value; }
+        public UnitType UnitType { get => _unitType; set => _unitType = value; }
+        public ProductGroup ProductGroup { get => _productGroup; set => _productGroup = value; }
+        public int ProductType { get => _productType; set => _productType = value; }
+        public bool IsProduct { get => _isProduct; set => _isProduct = value; }
+        public GameObject Model { get => _model; set => _model = value; }
+        public RecipeObject Recipe { get => _recipe; set => _recipe = value; }
     }
 }

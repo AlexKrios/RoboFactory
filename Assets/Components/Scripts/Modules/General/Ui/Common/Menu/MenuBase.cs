@@ -12,27 +12,13 @@ namespace RoboFactory.General.Ui.Common
     {
         private const float FadeTime = 0.25f;
         
-        #region Zenject
-        
         [Inject] private readonly AudioManager _audioController;
         [Inject] protected readonly IUiController UiController;
 
-        #endregion
-
-        #region Components
-        
         [SerializeField] private Button _close;
-
-        #endregion
         
-        #region Variables
-
         private CanvasGroup _canvasGroup;
-        protected CompositeDisposable Disposable;
-
-        #endregion
-
-        #region Unity Methods
+        protected CompositeDisposable Disposable = new();
 
         protected virtual void Awake()
         {
@@ -45,8 +31,6 @@ namespace RoboFactory.General.Ui.Common
         {
             Disposable.Dispose();
         }
-
-        #endregion
 
         public virtual void Initialize()
         {

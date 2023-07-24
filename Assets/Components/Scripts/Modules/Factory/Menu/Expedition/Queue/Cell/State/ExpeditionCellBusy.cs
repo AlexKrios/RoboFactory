@@ -11,19 +11,11 @@ namespace RoboFactory.Factory.Menu.Expedition
 {
     public class ExpeditionCellBusy : IExpeditionCellState
     {
-        #region Zenject
-        
-        [Inject] private readonly AddressableService addressableService;
+        [Inject] private readonly AddressableService _addressableService;
         [Inject] private readonly LocationManager _locationManager;
         [Inject] private readonly ExpeditionManager _expeditionManager;
 
-        #endregion
-
-        #region Variables
-
         private readonly ExpeditionCell _cell;
-
-        #endregion
         
         public ExpeditionCellBusy(ExpeditionCell cell)
         {
@@ -35,7 +27,7 @@ namespace RoboFactory.Factory.Menu.Expedition
             var expedition = _expeditionManager.GetExpedition(_cell.Data.Id);
             var location = _locationManager.GetLocation(expedition.Key);
 
-            var sprite = await addressableService.LoadAssetAsync<Sprite>(location.IconRef);
+            var sprite = await _addressableService.LoadAssetAsync<Sprite>(location.IconRef);
             _cell.SetCellIcon(sprite);
             StartExpeditionTimer();
         }

@@ -6,11 +6,8 @@ using UnityEngine;
 
 namespace RoboFactory.Factory.Menu
 {
-    [AddComponentMenu("Scripts/Factory/Menu/Units/Units Menu View")]
     public class UnitsMenuView : MenuBase
     {
-        #region Components
-        
         [Space]
         [SerializeField] private HeaderView _header;
         [SerializeField] private TabsSectionView _tabs;
@@ -20,17 +17,9 @@ namespace RoboFactory.Factory.Menu
         
         public InfoView Info => _info;
 
-        #endregion
-
-        #region Variables
-
         public UnitType ActiveUnitType { get; set; }
         public UnitObject ActiveUnit { get; set; }
         public ProductObject ActiveEquipment { get; set; }
-
-        #endregion
-
-        #region Unity Methods
 
         protected override void Awake()
         {
@@ -39,8 +28,6 @@ namespace RoboFactory.Factory.Menu
             _tabs.OnTabClickEvent += OnTabClick;
             _roster.OnUnitClickEvent += OnUnitClick;
         }
-
-        #endregion
 
         public override void Initialize()
         {

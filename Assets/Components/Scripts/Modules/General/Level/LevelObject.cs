@@ -1,11 +1,16 @@
 ﻿using System;
+using Newtonsoft.Json;
+
+// ReSharper disable InconsistentNaming
 
 namespace RoboFactory.General.Level
 {
     [Serializable]
     public class LevelObject
     {
-        public int level;
-        public int experience;
+        [JsonProperty("level")]
+        public int Level;
+        [JsonProperty("experience")]
+        public int Experience;
     }
 }

@@ -1467,11 +1467,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4758183550101416907}
     m_Modifications:
-    - target: {fileID: 1373399698669024097, guid: eb904a41c4b40024ca0261233aaa93ba,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5977401071244761863, guid: eb904a41c4b40024ca0261233aaa93ba,
         type: 3}
       propertyPath: m_Name
@@ -1642,7 +1637,7 @@ MonoBehaviour:
   buttonText: {fileID: 637941817288041395}
   title: {fileID: 637941817288041395}
   cost: {fileID: 0}
-  costCount: {fileID: 0}
+  costCount: {fileID: 637941817288041395}
 --- !u!224 &4171363163354899777 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6640608095327394210, guid: eb904a41c4b40024ca0261233aaa93ba,

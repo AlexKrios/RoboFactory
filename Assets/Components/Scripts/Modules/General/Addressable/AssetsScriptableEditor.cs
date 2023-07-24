@@ -1,38 +1,36 @@
 ﻿using System;
-using RoboFactory.General;
 using RoboFactory.General.Item.Products;
 using RoboFactory.General.Item.Raw;
 using RoboFactory.General.Unit;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.AddressableAssets;
 
 #if UNITY_EDITOR
-namespace RoboFactory.Utils
+namespace RoboFactory.General.Asset
 {
-    [CustomEditor(typeof(IconUtil))]
-    public class IconUtilEditor : Editor
+    [CustomEditor(typeof(AssetsScriptable))]
+    public class AssetsScriptableEditor : Editor
     {
-        private IconUtil _util;
+        private AssetsScriptable _util;
 
         private int _rawCount;
         private int _unitsCount;
         private int _productGroupCount;
-        private int _specificationGroupCount;
+        private int _specGroupCount;
 
         private bool _rawIconsFoldout;
         private bool _unitsIconsFoldout;
         private bool _productGroupIconsFoldout;
-        private bool _specificationGroupIconsFoldout;
+        private bool _specGroupIconsFoldout;
 
         private void Awake()
         {
-            _util = (IconUtil) target;
+            _util = (AssetsScriptable) target;
             
             _rawCount = Enum.GetValues(typeof(RawType)).Length;
             _unitsCount = Enum.GetValues(typeof(UnitType)).Length;
             _productGroupCount = Enum.GetValues(typeof(ProductGroup)).Length;
-            _specificationGroupCount = Enum.GetValues(typeof(SpecType)).Length;
+            _specGroupCount = Enum.GetValues(typeof(SpecType)).Length;
         }
 
         public override void OnInspectorGUI()
@@ -55,7 +53,7 @@ namespace RoboFactory.Utils
             {
                 for (var i = 1; i < _rawCount - rawIcons.Count - 1; i++)
                 {
-                    _util.RawIcons.Add(new KeyValuePair<RawType, AssetReference>());
+                    _util.RawIcons.Add(new RawIconObject());
                 }
             }
 
@@ -73,12 +71,12 @@ namespace RoboFactory.Utils
             {
                 EditorGUILayout.BeginVertical(EditorStyles.helpBox);
                 EditorGUI.BeginDisabledGroup(true);
-                rawIcons[i - 1].Key = (RawType) EditorGUILayout.EnumPopup("Type: ", (RawType) i);
+                rawIcons[i - 1].Type = (RawType) EditorGUILayout.EnumPopup("Type: ", (RawType) i);
                 EditorGUI.EndDisabledGroup();
                 EditorGUILayout.PropertyField(serializedObject
-                    .FindProperty("rawIcons")
+                    .FindProperty("_rawIcons")
                     .GetArrayElementAtIndex(i - 1)
-                    .FindPropertyRelative("value"), new GUIContent("Icon"));
+                    .FindPropertyRelative("IconRef"), new GUIContent("Icon"));
                 EditorGUILayout.EndVertical();
             }
             serializedObject.ApplyModifiedProperties();
@@ -91,7 +89,7 @@ namespace RoboFactory.Utils
             {
                 for (var i = 0; i < _unitsCount - unitTypeIcons.Count - 1; i++)
                 {
-                    _util.UnitIcons.Add(new KeyValuePair<UnitType, AssetReference>());
+                    _util.UnitIcons.Add(new UnitIconObject());
                 }
             }
 
@@ -108,12 +106,12 @@ namespace RoboFactory.Utils
             {
                 EditorGUILayout.BeginVertical(EditorStyles.helpBox);
                 EditorGUI.BeginDisabledGroup(true);
-                unitTypeIcons[i].Key = (UnitType) EditorGUILayout.EnumPopup("Type: ", (UnitType) i);
+                unitTypeIcons[i].Type = (UnitType) EditorGUILayout.EnumPopup("Type: ", (UnitType) i);
                 EditorGUI.EndDisabledGroup();
                 EditorGUILayout.PropertyField(serializedObject
-                    .FindProperty("unitIcons")
+                    .FindProperty("_unitIcons")
                     .GetArrayElementAtIndex(i)
-                    .FindPropertyRelative("value"), new GUIContent("Icon"));
+                    .FindPropertyRelative("IconRef"), new GUIContent("Icon"));
                 EditorGUILayout.EndVertical();
             }
         }
@@ -125,7 +123,7 @@ namespace RoboFactory.Utils
             {
                 for (var i = 0; i < _productGroupCount - productGroupIcons.Count - 1; i++)
                 {
-                    _util.ProductGroupIcons.Add(new KeyValuePair<ProductGroup, AssetReference>());
+                    _util.ProductGroupIcons.Add(new ProductGroupIconObject());
                 }
             }
 
@@ -142,12 +140,12 @@ namespace RoboFactory.Utils
             {
                 EditorGUILayout.BeginVertical(EditorStyles.helpBox);
                 EditorGUI.BeginDisabledGroup(true);
-                productGroupIcons[i].Key = (ProductGroup) EditorGUILayout.EnumPopup("Type: ", (ProductGroup) i);
+                productGroupIcons[i].Type = (ProductGroup) EditorGUILayout.EnumPopup("Type: ", (ProductGroup) i);
                 EditorGUI.EndDisabledGroup();
                 EditorGUILayout.PropertyField(serializedObject
-                    .FindProperty("productGroupIcons")
+                    .FindProperty("_productGroupIcons")
                     .GetArrayElementAtIndex(i)
-                    .FindPropertyRelative("value"), new GUIContent("Icon"));
+                    .FindPropertyRelative("IconRef"), new GUIContent("Icon"));
                 EditorGUILayout.EndVertical();
             }
         }
@@ -155,35 +153,35 @@ namespace RoboFactory.Utils
         private void CreateSpecificationIconsSection()
         {
             var specificationIcons = _util.SpecsIcons;
-            if (specificationIcons.Count < _specificationGroupCount)
+            if (specificationIcons.Count < _specGroupCount)
             {
-                for (var i = 0; i < _specificationGroupCount - specificationIcons.Count; i++)
+                for (var i = 0; i < _specGroupCount - specificationIcons.Count; i++)
                 {
-                    _util.SpecsIcons.Add(new KeyValuePair<SpecType, AssetReference>());
+                    _util.SpecsIcons.Add(new SpecIconObject());
                 }
             }
 
             EditorGUILayout.BeginHorizontal(EditorStyles.objectField);
             EditorGUI.indentLevel++;
-            _specificationGroupIconsFoldout = EditorGUILayout.Foldout(
-                _specificationGroupIconsFoldout, 
+            _specGroupIconsFoldout = EditorGUILayout.Foldout(
+                _specGroupIconsFoldout, 
                 $"Specification Icons: {_util.SpecsIcons.Count}");
             EditorGUI.indentLevel--;
             EditorGUILayout.EndHorizontal();
             
-            if (!_specificationGroupIconsFoldout)
+            if (!_specGroupIconsFoldout)
                 return;
             
-            for (var i = 0; i < _specificationGroupCount; i++)
+            for (var i = 0; i < _specGroupCount; i++)
             {
                 EditorGUILayout.BeginVertical(EditorStyles.helpBox);
                 EditorGUI.BeginDisabledGroup(true);
-                specificationIcons[i].Key = (SpecType) EditorGUILayout.EnumPopup("Type: ", (SpecType) i);
+                specificationIcons[i].Type = (SpecType) EditorGUILayout.EnumPopup("Type: ", (SpecType) i);
                 EditorGUI.EndDisabledGroup();
                 EditorGUILayout.PropertyField(serializedObject
-                    .FindProperty("specsIcons")
+                    .FindProperty("_specsIcons")
                     .GetArrayElementAtIndex(i)
-                    .FindPropertyRelative("value"), new GUIContent("Icon"));
+                    .FindPropertyRelative("IconRef"), new GUIContent("Icon"));
                 EditorGUILayout.EndVertical();
             }
         }

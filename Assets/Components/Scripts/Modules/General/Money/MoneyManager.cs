@@ -17,7 +17,7 @@ namespace RoboFactory.General.Money
 
         public void LoadData(MoneyObject obj)
         {
-            Money = obj.money;
+            Money = obj.Money;
             OnMoneySet?.Invoke();
         }
         
@@ -47,7 +47,7 @@ namespace RoboFactory.General.Money
 
         private async UniTask SendMoneyData(int newMoney)
         {
-            var moneyObject = new MoneyObject { money = newMoney };
+            var moneyObject = new MoneyObject { Money = newMoney };
             await apiService.SetUserMoney(moneyObject);
         }
     }

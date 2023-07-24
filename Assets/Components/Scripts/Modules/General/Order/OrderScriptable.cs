@@ -9,20 +9,20 @@ namespace RoboFactory.General.Order
     [CreateAssetMenu(fileName = "OrderData", menuName = "Scriptable/General/Order/Data", order = 91)]
     public class OrderScriptable : ScriptableObject
     {
-        [SerializeField] private List<OrderData> orders;
+        [SerializeField] private List<OrderData> _orders;
         
-        public List<OrderData> Orders => orders;
+        public List<OrderData> Orders => _orders;
     }
     
     [Serializable]
     public class OrderData
     {
-        [SerializeField] private string key;
-        [SerializeField] private ProductGroup group;
-        [SerializeField] private PartObject part;
+        [SerializeField] private string _key;
+        [SerializeField] private ProductGroup _group;
+        [SerializeField] private PartObject _part;
 
-        public string Key => key;
-        public ProductGroup Group => group;
-        public PartObject Part => part;
+        public string Key => _key;
+        public ProductGroup Group => _group;
+        public PartObject Part => _part;
     }
 }

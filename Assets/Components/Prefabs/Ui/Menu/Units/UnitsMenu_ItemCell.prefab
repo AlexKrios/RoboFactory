@@ -507,10 +507,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a8cac1307ec4521a66d0e89f1de4e0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  background: {fileID: 2040066260650272614}
-  icon: {fileID: 1521786011594851744}
-  activeImage: {fileID: 0}
-  locked: {fileID: 8765197689845603411}
+  _icon: {fileID: 1521786011594851744}
+  _active: {fileID: 0}
+  _locked: {fileID: 8765197689845603411}
   _equipmentType: 0
   _starImage: {fileID: 5992813269013290165}
 --- !u!114 &8735924568055825950

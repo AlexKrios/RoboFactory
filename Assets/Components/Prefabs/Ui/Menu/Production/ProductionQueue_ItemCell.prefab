@@ -28,6 +28,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1352598050226397736}
   m_RootOrder: 0
@@ -102,6 +103,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1352598050226397736}
   m_Father: {fileID: 0}
@@ -124,9 +126,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec9fb1fcde500934aab44122eeafcbc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  icon: {fileID: 6169120116267103256}
-  timer: {fileID: 5789926916379348644}
-  rectTransform: {fileID: 6169120114520657449}
+  _icon: {fileID: 6169120116267103256}
+  _timer: {fileID: 5789926916379348644}
 --- !u!1 &6169120116267103258
 GameObject:
   m_ObjectHideFlags: 0
@@ -155,6 +156,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1352598050226397736}
   m_RootOrder: 2
@@ -230,6 +232,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6085907559102721005}
   - {fileID: 7867995821773201707}
@@ -309,6 +312,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1352598050226397736}
   m_RootOrder: 3
@@ -443,6 +447,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1352598050226397736}
   m_RootOrder: 1

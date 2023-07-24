@@ -18,8 +18,8 @@ namespace RoboFactory.Battle
         [Inject] private readonly EndBattleFactory _endBattleFactory;
         [Inject(Id = "UiCanvas")] private readonly RectTransform _uiCanvas;
 
-        [SerializeField] private List<Transform> allyTeam;
-        [SerializeField] private List<Transform> enemyTeam;
+        [SerializeField] private List<Transform> _allyTeam;
+        [SerializeField] private List<Transform> _enemyTeam;
 
         private void Awake()
         {
@@ -31,13 +31,13 @@ namespace RoboFactory.Battle
                 GameObject unit;
                 if (unitData.Team == BattleUnitTeamType.Ally)
                 {
-                    unit = _container.InstantiatePrefab(unitData.Info.Model, allyTeam[unitData.Place - 1]);
+                    unit = _container.InstantiatePrefab(unitData.Info.Model, _allyTeam[unitData.Place - 1]);
                     unit.transform.rotation = Quaternion.Euler(0, 90, 0);
                     _container.InstantiateComponent<UnitAlly>(unit);
                 }
                 else
                 {
-                    unit = _container.InstantiatePrefab(unitData.Info.Model, enemyTeam[unitData.Place - 1]);
+                    unit = _container.InstantiatePrefab(unitData.Info.Model, _enemyTeam[unitData.Place - 1]);
                     unit.transform.rotation = Quaternion.Euler(0, -90, 0);
                     _container.InstantiateComponent<UnitEnemy>(unit);
                 }

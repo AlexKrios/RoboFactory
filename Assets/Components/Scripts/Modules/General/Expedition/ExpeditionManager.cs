@@ -41,7 +41,7 @@ namespace RoboFactory.General.Expedition
         
         public void LoadData(ExpeditionSectionDto data)
         {
-            CellCount = data.count;
+            CellCount = data.Count;
             
             if (data.Expeditions == null)
                 return;

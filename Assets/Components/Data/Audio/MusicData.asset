@@ -12,16 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12d7401ff55446a6b6f42a8b659fdf2f, type: 3}
   m_Name: MusicData
   m_EditorClassIdentifier: 
-  music:
-  - clipRef:
-      m_AssetGUID: fff91a21e9de4b44da699a052358eeb9
-      m_SubObjectName: 
-      m_SubObjectType: 
-      m_EditorAssetChanged: 0
-    type: 0
-  - clipRef:
+  _music:
+  - _clipRef:
       m_AssetGUID: d64ae2f9a52f0dc4ca6ab45961981032
       m_SubObjectName: 
       m_SubObjectType: 
       m_EditorAssetChanged: 0
-    type: 0
+    _type: 0
+  - _clipRef:
+      m_AssetGUID: fff91a21e9de4b44da699a052358eeb9
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    _type: 0

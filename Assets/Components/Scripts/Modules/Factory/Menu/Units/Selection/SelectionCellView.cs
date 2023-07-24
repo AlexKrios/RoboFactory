@@ -8,23 +8,21 @@ using UnityEngine.UI;
 namespace RoboFactory.Factory.Menu.Units
 {
     [RequireComponent(typeof(Image))]
-    [AddComponentMenu("Scripts/Factory/Menu/Units/Selection/Selection Cell View")]
+    [RequireComponent(typeof(CanvasGroup))]
     public class SelectionCellView : CellBase
     {
-        #region Components
-
-        [Space]
-        [SerializeField] private CanvasGroup canvasGroup;
-
-        #endregion
-        
-        #region Variables
-
         public Action<SelectionCellView> OnEquipmentClick { get; set; }
 
         public ProductObject Data { get; private set; }
 
-        #endregion
+        private CanvasGroup _canvasGroup;
+
+        protected override void Awake()
+        {
+            base.Awake();
+
+            _canvasGroup = GetComponent<CanvasGroup>();
+        }
 
         protected override void Click()
         {
@@ -46,11 +44,11 @@ namespace RoboFactory.Factory.Menu.Units
             if (Data.ProductType != 0)
             {
                 var isEmpty = Data.IsEmpty();
-                canvasGroup.alpha = isEmpty ? 0.25f : 1f;
+                _canvasGroup.alpha = isEmpty ? 0.25f : 1f;
             }
             else
             {
-                canvasGroup.alpha = 1f;
+                _canvasGroup.alpha = 1f;
             }
         }
     }

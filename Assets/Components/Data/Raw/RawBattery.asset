@@ -12,15 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ae4749186b454c40aff59c9428c9e43, type: 3}
   m_Name: RawBattery
   m_EditorClassIdentifier: 
-  itemType: 0
-  key: raw_battery
-  iconRef:
+  _itemType: 0
+  _key: raw_battery
+  _iconRef:
     m_AssetGUID: 3e54da3b0b863c140845430cb89f6aec
     m_SubObjectName: RawBattery
     m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
     m_EditorAssetChanged: 0
-  rawName: Raw Battery
-  rawType: 4
-  isMain: 1
-  recipes: []
+  _rawName: Raw Battery
+  _rawType: 4
+  _recipe:
+    _star: 0
+    _parts: []
+    _cost: 0
+    _experience: 0
+    _craftTime: 0
+    _specs: []

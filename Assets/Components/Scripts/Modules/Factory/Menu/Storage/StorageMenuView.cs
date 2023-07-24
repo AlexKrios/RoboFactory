@@ -4,30 +4,19 @@ using UnityEngine;
 
 namespace RoboFactory.Factory.Menu.Storage
 {
-    [AddComponentMenu("Scripts/Factory/Menu/Storage/Storage Menu")]
     public class StorageMenuView : MenuBase
     {
-        #region Components
-        
         [Space]
         [SerializeField] private HeaderView _header;
         [SerializeField] private TabsSectionView _tabs;
         [SerializeField] private ItemsSectionView _items;
         [SerializeField] private SidebarView _sidebar;
-        
-        #endregion
-
-        #region Variables
 
         public ProductGroup ActiveProductGroup { get; set; }
         public ProductObject ActiveItem { get; set; }
         
         public bool IsItemEmpty => _items.Items.Count == 0;
         public bool IsDefault { get; set; }
-
-        #endregion
-
-        #region Unity Methods
 
         protected override void Awake()
         {
@@ -46,8 +35,6 @@ namespace RoboFactory.Factory.Menu.Storage
             _tabs.OnTabClickEvent -= OnTabClick;
             _items.OnTabClickEvent -= OnItemClick;
         }
-
-        #endregion
 
         public override void Initialize()
         {

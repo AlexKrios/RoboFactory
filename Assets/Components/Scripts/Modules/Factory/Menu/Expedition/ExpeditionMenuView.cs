@@ -1,4 +1,4 @@
-﻿using RoboFactory.General.Localisation;
+﻿using RoboFactory.General.Localization;
 using RoboFactory.General.Location;
 using RoboFactory.General.Ui.Common;
 using TMPro;
@@ -7,17 +7,10 @@ using Zenject;
 
 namespace RoboFactory.Factory.Menu.Expedition
 {
-    [AddComponentMenu("Scripts/Factory/Menu/Expedition/Expedition Menu")]
     public class ExpeditionMenuView : MenuBase
     {
-        #region Zenject
+        [Inject] private readonly LocalizationService _localizationService;
 
-        [Inject] private readonly LocalizationService localizationController;
-
-        #endregion
-
-        #region Components
-        
         [SerializeField] private TMP_Text _title;
         [SerializeField] private StarButtonView _star;
         
@@ -29,17 +22,9 @@ namespace RoboFactory.Factory.Menu.Expedition
         
         public UnitsSectionView Units => _units;
 
-        #endregion
-
-        #region Variables
-
         public LocationObject ActiveLocation { get; set; }
         public int ActiveStar { get; set; }
-
-        #endregion
         
-        #region Unity Methods
-
         protected override void Awake()
         {
             base.Awake();
@@ -60,10 +45,6 @@ namespace RoboFactory.Factory.Menu.Expedition
             _start.EventClick -= Close;
         }
 
-        #endregion
-
-        #region Click Handlers
-
         private void OnUnitClick()
         {
             _sidebar.SetData();
@@ -82,8 +63,6 @@ namespace RoboFactory.Factory.Menu.Expedition
             _star.ResetStar();
         }
 
-        #endregion
-
         public override void Initialize()
         {
             base.Initialize();
@@ -96,7 +75,7 @@ namespace RoboFactory.Factory.Menu.Expedition
             _sidebar.Initialize();
             _start.Initialize();
             
-            _title.text = localizationController.GetLanguageValue(LocalizationKeys.UnitsMenuTitleKey);
+            _title.text = _localizationService.GetLanguageValue(LocalizationKeys.UnitsMenuTitleKey);
         }
     }
 }

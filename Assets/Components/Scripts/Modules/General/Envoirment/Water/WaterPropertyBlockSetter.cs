@@ -1,3 +1,4 @@
+// ReSharper disable InconsistentNaming
 namespace Assets.Scripts.Water
 {
     using UnityEngine;

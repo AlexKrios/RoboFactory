@@ -165,7 +165,7 @@ GameObject:
   - component: {fileID: 5033275164128004514}
   - component: {fileID: 1721109374323675665}
   m_Layer: 6
-  m_Name: RightLevel
+  m_Name: NextLevel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -474,7 +474,7 @@ GameObject:
   - component: {fileID: 3803302455572629777}
   - component: {fileID: 7775539011280111598}
   m_Layer: 6
-  m_Name: LeftLevel
+  m_Name: CurrentLevel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -961,11 +961,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   close: {fileID: 1050140044957386784}
-  titleText: {fileID: 2980804403553695998}
-  currentLevel: {fileID: 7775539011280111598}
-  nextLevel: {fileID: 1721109374323675665}
-  acceptButton: {fileID: 3316847358324619569}
-  acceptText: {fileID: 977873395646621750}
+  _titleText: {fileID: 2980804403553695998}
+  _currentLevel: {fileID: 7775539011280111598}
+  _nextLevel: {fileID: 1721109374323675665}
+  _acceptButton: {fileID: 3316847358324619569}
+  _acceptText: {fileID: 977873395646621750}
 --- !u!225 &4758183550124237273
 CanvasGroup:
   m_ObjectHideFlags: 0

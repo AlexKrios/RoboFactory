@@ -6,7 +6,6 @@ using Zenject;
 
 namespace RoboFactory.Factory
 {
-    [AddComponentMenu("Scripts/Factory/Factory Initialization", 0)]
     public class FactoryInitialization : MonoBehaviour
     {
         #region Zenject
@@ -20,17 +19,17 @@ namespace RoboFactory.Factory
         #region Components
 
         [Header("Canvas")]
-        [SerializeField] private GameObject adminCanvas;
-        [SerializeField] private GameObject hudCanvas;
-        [SerializeField] private GameObject uiCanvas;
+        [SerializeField] private GameObject _adminCanvas;
+        [SerializeField] private GameObject _hudCanvas;
+        [SerializeField] private GameObject _uiCanvas;
 
         #endregion
         
         private void Awake()
         {
-            _uiController.AddCanvas(CanvasType.Admin, adminCanvas);
-            _uiController.AddCanvas(CanvasType.HUD, hudCanvas);
-            _uiController.AddCanvas(CanvasType.Ui, uiCanvas);
+            _uiController.AddCanvas(CanvasType.Admin, _adminCanvas);
+            _uiController.AddCanvas(CanvasType.HUD, _hudCanvas);
+            _uiController.AddCanvas(CanvasType.Ui, _uiCanvas);
         }
 
         private void Start()

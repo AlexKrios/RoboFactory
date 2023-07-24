@@ -1,5 +1,5 @@
 ﻿using RoboFactory.General.Item.Raw;
-using RoboFactory.General.Localisation;
+using RoboFactory.General.Localization;
 using RoboFactory.General.Ui.Common;
 using TMPro;
 using UnityEngine;

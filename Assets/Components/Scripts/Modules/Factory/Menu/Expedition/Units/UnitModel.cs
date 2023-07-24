@@ -7,29 +7,18 @@ using Zenject;
 
 namespace RoboFactory.Factory.Menu.Expedition
 {
-    [AddComponentMenu("Scripts/Factory/Menu/Expedition/Unit Model")]
     public class UnitModel : MonoBehaviour
     {
-        #region Zenject
-
         [Inject] private readonly IUiController _uiController;
-
-        #endregion
-        
-        #region Variables
-
-        private ExpeditionMenuView _menu;
-        
-        private UnitObject _data;
         
         private Transform _unitTransform;
-
-        #endregion
-
-        #region Unity Methods
+        
+        private ExpeditionMenuView _menu;
+        private UnitObject _data;
 
         private async void Awake()
         {
+            //TODO !!!
             await UniTask.WaitUntil(() => _uiController != null);
             _menu = _uiController.FindUi<ExpeditionMenuView>();
 
@@ -39,8 +28,6 @@ namespace RoboFactory.Factory.Menu.Expedition
             _unitTransform.localRotation = Quaternion.Euler(0, 135, 0);
             _unitTransform.localScale = new Vector3(175, 175, 200);
         }
-
-        #endregion
 
         public void SetData(UnitObject data)
         {

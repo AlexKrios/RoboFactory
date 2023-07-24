@@ -16,8 +16,8 @@ namespace RoboFactory.Battle.Ui
 
         #region Variables
         
-        [SerializeField] private List<UnitCellView> allyCells;
-        [SerializeField] private List<UnitCellView> enemyCells;
+        [SerializeField] private List<UnitCellView> _allyCells;
+        [SerializeField] private List<UnitCellView> _enemyCells;
 
         #endregion
 
@@ -37,9 +37,9 @@ namespace RoboFactory.Battle.Ui
             {
                 UnitCellView cell;
                 if (unit.Data.Team == BattleUnitTeamType.Ally)
-                    cell = allyCells[unit.Data.Place - 1];
+                    cell = _allyCells[unit.Data.Place - 1];
                 else
-                    cell = enemyCells[unit.Data.Place - 1];
+                    cell = _enemyCells[unit.Data.Place - 1];
                 
                 cell.SetCellData(unit.Data);
             }

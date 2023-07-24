@@ -7,31 +7,15 @@ using Zenject;
 
 namespace RoboFactory.Factory.Menu.Production
 {
-    [AddComponentMenu("Scripts/Factory/Menu/Production/Production Section")]
     public class ProductionSection : MonoBehaviour
     {
-        #region Zenject
-
         [Inject] private readonly DiContainer _container;
         [Inject] private readonly ProductionManager _productionManager;
 
-        #endregion
+        [SerializeField] private ProductionCell _cellPrototype;
 
-        #region Components
-        
-        [SerializeField] private ProductionCell cellPrototype;
-
-        #endregion
-
-        #region Variables
-
-        private List<ProductionCell> _cells;
-        
         private CanvasGroup _canvasGroup;
-
-        #endregion
-
-        #region Unity Methods
+        private List<ProductionCell> _cells;
 
         private void Awake()
         {
@@ -68,8 +52,6 @@ namespace RoboFactory.Factory.Menu.Production
             _productionManager.OnProductionComplete -= InitCells;
         }
 
-        #endregion
-
         private void InitCells()
         {
             if (_cells.Count != 0)
@@ -88,7 +70,7 @@ namespace RoboFactory.Factory.Menu.Production
 
         private ProductionCell CreateCell()
         {
-            var cell = _container.InstantiatePrefabForComponent<ProductionCell>(cellPrototype, transform);
+            var cell = _container.InstantiatePrefabForComponent<ProductionCell>(_cellPrototype, transform);
             _cells.Add(cell);
             
             return cell;

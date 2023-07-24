@@ -5,6 +5,8 @@ using JetBrains.Annotations;
 using UnityEngine;
 using Zenject;
 
+// ReSharper disable InconsistentNaming
+
 namespace RoboFactory.General.Ui.Popup
 {
     [UsedImplicitly]
@@ -16,21 +18,28 @@ namespace RoboFactory.General.Ui.Popup
 
         public void CreateSmallNotification(UiType type, Transform parent)
         {
-            var popupData = _settings.popups.First(x => x.Key == type);
             var popupExists = _uiController.FindUi<SmallNotificationView>();
             if (popupExists != null)
                 return;
 
-            var popup = _container.InstantiatePrefabForComponent<SmallNotificationView>(popupData.Value, parent);
-            popup.name = popupData.Key.ToString();
-
+            var popupData = _settings.Popups.First(x => x.Type == type);
+            _container.InstantiatePrefabForComponent<SmallNotificationView>(popupData.Prefab, parent);
             _uiController.AddUi(this);
         }
 
         [Serializable]
         public class Settings
         {
-            public List<KeyValuePair<UiType, GameObject>> popups;
+            [SerializeField] private List<PopupTypeObject> _popups;
+            
+            public List<PopupTypeObject> Popups => _popups;
         }
+    }
+    
+    [Serializable]
+    public class PopupTypeObject
+    {
+        public UiType Type;
+        public GameObject Prefab;
     }
 }

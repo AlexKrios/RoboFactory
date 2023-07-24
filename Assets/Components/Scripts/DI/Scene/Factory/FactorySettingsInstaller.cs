@@ -13,23 +13,23 @@ namespace RoboFactory.DI
     [CreateAssetMenu(menuName = "Scriptable/Factory/Settings", order = 1)]
     public class FactorySettingsInstaller : ScriptableObjectInstaller<FactorySettingsInstaller>
     {
-        public SettingsMenuFactory.Settings settingsMenu;
-        public ProductionMenuFactory.Settings productionMenu;
-        public StorageMenuFactory.Settings storageMenu;
-        public ConversionMenuFactory.Settings conversionMenu;
-        public OrderMenuFactory.Settings orderMenu;
-        public UnitsMenuFactory.Settings unitsMenu;
-        public ExpeditionMenuFactory.Settings expeditionMenu;
+        [SerializeField] private SettingsMenuFactory.Settings _settingsMenu;
+        [SerializeField] private ProductionMenuFactory.Settings _productionMenu;
+        [SerializeField] private StorageMenuFactory.Settings _storageMenu;
+        [SerializeField] private ConversionMenuFactory.Settings _conversionMenu;
+        [SerializeField] private OrderMenuFactory.Settings _orderMenu;
+        [SerializeField] private UnitsMenuFactory.Settings _unitsMenu;
+        [SerializeField] private ExpeditionMenuFactory.Settings _expeditionMenu;
 
         public override void InstallBindings()
         {
-            Container.BindInstance(settingsMenu);
-            Container.BindInstance(productionMenu);
-            Container.BindInstance(storageMenu);
-            Container.BindInstance(conversionMenu);
-            Container.BindInstance(orderMenu);
-            Container.BindInstance(unitsMenu);
-            Container.BindInstance(expeditionMenu);
+            Container.BindInstance(_settingsMenu);
+            Container.BindInstance(_productionMenu);
+            Container.BindInstance(_storageMenu);
+            Container.BindInstance(_conversionMenu);
+            Container.BindInstance(_orderMenu);
+            Container.BindInstance(_unitsMenu);
+            Container.BindInstance(_expeditionMenu);
         }
     }
 }

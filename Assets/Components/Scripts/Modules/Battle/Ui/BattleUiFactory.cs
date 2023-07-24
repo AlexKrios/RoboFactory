@@ -1,9 +1,11 @@
 ﻿using System;
+using JetBrains.Annotations;
 using UnityEngine;
 using Zenject;
 
 namespace RoboFactory.Battle.Ui
 {
+    [UsedImplicitly]
     public class BattleUiFactory
     {
         #region Zenject
@@ -15,23 +17,24 @@ namespace RoboFactory.Battle.Ui
 
         public QueueCellView CreateQueueCell(Transform parent)
         {
-            return _container.InstantiatePrefabForComponent<QueueCellView>(_settings.queueCellPrefab, parent);
+            return _container.InstantiatePrefabForComponent<QueueCellView>(_settings.QueueCellPrefab, parent);
         }
         
         public UnitCellView CreateUnitCell(Transform parent)
         {
-            return _container.InstantiatePrefabForComponent<UnitCellView>(_settings.unitCellPrefab, parent);
+            return _container.InstantiatePrefabForComponent<UnitCellView>(_settings.UnitCellPrefab, parent);
         }
 
         [Serializable]
         public class Settings
         {
-            public string queueCellName;
-            public GameObject queueCellPrefab;
+            public GameObject _queueCellPrefab;
             
             [Space]
-            public string unitCellName;
-            public GameObject unitCellPrefab;
+            public GameObject _unitCellPrefab;
+            
+            public GameObject QueueCellPrefab => _queueCellPrefab;
+            public GameObject UnitCellPrefab => _unitCellPrefab;
         }
     }
 }

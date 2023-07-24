@@ -32,7 +32,7 @@ namespace RoboFactory.General.Location
             
             foreach (var location in data.Locations)
             {
-                _locationDictionary[location.Key].Level = location.Value.level;
+                _locationDictionary[location.Key].Level = location.Value.Level;
             }
         }
         

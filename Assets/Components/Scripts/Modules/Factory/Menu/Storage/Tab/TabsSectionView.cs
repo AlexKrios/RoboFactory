@@ -8,23 +8,12 @@ using Zenject;
 
 namespace RoboFactory.Factory.Menu.Storage
 {
-    [AddComponentMenu("Scripts/Factory/Menu/Storage/Tabs Section View")]
     public class TabsSectionView : MonoBehaviour
     {
-        #region Zenject
-        
         [Inject] private readonly IUiController _uiController;
 
-        #endregion
-
-        #region Components
+        [SerializeField] private List<TabCellView> _tabs;
         
-        [SerializeField] private List<TabCellView> tabs;
-
-        #endregion
-        
-        #region Variables
-
         public Action OnTabClickEvent { get; set; }
 
         private StorageMenuView _menu;
@@ -42,8 +31,6 @@ namespace RoboFactory.Factory.Menu.Storage
             }
         }
 
-        #endregion
-
         public void Initialize()
         {
             _menu = _uiController.FindUi<StorageMenuView>();
@@ -56,11 +43,11 @@ namespace RoboFactory.Factory.Menu.Storage
             var productGroupCount = Enum.GetValues(typeof(ProductGroup)).Length - 1;
             for (var i = 0; i < productGroupCount; i++)
             {
-                tabs[i].SetTabData((ProductGroup) i);
-                tabs[i].OnClickEvent += OnTabClick;
+                _tabs[i].SetTabData((ProductGroup) i);
+                _tabs[i].OnClickEvent += OnTabClick;
             }
 
-            ActiveTab = tabs.First();
+            ActiveTab = _tabs.First();
         }
         
         private void OnTabClick(TabCellView tab, ProductGroup @group)

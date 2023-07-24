@@ -9,10 +9,10 @@ using JetBrains.Annotations;
 using RoboFactory.General.Services;
 using UnityEngine;
 
-namespace RoboFactory.Authentication
+namespace RoboFactory.Auth
 {
     [UsedImplicitly]
-    public class AuthenticationService : Service
+    public class AuthService : Service
     {
         //private const string FirebaseProvider = "firebase";
         private const string PasswordProvider = "password";
@@ -24,6 +24,8 @@ namespace RoboFactory.Authentication
             + @"([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\.([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])){1}|"
             + @"([a-zA-Z]+[\w-]+\.)+[a-zA-Z]{2,4})$";
         public const float MinPasswordLength = 6;
+
+        //[Inject] private readonly CommonProfile _commonProfile;
 
         public Action EventSignInSuccess { get; set; }
         public Action EventSignInFailure { get; set; }
@@ -37,7 +39,7 @@ namespace RoboFactory.Authentication
 
         private static FirebaseAuth Auth => FirebaseAuth.DefaultInstance;
 
-        public AuthenticationService()
+        public AuthService()
         {
             _errorsList = new Dictionary<AuthError, string>
             {
@@ -60,16 +62,16 @@ namespace RoboFactory.Authentication
             return UniTask.CompletedTask;
         }
 
-        protected override UniTask LoadAsync()
+        protected override async UniTask LoadAsync()
         {
 #if UNITY_EDITOR
-            SignIn(Constants.TestEmail, Constants.TestPassword);
+            await SignIn(Constants.TestEmail, Constants.TestPassword);
 #endif
             
             if (_user == null)
             {
                 EventSignInFailure?.Invoke();
-                return UniTask.CompletedTask;
+                return;
             }
 
             if (IsProviderUsed(PasswordProvider))
@@ -83,8 +85,6 @@ namespace RoboFactory.Authentication
             {
                 InitializeGooglePlay();
             }
-            
-            return UniTask.CompletedTask;
         }
         
         private void FirebaseAuthStateChanged(object sender, EventArgs eventArgs) 
@@ -103,7 +103,7 @@ namespace RoboFactory.Authentication
             return false;
         }
 
-        public async void SignIn(string email, string password)
+        public async UniTask SignIn(string email, string password)
         {
             var task = Auth.SignInWithEmailAndPasswordAsync(email, password);
             await UniTask.WaitUntil(() => task.IsCompleted);
@@ -127,11 +127,11 @@ namespace RoboFactory.Authentication
             Debug.Log("User sign in successfully");
         }
         
-        private async UniTask SignInFailure()
+        /*private async UniTask SignInFailure()
         {
             //_signInForm.gameObject.SetActive(true);
             await UniTask.WaitUntil(() => _user != null);
-        }
+        }*/
         
         public async void SignUp(string email, string password)
         {

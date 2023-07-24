@@ -2,7 +2,7 @@
 using System.Linq;
 using RoboFactory.General.Asset;
 using RoboFactory.General.Item.Products;
-using RoboFactory.General.Localisation;
+using RoboFactory.General.Localization;
 using RoboFactory.General.Ui.Common;
 using RoboFactory.General.Unit;
 using TMPro;
@@ -12,20 +12,13 @@ using Zenject;
 
 namespace RoboFactory.Factory.Menu.Expedition
 {
-    [AddComponentMenu("Scripts/Factory/Menu/Expedition/Selection/Selection Popup View")]
     public class SelectionPopupView : PopupBase
     {
-        #region Zenject
-        
-        [Inject] private readonly AddressableService addressableService;
-        [Inject] private readonly LocalizationService localizationController;
+        [Inject] private readonly AddressableService _addressableService;
+        [Inject] private readonly LocalizationService _localizationService;
         [Inject] private readonly ProductsManager _productsManager;
         [Inject] private readonly UnitsManager _unitsManager;
         [Inject] private readonly ExpeditionMenuFactory _expeditionMenuFactory;
-
-        #endregion
-
-        #region Components
 
         [Space]
         [SerializeField] private TMP_Text _title;
@@ -41,10 +34,6 @@ namespace RoboFactory.Factory.Menu.Expedition
         
         [Space]
         [SerializeField] private SelectButtonView _select;
-
-        #endregion
-        
-        #region Varaibles
         
         private ExpeditionMenuView _menu;
         private SelectionCellView _activeUnit;
@@ -61,10 +50,6 @@ namespace RoboFactory.Factory.Menu.Expedition
             }
         }
 
-        #endregion
-
-        #region Unity Methods
-        
         protected override void Awake()
         {
             base.Awake();
@@ -77,11 +62,9 @@ namespace RoboFactory.Factory.Menu.Expedition
             SetSidebarData();
         }
 
-        #endregion
-
         private void SetTitleData()
         {
-            _title.text = localizationController.GetLanguageValue(ActiveUnit.Data.Key);
+            _title.text = _localizationService.GetLanguageValue(ActiveUnit.Data.Key);
         }
 
         private void SetSelectionData()
@@ -130,8 +113,8 @@ namespace RoboFactory.Factory.Menu.Expedition
         private async void SetSidebarData()
         {
             var unit = _unitsManager.GetUnit(ActiveUnit.Data.Key);
-            _sidebarTitle.text = localizationController.GetLanguageValue(unit.Key);
-            _sidebarIcon.sprite = await addressableService.LoadAssetAsync<Sprite>(unit.IconRef);
+            _sidebarTitle.text = _localizationService.GetLanguageValue(unit.Key);
+            _sidebarIcon.sprite = await _addressableService.LoadAssetAsync<Sprite>(unit.IconRef);
             for (var i = 0; i < unit.Outfit.Count; i++)
             {
                 var spec = unit.Specs[(SpecType) i];
@@ -139,11 +122,11 @@ namespace RoboFactory.Factory.Menu.Expedition
                 foreach (var outfit in unit.Outfit)
                 {
                     var item = _productsManager.GetProduct(outfit.Value).Recipe;
-                    spec += item.Specs[i].value;
+                    spec += item.Specs[i].Value;
                 }
 
-                specObject.type = (SpecType) i;
-                specObject.value = spec;
+                specObject.Type = (SpecType) i;
+                specObject.Value = spec;
                 
                 _specs[i].SetData(specObject);
             }

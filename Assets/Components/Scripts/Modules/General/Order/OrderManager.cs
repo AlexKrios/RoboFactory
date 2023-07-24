@@ -6,6 +6,7 @@ using JetBrains.Annotations;
 using RoboFactory.General.Api;
 using RoboFactory.General.Item.Products;
 using RoboFactory.General.Money;
+using RoboFactory.General.Scriptable;
 using RoboFactory.Utils;
 using UnityEngine;
 using Zenject;
@@ -51,8 +52,8 @@ namespace RoboFactory.General.Order
 
         public void LoadData(OrdersLoadObject data)
         {
-            Count = data.count;
-            RefreshTime = data.timeRefresh;
+            Count = data.Count;
+            RefreshTime = data.TimeRefresh;
             
             if (data.Orders == null)
                 return;
@@ -108,20 +109,20 @@ namespace RoboFactory.General.Order
         public bool IsEnoughParts(OrderObject orderObject)
         {
             var part = orderObject.Part;
-            var itemCount = _productsManager.GetProduct(part.data.Key).Count;
-            return part.count <= itemCount;
+            var itemCount = _productsManager.GetProduct(part.Data.Key).Count;
+            return part.Count <= itemCount;
         }
         
         public void RemoveItems(OrderObject orderObject)
         {
-            var item = _productsManager.GetProduct(orderObject.Part.data.Key);
-            item.DecrementCount(orderObject.Part.count);
+            var item = _productsManager.GetProduct(orderObject.Part.Data.Key);
+            item.DecrementCount(orderObject.Part.Count);
         }
         
         public void CollectMoney(OrderObject orderObject)
         {
-            var item = _productsManager.GetProduct(orderObject.Part.data.Key);
-            _moneyManager.PlusMoney(item.Recipe.Cost * orderObject.Part.count);
+            var item = _productsManager.GetProduct(orderObject.Part.Data.Key);
+            _moneyManager.PlusMoney(item.Recipe.Cost * orderObject.Part.Count);
         }
 
         /*private async void IncreaseOrderCount()
@@ -134,6 +135,11 @@ namespace RoboFactory.General.Order
         {
             Level++;
             await apiService.SetUserOrdersLevel(Count);
+        }
+
+        public UpgradeDataObject GetUpgradeQualityData()
+        {
+            return null;
         }
         
         [Serializable]

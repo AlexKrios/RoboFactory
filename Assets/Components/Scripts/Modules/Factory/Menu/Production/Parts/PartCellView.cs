@@ -9,29 +9,16 @@ using Zenject;
 namespace RoboFactory.Factory.Menu.Production
 {
     [RequireComponent(typeof(Image))]
-    [AddComponentMenu("Scripts/Factory/Menu/Production/Part Cell View")]
     public class PartCellView : MonoBehaviour
     {
-        #region Zenject
+        [Inject] private readonly AddressableService _addressableService;
+        [Inject] private readonly ManagersResolver _managersResolver;
 
-        [Inject] private readonly AddressableService addressableService;
-        [Inject] private readonly ManagersResolver managersResolver;
-
-        #endregion
-
-        #region Components
-        
         [SerializeField] private Image _icon;
         [SerializeField] private TMP_Text _star;
         [SerializeField] private TMP_Text _count;
-
-        #endregion
-        
-        #region Variables
         
         private PartObject _part;
-        
-        #endregion
 
         private void Awake()
         {
@@ -45,14 +32,14 @@ namespace RoboFactory.Factory.Menu.Production
             if (index < recipe.Parts.Count)
             {
                 _part = recipe.Parts[index];
-                var data = _part.data;
-                var store = managersResolver.GetManagerByType(data.ItemType);
+                var data = _part.Data;
+                var store = _managersResolver.GetManagerByType(data.ItemType);
                 var itemCount = store.GetItem(data.Key).Count;
                 
                 gameObject.SetActive(true);
                 SetPartIcon();
-                SetPartText($"{itemCount}/{_part.count}");
-                SetPartStar(_part.star);
+                SetPartText($"{itemCount}/{_part.Count}");
+                SetPartStar(_part.Star);
             }
             else
                 gameObject.SetActive(false);
@@ -61,7 +48,7 @@ namespace RoboFactory.Factory.Menu.Production
         private async void SetPartIcon()
         {
             _icon.color = new Color(1, 1, 1, 0);
-            _icon.sprite = await addressableService.LoadAssetAsync<Sprite>(_part.data.IconRef);
+            _icon.sprite = await _addressableService.LoadAssetAsync<Sprite>(_part.Data.IconRef);
             _icon.DORestart();
             _icon.DOFade(1f, 0.1f);
         }

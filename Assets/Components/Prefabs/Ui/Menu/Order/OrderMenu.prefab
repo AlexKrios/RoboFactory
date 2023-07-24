@@ -771,7 +771,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32898a38756945b6be7ea1bf70937ca5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  close: {fileID: 5811213696876113187}
+  _close: {fileID: 5811213696876113187}
   _upgrade: {fileID: 2410157281470385297}
   _title: {fileID: 1881293914136722415}
   _timer: {fileID: 4051680505075994593}

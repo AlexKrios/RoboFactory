@@ -1,4 +1,5 @@
-﻿using RoboFactory.General.Localisation;
+﻿using JetBrains.Annotations;
+using RoboFactory.General.Localization;
 using RoboFactory.General.Ui;
 using Zenject;
 
@@ -6,19 +7,11 @@ namespace RoboFactory.Factory.Menu.Expedition
 {
     public class ExpeditionCellFinish : IExpeditionCellState
     {
-        #region Zenject
-        
-        [Inject] private readonly LocalizationService localizationController;
+        [Inject] private readonly LocalizationService _localizationService;
         [Inject] private readonly IUiController _uiController;
         [Inject] private readonly ExpeditionMenuFactory _expeditionMenuFactory;
-
-        #endregion
         
-        #region Variables
-
         private readonly ExpeditionCell _cell;
-
-        #endregion
 
         public ExpeditionCellFinish(ExpeditionCell cell)
         {
@@ -27,7 +20,7 @@ namespace RoboFactory.Factory.Menu.Expedition
 
         public void Enter()
         {
-            var text = localizationController.GetLanguageValue(LocalizationKeys.ProductionCompleteKey);
+            var text = _localizationService.GetLanguageValue(LocalizationKeys.ProductionCompleteKey);
             _cell.SetCellTimer(text);
         }
 
@@ -41,6 +34,7 @@ namespace RoboFactory.Factory.Menu.Expedition
 
         public void Exit() { }
 
+        [UsedImplicitly]
         public class Factory : PlaceholderFactory<ExpeditionCell, ExpeditionCellFinish> { }
     }
 }

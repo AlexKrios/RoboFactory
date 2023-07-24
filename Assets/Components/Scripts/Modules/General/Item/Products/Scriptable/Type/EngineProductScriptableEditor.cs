@@ -57,7 +57,7 @@ namespace RoboFactory.General.Item.Products
             _productData.Key = EditorGUILayout.TextField("Key:", _productData.Key);
             _productData.Star = EditorGUILayout.IntField("Star:", _productData.Star);
             EditorGUILayout.PropertyField(serializedObject
-                .FindProperty("iconRef"), new GUIContent("Icon"));
+                .FindProperty("_iconRef"), new GUIContent("Icon"));
             
             _productData.Model = (GameObject)EditorGUILayout.ObjectField(
                     "Model:", _productData.Model, typeof(GameObject), false);
@@ -117,15 +117,15 @@ namespace RoboFactory.General.Item.Products
                 EditorGUILayout.BeginVertical("Box");
                 GUILayout.Space(5);
                 EditorGUILayout.BeginHorizontal();
-                parts[i].data = (ItemScriptable) EditorGUILayout.ObjectField("Data:", parts[i].data, typeof(ItemScriptable), true);
+                parts[i].Data = (ItemScriptable) EditorGUILayout.ObjectField("Data:", parts[i].Data, typeof(ItemScriptable), true);
                 EditorGUILayout.EndHorizontal();
                 
                 EditorGUILayout.BeginHorizontal();
-                parts[i].count = EditorGUILayout.IntField("Count:", parts[i].count);
+                parts[i].Count = EditorGUILayout.IntField("Count:", parts[i].Count);
                 EditorGUILayout.EndHorizontal();
                 
                 EditorGUILayout.BeginHorizontal();
-                parts[i].star = EditorGUILayout.IntField("Star:", parts[i].star);
+                parts[i].Star = EditorGUILayout.IntField("Star:", parts[i].Star);
                 EditorGUILayout.EndHorizontal();
                 GUILayout.Space(5);
                 EditorGUILayout.EndVertical();
@@ -169,7 +169,7 @@ namespace RoboFactory.General.Item.Products
             {
                 for (var i = specs.Count; i < specTypeCount; i++)
                 {
-                    specs.Add(new SpecObject { type = (SpecType) i });
+                    specs.Add(new SpecObject { Type = (SpecType) i });
                 }
             }
 
@@ -178,12 +178,12 @@ namespace RoboFactory.General.Item.Products
                 EditorGUILayout.BeginVertical(EditorStyles.helpBox);
                 EditorGUILayout.BeginHorizontal();
                 EditorGUI.BeginDisabledGroup(true);
-                spec.type = (SpecType) EditorGUILayout.EnumPopup("Type:", spec.type);
+                spec.Type = (SpecType) EditorGUILayout.EnumPopup("Type:", spec.Type);
                 EditorGUI.EndDisabledGroup();
                 EditorGUILayout.EndHorizontal();
                 
                 EditorGUILayout.BeginHorizontal();
-                spec.value = EditorGUILayout.IntField("Value:", spec.value);
+                spec.Value = EditorGUILayout.IntField("Value:", spec.Value);
                 EditorGUILayout.EndHorizontal();
                 EditorGUILayout.EndVertical();
             }

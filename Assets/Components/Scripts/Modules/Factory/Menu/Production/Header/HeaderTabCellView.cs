@@ -1,32 +1,19 @@
 ﻿using System;
+using RoboFactory.General.Asset;
 using RoboFactory.General.Item.Products;
 using RoboFactory.General.Ui.Common;
-using RoboFactory.Utils;
 using UnityEngine;
 using Zenject;
 
 namespace RoboFactory.Factory.Menu.Production
 {
-    [AddComponentMenu("Scripts/Factory/Menu/Production/Header Tab Cell View")]
     public class HeaderTabCellView : CellBase
     {
-        #region Zenject
+        [Inject] private readonly AddressableService _addressableService;
 
-        [Inject(Id = "IconUtil")] private readonly IconUtil _iconUtil;
-
-        #endregion
-
-        #region Components
-        
         [SerializeField] private ProductGroup _group;
-
-        #endregion
         
-        #region Variables
-
         public Action<HeaderTabCellView, ProductGroup> OnClickEvent { get; set; }
-
-        #endregion
 
         protected override void Click()
         {
@@ -37,7 +24,7 @@ namespace RoboFactory.Factory.Menu.Production
 
         public void SetTabData(ProductGroup type)
         {
-            var iconRef = _iconUtil.GetProductGroupIcon(type);
+            var iconRef = _addressableService.Assets.GetProductGroupIcon(type);
             SetIconSprite(iconRef);
         }
     }

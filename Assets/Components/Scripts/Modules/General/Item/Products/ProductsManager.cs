@@ -15,7 +15,7 @@ namespace RoboFactory.General.Item.Products
     [UsedImplicitly]
     public class ProductsManager : IItemManager
     {
-        [Inject] private readonly ApiService apiService;
+        [Inject] private readonly ApiService _apiService;
         [Inject] private readonly LevelManager _levelManager;
         
         public ItemType ItemType { get; }
@@ -26,7 +26,7 @@ namespace RoboFactory.General.Item.Products
             ItemType = ItemType.Product;
             _productsDictionary = new Dictionary<string, ProductObject>();
             
-            foreach (var product in settings.items)
+            foreach (var product in settings.Items)
             {
                 var item = new ProductFactory().Create(product);
                 _productsDictionary.Add(item.Key, item);
@@ -41,7 +41,7 @@ namespace RoboFactory.General.Item.Products
                 foreach (var file in files)
                 {
                     var item = new ProductFactory().Create(file);
-                    item.Caps = settings.levels.Caps;
+                    item.Caps = settings.Levels.Caps;
                     _productsDictionary.Add(item.Key, item);
                 }
             }
@@ -55,8 +55,8 @@ namespace RoboFactory.General.Item.Products
             foreach (var productData in products)
             {
                 var product = _productsDictionary[productData.Key];
-                product.Count = productData.Value.count;
-                product.Experience = productData.Value.experience;
+                product.Count = productData.Value.Count;
+                product.Experience = productData.Value.Experience;
             }
         }
 
@@ -89,28 +89,31 @@ namespace RoboFactory.General.Item.Products
             _levelManager.SetExperience(product.Recipe.Experience);
             product.IncrementCount();
             product.IncrementExperience();
-            await apiService.SetUserProductSingle(key, product.ToDto());
+            await _apiService.SetUserProductSingle(key, product.ToDto());
         }
 
         public async UniTask AddItem(string key, int count = 1)
         {
             var product = _productsDictionary[key];
             product.IncrementCount(count);
-            await apiService.SetUserProductSingle(key, product.ToDto());
+            await _apiService.SetUserProductSingle(key, product.ToDto());
         }
 
         public async UniTask RemoveItem(string key, int count = 1)
         {
             var product = _productsDictionary[key];
             product.DecrementCount(count);
-            await apiService.SetUserProductSingle(key, product.ToDto());
+            await _apiService.SetUserProductSingle(key, product.ToDto());
         }
 
         [Serializable]
         public class Settings
         {
-            public List<ProductScriptable> items;
-            public LevelCapsScriptable levels;
+            [SerializeField] private List<ProductScriptable> _items;
+            [SerializeField] private LevelCapsScriptable _levels;
+            
+            public List<ProductScriptable> Items => _items;
+            public LevelCapsScriptable Levels => _levels;
         }
     }
 }

@@ -914,8 +914,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ee831f8d6373384ab861f6beb6636da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: {fileID: 7321251085364276068}
-  locked: {fileID: 4611528545918736503}
+  _level: {fileID: 7321251085364276068}
+  _locked: {fileID: 4611528545918736503}
 --- !u!222 &1726768555018024609
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1793,7 +1793,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c14e6ef1c384130b97516243279289a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  products:
+  _products:
   - {fileID: 1953974674735995973}
   - {fileID: 3873032593865097593}
   - {fileID: 5494496117956329699}
@@ -4144,6 +4144,11 @@ PrefabInstance:
       propertyPath: specType
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 190792003247563772, guid: 695aa88af98ecb44b8b267aead2650f8,
+        type: 3}
+      propertyPath: _specType
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1534118438486654709, guid: 695aa88af98ecb44b8b267aead2650f8,
         type: 3}
       propertyPath: m_fontSize
@@ -4857,6 +4862,11 @@ PrefabInstance:
     - target: {fileID: 190792003247563772, guid: 695aa88af98ecb44b8b267aead2650f8,
         type: 3}
       propertyPath: specType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 190792003247563772, guid: 695aa88af98ecb44b8b267aead2650f8,
+        type: 3}
+      propertyPath: _specType
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1534118438486654709, guid: 695aa88af98ecb44b8b267aead2650f8,
@@ -6476,7 +6486,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37111ae849081934fb011e7f8986d02d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonText: {fileID: 1055540418161400830}
+  _buttonText: {fileID: 1055540418161400830}
 --- !u!224 &4584607706235198732 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6640608095327394210, guid: eb904a41c4b40024ca0261233aaa93ba,
@@ -6632,6 +6642,11 @@ PrefabInstance:
       propertyPath: specType
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 190792003247563772, guid: 695aa88af98ecb44b8b267aead2650f8,
+        type: 3}
+      propertyPath: _specType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1534118438486654709, guid: 695aa88af98ecb44b8b267aead2650f8,
         type: 3}
       propertyPath: m_fontSize
@@ -6782,6 +6797,11 @@ PrefabInstance:
     - target: {fileID: 190792003247563772, guid: 695aa88af98ecb44b8b267aead2650f8,
         type: 3}
       propertyPath: specType
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 190792003247563772, guid: 695aa88af98ecb44b8b267aead2650f8,
+        type: 3}
+      propertyPath: _specType
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1534118438486654709, guid: 695aa88af98ecb44b8b267aead2650f8,

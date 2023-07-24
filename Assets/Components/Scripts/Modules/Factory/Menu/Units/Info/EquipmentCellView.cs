@@ -8,18 +8,11 @@ using Zenject;
 
 namespace RoboFactory.Factory.Menu.Units
 {
-    [AddComponentMenu("Scripts/Factory/Menu/Units/Equipment Cell View")]
     public class EquipmentCellView : CellBase
     {
-        #region Zenject
-
         [Inject] private readonly IUiController _uiController;
         [Inject] private readonly ProductsManager _productsManager;
-
-        #endregion
         
-        #region Components
-
         [Space]
         [SerializeField] private ProductGroup _equipmentType;
         
@@ -27,17 +20,11 @@ namespace RoboFactory.Factory.Menu.Units
         [SerializeField] private Image _starImage;
 
         public ProductGroup EquipmentType => _equipmentType;
-
-        #endregion
         
-        #region Variables
-
         public Action<EquipmentCellView> OnClickEvent { get; set; }
         
         private UnitsMenuView _menu;
         public ProductObject Data { get; private set; }
-
-        #endregion
 
         public void Initialize()
         {

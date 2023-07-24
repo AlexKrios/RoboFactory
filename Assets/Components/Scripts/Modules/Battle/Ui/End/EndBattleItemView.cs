@@ -26,9 +26,9 @@ namespace RoboFactory.Battle.Ui
         
         public async void SetItemData(PartObject reward)
         {
-            _itemIcon.sprite = await addressableService.LoadAssetAsync<Sprite>(reward.data.IconRef);
-            _itemCount.text = reward.count.ToString();
-            _itemLevel.text = reward.star.ToString();
+            _itemIcon.sprite = await addressableService.LoadAssetAsync<Sprite>(reward.Data.IconRef);
+            _itemCount.text = reward.Count.ToString();
+            _itemLevel.text = reward.Star.ToString();
         }
     }
 }

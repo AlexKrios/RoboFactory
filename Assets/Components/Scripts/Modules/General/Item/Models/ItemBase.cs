@@ -14,8 +14,8 @@ namespace RoboFactory.General.Item
         public RecipeObject Recipe { get; set; }
         
         public bool IsEmpty() => Count == 0;
-        public bool IsEnoughCount(PartObject part) => Count - part.count >= 0;
-        public void RemoveCount(PartObject part) => Count -= part.count;
+        public bool IsEnoughCount(PartObject part) => Count - part.Count >= 0;
+        public void RemoveCount(PartObject part) => Count -= part.Count;
         
         public void IncrementCount() => Count++;
         public void IncrementCount(int count) => Count += count;

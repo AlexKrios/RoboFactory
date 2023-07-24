@@ -9,6 +9,7 @@ using RoboFactory.General.Level;
 using RoboFactory.General.Location;
 using RoboFactory.General.Money;
 using RoboFactory.General.Order;
+using RoboFactory.General.Profile;
 using RoboFactory.General.Unit;
 using RoboFactory.Utils;
 using Zenject;
@@ -22,6 +23,9 @@ namespace RoboFactory.General.User
         [Inject] private readonly UnitsManager _unitsManager;
         [Inject] private readonly ProductionManager _productionManager;
         [Inject] private readonly ExpeditionManager _expeditionManager;
+        
+        [JsonProperty("commonSection")] 
+        public CommonSection CommonSection { get; set; }
         
         [JsonProperty("moneySection")] 
         public MoneyObject MoneySection { get; set; }
@@ -51,13 +55,13 @@ namespace RoboFactory.General.User
         {
             MoneySection = new MoneyObject
             {
-                money = 0
+                Money = 0
             };
 
             LevelSection = new LevelObject
             {
-                level = 1,
-                experience = 0
+                Level = 1,
+                Experience = 0
             };
 
             StoresSection = new StoresDto
@@ -72,22 +76,22 @@ namespace RoboFactory.General.User
 
             ProductionsSection = new ProductionSectionDto
             {
-                count = 1,
-                level = 1,
+                Count = 1,
+                Level = 1,
                 Production = new Dictionary<string, ProductionDto>(_productionManager.GetAllProductionDto())
             };
 
             ExpeditionsSection = new ExpeditionSectionDto
             {
-                count = 1,
+                Count = 1,
                 Expeditions = new Dictionary<string, ExpeditionDto>(_expeditionManager.GetAllExpeditionDto())
             };
 
             OrdersSection = new OrdersLoadObject
             {
                 Orders = new Dictionary<string, OrderDto>(),
-                count = 1,
-                timeRefresh = DateUtil.StartOfTheDay(DateTime.Now).ToFileTimeUtc()
+                Count = 1,
+                TimeRefresh = DateUtil.StartOfTheDay(DateTime.Now).ToFileTimeUtc()
             };
 
             return this;

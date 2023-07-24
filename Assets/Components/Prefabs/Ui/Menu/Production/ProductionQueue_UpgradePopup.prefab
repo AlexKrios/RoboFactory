@@ -825,13 +825,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4da859d55d66458c9f4533f94c586fda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  close: {fileID: 5574451142072659607}
-  titleText: {fileID: 2980804403553695998}
-  currentCount: {fileID: 2601401412764700494}
-  nextCount: {fileID: 519613940007127076}
-  acceptButton: {fileID: 6811761383045107094}
-  acceptLevelText: {fileID: 9015618586568514705}
-  acceptMoneyText: {fileID: 0}
+  _close: {fileID: 5574451142072659607}
+  _titleText: {fileID: 2980804403553695998}
+  _currentCount: {fileID: 2601401412764700494}
+  _nextCount: {fileID: 519613940007127076}
+  _acceptButton: {fileID: 6811761383045107094}
+  _acceptText: {fileID: 9015618586568514705}
 --- !u!225 &4758183550124237273
 CanvasGroup:
   m_ObjectHideFlags: 0

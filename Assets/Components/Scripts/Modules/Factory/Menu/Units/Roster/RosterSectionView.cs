@@ -8,25 +8,14 @@ using Zenject;
 
 namespace RoboFactory.Factory.Menu.Units
 {
-    [AddComponentMenu("Scripts/Factory/Menu/Units/Roster Section View")]
     public class RosterSectionView : MonoBehaviour
     {
-        #region Zenject
-
         [Inject] private readonly IUiController _uiController;
         [Inject] private readonly UnitsManager _unitsManager;
         [Inject] private readonly UnitsMenuFactory _unitsMenuFactory;
-
-        #endregion
         
-        #region Components
-
         [SerializeField] private RectTransform _unitsParent;
         [SerializeField] private List<RosterCellView> _units;
-
-        #endregion
-
-        #region Variables
 
         public Action OnUnitClickEvent { get; set; }
 
@@ -45,8 +34,6 @@ namespace RoboFactory.Factory.Menu.Units
                 _activeUnit.SetActive();
             }
         }
-        
-        #endregion
 
         public void Initialize()
         {

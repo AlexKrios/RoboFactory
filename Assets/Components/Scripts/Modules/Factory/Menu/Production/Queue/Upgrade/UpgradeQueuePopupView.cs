@@ -1,6 +1,6 @@
 ﻿using RoboFactory.General.Item.Production;
 using RoboFactory.General.Level;
-using RoboFactory.General.Localisation;
+using RoboFactory.General.Localization;
 using RoboFactory.General.Money;
 using RoboFactory.General.Scriptable;
 using RoboFactory.General.Ui;
@@ -13,71 +13,53 @@ using Zenject;
 
 namespace RoboFactory.Factory.Menu.Production
 {
-    [AddComponentMenu("Scripts/Factory/Menu/Production/Queue/Upgrade Queue Popup View")]
     public class UpgradeQueuePopupView : PopupBase
     {
-        #region Zenject
-
-        [Inject] private readonly LocalizationService localizationController;
+        private const string NeedLevelTextKey = "button_need_level";
+        private const string NeedMoneyTextKey = "<sprite name=MoneyIcon>";
+        
+        [Inject] private readonly LocalizationService _localizationService;
         [Inject] private readonly MoneyManager _moneyManager;
         [Inject] private readonly LevelManager _levelManager;
         [Inject] private readonly IUiController _uiController;
         [Inject] private readonly ProductionManager _productionManager;
-
-        #endregion
-        
-        #region Components
         
         [Space]
-        [SerializeField] private TMP_Text titleText;
+        [SerializeField] private TMP_Text _titleText;
 
         [Space]
-        [SerializeField] private TMP_Text currentCount;
-        [SerializeField] private TMP_Text nextCount;
+        [SerializeField] private TMP_Text _currentCount;
+        [SerializeField] private TMP_Text _nextCount;
 
         [Header("Accept Button")]
-        [SerializeField] private Button acceptButton;
-        [SerializeField] private TMP_Text acceptLevelText;
-        [SerializeField] private TMP_Text acceptMoneyText;
-
-        #endregion
-
-        #region Variables
+        [SerializeField] private Button _acceptButton;
+        [SerializeField] private TMP_Text _acceptText;
 
         private UpgradeDataObject _buyData;
 
-        #endregion
-
-        #region Unity Methods
-
-        protected override void Awake()
+        public override void Initialize()
         {
-            base.Awake();
+            base.Initialize();
             
             _uiController.AddUi(this);
             
-            acceptButton.OnClickAsObservable().Subscribe(_ => OnAcceptClick()).AddTo(Disposable);
-
-            var cellCount = _productionManager.CellCount;
-            currentCount.text = cellCount.ToString();
-            nextCount.text = (cellCount + 1).ToString();
+            _acceptButton.OnClickAsObservable().Subscribe(_ => OnAcceptClick()).AddTo(Disposable);
+            _buyData = _productionManager.GetUpgradeQualityData();
             
-            titleText.text = localizationController.GetLanguageValue(LocalizationKeys.UpgradeTitleKey);
-        }
-        
-        private void Start() 
-        {
-            _buyData = _productionManager.GetUpgradeQueueData();
+            _titleText.text = _localizationService.GetLanguageValue(LocalizationKeys.UpgradeTitleKey);
+            
+            var cellCount = _productionManager.CellCount;
+            _currentCount.text = cellCount.ToString();
+            _nextCount.text = (cellCount + 1).ToString();
             
             if (_moneyManager.Money < _buyData.Cost || _levelManager.Level < _buyData.Level)
-                acceptButton.interactable = false;
-            
-            acceptLevelText.gameObject.SetActive(_levelManager.Level < _buyData.Level);
-            acceptLevelText.text = $"Need level: {_buyData.Level}";
-            acceptMoneyText.text = $"<sprite name=MoneyIcon> {_buyData.Cost}";
-        }
+                _acceptButton.interactable = false;
 
-        #endregion
+            if (_levelManager.Level < _buyData.Level)
+                _acceptText.text = $"{_localizationService.GetLanguageValue(NeedLevelTextKey)} {_buyData.Level}";
+            else if (_moneyManager.Money < _buyData.Cost)
+                _acceptText.text = $"{NeedMoneyTextKey} {_buyData.Cost}";
+        }
         
         private async void OnAcceptClick()
         {

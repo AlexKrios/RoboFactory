@@ -17,7 +17,7 @@ namespace RoboFactory.General.Item.Products
             $"Products/{UnitType.Support}/{ProductGroup.Armor}/{WeaponType.Star1}",
             $"Products/{UnitType.Sniper}/{ProductGroup.Armor}/{WeaponType.Star1}",
 
-            $"Products/{UnitType.Trooper}/{ProductGroup.Engine}/{WeaponType.Star1}",
+            /*$"Products/{UnitType.Trooper}/{ProductGroup.Engine}/{WeaponType.Star1}",
             $"Products/{UnitType.Defender}/{ProductGroup.Engine}/{WeaponType.Star1}",
             $"Products/{UnitType.Support}/{ProductGroup.Engine}/{WeaponType.Star1}",
             $"Products/{UnitType.Sniper}/{ProductGroup.Engine}/{WeaponType.Star1}",
@@ -25,7 +25,7 @@ namespace RoboFactory.General.Item.Products
             $"Products/{UnitType.Trooper}/{ProductGroup.Battery}/{WeaponType.Star1}",
             $"Products/{UnitType.Defender}/{ProductGroup.Battery}/{WeaponType.Star1}",
             $"Products/{UnitType.Support}/{ProductGroup.Battery}/{WeaponType.Star1}",
-            $"Products/{UnitType.Sniper}/{ProductGroup.Battery}/{WeaponType.Star1}"
+            $"Products/{UnitType.Sniper}/{ProductGroup.Battery}/{WeaponType.Star1}"*/
         };
     }
 }

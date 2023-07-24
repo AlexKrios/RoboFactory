@@ -6,23 +6,15 @@ using UnityEngine;
 
 namespace RoboFactory.Factory.Menu.Storage
 {
-    [AddComponentMenu("Scripts/Factory/Menu/Storage/Item Cell View")]
     public class ItemCellView : CellBase
     {
-        #region Components
-
-        [SerializeField] private GameObject countWrapper;
-        [SerializeField] private TMP_Text countText;
-
-        #endregion
+        [Space]
+        [SerializeField] private GameObject _countWrapper;
+        [SerializeField] private TMP_Text _countText;
         
-        #region Variables
-
         public Action<ItemCellView> OnTabClickEvent { get; set; }
 
         public ProductObject Data { get; private set; }
-
-        #endregion
 
         protected override void Click()
         {
@@ -41,8 +33,8 @@ namespace RoboFactory.Factory.Menu.Storage
 
         private void SetCount()
         {
-            countWrapper.SetActive(Data.ProductType != 0);
-            countText.text = $"x{Data.Count}";
+            _countWrapper.SetActive(Data.ProductType != 0);
+            _countText.text = $"x{Data.Count}";
         }
     }
 }

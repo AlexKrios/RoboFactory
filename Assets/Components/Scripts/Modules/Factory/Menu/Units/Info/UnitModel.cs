@@ -4,19 +4,12 @@ using UnityEngine;
 namespace RoboFactory.Factory.Menu.Units
 {
     [RequireComponent(typeof(Rigidbody))]
-    [AddComponentMenu("Scripts/Factory/Menu/Units/Unit Model")]
     public class UnitModel : MonoBehaviour
     {
-        #region Variables
-
         private Transform _unitTransform;
         private Rigidbody _unitRigidbody;
 
         private float _startPosition;
-
-        #endregion
-
-        #region Unity Methods
 
         private void Awake()
         {
@@ -38,8 +31,6 @@ namespace RoboFactory.Factory.Menu.Units
             RotateMobile();
             #endif
         }
-        
-        #endregion
 
         private void RotateEditor()
         {

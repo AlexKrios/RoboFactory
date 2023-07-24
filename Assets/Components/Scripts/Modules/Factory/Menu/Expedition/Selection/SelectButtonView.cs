@@ -1,32 +1,20 @@
-﻿using RoboFactory.General.Localisation;
+﻿using RoboFactory.General.Localization;
 using RoboFactory.General.Ui;
 using RoboFactory.General.Ui.Common;
 using RoboFactory.General.Unit;
-using UnityEngine;
 using Zenject;
 
 namespace RoboFactory.Factory.Menu.Expedition
 {
-    [AddComponentMenu("Scripts/Factory/Menu/Expedition/Selection/Select Button View")]
     public class SelectButtonView : ButtonBase
     {
-        #region Zenject
-
         [Inject] private readonly DiContainer _container;
-        [Inject] private readonly LocalizationService localizationController;
+        [Inject] private readonly LocalizationService _localizationService;
         [Inject] private readonly IUiController _uiController;
         [Inject] private readonly UnitsManager _unitsManager;
-
-        #endregion
         
-        #region Variables
-
         private ExpeditionMenuView _menu;
         private SelectionPopupView _selectionMenu;
-
-        #endregion
-
-        #region Unity Methods
 
         protected override void Awake()
         {
@@ -35,10 +23,8 @@ namespace RoboFactory.Factory.Menu.Expedition
             _menu = _uiController.FindUi<ExpeditionMenuView>();
             _selectionMenu = _uiController.FindUi<SelectionPopupView>();
             
-            SetButtonText(localizationController.GetLanguageValue(LocalizationKeys.SelectButtonTitleKey));
+            SetButtonText(_localizationService.GetLanguageValue(LocalizationKeys.SelectButtonTitleKey));
         }
-
-        #endregion
 
         protected override void Click()
         {

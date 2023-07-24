@@ -8,18 +8,18 @@ namespace RoboFactory.General.Audio
     [CreateAssetMenu(fileName = "AudioData", menuName = "Scriptable/General/Audio List", order = 202)]
     public class AudioScriptable : ScriptableObject
     {
-        [SerializeField] private List<AudioObject> audio;
+        [SerializeField] private List<AudioObject> _audio;
 
-        public List<AudioObject> Audio => audio;
+        public List<AudioObject> Audio => _audio;
     }
     
     [Serializable]
     public struct AudioObject
     {
-        [SerializeField] private AssetReference clipRef;
-        [SerializeField] private AudioClipType type;
+        [SerializeField] private AssetReference _clipRef;
+        [SerializeField] private AudioClipType _type;
 
-        public AssetReference ClipRef => clipRef;
-        public AudioClipType Type => type;
+        public AssetReference ClipRef => _clipRef;
+        public AudioClipType Type => _type;
     }
 }

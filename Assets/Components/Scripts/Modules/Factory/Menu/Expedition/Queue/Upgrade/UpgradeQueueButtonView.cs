@@ -1,8 +1,7 @@
 ﻿using System;
-using DG.Tweening;
 using RoboFactory.General.Expedition;
 using RoboFactory.General.Level;
-using RoboFactory.General.Localisation;
+using RoboFactory.General.Localization;
 using RoboFactory.General.Money;
 using RoboFactory.General.Scriptable;
 using RoboFactory.General.Ui.Common;
@@ -12,39 +11,21 @@ using Zenject;
 
 namespace RoboFactory.Factory.Menu.Expedition
 {
-    [AddComponentMenu("Scripts/Factory/Menu/Expedition/Queue/Upgrade Queue Button View")]
     public class UpgradeQueueButtonView : ButtonBase
     {
-        #region Zenject
-
         [Inject] private readonly LocalizationService localizationController;
         [Inject] private readonly MoneyManager _moneyManager;
         [Inject] private readonly LevelManager _levelManager;
         [Inject] private readonly ExpeditionManager _expeditionManager;
 
-        #endregion
-
-        #region Components
-
         [Space]
-        [SerializeField] private TMP_Text title;
-        
-        [Space]
-        [SerializeField] private RectTransform cost;
-        [SerializeField] private TMP_Text costCount;
-
-        #endregion
-        
-        #region Variables
+        [SerializeField] private TMP_Text _title;
+        [SerializeField] private TMP_Text _costCount;
         
         private UpgradeDataObject _buyData;
 
         public Action OnUpgradeClick { get; set; }
-
-        #endregion
         
-        #region Unity Methods
-
         protected override void Awake()
         {
             base.Awake();
@@ -54,8 +35,6 @@ namespace RoboFactory.Factory.Menu.Expedition
             
             SetState();
         }
-
-        #endregion
 
         protected override async void Click()
         {
@@ -71,14 +50,12 @@ namespace RoboFactory.Factory.Menu.Expedition
         {
             if (_levelManager.Level > levelValue)
             {
-                title.text = $"Level {levelValue}";
+                _title.text = $"Level {levelValue}";
                 SetInteractable(false);
                 return;
             }
-
-            cost.DOAnchorPosY(cost.anchoredPosition.y + 60, 0.5f);
-            cost.gameObject.SetActive(true);
-            costCount.text = costValue.ToString();
+            
+            _costCount.text = costValue.ToString();
         }
     }
 }

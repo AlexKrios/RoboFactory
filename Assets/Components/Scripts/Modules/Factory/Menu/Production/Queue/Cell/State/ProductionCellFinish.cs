@@ -1,7 +1,7 @@
 ﻿using JetBrains.Annotations;
 using RoboFactory.General.Item.Production;
 using RoboFactory.General.Item.Products;
-using RoboFactory.General.Localisation;
+using RoboFactory.General.Localization;
 using Zenject;
 
 namespace RoboFactory.Factory.Menu.Production

@@ -12,18 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a1db16619b4416298d321b9f94efbd3, type: 3}
   m_Name: LocationArmorRaw
   m_EditorClassIdentifier: 
-  key: location2_title
-  time: 60
-  iconRef:
+  _key: location2_title
+  _time: 60
+  _iconRef:
     m_AssetGUID: 16d03c305c253b64db3fedafaaeabe9d
     m_SubObjectName: RawArmor
     m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
     m_EditorAssetChanged: 0
-  enemies:
-  - data: {fileID: 11400000, guid: 711a9fc90eab8bc4ba93360673cb9540, type: 2}
-    place: 2
-  reward:
-  - data: {fileID: 11400000, guid: 5ad746f0d5cb8934bab3c515a0e98a15, type: 2}
-    star: 1
-    count: 5
+  _enemies: []
+  _reward: []

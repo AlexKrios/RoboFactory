@@ -262,6 +262,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c465ecf864454a8dbe09b4f27d388d45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  specType: 0
-  icon: {fileID: 2033521082412947592}
-  count: {fileID: 8968988346585387098}
+  _specType: 0
+  _icon: {fileID: 2033521082412947592}
+  _count: {fileID: 8968988346585387098}

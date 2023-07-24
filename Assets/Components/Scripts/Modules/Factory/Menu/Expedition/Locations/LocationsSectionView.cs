@@ -8,25 +8,14 @@ using Zenject;
 
 namespace RoboFactory.Factory.Menu.Expedition
 {
-    [AddComponentMenu("Scripts/Factory/Menu/Expedition/Locations Section View")]
     public class LocationsSectionView : MonoBehaviour
     {
-        #region Zenject
-        
         [Inject] private readonly IUiController _uiController;
         [Inject] private readonly LocationManager _locationManager;
         [Inject] private readonly ExpeditionMenuFactory _expeditionMenuFactory;
 
-        #endregion
-
-        #region Components
-
         [SerializeField] private RectTransform _unitParent;
         [SerializeField] private List<LocationCellView> _locations;
-
-        #endregion
-
-        #region Variables
 
         public Action EventClick { get; set; }
 
@@ -48,8 +37,6 @@ namespace RoboFactory.Factory.Menu.Expedition
                 _activeLocation.SetActive();
             }
         }
-
-        #endregion
 
         public void Initialize()
         {

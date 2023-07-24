@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using RoboFactory.General.Localisation;
+using RoboFactory.General.Localization;
 using RoboFactory.General.Settings;
 using UnityEngine;
 using Zenject;
@@ -11,20 +11,10 @@ namespace RoboFactory.Factory.Menu.Settings
     [AddComponentMenu("Scripts/Factory/Menu/Settings/Language Section View")]
     public class LanguageSectionView : MonoBehaviour
     {
-        #region Zenject
-
         [Inject] private readonly SettingsService _settingsController;
-        [Inject] private readonly LocalizationService localizationController;
-
-        #endregion
+        [Inject] private readonly LocalizationService _localizationService;
         
-        #region Components
-
         [SerializeField] private List<LanguageCellView> _languages;
-
-        #endregion
-
-        #region Variables
 
         public Action OnClickEvent { get; set; }
         
@@ -42,8 +32,6 @@ namespace RoboFactory.Factory.Menu.Settings
             }
         }
 
-        #endregion
-
         public void SetData()
         {
             _languages.ForEach(x => x.OnClickEvent += OnLanguageClick);
@@ -58,7 +46,7 @@ namespace RoboFactory.Factory.Menu.Settings
 
             _settingsController.SetLanguage(type);
             ActiveLanguage = cell;
-            localizationController.LoadLocalisationData();
+            _localizationService.LoadLocalizationData();
 
             OnClickEvent?.Invoke();
         }

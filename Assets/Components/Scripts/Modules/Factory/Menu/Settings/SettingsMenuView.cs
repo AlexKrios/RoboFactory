@@ -1,7 +1,7 @@
 ﻿using System.Globalization;
-using RoboFactory.Authentication;
+using RoboFactory.Auth;
 using RoboFactory.General.Audio;
-using RoboFactory.General.Localisation;
+using RoboFactory.General.Localization;
 using RoboFactory.General.Scene;
 using RoboFactory.General.Settings;
 using RoboFactory.General.Ui.Common;
@@ -12,23 +12,16 @@ using Zenject;
 
 namespace RoboFactory.Factory.Menu.Settings
 {
-    [AddComponentMenu("Scripts/Factory/Menu/Settings/Settings Menu View")]
     public class SettingsMenuView : PopupBase
     {
         private const int VolumeStep = 10;
         
-        #region Zenject
-
         [Inject] private readonly LocalizationService localizationController;
         [Inject] private readonly AudioManager _audioManager;
-        [Inject] private readonly AuthenticationService authenticationService;
-        [Inject] private readonly SceneService sceneService;
-        [Inject] private readonly SettingsService settingsService;
+        [Inject] private readonly AuthService _authService;
+        [Inject] private readonly SceneService _sceneService;
+        [Inject] private readonly SettingsService _settingsService;
 
-        #endregion
-
-        #region Components
-        
         [SerializeField] private TMP_Text _title;
         [SerializeField] private Button _signOut;
 
@@ -46,10 +39,6 @@ namespace RoboFactory.Factory.Menu.Settings
         
         [Space]
         [SerializeField] private LanguageSectionView _language;
-
-        #endregion
-
-        #region Unity Methods
 
         protected override void Awake()
         {
@@ -73,18 +62,16 @@ namespace RoboFactory.Factory.Menu.Settings
             _language.OnClickEvent -= OnLanguageClick;
         }
 
-        #endregion
-
         public override void Initialize()
         {
             base.Initialize();
             
-            _musicSlider.value = settingsService.MusicVolume;
-            _audioSlider.value = settingsService.AudioVolume;
-            _graphicSlider.value = (float)settingsService.Graphics;
+            _musicSlider.value = _settingsService.MusicVolume;
+            _audioSlider.value = _settingsService.AudioVolume;
+            _graphicSlider.value = (float)_settingsService.Graphics;
             _language.SetData();
             
-            if (!authenticationService.IsGooglePlayConnected())
+            if (!_authService.IsGooglePlayConnected())
                 _signOut.onClick.AddListener(OnSignOutClick);
             else
                 _signOut.gameObject.SetActive(false);
@@ -94,8 +81,8 @@ namespace RoboFactory.Factory.Menu.Settings
 
         private void OnSignOutClick()
         {
-            authenticationService.SignOut();
-            sceneService.LoadScene(SceneName.Authentication);
+            _authService.SignOut();
+            _sceneService.LoadScene(SceneName.Authentication);
         }
         
         private void ChangeMusicSliderValue(float value)
@@ -116,7 +103,7 @@ namespace RoboFactory.Factory.Menu.Settings
         {
             var graphics = (GraphicsType) value;
             _graphicSliderText.text = graphics.ToString();
-            settingsService.SetGraphics(graphics);
+            _settingsService.SetGraphics(graphics);
         }
         
         private void OnLanguageClick()

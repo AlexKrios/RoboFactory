@@ -9,28 +9,17 @@ using Zenject;
 
 namespace RoboFactory.Factory.Menu.Storage
 {
-    [AddComponentMenu("Scripts/Factory/Menu/Storage/Items Section View")]
     public class ItemsSectionView : MonoBehaviour
     {
-        #region Zenject
-
         [Inject] private readonly ProductsManager _productsManager;
         [Inject] private readonly IUiController _uiController;
         [Inject] private readonly StorageMenuFactory _storageMenuFactory;
-
-        #endregion
         
-        #region Components
-
-        [SerializeField] private Transform parent;
-        [SerializeField] private List<ItemCellView> items;
-        [SerializeField] private TMP_Text empty;
+        [SerializeField] private Transform _parent;
+        [SerializeField] private List<ItemCellView> _items;
+        [SerializeField] private TMP_Text _empty;
         
-        public List<ItemCellView> Items => items;
-
-        #endregion
-
-        #region Variables
+        public List<ItemCellView> Items => _items;
 
         public Action OnTabClickEvent { get; set; }
 
@@ -50,8 +39,6 @@ namespace RoboFactory.Factory.Menu.Storage
             }
         }
 
-        #endregion
-
         public void Initialize()
         {
             _menu = _uiController.FindUi<StorageMenuView>();
@@ -61,24 +48,24 @@ namespace RoboFactory.Factory.Menu.Storage
 
         public void CreateItemCells()
         {
-            if (items.Count != 0)
+            if (_items.Count != 0)
                 RemoveItemCells();
             
             var allItems = GetFilteredItems()
                 .Where(x => !x.IsEmpty() || x.ProductType == 0 && _menu.IsDefault).ToList();
-            empty.gameObject.SetActive(allItems.Count == 0);
+            _empty.gameObject.SetActive(allItems.Count == 0);
             if (allItems.Count == 0)
                 return;
 
             foreach (var itemData in allItems)
             {
-                var item = _storageMenuFactory.CreateItem(parent);
+                var item = _storageMenuFactory.CreateItem(_parent);
                 item.OnTabClickEvent += OnTabClick;
                 item.SetItemData(itemData);
-                items.Add(item);
+                _items.Add(item);
             }
 
-            ActiveCell = items.First();
+            ActiveCell = _items.First();
         }
         
         private List<ProductObject> GetFilteredItems()
@@ -92,8 +79,8 @@ namespace RoboFactory.Factory.Menu.Storage
 
         private void RemoveItemCells()
         {
-            items.ForEach(x => Destroy(x.gameObject));
-            items.Clear();
+            _items.ForEach(x => Destroy(x.gameObject));
+            _items.Clear();
         }
         
         private void OnTabClick(ItemCellView tab)

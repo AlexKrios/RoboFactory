@@ -158,10 +158,9 @@ MonoBehaviour:
     m_SerializedLabels:
     - Core
   - m_GUID: 114d1c7c5dc27d0428359f3a678a6533
-    m_Address: Assets/Components/Images/Sprite/CharachterType.png
+    m_Address: Assets/Components/Images/Sprite/Units/UnitType.png
     m_ReadOnly: 0
-    m_SerializedLabels:
-    - Core
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 43f345baeabe80145b7f64554f5c1876, type: 2}
   m_SchemaSet:

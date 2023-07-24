@@ -14,7 +14,7 @@ namespace RoboFactory.Factory.Menu.Conversion
     {
         [Inject] private readonly DiContainer _container;
         [Inject] private readonly Settings _settings;
-        [Inject] private readonly AddressableService addressableService;
+        [Inject] private readonly AddressableService _addressableService;
         [Inject] private readonly IUiController _uiController;
 
         public Button CreateButton(Transform parent)
@@ -24,7 +24,7 @@ namespace RoboFactory.Factory.Menu.Conversion
         
         public async void CreateMenu()
         {
-            var menu = await addressableService.LoadAssetAsync<GameObject>(_settings.MenuAsset);
+            var menu = await _addressableService.LoadAssetAsync<GameObject>(_settings.MenuAsset);
             var canvasT = _uiController.GetCanvas(CanvasType.Ui).transform;
             _container.InstantiatePrefabForComponent<ConversionMenuView>(menu, canvasT);
         }
@@ -32,8 +32,10 @@ namespace RoboFactory.Factory.Menu.Conversion
         [Serializable]
         public class Settings
         {
-            [SerializeField] private AssetReference _menuAsset;
             [SerializeField] private GameObject _buttonPrefab;
+
+            [Space]
+            [SerializeField] private AssetReference _menuAsset;
             
             public AssetReference MenuAsset => _menuAsset;
             public GameObject ButtonPrefab => _buttonPrefab;

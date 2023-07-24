@@ -1,4 +1,4 @@
-﻿using RoboFactory.General.Localisation;
+﻿using RoboFactory.General.Localization;
 using TMPro;
 using UnityEngine;
 using Zenject;

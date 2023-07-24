@@ -12,17 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42a0c6e56bbe4c09b8960911a2b6610c, type: 3}
   m_Name: UnitSupport
   m_EditorClassIdentifier: 
-  key: unit_support
-  unitType: 3
-  attackType: 2
-  specType: 0
-  iconRef:
-    m_AssetGUID: 6a1db7dc653941f4c9f989bc8f310d5f
-    m_SubObjectName: SupportWeaponProduct
+  _key: unit_support
+  _unitType: 3
+  _attackType: 2
+  _specType: 0
+  _iconRef:
+    m_AssetGUID: 114d1c7c5dc27d0428359f3a678a6533
+    m_SubObjectName: CharachterTypeSupport
     m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
     m_EditorAssetChanged: 0
-  model: {fileID: 5538192371963980350, guid: a13e14c5ff417884f9154c3d1f6c2c94, type: 3}
-  specifications: 0a000000320000000000000005000000
-  unlockCost: 0
-  unlockLevel: 0
+  _model: {fileID: 0}
+  _specs: 00000000000000000000000000000000
+  _unlockCost: 0
+  _unlockLevel: 0

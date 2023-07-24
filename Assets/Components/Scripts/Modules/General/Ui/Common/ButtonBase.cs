@@ -19,7 +19,7 @@ namespace RoboFactory.General.Ui.Common
 
         #region Compnents
 
-        [SerializeField] private TMP_Text buttonText;
+        [SerializeField] private TMP_Text _buttonText;
 
         #endregion
         
@@ -49,7 +49,7 @@ namespace RoboFactory.General.Ui.Common
 
         protected void SetButtonText(string text)
         {
-            buttonText.text = text;
+            _buttonText.text = text;
         }
         
         protected virtual void Click()

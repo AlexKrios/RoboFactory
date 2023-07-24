@@ -9,7 +9,6 @@ using Zenject;
 
 namespace RoboFactory.Battle.Ui
 {
-    [AddComponentMenu("Scripts/Battle/Ui/End Battle Popup View")]
     public class EndBattlePopupView : MonoBehaviour
     {
         #region Zenject
@@ -22,13 +21,13 @@ namespace RoboFactory.Battle.Ui
 
         #region Components
 
-        [SerializeField] private TMP_Text title;
+        [SerializeField] private TMP_Text _title;
         
         [Space]
-        [SerializeField] private RectTransform itemsParent;
+        [SerializeField] private RectTransform _itemsParent;
         
         [Space] 
-        [SerializeField] private Button acceptButton;
+        [SerializeField] private Button _acceptButton;
 
         #endregion
 
@@ -44,7 +43,7 @@ namespace RoboFactory.Battle.Ui
         {
             _disposable = new CompositeDisposable();
             
-            acceptButton.OnClickAsObservable().Subscribe(_ => AcceptButtonClick()).AddTo(_disposable);
+            _acceptButton.OnClickAsObservable().Subscribe(_ => AcceptButtonClick()).AddTo(_disposable);
 
             SetTitle(_battleController.BattleResult);
             StartCoroutine(CreateItemsCell());
@@ -63,7 +62,7 @@ namespace RoboFactory.Battle.Ui
             {
                 yield return new WaitForSeconds(.2f);
                 
-                var item = _endBattleFactory.CreateItemCell(itemsParent);
+                var item = _endBattleFactory.CreateItemCell(_itemsParent);
                 item.SetItemData(rewardData);
             }
 
@@ -78,7 +77,7 @@ namespace RoboFactory.Battle.Ui
 
         private void SetTitle(BattleResult result)
         {
-            title.text = result == BattleResult.Win ? "Win" : "Lose";
+            _title.text = result == BattleResult.Win ? "Win" : "Lose";
         }
     }
 }

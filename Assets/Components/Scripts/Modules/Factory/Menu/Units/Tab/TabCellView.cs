@@ -1,45 +1,30 @@
 ﻿using System;
+using RoboFactory.General.Asset;
 using RoboFactory.General.Ui.Common;
 using RoboFactory.General.Unit;
-using RoboFactory.Utils;
 using UnityEngine;
 using Zenject;
 
 namespace RoboFactory.Factory.Menu.Units
 {
-    [AddComponentMenu("Scripts/Factory/Menu/Units/Tab Cell View")]
     public class TabCellView : CellBase
     {
-        #region Zenject
-        
-        [Inject(Id = "IconUtil")] private readonly IconUtil _iconUtil;
+        [Inject] private readonly AddressableService _addressableService;
 
-        #endregion
-
-        #region Components
-        
-        [SerializeField] private UnitType unitType;
-        
-        public UnitType UnitType => unitType;
-
-        #endregion
-        
-        #region Variables
+        [SerializeField] private UnitType _unitType;
         
         public Action<TabCellView, UnitType> OnTabClick { get; set; }
-
-        #endregion
 
         protected override void Click()
         {
             base.Click();
 
-            OnTabClick?.Invoke(this, unitType);
+            OnTabClick?.Invoke(this, _unitType);
         }
 
         public void SetTabData()
         {
-            var iconRef = _iconUtil.GetUnitIcon(unitType);
+            var iconRef = _addressableService.Assets.GetUnitIcon(_unitType);
             SetIconSprite(iconRef);
         }
     }

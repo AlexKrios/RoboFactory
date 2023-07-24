@@ -32,7 +32,7 @@ namespace RoboFactory.General.Level
         
         public void LoadData(LevelObject obj)
         {
-            Experience = obj.experience;
+            Experience = obj.Experience;
             Level = GetCurrentLevel();
 
             OnExperienceSet?.Invoke();
@@ -55,25 +55,25 @@ namespace RoboFactory.General.Level
 
         private int GetCurrentLevel()
         {
-            return _settings.Data.Caps.First(x => x.experience > Experience).level;
+            return _settings.Data.Caps.First(x => x.Experience > Experience).Level;
         }
         
         public int GetPreviousLevelCap()
         {
-            return Level == 1 ? 0 : _settings.Data.Caps.First(x => x.level == Level - 1).experience;
+            return Level == 1 ? 0 : _settings.Data.Caps.First(x => x.Level == Level - 1).Experience;
         }
 
         public int GetCurrentLevelCap()
         {
-            return _settings.Data.Caps.First(x => x.level == Level).experience;
+            return _settings.Data.Caps.First(x => x.Level == Level).Experience;
         }
         
         private async UniTask SendLevelData()
         {
             var levelObject = new LevelObject
             {
-                level = Level,
-                experience = Experience
+                Level = Level,
+                Experience = Experience
             };
             
             await apiService.SetUserExperience(levelObject);
