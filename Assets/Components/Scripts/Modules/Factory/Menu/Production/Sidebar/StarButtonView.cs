@@ -13,7 +13,7 @@ namespace RoboFactory.Factory.Menu.Production
         #region Zenject
         
         [Inject] private readonly IUiController _uiController;
-        [Inject] private readonly ProductionManager _productionManager;
+        [Inject] private readonly ProductionService productionService;
 
         #endregion
         
@@ -46,7 +46,7 @@ namespace RoboFactory.Factory.Menu.Production
             base.Click();
 
             var nextStar = ActiveStar + 1;
-            if (nextStar - 1 <= _productionManager.Level && nextStar <= Constants.MaxStar)
+            if (nextStar - 1 <= productionService.Level && nextStar <= Constants.MaxStar)
                 ActiveStar = nextStar;
             else
                 ActiveStar = 1;

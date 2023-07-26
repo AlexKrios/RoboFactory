@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 using RoboFactory.General.Expedition;
 using RoboFactory.General.Item;
 using RoboFactory.General.Item.Production;
+using RoboFactory.General.Item.Products;
 using RoboFactory.General.Item.Raw;
 using RoboFactory.General.Level;
 using RoboFactory.General.Location;
@@ -19,10 +20,9 @@ namespace RoboFactory.General.User
     [Serializable]
     public class UserProfile
     {
-        [Inject] private readonly RawManager _rawManager;
-        [Inject] private readonly UnitsManager _unitsManager;
-        [Inject] private readonly ProductionManager _productionManager;
-        [Inject] private readonly ExpeditionManager _expeditionManager;
+        [Inject] private readonly UnitsService _unitsService;
+        [Inject] private readonly ProductionService productionService;
+        [Inject] private readonly ExpeditionService expeditionService;
         
         [JsonProperty("commonSection")] 
         public CommonSection CommonSection { get; set; }
@@ -66,25 +66,26 @@ namespace RoboFactory.General.User
 
             StoresSection = new StoresDto
             {
-                Raw = new Dictionary<string, RawDto>(_rawManager.GetAllRawDto())
+                Raw = new Dictionary<string, RawDto>(),
+                Products = new Dictionary<string, ProductDto>()
             };
 
             UnitsSection = new UnitsLoadObject
             {
-                Units = new Dictionary<string, UnitDto>(_unitsManager.GetAllUnitsDto())
+                Units = new Dictionary<string, UnitDto>(_unitsService.GetAllUnitsDto())
             };
 
             ProductionsSection = new ProductionSectionDto
             {
                 Count = 1,
                 Level = 1,
-                Production = new Dictionary<string, ProductionDto>(_productionManager.GetAllProductionDto())
+                Production = new Dictionary<string, ProductionDto>(productionService.GetAllProductionDto())
             };
 
             ExpeditionsSection = new ExpeditionSectionDto
             {
                 Count = 1,
-                Expeditions = new Dictionary<string, ExpeditionDto>(_expeditionManager.GetAllExpeditionDto())
+                Expeditions = new Dictionary<string, ExpeditionDto>(expeditionService.GetAllExpeditionDto())
             };
 
             OrdersSection = new OrdersLoadObject

@@ -11,8 +11,8 @@ namespace RoboFactory.Factory.Menu.Production
         #region Zenject
         
         [Inject] private readonly LocalizationService localizationController;
-        [Inject] private readonly ProductsManager _productsManager;
-        [Inject] private readonly ProductionManager _productionManager;
+        [Inject] private readonly ProductsService productsService;
+        [Inject] private readonly ProductionService productionService;
 
         #endregion
         
@@ -44,10 +44,10 @@ namespace RoboFactory.Factory.Menu.Production
 
         private void CompleteCraft()
         {
-            var craftItem = _productionManager.GetProduction(_cell.Data.Id);
+            var craftItem = productionService.GetProduction(_cell.Data.Id);
             
-            _productsManager.CreateProduct(craftItem.Key);
-            _productionManager.RemoveProduction(_cell.Data.Id);
+            productsService.CreateProduct(craftItem.Key);
+            productionService.RemoveProduction(_cell.Data.Id);
             _cell.ResetCell();
         }
 

@@ -17,7 +17,7 @@ namespace RoboFactory.General.Ui.Common
         private const float RotateTime = 10; 
         
         [Inject] private readonly AddressableService _addressableService;
-        [Inject] private readonly AudioManager _audioController;
+        [Inject] private readonly AudioService _audioService;
 
         [SerializeField] protected Image _icon;
         [SerializeField] private Image _active;
@@ -47,7 +47,7 @@ namespace RoboFactory.General.Ui.Common
         
         protected virtual void Click()
         {
-            _audioController.PlayAudio(AudioClipType.ButtonClick);
+            _audioService.PlayAudio(AudioClipType.ButtonClick);
         }
 
         protected virtual async void SetIconSprite(AssetReference spriteRef, bool active = true)

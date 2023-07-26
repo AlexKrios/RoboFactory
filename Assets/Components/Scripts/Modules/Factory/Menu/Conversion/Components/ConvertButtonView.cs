@@ -20,8 +20,8 @@ namespace RoboFactory.Factory.Menu.Conversion
 
         [Inject] private readonly LocalizationService localizationController;
         [Inject] private readonly IUiController _uiController;
-        [Inject] private readonly RawManager _rawManager;
-        [Inject] private readonly ConvertRawController _convertRawController;
+        [Inject] private readonly RawService _rawService;
+        [Inject] private readonly ConvertRawService convertRawService;
         [Inject] private readonly PopupFactory _popupFactory;
 
         #endregion
@@ -54,7 +54,7 @@ namespace RoboFactory.Factory.Menu.Conversion
 
         public override void SetState()
         {
-            var isEnoughRaw = _convertRawController.IsEnoughRaw(_menu.ActiveRaw.Key);
+            var isEnoughRaw = convertRawService.IsEnoughRaw(_menu.ActiveRaw.Key);
             SetInteractable(isEnoughRaw);
         }
         
@@ -62,14 +62,14 @@ namespace RoboFactory.Factory.Menu.Conversion
         {
             base.Click();
             
-            if (_rawManager.CheckIfRawStoreFull(_menu.ActiveRaw.Key))
+            if (_rawService.CheckIfRawStoreFull(_menu.ActiveRaw.Key))
             {
                 var canvasT = _uiController.GetCanvas(CanvasType.HUD).transform;
                 _popupFactory.CreateSmallNotification(UiType.StorageFull, canvasT);
                 return;
             }
 
-            _convertRawController.RemoveParts();
+            convertRawService.RemoveParts();
 
             OnClickEvent?.Invoke();
         }

@@ -2,6 +2,7 @@
 using System.Linq;
 using JetBrains.Annotations;
 using RoboFactory.General.Asset;
+using RoboFactory.General.Services;
 using RoboFactory.General.Settings;
 using UnityEngine;
 using Zenject;
@@ -10,27 +11,21 @@ using Random = System.Random;
 namespace RoboFactory.General.Audio
 {
     [UsedImplicitly]
-    public class AudioManager
+    public class AudioService : Service
     {
         [Inject] private readonly Settings _settings;
-        [Inject] private readonly AddressableService addressableService;
-        [Inject] private readonly SettingsService settingsService;
+        [Inject] private readonly AddressableService _addressableService;
+        [Inject] private readonly SettingsService _settingsService;
+        [Inject(Id = Constants.MusicSourceKey)] private readonly AudioSource _musicSource;
 
-        private AudioSource _musicSource;
-
-        public void InitMusicSource(AudioSource audioSource)
-        {
-            _musicSource = audioSource;
-        }
-        
         public void ChangeAudioVolume(float value)
         {
-            settingsService.SetAudioVolume(value);
+            _settingsService.SetAudioVolume(value);
         }
         
         public void ChangeMusicVolume(float value)
         {
-            settingsService.SetMusicVolume(value);
+            _settingsService.SetMusicVolume(value);
             _musicSource.volume = value / 10;
         }
         
@@ -38,23 +33,23 @@ namespace RoboFactory.General.Audio
         {
             var random = new Random().Next(0, _settings.MusicList.Music.Count);
             var clipRef = _settings.MusicList.Music[random].ClipRef;
-            var audioClip = await addressableService.LoadAssetAsync<AudioClip>(clipRef);
+            var audioClip = await _addressableService.LoadAssetAsync<AudioClip>(clipRef);
             
             Debug.Log($"<color=#ffb3ff>Audio Manager: Playing sound {audioClip.name}</color>");
-            _musicSource.volume = settingsService.MusicVolume / 10;
+            _musicSource.volume = _settingsService.MusicVolume / 10;
             _musicSource.PlayOneShot(audioClip);
             
-            addressableService.ReleaseAsset(clipRef);
+            _addressableService.ReleaseAsset(clipRef);
         }
         
         public async void PlayAudio(AudioClipType type)
         {
             var clipRef = _settings.AudioList.Audio.First(x => x.Type == type).ClipRef;
-            var audioClip = await addressableService.LoadAssetAsync<AudioClip>(clipRef);
+            var audioClip = await _addressableService.LoadAssetAsync<AudioClip>(clipRef);
             
-            AudioSource.PlayClipAtPoint(audioClip, Vector3.zero, settingsService.AudioVolume / 10);
+            AudioSource.PlayClipAtPoint(audioClip, Vector3.zero, _settingsService.AudioVolume / 10);
             
-            addressableService.ReleaseAsset(clipRef);
+            _addressableService.ReleaseAsset(clipRef);
         }
         
         [Serializable]

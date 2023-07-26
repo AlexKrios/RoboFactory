@@ -12,7 +12,7 @@ namespace RoboFactory.Battle.Ui
     {
         #region Zenject
 
-        [Inject] private readonly AddressableService addressableService;
+        [Inject] private readonly AddressableService _addressableService;
 
         #endregion
         
@@ -45,7 +45,7 @@ namespace RoboFactory.Battle.Ui
         {
             _data = unit;
             
-            var sprite = await addressableService.LoadAssetAsync<Sprite>(_data.Info.IconRef);
+            var sprite = await _addressableService.LoadAssetAsync<Sprite>(_data.Info.IconRef);
 
             _unitIcon.gameObject.SetActive(true);
             _unitHealthText.gameObject.SetActive(true);

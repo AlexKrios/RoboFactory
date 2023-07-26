@@ -13,10 +13,10 @@ namespace RoboFactory.Factory.Menu.Expedition
 {
     public class UpgradeQueueButtonView : ButtonBase
     {
-        [Inject] private readonly LocalizationService localizationController;
-        [Inject] private readonly MoneyManager _moneyManager;
-        [Inject] private readonly LevelManager _levelManager;
-        [Inject] private readonly ExpeditionManager _expeditionManager;
+        [Inject] private readonly LocalizationService _localizationService;
+        [Inject] private readonly MoneyService _moneyService;
+        [Inject] private readonly ExperienceService _experienceService;
+        [Inject] private readonly ExpeditionService expeditionService;
 
         [Space]
         [SerializeField] private TMP_Text _title;
@@ -30,8 +30,8 @@ namespace RoboFactory.Factory.Menu.Expedition
         {
             base.Awake();
 
-            SetButtonText(localizationController.GetLanguageValue(LocalizationKeys.UpgradeButtonTitleKey));
-            _buyData = _expeditionManager.GetUpgradeData();
+            SetButtonText(_localizationService.GetLanguageValue(LocalizationKeys.UpgradeButtonTitleKey));
+            _buyData = expeditionService.GetUpgradeData();
             
             SetState();
         }
@@ -40,15 +40,15 @@ namespace RoboFactory.Factory.Menu.Expedition
         {
             base.Click();
             
-            await _moneyManager.MinusMoney(_buyData.Cost);
-            _expeditionManager.IncreaseQueueCount();
+            await _moneyService.MinusMoney(_buyData.Cost);
+            expeditionService.IncreaseQueueCount();
             
             OnUpgradeClick?.Invoke();
         }
 
         public void SetData(int costValue, int levelValue)
         {
-            if (_levelManager.Level > levelValue)
+            if (_experienceService.Level > levelValue)
             {
                 _title.text = $"Level {levelValue}";
                 SetInteractable(false);

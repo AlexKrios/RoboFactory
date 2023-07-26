@@ -5,6 +5,8 @@ using Cysharp.Threading.Tasks;
 using JetBrains.Annotations;
 using RoboFactory.General.Api;
 using RoboFactory.General.Item.Products;
+using RoboFactory.General.Profile;
+using RoboFactory.General.Services;
 using RoboFactory.General.Unit.Battle;
 using UnityEngine;
 using Zenject;
@@ -12,38 +14,36 @@ using Zenject;
 namespace RoboFactory.General.Unit
 {
     [UsedImplicitly]
-    public class UnitsManager
+    public class UnitsService : Service
     {
-        [Inject] private readonly ApiService apiService;
+        [Inject] private readonly Settings _settings;
+        [Inject] private readonly CommonProfile _commonProfile;
+        [Inject] private readonly ApiService _apiService;
+        [Inject] private readonly UnitObject.Factory _unitFactory;
         
-        private readonly Dictionary<string, UnitObject> _allUnits;
-        private readonly Dictionary<FaceType, Material> _faceUnits;
-        private readonly List<BattleUnitObject> _battleUnits;
+        public override ServiceTypeEnum ServiceType => ServiceTypeEnum.NeedAuth;
+        
+        private readonly Dictionary<string, UnitObject> _allUnits = new();
+        private readonly Dictionary<FaceType, Material> _faceUnits = new();
+        private readonly List<BattleUnitObject> _battleUnits = new();
 
         //public int GroupCount { get; private set; }
 
-        public UnitsManager(Settings settings, UnitObject.Factory unitFactory)
+        protected override UniTask InitializeAsync()
         {
-            _allUnits = new Dictionary<string, UnitObject>();
-            _faceUnits = new Dictionary<FaceType, Material>();
-            _battleUnits = new List<BattleUnitObject>();
-            
-            foreach (var data in settings.Units)
+            foreach (var data in _settings.Units)
             {
-                var unit = unitFactory.Create().SetData(data);
+                var unit = _unitFactory.Create().SetData(data);
                 _allUnits.Add(unit.Key, unit);
             }
             
-            foreach (var data in settings.Faces)
+            foreach (var data in _settings.Faces)
             {
                 _faceUnits.Add(data.Type, data.Face);
             }
-        }
-
-        public void LoadData(UnitsLoadObject unitsData)
-        {
-            if (unitsData == null)
-                return;
+            
+            var unitsData = _commonProfile.UserProfile.UnitsSection;
+            if (unitsData?.Units == null) return UniTask.CompletedTask;
             
             //GroupCount = unitsData.groupCount;
             foreach (var unit in unitsData.Units)
@@ -52,6 +52,8 @@ namespace RoboFactory.General.Unit
                 _allUnits[unit.Key].Experience = unit.Value.Experience;
                 _allUnits[unit.Key].Outfit = unit.Value.Outfit;
             }
+            
+            return UniTask.CompletedTask;
         }
         
         public UnitObject GetUnit(string key) => _allUnits[key];
@@ -73,7 +75,7 @@ namespace RoboFactory.General.Unit
         {
             var unit = _allUnits[unitKey];
             unit.Outfit[group] = itemKey;
-            await apiService.SetUserUnitSingle(unitKey, unit.ToDto());
+            await _apiService.SetUserUnitSingle(unitKey, unit.ToDto());
         }
         
         [Serializable]

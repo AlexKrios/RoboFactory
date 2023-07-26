@@ -6,7 +6,9 @@ using JetBrains.Annotations;
 using RoboFactory.General.Api;
 using RoboFactory.General.Item.Products;
 using RoboFactory.General.Money;
+using RoboFactory.General.Profile;
 using RoboFactory.General.Scriptable;
+using RoboFactory.General.Services;
 using RoboFactory.Utils;
 using UnityEngine;
 using Zenject;
@@ -15,59 +17,56 @@ using Random = System.Random;
 namespace RoboFactory.General.Order
 {
     [UsedImplicitly]
-    public class OrderManager
+    public class OrderService : Service
     {
-        #region Zenject
-
-        [Inject] private readonly ApiService apiService;
-        [Inject] private readonly MoneyManager _moneyManager;
-        [Inject] private readonly ProductsManager _productsManager;
-
-        #endregion
-
-        #region Variables
+        protected override string InitializeTextKey => "initialize_2";
         
-        private Dictionary<string, OrderObject> OrdersDictionary { get; }
+        [Inject] private readonly Settings _settings;
+        [Inject] private readonly CommonProfile _commonProfile;
+        [Inject] private readonly ApiService _apiService;
+        [Inject] private readonly MoneyService _moneyService;
+        [Inject] private readonly ProductsService productsService;
+        
+        public override ServiceTypeEnum ServiceType => ServiceTypeEnum.NeedAuth;
+
+        private readonly Dictionary<string, OrderObject> _ordersDictionary = new();
 
         public int Count { get; private set; }
         public int Level { get; private set; }
         private long RefreshTime { get; set; }
 
         private bool _isNeedRefreshForce;
-
-        #endregion
-
-        public OrderManager(Settings settings)
+        
+        protected override UniTask InitializeAsync()
         {
-            OrdersDictionary = new Dictionary<string, OrderObject>();
-            foreach (var fileData in settings.Orders)
+            foreach (var fileData in _settings.Orders)
             {
                 foreach (var data in fileData.Orders)
                 {
                     var order = new OrderObject().SetStartData(data);
-                    OrdersDictionary.Add(data.Key, order);
+                    _ordersDictionary.Add(data.Key, order);
                 }
             }
-        }
-
-        public void LoadData(OrdersLoadObject data)
-        {
-            Count = data.Count;
-            RefreshTime = data.TimeRefresh;
             
-            if (data.Orders == null)
-                return;
+            var ordersData = _commonProfile.UserProfile.OrdersSection;
             
-            foreach (var orderData in data.Orders)
+            Count = ordersData.Count;
+            RefreshTime = ordersData.TimeRefresh;
+            
+            if (ordersData.Orders == null) return UniTask.CompletedTask;
+            
+            foreach (var orderData in ordersData.Orders)
             {
-                var order = OrdersDictionary.First(x => x.Key == orderData.Key);
+                var order = _ordersDictionary.First(x => x.Key == orderData.Key);
                 order.Value.SetLoadData(orderData.Value);
             }
+            
+            return UniTask.CompletedTask;
         }
 
         public void RefreshOrders()
         {
-            OrdersDictionary.ToList().ForEach(x =>
+            _ordersDictionary.ToList().ForEach(x =>
             {
                 x.Value.IsActive = false;
                 x.Value.IsComplete = false;
@@ -89,40 +88,40 @@ namespace RoboFactory.General.Order
 
         public OrderObject GetRandomOrderByGroup()
         {
-            var random = new Random().Next(0, OrdersDictionary.Count);
-            return OrdersDictionary.ElementAt(random).Value;
+            var random = new Random().Next(0, _ordersDictionary.Count);
+            return _ordersDictionary.ElementAt(random).Value;
         }
         
         public OrderObject GetActiveOrderByGroup(ProductGroup group)
         {
-            return OrdersDictionary.Values.First(x => x.Group == group && x.IsActive && !x.IsComplete);
+            return _ordersDictionary.Values.First(x => x.Group == group && x.IsActive && !x.IsComplete);
         }
 
         public async void SendActiveOrders()
         {
-            var orders = OrdersDictionary.Where(x => x.Value.IsActive)
+            var orders = _ordersDictionary.Where(x => x.Value.IsActive)
                 .ToDictionary(x => x.Key, z => z.Value.ToDto());
 
-            await apiService.SetUserOrders(orders);
+            await _apiService.SetUserOrders(orders);
         }
 
         public bool IsEnoughParts(OrderObject orderObject)
         {
             var part = orderObject.Part;
-            var itemCount = _productsManager.GetProduct(part.Data.Key).Count;
+            var itemCount = productsService.GetProduct(part.Data.Key).Count;
             return part.Count <= itemCount;
         }
         
         public void RemoveItems(OrderObject orderObject)
         {
-            var item = _productsManager.GetProduct(orderObject.Part.Data.Key);
+            var item = productsService.GetProduct(orderObject.Part.Data.Key);
             item.DecrementCount(orderObject.Part.Count);
         }
         
         public void CollectMoney(OrderObject orderObject)
         {
-            var item = _productsManager.GetProduct(orderObject.Part.Data.Key);
-            _moneyManager.PlusMoney(item.Recipe.Cost * orderObject.Part.Count);
+            var item = productsService.GetProduct(orderObject.Part.Data.Key);
+            _moneyService.PlusMoney(item.Recipe.Cost * orderObject.Part.Count);
         }
 
         /*private async void IncreaseOrderCount()
@@ -134,7 +133,7 @@ namespace RoboFactory.General.Order
         public async UniTask IncreaseOrderLevel()
         {
             Level++;
-            await apiService.SetUserOrdersLevel(Count);
+            await _apiService.SetUserOrdersLevel(Count);
         }
 
         public UpgradeDataObject GetUpgradeQualityData()

@@ -17,6 +17,13 @@ MonoBehaviour:
   _scene:
     _loaderPrefab: {fileID: 5740344213301756957, guid: 3e75cb23163eb65479d581113a0e6b95,
       type: 3}
+  _auth:
+    _signInPrefab: {fileID: 31407592656435803, guid: 3290c3bd17c56134a80875978bdf78c6,
+      type: 3}
+    _signUpPrefab: {fileID: 6688074149990176046, guid: 50a0bfebee2e44343ad65a8b89fb7aa5,
+      type: 3}
+    _verificationPrefab: {fileID: 6731573290350837799, guid: c078fd77328e6a347ad4c496856d2716,
+      type: 3}
   _localization:
     _localization:
     - {fileID: 4900000, guid: b7d23f6d0c8935645ad0b8e3df107c89, type: 3}

@@ -13,7 +13,7 @@ namespace RoboFactory.Factory.Menu.Expedition
     {
         [Inject] private readonly LocalizationService _localizationService;
         [Inject] private readonly IUiController _uiController;
-        [Inject] private readonly ExpeditionManager _expeditionManager;
+        [Inject] private readonly ExpeditionService expeditionService;
         
         [Space]
         [SerializeField] private TMP_Text _titleText;
@@ -35,7 +35,7 @@ namespace RoboFactory.Factory.Menu.Expedition
 
             _upgrade.OnUpgradeClick += Close;
             
-            var cellCount = _expeditionManager.CellCount;
+            var cellCount = expeditionService.CellCount;
             _currentCount.text = cellCount.ToString();
             _nextCount.text = (cellCount + 1).ToString();
             
@@ -44,7 +44,7 @@ namespace RoboFactory.Factory.Menu.Expedition
         
         private void Start() 
         {
-            _buyData = _expeditionManager.GetUpgradeData();
+            _buyData = expeditionService.GetUpgradeData();
             _upgrade.SetData(_buyData.Cost, _buyData.Level);
         }
     }

@@ -10,7 +10,7 @@ namespace RoboFactory.Factory.Menu.Production
     public class ProductionSection : MonoBehaviour
     {
         [Inject] private readonly DiContainer _container;
-        [Inject] private readonly ProductionManager _productionManager;
+        [Inject] private readonly ProductionService productionService;
 
         [SerializeField] private ProductionCell _cellPrototype;
 
@@ -21,7 +21,7 @@ namespace RoboFactory.Factory.Menu.Production
         {
             _cells = new List<ProductionCell>();
 
-            _productionManager.OnProductionComplete += InitCells;
+            productionService.OnProductionComplete += InitCells;
         }
         
         private void OnEnable()
@@ -49,7 +49,7 @@ namespace RoboFactory.Factory.Menu.Production
 
         private void OnDestroy()
         {
-            _productionManager.OnProductionComplete -= InitCells;
+            productionService.OnProductionComplete -= InitCells;
         }
 
         private void InitCells()
@@ -57,10 +57,10 @@ namespace RoboFactory.Factory.Menu.Production
             if (_cells.Count != 0)
                 RemoveCells();
             
-            var production = _productionManager.GetAllProduction()
+            var production = productionService.GetAllProduction()
                 .OrderBy(x => x.TimeEnd).ToList();
 
-            for (var i = 0; i < _productionManager.CellCount; i++)
+            for (var i = 0; i < productionService.CellCount; i++)
             {
                 var cell = CreateCell();
                 if (i < production.Count)

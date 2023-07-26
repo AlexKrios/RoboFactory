@@ -15,9 +15,9 @@ namespace RoboFactory.Factory.Menu.Conversion
     {
         #region Zenject
         
-        [Inject] private readonly AddressableService addressableService;
+        [Inject] private readonly AddressableService _addressableService;
         [Inject] private readonly IUiController _uiController;
-        [Inject] private readonly ConvertRawController _convertRawController;
+        [Inject] private readonly ConvertRawService convertRawService;
 
         #endregion
 
@@ -46,7 +46,7 @@ namespace RoboFactory.Factory.Menu.Conversion
 
         public async void SetResultData(AssetReference iconRef, int star)
         {
-            _icon.sprite = await addressableService.LoadAssetAsync<Sprite>(iconRef);
+            _icon.sprite = await _addressableService.LoadAssetAsync<Sprite>(iconRef);
             _level.text = star.ToString();
         }
         
@@ -58,7 +58,7 @@ namespace RoboFactory.Factory.Menu.Conversion
                 _menu.Convert.SetState();
                 _progress.fillAmount = 0;
 
-                _convertRawController.AddRaw();
+                convertRawService.AddRaw();
             });
         }
     }

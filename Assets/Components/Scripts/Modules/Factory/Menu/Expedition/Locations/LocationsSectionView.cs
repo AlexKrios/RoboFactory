@@ -11,7 +11,7 @@ namespace RoboFactory.Factory.Menu.Expedition
     public class LocationsSectionView : MonoBehaviour
     {
         [Inject] private readonly IUiController _uiController;
-        [Inject] private readonly LocationManager _locationManager;
+        [Inject] private readonly LocationsService locationsService;
         [Inject] private readonly ExpeditionMenuFactory _expeditionMenuFactory;
 
         [SerializeField] private RectTransform _unitParent;
@@ -50,7 +50,7 @@ namespace RoboFactory.Factory.Menu.Expedition
             if (_locations.Count != 0)
                 RemoveLocations();
             
-            foreach (var location in _locationManager.GetLocations())
+            foreach (var location in locationsService.GetLocations())
             {
                 var cell = _expeditionMenuFactory.CreateLocationCell(_unitParent);
                 cell.OnClickEvent += OnLocationClick;

@@ -11,7 +11,7 @@ namespace RoboFactory.General.Ui.Common
     [RequireComponent(typeof(Button))]
     public abstract class StarButtonBase : MonoBehaviour
     {
-        [Inject] private readonly AudioManager _audioController;
+        [Inject] private readonly AudioService _audioService;
 
         [SerializeField] private TMP_Text _level;
         [SerializeField] private GameObject _locked;
@@ -35,7 +35,7 @@ namespace RoboFactory.General.Ui.Common
 
         protected virtual void Click()
         {
-            _audioController.PlayAudio(AudioClipType.ButtonClick);
+            _audioService.PlayAudio(AudioClipType.ButtonClick);
         }
 
         protected void SetStarLevel(int levelValue)

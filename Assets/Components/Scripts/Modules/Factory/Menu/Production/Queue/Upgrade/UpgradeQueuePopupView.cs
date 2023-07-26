@@ -19,10 +19,10 @@ namespace RoboFactory.Factory.Menu.Production
         private const string NeedMoneyTextKey = "<sprite name=MoneyIcon>";
         
         [Inject] private readonly LocalizationService _localizationService;
-        [Inject] private readonly MoneyManager _moneyManager;
-        [Inject] private readonly LevelManager _levelManager;
+        [Inject] private readonly MoneyService _moneyService;
+        [Inject] private readonly ExperienceService _experienceService;
         [Inject] private readonly IUiController _uiController;
-        [Inject] private readonly ProductionManager _productionManager;
+        [Inject] private readonly ProductionService productionService;
         
         [Space]
         [SerializeField] private TMP_Text _titleText;
@@ -44,27 +44,27 @@ namespace RoboFactory.Factory.Menu.Production
             _uiController.AddUi(this);
             
             _acceptButton.OnClickAsObservable().Subscribe(_ => OnAcceptClick()).AddTo(Disposable);
-            _buyData = _productionManager.GetUpgradeQualityData();
+            _buyData = productionService.GetUpgradeQualityData();
             
             _titleText.text = _localizationService.GetLanguageValue(LocalizationKeys.UpgradeTitleKey);
             
-            var cellCount = _productionManager.CellCount;
+            var cellCount = productionService.CellCount;
             _currentCount.text = cellCount.ToString();
             _nextCount.text = (cellCount + 1).ToString();
             
-            if (_moneyManager.Money < _buyData.Cost || _levelManager.Level < _buyData.Level)
+            if (_moneyService.Money.Value < _buyData.Cost || _experienceService.Level < _buyData.Level)
                 _acceptButton.interactable = false;
 
-            if (_levelManager.Level < _buyData.Level)
+            if (_experienceService.Level < _buyData.Level)
                 _acceptText.text = $"{_localizationService.GetLanguageValue(NeedLevelTextKey)} {_buyData.Level}";
-            else if (_moneyManager.Money < _buyData.Cost)
+            else if (_moneyService.Money.Value < _buyData.Cost)
                 _acceptText.text = $"{NeedMoneyTextKey} {_buyData.Cost}";
         }
         
         private async void OnAcceptClick()
         {
-            await _moneyManager.MinusMoney(_buyData.Cost);
-            await _productionManager.IncreaseQueueCount();
+            await _moneyService.MinusMoney(_buyData.Cost);
+            await productionService.IncreaseQueueCount();
 
             Close();
         }

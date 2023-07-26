@@ -11,7 +11,7 @@ namespace RoboFactory.Factory.Menu.Expedition
         [Inject] private readonly DiContainer _container;
         [Inject] private readonly LocalizationService _localizationService;
         [Inject] private readonly IUiController _uiController;
-        [Inject] private readonly UnitsManager _unitsManager;
+        [Inject] private readonly UnitsService _unitsService;
         
         private ExpeditionMenuView _menu;
         private SelectionPopupView _selectionMenu;
@@ -38,7 +38,7 @@ namespace RoboFactory.Factory.Menu.Expedition
             var unitComponent = _container.InstantiateComponent<UnitModel>(unit);
             unitComponent.SetData(activeUnit.Data);
             
-            _unitsManager.RemoveUnits();
+            _unitsService.RemoveUnits();
             
             _menu.Units.EventClick?.Invoke();
             _selectionMenu.Close();

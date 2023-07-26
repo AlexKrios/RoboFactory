@@ -20,8 +20,9 @@ namespace RoboFactory.General.Asset
             Success
         }
         
-        protected override string LoadingTextKey => "initialize_addressables";
-        
+        protected override string InitializeTextKey => "initialize_addressables";
+        public override ServiceTypeEnum ServiceType => ServiceTypeEnum.NeedAuth;
+
         private const string CoreLabel = "Core";
         private const string MusicLabel = "Music";
         private const string AudioLabel = "Audio";

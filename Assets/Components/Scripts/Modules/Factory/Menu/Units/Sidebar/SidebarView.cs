@@ -16,7 +16,7 @@ namespace RoboFactory.Factory.Menu.Units
         [Inject] private readonly AddressableService _addressableService;
         [Inject] private readonly LocalizationService _localizationService;
         [Inject] private readonly IUiController _uiController;
-        [Inject] private readonly ProductsManager _productsManager;
+        [Inject] private readonly ProductsService productsService;
 
         [SerializeField] private TMP_Text _unitName;
         [SerializeField] private Image _unitIcon;
@@ -42,7 +42,7 @@ namespace RoboFactory.Factory.Menu.Units
                 var specObject = new SpecObject();
                 foreach (var outfit in _menu.ActiveUnit.Outfit)
                 {
-                    var item = _productsManager.GetProduct(outfit.Value).Recipe;
+                    var item = productsService.GetProduct(outfit.Value).Recipe;
                     spec += item.Specs[i].Value;
                 }
 

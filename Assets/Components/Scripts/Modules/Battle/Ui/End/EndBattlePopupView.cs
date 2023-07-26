@@ -14,7 +14,7 @@ namespace RoboFactory.Battle.Ui
         #region Zenject
         
         [Inject] private readonly EndBattleFactory _endBattleFactory;
-        [Inject] private readonly ExpeditionManager expeditionManager;
+        [Inject] private readonly ExpeditionService expeditionService;
         [Inject] private readonly BattleController _battleController;
 
         #endregion
@@ -58,7 +58,7 @@ namespace RoboFactory.Battle.Ui
 
         private IEnumerator CreateItemsCell()
         {
-            foreach (var rewardData in expeditionManager.CurrentBattleLocation.Reward)
+            foreach (var rewardData in expeditionService.CurrentBattleLocation.Reward)
             {
                 yield return new WaitForSeconds(.2f);
                 
@@ -71,7 +71,7 @@ namespace RoboFactory.Battle.Ui
 
         private void AcceptButtonClick()
         {
-            _battleController.CollectItems(expeditionManager.CurrentBattleLocation.Reward);
+            _battleController.CollectItems(expeditionService.CurrentBattleLocation.Reward);
             SceneManager.LoadScene("Factory");
         }
 

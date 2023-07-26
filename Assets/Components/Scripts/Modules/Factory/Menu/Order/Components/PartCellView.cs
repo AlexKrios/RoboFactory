@@ -12,7 +12,7 @@ namespace RoboFactory.Factory.Menu.Order
     public class PartCellView : MonoBehaviour
     {
         [Inject] private readonly AddressableService _addressableService;
-        [Inject] private readonly ProductsManager _productsManager;
+        [Inject] private readonly ProductsService productsService;
 
         [SerializeField] private Image _icon;
         [SerializeField] private TMP_Text _count;
@@ -23,7 +23,7 @@ namespace RoboFactory.Factory.Menu.Order
 
         public async void SetPartInfo(PartObject part)
         {
-            var itemCount = _productsManager.GetProduct(part.Data.Key).Count;
+            var itemCount = productsService.GetProduct(part.Data.Key).Count;
             var sprite = await _addressableService.LoadAssetAsync<Sprite>(part.Data.IconRef);
 
             SetPartIcon(sprite);

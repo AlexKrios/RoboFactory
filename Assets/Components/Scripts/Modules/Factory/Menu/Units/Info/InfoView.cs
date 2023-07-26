@@ -12,8 +12,8 @@ namespace RoboFactory.Factory.Menu.Units
     {
         [Inject] private readonly DiContainer _container;
         [Inject] private readonly IUiController _uiController;
-        [Inject] private readonly ProductsManager _productsManager;
-        [Inject] private readonly UnitsManager _unitsManager;
+        [Inject] private readonly ProductsService _productsService;
+        [Inject] private readonly UnitsService _unitsService;
         [Inject] private readonly UnitsMenuFactory _unitsMenuFactory;
 
         [SerializeField] private List<EquipmentCellView> _equipment;
@@ -47,7 +47,7 @@ namespace RoboFactory.Factory.Menu.Units
             var outfit = _menu.ActiveUnit.Outfit;
             foreach (var data in outfit)
             {
-                var product = _productsManager.GetProduct(data.Value);
+                var product = _productsService.GetProduct(data.Value);
                 _equipment.First(x => x.EquipmentType == product.ProductGroup)
                     .SetEquipmentData(product);
             }
@@ -58,10 +58,10 @@ namespace RoboFactory.Factory.Menu.Units
             //TODO объяеденить плюс и минус предмет
             if (cell.Data.ProductType != 0)
             {
-                await _productsManager.AddItem(cell.Data.Key);
+                await _productsService.AddItem(cell.Data.Key);
                 cell.ResetEquipmentData();
                 
-                await _unitsManager.SetEquipment(_menu.ActiveUnit.Key, cell.Data.ProductGroup, cell.Data.Key);
+                await _unitsService.SetEquipment(_menu.ActiveUnit.Key, cell.Data.ProductGroup, cell.Data.Key);
                 UnitModel.SetEquipment(cell.Data);
             }
             else

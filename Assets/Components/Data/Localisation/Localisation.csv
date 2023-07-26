@@ -4,6 +4,10 @@
 "initialize_user","Initialize User","Инициализация Пользователя"
 "initialize_addressables","Initialize Resources","Инициализация Ресурсов"
 "initialize_scenes","Initialize Scenes","Инициализация Сцен"
+"initialize_1","Initialize 1","Инициализация 1"
+"initialize_2","Initialize 2","Инициализация 2"
+"initialize_launch","Launch","Запуск"
+"load_scene","Load Scene","Загрузка Сцены"
 /---------- Menu ----------/
 "settings_menu_title","Settings","Настройки"
 "production_menu_title","Production","Создание"

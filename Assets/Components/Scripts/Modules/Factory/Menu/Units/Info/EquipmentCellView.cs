@@ -11,7 +11,7 @@ namespace RoboFactory.Factory.Menu.Units
     public class EquipmentCellView : CellBase
     {
         [Inject] private readonly IUiController _uiController;
-        [Inject] private readonly ProductsManager _productsManager;
+        [Inject] private readonly ProductsService productsService;
         
         [Space]
         [SerializeField] private ProductGroup _equipmentType;
@@ -41,7 +41,7 @@ namespace RoboFactory.Factory.Menu.Units
 
         public void ResetEquipmentData()
         {
-            Data = _productsManager.GetDefaultProduct(_equipmentType, _menu.ActiveUnit.UnitType);
+            Data = productsService.GetDefaultProduct(_equipmentType, _menu.ActiveUnit.UnitType);
             SetIconSprite(Data.IconRef);
 
             _starImage.gameObject.SetActive(false);

@@ -6,6 +6,7 @@
         public const string SignUpKey = "SignUp";
         public const string VerificationKey = "Verification";
         
+        public const string MusicSourceKey = "musicSource";
         public const string ScreenParentKey = "screenParent";
         public const string PopupParentKey = "popupParent";
 

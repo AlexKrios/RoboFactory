@@ -11,7 +11,7 @@ namespace RoboFactory.Factory.Menu.Production
     public class ProductsSectionView : MonoBehaviour
     {
         [Inject] private readonly IUiController _uiController;
-        [Inject] private readonly ProductsManager _productsManager;
+        [Inject] private readonly ProductsService productsService;
         [Inject] private readonly ProductionMenuFactory _productionMenuFactory;
         
         [SerializeField] private List<ProductCellView> _products;
@@ -46,7 +46,7 @@ namespace RoboFactory.Factory.Menu.Production
             if (_products.Count != 0)
                 RemoveProductCells();
             
-            var productsWithComponents = _productsManager.GetAllProducts()
+            var productsWithComponents = productsService.GetAllProducts()
                 .Where(x =>
                     x.ProductGroup == _menu.ActiveProductGroup &&
                     x.UnitType == _menu.ActiveUnitType &&

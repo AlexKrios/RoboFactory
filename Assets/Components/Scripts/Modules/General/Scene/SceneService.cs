@@ -6,35 +6,36 @@ using UniRx;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Zenject;
-using Object = UnityEngine.Object;
 
 namespace RoboFactory.General.Scene
 {
     [UsedImplicitly]
     public class SceneService : Service
     {
-        protected override string LoadingTextKey => "initialize_scenes";
-        
+        private const string LoadSceneKey = "load_scene";
+
         [Inject] private readonly DiContainer _container;
         [Inject] private readonly Settings _settings;
         [Inject(Id = Constants.ScreenParentKey)] private readonly Transform _sceneParent;
+        
+        protected override string InitializeTextKey => "initialize_scenes";
 
         public StringReactiveProperty ProgressText { get; } = new(string.Empty);
         public FloatReactiveProperty ProgressMainValue { get; } = new();
         public FloatReactiveProperty ProgressSecondaryValue { get; } = new();
-        public ReactiveProperty<SceneLoadState> LoadState { get; } = new();
 
-        private GameObject _loaderScreen;
-
-        public async void LoadScene(SceneName scene)
+        public GameObject InstantiateLoader()
         {
-            _loaderScreen = _container.InstantiatePrefab(_settings.LoaderPrefab, _sceneParent);
-            LoadState.Value = SceneLoadState.Loading;
-
-            await UniTask.WaitUntil(() => LoadState.Value == SceneLoadState.Finish);
-            await SceneManager.LoadSceneAsync(scene.ToString());
+            return _container.InstantiatePrefab(_settings.LoaderPrefab, _sceneParent);
+        }
+        
+        public async UniTask LoadScene(SceneName scene)
+        {
+            if (SceneManager.GetActiveScene().name == scene.ToString()) return;
             
-            Object.Destroy(_loaderScreen);
+            ProgressText.Value = LoadSceneKey;
+            await UniTask.Delay(1000);
+            await SceneManager.LoadSceneAsync(scene.ToString()).ToUniTask();
         }
 
         [Serializable]

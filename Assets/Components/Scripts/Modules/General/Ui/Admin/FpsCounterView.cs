@@ -8,7 +8,7 @@ namespace RoboFactory.General.Ui.Admin
 {
     public class FpsCounterView : MonoBehaviour
     {
-        [Inject] private readonly LevelManager levelManager;
+        [Inject] private readonly ExperienceService _experienceService;
         
         [SerializeField] private TMP_Text _fps;
 
@@ -20,7 +20,7 @@ namespace RoboFactory.General.Ui.Admin
         private void Update()
         {
             if (Input.GetKeyDown(KeyCode.Q))
-                levelManager.SetExperience(500);
+                _experienceService.SetExperience(500);
         }
 
         private async void UpdateCounter()

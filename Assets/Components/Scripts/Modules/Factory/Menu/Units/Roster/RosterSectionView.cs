@@ -11,7 +11,7 @@ namespace RoboFactory.Factory.Menu.Units
     public class RosterSectionView : MonoBehaviour
     {
         [Inject] private readonly IUiController _uiController;
-        [Inject] private readonly UnitsManager _unitsManager;
+        [Inject] private readonly UnitsService _unitsService;
         [Inject] private readonly UnitsMenuFactory _unitsMenuFactory;
         
         [SerializeField] private RectTransform _unitsParent;
@@ -68,7 +68,7 @@ namespace RoboFactory.Factory.Menu.Units
         private List<UnitObject> GetFilteredUnits()
         {
             if (_menu.ActiveUnitType == UnitType.All)
-                return _unitsManager.GetUnits()
+                return _unitsService.GetUnits()
                     .Where(x => x.UnitType != _menu.ActiveUnitType)
                     .OrderBy(x => x.UnitType == UnitType.Sniper)
                     .ThenBy(x => x.UnitType == UnitType.Support)
@@ -76,7 +76,7 @@ namespace RoboFactory.Factory.Menu.Units
                     .ThenBy(x => x.UnitType == UnitType.Trooper)
                     .ToList();
             
-            return _unitsManager.GetUnits()
+            return _unitsService.GetUnits()
                 .Where(x => x.UnitType == _menu.ActiveUnitType).ToList();
         }
 

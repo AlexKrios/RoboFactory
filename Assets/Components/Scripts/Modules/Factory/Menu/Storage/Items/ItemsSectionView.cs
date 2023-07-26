@@ -11,7 +11,7 @@ namespace RoboFactory.Factory.Menu.Storage
 {
     public class ItemsSectionView : MonoBehaviour
     {
-        [Inject] private readonly ProductsManager _productsManager;
+        [Inject] private readonly ProductsService productsService;
         [Inject] private readonly IUiController _uiController;
         [Inject] private readonly StorageMenuFactory _storageMenuFactory;
         
@@ -71,9 +71,9 @@ namespace RoboFactory.Factory.Menu.Storage
         private List<ProductObject> GetFilteredItems()
         {
             if (_menu.ActiveProductGroup == ProductGroup.All)
-                return _productsManager.GetAllProducts();
+                return productsService.GetAllProducts();
 
-            return _productsManager.GetAllProducts()
+            return productsService.GetAllProducts()
                 .Where(x => x.ProductGroup == _menu.ActiveProductGroup).ToList();
         }
 

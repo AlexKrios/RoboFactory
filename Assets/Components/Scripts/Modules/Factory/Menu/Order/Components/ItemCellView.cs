@@ -15,8 +15,8 @@ namespace RoboFactory.Factory.Menu.Order
     {
         [Inject] private readonly AddressableService _addressableService;
         [Inject] private readonly LocalizationService _localizationService;
-        [Inject] private readonly ProductsManager _productsManager;
-        [Inject] private readonly OrderManager _orderManager;
+        [Inject] private readonly ProductsService productsService;
+        [Inject] private readonly OrderService orderService;
 
         [SerializeField] private ProductGroup _group;
         
@@ -55,7 +55,7 @@ namespace RoboFactory.Factory.Menu.Order
             _icon.sprite = await _addressableService.LoadAssetAsync<Sprite>(_orderData.Part.Data.IconRef);
             SetTitleText();
             SetPrizeText();
-            _button.interactable = _orderManager.IsEnoughParts(_orderData);
+            _button.interactable = orderService.IsEnoughParts(_orderData);
             SetBarProgress();
             SetCountText();
         }
@@ -70,14 +70,14 @@ namespace RoboFactory.Factory.Menu.Order
 
         private void SetPrizeText()
         {
-            var cost = _productsManager.GetProduct(_orderData.Part.Data.Key).Recipe.Cost;
+            var cost = productsService.GetProduct(_orderData.Part.Data.Key).Recipe.Cost;
             _prize.text = StringUtil.PriceShortFormat(_orderData.Part.Count * cost);
         }
 
         private void SetBarProgress()
         {
             var itemKey = _orderData.Part.Data.Key;
-            var currentCount = _productsManager.GetProduct(itemKey).Count;
+            var currentCount = productsService.GetProduct(itemKey).Count;
             var step = 1f / _orderData.Part.Count;
             _bar.fillAmount = step * currentCount;
 
@@ -88,15 +88,15 @@ namespace RoboFactory.Factory.Menu.Order
         private void SetCountText()
         {
             var itemKey = _orderData.Part.Data.Key;
-            var currentCount = _productsManager.GetProduct(itemKey).Count;
+            var currentCount = productsService.GetProduct(itemKey).Count;
             _count.text = $"{currentCount}/{_orderData.Part.Count}";
         }
 
         private void Click()
         {
             _orderData.IsComplete = true;
-            _orderManager.RemoveItems(_orderData);
-            _orderManager.CollectMoney(_orderData);
+            orderService.RemoveItems(_orderData);
+            orderService.CollectMoney(_orderData);
             
             SetView();
         }

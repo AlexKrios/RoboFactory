@@ -10,7 +10,7 @@ namespace RoboFactory.Factory
     {
         #region Zenject
 
-        [Inject] private readonly AudioManager _audioController;
+        [Inject] private readonly AudioService _audioService;
         [Inject] private readonly IUiController _uiController;
         [Inject] private readonly FactoryCameraController _factoryCameraController;
 
@@ -41,7 +41,7 @@ namespace RoboFactory.Factory
                 });*/
             
             _factoryCameraController.Init();
-            _audioController.PlayMusic();
+            _audioService.PlayMusic();
             /*UnityWebRequest
                 .Get("http://robo-factory.bubeha.com/api/units")
                 .SendWebRequest()

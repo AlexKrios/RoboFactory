@@ -20,11 +20,11 @@ namespace RoboFactory.Factory.Menu.Expedition
     {
         [Inject] private readonly LocalizationService _localizationService;
         [Inject] private readonly IUiController _uiController;
-        [Inject] private readonly UnitsManager _unitsManager;
-        [Inject] private readonly RawManager _rawManager;
-        [Inject] private readonly LocationManager _locationManager;
+        [Inject] private readonly UnitsService _unitsService;
+        [Inject] private readonly RawService _rawService;
+        [Inject] private readonly LocationsService _locationsService;
         [Inject] private readonly ExpeditionMenuFactory _expeditionMenuFactory;
-        [Inject] private readonly ExpeditionManager _expeditionManager;
+        [Inject] private readonly ExpeditionService expeditionService;
 
         [SerializeField] private TMP_Text _title;
         
@@ -72,7 +72,7 @@ namespace RoboFactory.Factory.Menu.Expedition
             if (_rewards.Count != 0)
                 RemoveResultCells();
             
-            var locationData = _locationManager.GetLocation(_data.Key);
+            var locationData = _locationsService.GetLocation(_data.Key);
             foreach (var rewardData in locationData.Reward)
             {
                 yield return new WaitForSeconds(.2f);
@@ -99,7 +99,7 @@ namespace RoboFactory.Factory.Menu.Expedition
             {
                 yield return new WaitForSeconds(.2f);
 
-                var unit = _unitsManager.GetUnit(unitData);
+                var unit = _unitsService.GetUnit(unitData);
                 var unitCell = _expeditionMenuFactory.CreateResultUnitCell(_unitsParent);
                 unitCell.SetData(unit);
             }
@@ -115,9 +115,9 @@ namespace RoboFactory.Factory.Menu.Expedition
 
         private async void AcceptButtonClick()
         {
-            var locationData = _locationManager.GetLocation(_data.Key);
-            await _rawManager.AddItemsThenSend(locationData.Reward);
-            await _expeditionManager.RemoveExpedition(_data.Id);
+            var locationData = _locationsService.GetLocation(_data.Key);
+            await _rawService.AddItemsThenSend(locationData.Reward);
+            await expeditionService.RemoveExpedition(_data.Id);
 
             _canvasGroup.DOFade(0, 0.25f).SetEase(Ease.OutCubic)
                 .OnComplete(() => _uiController.RemoveUi(this, gameObject));

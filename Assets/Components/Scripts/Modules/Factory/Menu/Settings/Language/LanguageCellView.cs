@@ -11,7 +11,7 @@ namespace RoboFactory.Factory.Menu.Settings
     [AddComponentMenu("Scripts/Factory/Menu/Settings/Language Cell View")]
     public class LanguageCellView : MonoBehaviour
     {
-        [Inject] private readonly AudioManager _audioManager;
+        [Inject] private readonly AudioService _audioService;
         
         [SerializeField] private LanguageType _type;
 
@@ -38,7 +38,7 @@ namespace RoboFactory.Factory.Menu.Settings
 
         public void Click()
         {
-            _audioManager.PlayAudio(AudioClipType.ButtonClick);
+            _audioService.PlayAudio(AudioClipType.ButtonClick);
             
             OnClickEvent?.Invoke(this, _type);
         }

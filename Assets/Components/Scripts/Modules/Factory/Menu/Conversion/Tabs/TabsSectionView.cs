@@ -12,7 +12,7 @@ namespace RoboFactory.Factory.Menu.Conversion
     {
         #region Zenject
         
-        [Inject] private readonly RawManager _rawManager;
+        [Inject] private readonly RawService _rawService;
         
         #endregion
         
@@ -63,7 +63,7 @@ namespace RoboFactory.Factory.Menu.Conversion
         
         public void SetData()
         {
-            var mainRaw = _rawManager.GetAllRaw();
+            var mainRaw = _rawService.GetAllRaw();
             foreach (var rawData in mainRaw)
             {
                 var tab = _tabs.First(x => x.RawType == rawData.RawType);

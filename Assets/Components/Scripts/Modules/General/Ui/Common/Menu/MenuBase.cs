@@ -12,7 +12,7 @@ namespace RoboFactory.General.Ui.Common
     {
         private const float FadeTime = 0.25f;
         
-        [Inject] private readonly AudioManager _audioController;
+        [Inject] private readonly AudioService _audioService;
         [Inject] protected readonly IUiController UiController;
 
         [SerializeField] private Button _close;
@@ -49,7 +49,7 @@ namespace RoboFactory.General.Ui.Common
         
         public virtual void Close()
         {
-            _audioController.PlayAudio(AudioClipType.CloseClick);
+            _audioService.PlayAudio(AudioClipType.CloseClick);
 
             _canvasGroup.alpha = 1f;
             _canvasGroup.DOFade(0, FadeTime)

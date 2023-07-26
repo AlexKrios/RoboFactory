@@ -5,60 +5,58 @@ using Cysharp.Threading.Tasks;
 using JetBrains.Annotations;
 using RoboFactory.General.Api;
 using RoboFactory.General.Item.Products;
+using RoboFactory.General.Profile;
 using RoboFactory.General.Scriptable;
+using RoboFactory.General.Services;
 using Zenject;
 
 namespace RoboFactory.General.Item.Production
 {
     [UsedImplicitly]
-    public class ProductionManager
+    public class ProductionService : Service
     {
-        #region Zenject
-
         [Inject] private readonly Settings _settings;
-        [Inject] private readonly ApiService apiService;
-        [Inject] private readonly ManagersResolver managersResolver;
-        [Inject] private readonly ProductsManager _productsManager;
-
-        #endregion
-
-        #region Variables
+        [Inject] private readonly CommonProfile _commonProfile;
+        [Inject] private readonly ApiService _apiService;
+        [Inject] private readonly ManagersResolver _managersResolver;
+        [Inject] private readonly ProductsService productsService;
+        
+        public override ServiceTypeEnum ServiceType => ServiceTypeEnum.NeedAuth;
 
         public Action OnProductionComplete { get; set; }
         
-        private readonly Dictionary<Guid, ProductionObject> _productionData;
+        private readonly Dictionary<Guid, ProductionObject> _productionData = new();
         public int Level { get; private set; }
         public int CellCount { get; private set; }
 
-        #endregion
-
-        public ProductionManager()
+        public ProductionService()
         {
-            _productionData = new Dictionary<Guid, ProductionObject>();
-
             Level = 1;
             CellCount = 1;
         }
         
-        public void LoadData(ProductionSectionDto data)
+        protected override UniTask InitializeAsync()
         {
-            Level = data.Level;
-            CellCount = data.Count;
+            var productionData = _commonProfile.UserProfile.ProductionsSection;
             
-            if (data.Production == null)
-                return;
+            Level = productionData.Level;
+            CellCount = productionData.Count;
             
-            foreach (var dto in data.Production)
+            if (productionData.Production == null) return UniTask.CompletedTask;
+            
+            foreach (var dto in productionData.Production)
             {
                 var production = new ProductionObject().SetLoadData(dto.Value);
                 _productionData.Add(production.Id, production);
             }
+            
+            return UniTask.CompletedTask;
         }
         
         public async UniTask AddLevel()
         {
             Level++;
-            await apiService.SetUserProductionLevel(Level);
+            await _apiService.SetUserProductionLevel(Level);
         }
 
         public bool IsHaveFreeCell()
@@ -78,7 +76,7 @@ namespace RoboFactory.General.Item.Production
         public async UniTask AddProduction(ProductionObject data)
         {
             _productionData.Add(data.Id, data);
-            await apiService.AddUserProduction(data.Id, data.ToDto());
+            await _apiService.AddUserProduction(data.Id, data.ToDto());
             
             RemoveParts(data);
         }
@@ -89,7 +87,7 @@ namespace RoboFactory.General.Item.Production
         public async void RemoveProduction(Guid id)
         {
             _productionData.Remove(id);
-            await apiService.RemoveUserProduction(id);
+            await _apiService.RemoveUserProduction(id);
             
             OnProductionComplete?.Invoke();
         }
@@ -102,7 +100,7 @@ namespace RoboFactory.General.Item.Production
         public async UniTask IncreaseQueueCount()
         {
             CellCount++;
-            await apiService.SetUserProductionQueueCount(CellCount);
+            await _apiService.SetUserProductionQueueCount(CellCount);
         }
         
         public UpgradeDataObject GetUpgradeQualityData()
@@ -112,11 +110,11 @@ namespace RoboFactory.General.Item.Production
 
         public bool IsEnoughParts(ProductionObject productionObj)
         {
-            var recipe = _productsManager.GetProduct(productionObj.Key).Recipe;
+            var recipe = productsService.GetProduct(productionObj.Key).Recipe;
             foreach (var partObj in recipe.Parts)
             {
                 var data = partObj.Data;
-                var store = managersResolver.GetManagerByType(data.ItemType);
+                var store = _managersResolver.GetManagerByType(data.ItemType);
                 var isEnough = store.GetItem(data.Key).IsEnoughCount(partObj);
 
                 if (!isEnough)
@@ -131,11 +129,11 @@ namespace RoboFactory.General.Item.Production
             if (productionObj.IsLoad)
                 return;
             
-            var recipe = _productsManager.GetProduct(productionObj.Key).Recipe;
+            var recipe = productsService.GetProduct(productionObj.Key).Recipe;
             foreach (var partObj in recipe.Parts)
             {
                 var data = partObj.Data;
-                var store = managersResolver.GetManagerByType(data.ItemType);
+                var store = _managersResolver.GetManagerByType(data.ItemType);
                 store.RemoveItem(partObj.Data.Key, partObj.Count);
             }
         }

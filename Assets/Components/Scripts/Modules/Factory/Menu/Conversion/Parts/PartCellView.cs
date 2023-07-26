@@ -12,8 +12,8 @@ namespace RoboFactory.Factory.Menu.Conversion
     {
         #region Zenject
         
-        [Inject] private readonly AddressableService addressableService;
-        [Inject] private readonly ManagersResolver managersResolver;
+        [Inject] private readonly AddressableService _addressableService;
+        [Inject] private readonly ManagersResolver _managersResolver;
 
         #endregion
 
@@ -28,9 +28,9 @@ namespace RoboFactory.Factory.Menu.Conversion
         public async void SetPartData(PartObject part)
         {
             var data = part.Data;
-            var store = managersResolver.GetManagerByType(data.ItemType);
+            var store = _managersResolver.GetManagerByType(data.ItemType);
             var itemCount = store.GetItem(data.Key).Count;
-            var sprite = await addressableService.LoadAssetAsync<Sprite>(data.IconRef);
+            var sprite = await _addressableService.LoadAssetAsync<Sprite>(data.IconRef);
 
             _icon.sprite = sprite;
             _count.text = $"{itemCount}/{part.Count}";

@@ -10,7 +10,7 @@ namespace RoboFactory.Factory.Menu.Expedition
     public class ExpeditionSection : MonoBehaviour
     {
         [Inject] private readonly DiContainer _container;
-        [Inject] private readonly ExpeditionManager _expeditionManager;
+        [Inject] private readonly ExpeditionService expeditionService;
 
         [SerializeField] private ExpeditionCell _cellPrototype;
 
@@ -21,7 +21,7 @@ namespace RoboFactory.Factory.Menu.Expedition
         {
             _cells = new List<ExpeditionCell>();
 
-            _expeditionManager.OnExpeditionComplete += InitCells;
+            expeditionService.OnExpeditionComplete += InitCells;
         }
 
         private void OnEnable()
@@ -43,7 +43,7 @@ namespace RoboFactory.Factory.Menu.Expedition
         
         private void OnDestroy()
         {
-            _expeditionManager.OnExpeditionComplete -= InitCells;
+            expeditionService.OnExpeditionComplete -= InitCells;
         }
 
         private void InitCells()
@@ -51,10 +51,10 @@ namespace RoboFactory.Factory.Menu.Expedition
             if (_cells.Count != 0)
                 RemoveCells();
 
-            var expeditions = _expeditionManager.GetAllExpeditions()
+            var expeditions = expeditionService.GetAllExpeditions()
                 .OrderBy(x => x.TimeEnd).ToList();
 
-            for (var i = 0; i < _expeditionManager.CellCount; i++)
+            for (var i = 0; i < expeditionService.CellCount; i++)
             {
                 var cell = CreateCell();
                 if (i < expeditions.Count)
@@ -78,7 +78,7 @@ namespace RoboFactory.Factory.Menu.Expedition
 
         public void IncreaseCellCount()
         {
-            _expeditionManager.CellCount++;
+            expeditionService.CellCount++;
         }
     }
 }

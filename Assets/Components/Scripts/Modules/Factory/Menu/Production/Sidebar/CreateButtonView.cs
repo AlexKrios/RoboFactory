@@ -13,7 +13,7 @@ namespace RoboFactory.Factory.Menu.Production
 
         [Inject] private readonly IUiController _uiController;
         [Inject] private readonly LocalizationService _localizationService;
-        [Inject] private readonly ProductionManager _productionManager;
+        [Inject] private readonly ProductionService productionService;
 
         #endregion
 
@@ -37,8 +37,8 @@ namespace RoboFactory.Factory.Menu.Production
         public override void SetState()
         {
             _productionObject = new ProductionObject().SetInitData(_menu.ActiveProduct, _menu.ActiveStar);
-            var buttonState = _menu.ActiveStar <= _productionManager.Level
-                              && _productionManager.IsEnoughParts(_productionObject);
+            var buttonState = _menu.ActiveStar <= productionService.Level
+                              && productionService.IsEnoughParts(_productionObject);
             
             SetInteractable(buttonState);
         }
@@ -47,11 +47,11 @@ namespace RoboFactory.Factory.Menu.Production
         {
             base.Click();
 
-            await _productionManager.AddProduction(_productionObject);
+            await productionService.AddProduction(_productionObject);
 
             OnClickEvent?.Invoke();
 
-            if (!_productionManager.IsHaveFreeCell())
+            if (!productionService.IsHaveFreeCell())
             {
                 var menu = _uiController.FindUi<ProductionMenuView>();
                 menu.Close();

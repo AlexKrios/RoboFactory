@@ -17,9 +17,9 @@ namespace RoboFactory.Factory.Menu
 {
     public class FactoryUi : MonoBehaviour
     {
-        [Inject] private readonly AudioManager _audioController;
-        [Inject] private readonly MoneyManager _moneyManager;
-        [Inject] private readonly LevelManager _levelManager;
+        [Inject] private readonly AudioService _audioService;
+        [Inject] private readonly MoneyService _moneyService;
+        [Inject] private readonly ExperienceService _experienceService;
         [Inject] private readonly SettingsMenuFactory _settingsMenuFactory;
         [Inject] private readonly FactoryCameraController _factoryCameraController;
 
@@ -46,9 +46,9 @@ namespace RoboFactory.Factory.Menu
         
         private void Awake()
         {
-            _moneyManager.OnMoneySet += SetMoneyData;
-            _levelManager.OnExperienceSet += SetExperienceData;
-            _levelManager.OnLevelSet += SetLevelData;
+            _moneyService.Money.Subscribe(SetMoneyData).AddTo(_disposable);
+            _experienceService.OnExperienceSet += SetExperienceData;
+            _experienceService.OnLevelSet += SetLevelData;
             
             _settingsButton.OnClickAsObservable().Subscribe(_ => OnSettingsClick()).AddTo(_disposable);
             _floorUpButton.OnClickAsObservable().Subscribe(_ => OnFloorUpClick()).AddTo(_disposable);
@@ -62,29 +62,27 @@ namespace RoboFactory.Factory.Menu
         
         private void Start()
         {
-            SetMoneyData();
             SetExperienceData();
             SetLevelData();
         }
 
         private void OnDestroy()
         {
-            _moneyManager.OnMoneySet -= SetMoneyData;
-            _levelManager.OnExperienceSet -= SetExperienceData;
-            _levelManager.OnLevelSet -= SetLevelData;
+            _experienceService.OnExperienceSet -= SetExperienceData;
+            _experienceService.OnLevelSet -= SetLevelData;
 
             _disposable.Dispose();
         }
 
-        private void SetMoneyData()
+        private void SetMoneyData(int money)
         {
-            _moneyCount.text = StringUtil.PriceFullFormat(_moneyManager.Money);
+            _moneyCount.text = StringUtil.PriceFullFormat(money);
         }
         
         private void SetExperienceData()
         {
-            var currentExperience = _levelManager.Experience - _levelManager.GetPreviousLevelCap();
-            _levelSlider.maxValue = _levelManager.GetCurrentLevelCap() - _levelManager.GetPreviousLevelCap();
+            var currentExperience = _experienceService.Experience - _experienceService.GetPreviousLevelCap();
+            _levelSlider.maxValue = _experienceService.GetCurrentLevelCap() - _experienceService.GetPreviousLevelCap();
             if (currentExperience < _levelSlider.value)
             {
                 var sequence = DOTween.Sequence();
@@ -102,7 +100,7 @@ namespace RoboFactory.Factory.Menu
 
         private void SetLevelData()
         {
-            _levelCount.text = _levelManager.Level.ToString();
+            _levelCount.text = _experienceService.Level.ToString();
         }
         
         private void OnAvatarClick()
@@ -112,19 +110,19 @@ namespace RoboFactory.Factory.Menu
         
         private void OnSettingsClick()
         {
-            _audioController.PlayAudio(AudioClipType.ButtonClick);
+            _audioService.PlayAudio(AudioClipType.ButtonClick);
             _settingsMenuFactory.CreateMenu();
         }
 
         private void OnFloorUpClick()
         {
-            _audioController.PlayAudio(AudioClipType.ButtonClick);
+            _audioService.PlayAudio(AudioClipType.ButtonClick);
             _factoryCameraController.Move(1);
         }
 
         private void OnFloorDownClick()
         {
-            _audioController.PlayAudio(AudioClipType.ButtonClick);
+            _audioService.PlayAudio(AudioClipType.ButtonClick);
             _factoryCameraController.Move(-1);
         }
     }

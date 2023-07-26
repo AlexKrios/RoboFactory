@@ -14,8 +14,8 @@ namespace RoboFactory.Factory.Menu.Production
         #region Zenject
 
         [Inject] private readonly AddressableService addressableService;
-        [Inject] private readonly ProductsManager _productsManager;
-        [Inject] private readonly ProductionManager _productionManager;
+        [Inject] private readonly ProductsService productsService;
+        [Inject] private readonly ProductionService productionService;
 
         #endregion
 
@@ -32,8 +32,8 @@ namespace RoboFactory.Factory.Menu.Production
 
         public async void Enter()
         {
-            var craftObj = _productionManager.GetProduction(_cell.Data.Id);
-            var craftItem = _productsManager.GetProduct(craftObj.Key);
+            var craftObj = productionService.GetProduction(_cell.Data.Id);
+            var craftItem = productsService.GetProduct(craftObj.Key);
 
             var sprite = await addressableService.LoadAssetAsync<Sprite>(craftItem.IconRef);
             _cell.SetCellIcon(sprite);

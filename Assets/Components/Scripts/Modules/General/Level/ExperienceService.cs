@@ -3,17 +3,23 @@ using System.Linq;
 using Cysharp.Threading.Tasks;
 using JetBrains.Annotations;
 using RoboFactory.General.Api;
+using RoboFactory.General.Profile;
 using RoboFactory.General.Scriptable;
+using RoboFactory.General.Services;
 using UnityEngine;
 using Zenject;
 
 namespace RoboFactory.General.Level
 {
     [UsedImplicitly]
-    public class LevelManager
+    public class ExperienceService : Service
     {
+        protected override string InitializeTextKey => "initialize_2";
+        public override ServiceTypeEnum ServiceType => ServiceTypeEnum.NeedAuth;
+        
         [Inject] private readonly Settings _settings;
-        [Inject] private readonly ApiService apiService;
+        [Inject] private readonly CommonProfile _commonProfile;
+        [Inject] private readonly ApiService _apiService;
 
         private const int DefaultExperience = 0;
         private const int DefaultLevel = 1;
@@ -24,19 +30,23 @@ namespace RoboFactory.General.Level
         public int Experience { get; private set; }
         public int Level { get; private set; }
 
-        public LevelManager()
+        public ExperienceService()
         {
             Experience = DefaultExperience;
             Level = DefaultLevel;
         }
         
-        public void LoadData(LevelObject obj)
+        protected override UniTask InitializeAsync()
         {
-            Experience = obj.Experience;
+            var data = _commonProfile.UserProfile.LevelSection;
+
+            Experience = data.Experience;
             Level = GetCurrentLevel();
 
             OnExperienceSet?.Invoke();
             OnLevelSet?.Invoke();
+            
+            return UniTask.CompletedTask;
         }
         
         public async void SetExperience(int experience)
@@ -76,7 +86,7 @@ namespace RoboFactory.General.Level
                 Experience = Experience
             };
             
-            await apiService.SetUserExperience(levelObject);
+            await _apiService.SetUserExperience(levelObject);
         }
         
         [Serializable]

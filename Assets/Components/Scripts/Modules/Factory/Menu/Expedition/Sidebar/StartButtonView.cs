@@ -10,7 +10,7 @@ namespace RoboFactory.Factory.Menu.Expedition
     public class StartButtonView : ButtonBase
     {
         [Inject] private readonly IUiController _uiController;
-        [Inject] private readonly ExpeditionManager _expeditionManager;
+        [Inject] private readonly ExpeditionService expeditionService;
 
         public Action EventClick { get; set; }
         
@@ -31,7 +31,7 @@ namespace RoboFactory.Factory.Menu.Expedition
         {
             base.Click();
             
-            _expeditionManager.CurrentBattleLocation = _menu.ActiveLocation;
+            expeditionService.CurrentBattleLocation = _menu.ActiveLocation;
 
             var allyUnits = _menu.Units.GetUnitsWithData();
             var allyKey = allyUnits.Select(x => x.Data.Key).ToList();
@@ -45,7 +45,7 @@ namespace RoboFactory.Factory.Menu.Expedition
                 TimeEnd = DateTime.Now.AddSeconds(expeditionTime).ToFileTime()
             };
             
-            await _expeditionManager.AddExpedition(expedition);
+            await expeditionService.AddExpedition(expedition);
         }
     }
 }

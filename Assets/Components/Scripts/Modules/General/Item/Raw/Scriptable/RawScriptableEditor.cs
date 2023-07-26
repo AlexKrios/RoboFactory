@@ -11,12 +11,9 @@ namespace RoboFactory.General.Item.Raw
         private RawScriptable _raw;
 
         private bool _recipeSectionFoldout;
-        private List<bool> _partsFoldouts;
 
         private void Awake()
         {
-            _partsFoldouts ??= new List<bool>();
-
             _raw = (RawScriptable) target;
         }
 

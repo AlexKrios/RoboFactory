@@ -10,7 +10,7 @@ namespace RoboFactory.Utils
     public class HelpersUtil
     {
         private const string LauncherPath = "Assets/Components/Scenes/Launcher.unity";
-        private const string AuthenticationPath = "Assets/Components/Scenes/Authentication.unity";
+        private const string AuthPath = "Assets/Components/Scenes/Auth.unity";
         private const string LoaderPath = "Assets/Components/Scenes/Loader.unity";
         private const string FactoryPath = "Assets/Components/Scenes/Factory.unity";
         private const string BattlePath = "Assets/Components/Scenes/Battle.unity";
@@ -28,11 +28,11 @@ namespace RoboFactory.Utils
             EditorSceneManager.OpenScene(LauncherPath);
         }
         
-        [MenuItem("Helper/Open Authentication", false, 1)]
-        public static void Authentication()
+        [MenuItem("Helper/Open Auth", false, 1)]
+        public static void Auth()
         {
             EditorSceneManager.SaveOpenScenes();
-            EditorSceneManager.OpenScene(AuthenticationPath);
+            EditorSceneManager.OpenScene(AuthPath);
         }
         
         [MenuItem("Helper/Open Loader", false, 2)]

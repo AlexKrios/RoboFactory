@@ -20,9 +20,9 @@ namespace RoboFactory.Factory.Menu.Order
         
         [Inject] private readonly LocalizationService _localizationService;
         [Inject] private readonly IUiController _uiController;
-        [Inject] private readonly MoneyManager _moneyManager;
-        [Inject] private readonly LevelManager _levelManager;
-        [Inject] private readonly OrderManager _orderManager;
+        [Inject] private readonly MoneyService _moneyService;
+        [Inject] private readonly ExperienceService _experienceService;
+        [Inject] private readonly OrderService orderService;
 
         [Space]
         [SerializeField] private TMP_Text _titleText;
@@ -44,26 +44,26 @@ namespace RoboFactory.Factory.Menu.Order
             _uiController.AddUi(this);
             
             _acceptButton.OnClickAsObservable().Subscribe(_ => OnAcceptClick()).AddTo(Disposable);
-            _buyData = _orderManager.GetUpgradeQualityData();
+            _buyData = orderService.GetUpgradeQualityData();
             
             _titleText.text = _localizationService.GetLanguageValue(LocalizationKeys.UpgradeTitleKey);
             
-            _currentLevel.text = _orderManager.Level.ToString();
-            _nextLevel.text = (_orderManager.Level + 1).ToString();
+            _currentLevel.text = orderService.Level.ToString();
+            _nextLevel.text = (orderService.Level + 1).ToString();
             
-            if (_moneyManager.Money < _buyData.Cost || _levelManager.Level < _buyData.Level)
+            if (_moneyService.Money.Value < _buyData.Cost || _experienceService.Level < _buyData.Level)
                 _acceptButton.interactable = false;
 
-            if (_levelManager.Level < _buyData.Level)
+            if (_experienceService.Level < _buyData.Level)
                 _acceptText.text = $"{_localizationService.GetLanguageValue(NeedLevelTextKey)} {_buyData.Level}";
-            else if (_moneyManager.Money < _buyData.Cost)
+            else if (_moneyService.Money.Value < _buyData.Cost)
                 _acceptText.text = $"{NeedMoneyTextKey} {_buyData.Cost}";
         }
 
         private async void OnAcceptClick()
         {
-            await _moneyManager.MinusMoney(_buyData.Cost);
-            await _orderManager.IncreaseOrderLevel();
+            await _moneyService.MinusMoney(_buyData.Cost);
+            await orderService.IncreaseOrderLevel();
 
             Close();
         }

@@ -14,7 +14,7 @@ namespace RoboFactory.General.Ui.Common
         
         #region Zenject
         
-        [Inject] private readonly AudioManager _audioController;
+        [Inject] private readonly AudioService _audioService;
         [Inject] protected readonly IUiController UiController;
 
         #endregion
@@ -69,7 +69,7 @@ namespace RoboFactory.General.Ui.Common
         
         public void Close()
         {
-            _audioController.PlayAudio(AudioClipType.CloseClick);
+            _audioService.PlayAudio(AudioClipType.CloseClick);
 
             _canvasGroup.alpha = 1f;
             _canvasGroup.DOFade(0, FadeTime)

@@ -5,7 +5,9 @@ using Cysharp.Threading.Tasks;
 using JetBrains.Annotations;
 using RoboFactory.General.Api;
 using RoboFactory.General.Level;
+using RoboFactory.General.Profile;
 using RoboFactory.General.Scriptable;
+using RoboFactory.General.Services;
 using RoboFactory.General.Unit;
 using UnityEngine;
 using Zenject;
@@ -13,20 +15,27 @@ using Zenject;
 namespace RoboFactory.General.Item.Products
 {
     [UsedImplicitly]
-    public class ProductsManager : IItemManager
+    public class ProductsService : Service, IItemManager
     {
-        [Inject] private readonly ApiService _apiService;
-        [Inject] private readonly LevelManager _levelManager;
-        
         public ItemType ItemType { get; }
-        private readonly Dictionary<string, ProductObject> _productsDictionary;
+        
+        [Inject] private readonly Settings _settings;
+        [Inject] private readonly CommonProfile _commonProfile;
+        [Inject] private readonly ApiService _apiService;
+        [Inject] private readonly ExperienceService _experienceService;
+        
+        public override ServiceTypeEnum ServiceType => ServiceTypeEnum.NeedAuth;
 
-        public ProductsManager(Settings settings)
+        private readonly Dictionary<string, ProductObject> _productsDictionary = new();
+
+        public ProductsService(Settings settings)
         {
             ItemType = ItemType.Product;
-            _productsDictionary = new Dictionary<string, ProductObject>();
-            
-            foreach (var product in settings.Items)
+        }
+        
+        protected override UniTask InitializeAsync()
+        {
+            foreach (var product in _settings.Items)
             {
                 var item = new ProductFactory().Create(product);
                 _productsDictionary.Add(item.Key, item);
@@ -41,23 +50,23 @@ namespace RoboFactory.General.Item.Products
                 foreach (var file in files)
                 {
                     var item = new ProductFactory().Create(file);
-                    item.Caps = settings.Levels.Caps;
+                    item.Caps = _settings.Levels.Caps;
                     _productsDictionary.Add(item.Key, item);
                 }
             }
-        }
-        
-        public void LoadData(Dictionary<string, ProductDto> products)
-        {
-            if (products == null)
-                return;
             
-            foreach (var productData in products)
+            var storeData = _commonProfile.UserProfile.StoresSection;
+            if (storeData?.Products == null) return UniTask.CompletedTask;
+
+            var productsData = storeData.Products;
+            foreach (var productData in productsData)
             {
                 var product = _productsDictionary[productData.Key];
                 product.Count = productData.Value.Count;
                 product.Experience = productData.Value.Experience;
             }
+            
+            return UniTask.CompletedTask;
         }
 
         public ItemBase GetItem(string key) => _productsDictionary[key];
@@ -86,7 +95,7 @@ namespace RoboFactory.General.Item.Products
         public async void CreateProduct(string key)
         {
             var product = _productsDictionary[key];
-            _levelManager.SetExperience(product.Recipe.Experience);
+            _experienceService.SetExperience(product.Recipe.Experience);
             product.IncrementCount();
             product.IncrementExperience();
             await _apiService.SetUserProductSingle(key, product.ToDto());

@@ -11,7 +11,7 @@ namespace RoboFactory.General.Unit
     [UsedImplicitly]
     public class UnitObject
     {
-        [Inject] private readonly ProductsManager _productsManager;
+        [Inject] private readonly ProductsService productsService;
 
         public string Key { get; private set; }
 
@@ -36,7 +36,7 @@ namespace RoboFactory.General.Unit
 
         public UnitObject SetData(UnitScriptable data)
         {
-            var products = _productsManager.GetUnitDefaultProducts(data.UnitType);
+            var products = productsService.GetUnitDefaultProducts(data.UnitType);
             
             Key = data.Key;
             UnitType = data.UnitType;

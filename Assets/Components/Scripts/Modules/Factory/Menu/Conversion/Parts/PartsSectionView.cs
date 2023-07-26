@@ -11,7 +11,7 @@ namespace RoboFactory.Factory.Menu.Conversion
         #region Zenject
 
         [Inject] private readonly IUiController _uiController;
-        [Inject] private readonly RawManager _rawManager;
+        [Inject] private readonly RawService _rawService;
 
         #endregion
 
@@ -40,7 +40,7 @@ namespace RoboFactory.Factory.Menu.Conversion
 
         public void SetData()
         {
-            var recipe = _rawManager.GetRaw(_menu.ActiveRaw.Key).Recipe;
+            var recipe = _rawService.GetRaw(_menu.ActiveRaw.Key).Recipe;
             _part1.SetPartData(recipe.Parts[0]);
             _part2.SetPartData(recipe.Parts[1]);
             _result.SetResultData(_menu.ActiveRaw.IconRef, _menu.ActiveStar);

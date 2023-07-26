@@ -1,4 +1,5 @@
 using RoboFactory.Auth;
+using RoboFactory.Factory.Menu.Production;
 using RoboFactory.General;
 using RoboFactory.General.Api;
 using RoboFactory.General.Asset;
@@ -28,34 +29,44 @@ namespace RoboFactory.DI
 {
     public class GameInstaller : MonoInstaller
     {
+        [SerializeField] private AudioSource _musicSource;
         [SerializeField] private Transform _popupParent;
         [SerializeField] private Transform _screenParent;
-        
-        [SerializeField] private SignInView _signInForm;
-        [SerializeField] private SignUpView _signUpForm;
-        [SerializeField] private VerificationView _verificationForm;
-        
+
         public override void InstallBindings()
         {
-            Container.Bind<Transform>().WithId(Constants.ScreenParentKey).FromInstance(_popupParent);
-            Container.Bind<Transform>().WithId(Constants.PopupParentKey).FromInstance(_screenParent);
-            
-            Container.Bind<SignInView>().WithId(Constants.SignInKey).FromInstance(_signInForm);
-            Container.Bind<SignUpView>().WithId(Constants.SignUpKey).FromInstance(_signUpForm);
-            Container.Bind<VerificationView>().WithId(Constants.VerificationKey).FromInstance(_verificationForm);
-            
+            Container.Bind<AudioSource>().WithId(Constants.MusicSourceKey).FromInstance(_musicSource);
+            Container.Bind<Transform>().WithId(Constants.PopupParentKey).FromInstance(_popupParent);
+            Container.Bind<Transform>().WithId(Constants.ScreenParentKey).FromInstance(_screenParent);
+
             InstallProfiles();
             
             Container.BindService<SettingsService>();
             Container.BindService<LocalizationService>();
+            Container.BindService<AudioService>();
             Container.BindService<ApiService>();
-            
-            Container.BindService<AuthService>();
-            Container.BindFactory<UserProfile, UserProfile.Factory>();
-            
+            Container.BindService<SceneService>();
+
+            InstallAuthComponents();
+
             Container.BindService<AddressableService>();
 
-            InstallControllers();
+            Container.BindService<MoneyService>();
+            Container.BindService<ExperienceService>();
+
+            Container.BindService<RawService>();
+            Container.BindService<ConvertRawService>();
+            
+            Container.BindService<ProductsService>();
+            Container.BindService<LocationsService>();
+
+            Container.BindFactory<UnitObject, UnitObject.Factory>();
+            Container.BindService<UnitsService>();
+
+            Container.BindService<ExpeditionService>();
+            Container.BindService<ProductionService>();
+
+            Container.BindService<OrderService>();
 
             InstallUi();
             InstallHelpers();
@@ -66,28 +77,11 @@ namespace RoboFactory.DI
             Container.Bind<CommonProfile>().AsSingle().NonLazy();
         }
 
-        private void InstallControllers()
+        private void InstallAuthComponents()
         {
-            Container.Bind<AudioManager>().AsSingle().NonLazy();
-            
-            Container.BindService<SceneService>();
-
-            Container.Bind<MoneyManager>().AsSingle().NonLazy();
-            Container.Bind<LevelManager>().AsSingle().NonLazy();
-
-            Container.BindInterfacesAndSelfTo<RawManager>().AsSingle().NonLazy();
-            Container.Bind<ConvertRawController>().AsSingle().NonLazy();
-            
-            Container.BindInterfacesAndSelfTo<ProductsManager>().AsSingle().NonLazy();
-            Container.Bind<LocationManager>().AsSingle().NonLazy();
-
-            Container.BindFactory<UnitObject, UnitObject.Factory>();
-            Container.Bind<UnitsManager>().AsSingle().NonLazy();
-
-            Container.Bind<ExpeditionManager>().AsSingle().NonLazy();
-            Container.Bind<ProductionManager>().AsSingle().NonLazy();
-
-            Container.Bind<OrderManager>().AsSingle().NonLazy();
+            Container.Bind<AuthFactory>().AsSingle().NonLazy();
+            Container.BindService<AuthService>();
+            Container.BindFactory<UserProfile, UserProfile.Factory>();
         }
 
         private void InstallHelpers()

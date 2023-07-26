@@ -8,7 +8,7 @@ namespace RoboFactory.General.Settings
     [UsedImplicitly]
     public class SettingsService : Service
     {
-        protected override string LoadingTextKey => string.Empty;
+        protected override string InitializeTextKey => string.Empty;
         
         private const string LanguageName = "Language";
         private const string GraphicsName = "Graphics";

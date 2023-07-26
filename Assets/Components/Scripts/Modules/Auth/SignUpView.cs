@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Text.RegularExpressions;
 using Firebase.Auth;
+using RoboFactory.Factory.Menu.Production;
 using RoboFactory.General.Localization;
 using TMPro;
 using UniRx;
@@ -18,17 +19,10 @@ namespace RoboFactory.Auth
         private const string PasswordKey = "auth_password";
         private const string ConfirmKey = "auth_confirm";
         
-        #region Zenject
-        
         [Inject] private readonly LocalizationService _localizationService;
-        [Inject] private readonly AuthService authService;
+        [Inject] private readonly AuthFactory _authFactory;
+        [Inject] private readonly AuthService _authService;
 
-        [Inject(Id = Constants.SignInKey)] private readonly SignInView _signInForm;
-
-        #endregion
-
-        #region Components
-        
         [SerializeField] private TMP_Text _headerText;
         
         [Space]
@@ -47,28 +41,17 @@ namespace RoboFactory.Auth
         [Header("Error")]
         [SerializeField] private GameObject _errorWrapper;
         [SerializeField] private TMP_Text _errorText;
-
-        #endregion
         
-        #region Variables
-
         private string _authCode;
         private string _email;
         private string _password;
         private string _confirm;
 
-        private HashSet<AuthError> errors;
-        
+        private readonly HashSet<AuthError> errors = new();
         private readonly CompositeDisposable _disposable = new();
-
-        #endregion
-
-        #region Unity Methods
 
         private void Awake()
         {
-            errors = new HashSet<AuthError>();
-
             _signUpButton.interactable = false;
             _errorWrapper.SetActive(false);
             
@@ -79,8 +62,7 @@ namespace RoboFactory.Auth
             _passwordField.onValueChanged.AddListener(ReadFirstPasswordField);
             _confirmField.onValueChanged.AddListener(ReadSecondPasswordField);
             
-            authService.EventSignUpError += AddError;
-            authService.EventGooglePlayError += AddError;
+            _authService.ErrorCode.Subscribe(x => AddError(x, true)).AddTo(_disposable);
         }
 
         private void Start()
@@ -95,22 +77,17 @@ namespace RoboFactory.Auth
 
         private void OnDestroy()
         {
-            authService.EventSignUpError -= AddError;
-            authService.EventGooglePlayError -= AddError;
-            
             _disposable.Dispose();
         }
-
-        #endregion
         
         private void OnSignInClick()
         {
-            authService.SignUp(_email, _password);
+            _authService.SignUp(_email, _password);
         }
         
         private void OnGooglePlayClick()
         {
-            authService.GooglePlaySignManually();
+            _authService.GooglePlaySignManually();
         }
 
         private void ReadEmailField(string text)
@@ -153,8 +130,8 @@ namespace RoboFactory.Auth
 
         private void OnBackClick()
         {
-            gameObject.SetActive(false);
-            _signInForm.gameObject.SetActive(true);
+            Destroy(gameObject);
+            _authFactory.CreateSignInForm();
         }
 
         private void ShowError()
@@ -167,12 +144,14 @@ namespace RoboFactory.Auth
             }
             
             _errorWrapper.SetActive(true);
-            var localKey = authService.GetErrorLocalizationKey(errors.First());
+            var localKey = _authService.GetErrorLocalizationKey(errors.First());
             _errorText.text = _localizationService.GetLanguageValue(localKey);
         }
 
         private void AddError(AuthError error, bool isError = false)
         {
+            if (error == AuthError.None) return;
+            
             errors.Add(error);
             ShowError();
 

@@ -13,7 +13,7 @@ namespace RoboFactory.Battle
     public class BattleInitialization : MonoBehaviour
     {
         [Inject] private readonly DiContainer _container;
-        [Inject] private readonly UnitsManager _unitsManager;
+        [Inject] private readonly UnitsService _unitsService;
         [Inject] private readonly BattleController _battleController;
         [Inject] private readonly EndBattleFactory _endBattleFactory;
         [Inject(Id = "UiCanvas")] private readonly RectTransform _uiCanvas;
@@ -25,7 +25,7 @@ namespace RoboFactory.Battle
         {
             _battleController.OnBattleEnd += () => _endBattleFactory.CreateEndPopup(_uiCanvas);
             
-            var units = _unitsManager.GetBattleUnits();
+            var units = _unitsService.GetBattleUnits();
             foreach (var unitData in units.Where(x => x != null))
             {
                 GameObject unit;

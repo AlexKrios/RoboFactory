@@ -14,29 +14,16 @@ namespace RoboFactory.General.Services
         public ServiceState State { get; private set; } = ServiceState.Disabled;
         
         protected virtual string InitializeTextKey => string.Empty;
-        protected virtual string LoadingTextKey => string.Empty;
+        public virtual ServiceTypeEnum ServiceType => ServiceTypeEnum.NotNeedAuth;
 
         public async UniTask Initialize()
         {
             try
             {
-                _sceneService.ProgressText.Value = LoadingTextKey;
+                _sceneService.ProgressText.Value = InitializeTextKey;
                 
                 SetState(ServiceState.Initializing);
                 await InitializeAsync();
-            }
-            catch (Exception e)
-            {
-                Debug.LogException(e);
-                SetState(ServiceState.Failed);
-            }
-        }
-        
-        public async UniTask Load()
-        {
-            try
-            {
-                await LoadAsync();
                 SetState(ServiceState.Ready);
             }
             catch (Exception e)
@@ -45,13 +32,8 @@ namespace RoboFactory.General.Services
                 SetState(ServiceState.Failed);
             }
         }
-        
-        protected virtual UniTask InitializeAsync()
-        {
-            return UniTask.CompletedTask;
-        }
 
-        protected virtual UniTask LoadAsync()
+        protected virtual UniTask InitializeAsync()
         {
             return UniTask.CompletedTask;
         }

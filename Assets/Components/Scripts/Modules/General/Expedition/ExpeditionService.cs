@@ -5,52 +5,50 @@ using Cysharp.Threading.Tasks;
 using JetBrains.Annotations;
 using RoboFactory.General.Api;
 using RoboFactory.General.Location;
+using RoboFactory.General.Profile;
 using RoboFactory.General.Scriptable;
+using RoboFactory.General.Services;
 using UnityEngine;
 using Zenject;
 
 namespace RoboFactory.General.Expedition
 {
     [UsedImplicitly]
-    public class ExpeditionManager
+    public class ExpeditionService : Service
     {
-        #region Zenject
-        
         [Inject] private readonly Settings _settings;
-        [Inject] private readonly ApiService apiService;
-
-        #endregion
+        [Inject] private readonly CommonProfile _commonProfile;
+        [Inject] private readonly ApiService _apiService;
         
-        #region Variables
-
+        public override ServiceTypeEnum ServiceType => ServiceTypeEnum.NeedAuth;
+        
         public Action OnExpeditionComplete { get; set; }
         
-        private readonly Dictionary<Guid, ExpeditionObject> _expeditionData;
+        private readonly Dictionary<Guid, ExpeditionObject> _expeditionData = new();
         public LocationObject CurrentBattleLocation { get; set; }
         
         public int CellCount { get; set; }
 
-        #endregion
-
-        public ExpeditionManager(Settings settings)
+        public ExpeditionService(Settings settings)
         {
-            _expeditionData = new Dictionary<Guid, ExpeditionObject>();
-
             CellCount = 1;
         }
         
-        public void LoadData(ExpeditionSectionDto data)
+        protected override UniTask InitializeAsync()
         {
-            CellCount = data.Count;
+            var expeditionData = _commonProfile.UserProfile.ExpeditionsSection;
             
-            if (data.Expeditions == null)
-                return;
+            CellCount = expeditionData.Count;
             
-            foreach (var expeditionDto in data.Expeditions)
+            if (expeditionData.Expeditions == null) return UniTask.CompletedTask;
+            
+            foreach (var expeditionDto in expeditionData.Expeditions)
             {
                 var expedition = new ExpeditionObject().SetDtoData(expeditionDto.Value);
                 _expeditionData.Add(expedition.Id, expedition);
             }
+            
+            return UniTask.CompletedTask;
         }
         
         public bool IsHaveFreeCell()
@@ -70,7 +68,7 @@ namespace RoboFactory.General.Expedition
         public async UniTask AddExpedition(ExpeditionObject data)
         {
             _expeditionData.Add(data.Id, data);
-            await apiService.AddUserExpedition(data.Id, data.ToDto());
+            await _apiService.AddUserExpedition(data.Id, data.ToDto());
         }
         public List<ExpeditionObject> GetAllExpeditions() => _expeditionData.Values.ToList();
         public ExpeditionObject GetExpedition(Guid id) => 
@@ -78,7 +76,7 @@ namespace RoboFactory.General.Expedition
         public async UniTask RemoveExpedition(Guid id)
         {
             _expeditionData.Remove(id);
-            await apiService.RemoveUserExpedition(id);
+            await _apiService.RemoveUserExpedition(id);
             
             OnExpeditionComplete?.Invoke();
         }
@@ -91,7 +89,7 @@ namespace RoboFactory.General.Expedition
         public async void IncreaseQueueCount()
         {
             CellCount++;
-            await apiService.SetUserExpeditionQueueCount(CellCount);
+            await _apiService.SetUserExpeditionQueueCount(CellCount);
         }
 
         [Serializable]

@@ -19,7 +19,7 @@ namespace RoboFactory.Factory.Menu.Order
         private const string TimerTemplate = "HH:mm:ss";
         
         [Inject] private readonly LocalizationService _localizationService;
-        [Inject] private readonly OrderManager _orderManager;
+        [Inject] private readonly OrderService orderService;
         [Inject] private readonly OrderMenuFactory _orderManagerFactory;
         
         [SerializeField] private Button _upgrade;
@@ -72,29 +72,29 @@ namespace RoboFactory.Factory.Menu.Order
                 _orders.Clear();
             }
             
-            for (var i = 0; i < _orderManager.Count; i++)
+            for (var i = 0; i < orderService.Count; i++)
             {
                 var cell = _orderManagerFactory.CreateItem(_parent);
                 _orders.Add(cell);
             }
             
-            if (_orderManager.IsNeedRefreshOrders())
+            if (orderService.IsNeedRefreshOrders())
             {
-                _orderManager.RefreshOrders();
+                orderService.RefreshOrders();
                 foreach (var orderCell in _orders)
                 {
-                    var order = _orderManager.GetRandomOrderByGroup();
+                    var order = orderService.GetRandomOrderByGroup();
                     order.IsActive = true;
                     orderCell.SetData(order);
                 }
                 
-                _orderManager.SendActiveOrders();
+                orderService.SendActiveOrders();
             }
             else
             {
                 foreach (var orderCell in _orders)
                 {
-                    var order = _orderManager.GetActiveOrderByGroup(orderCell.Group);
+                    var order = orderService.GetActiveOrderByGroup(orderCell.Group);
                     orderCell.SetData(order);
                 }
             }

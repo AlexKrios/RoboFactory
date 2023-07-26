@@ -12,7 +12,7 @@ namespace RoboFactory.General.Ui.Common
     {
         #region Zenject
         
-        [Inject] private readonly AudioManager _audioController;
+        [Inject] private readonly AudioService _audioService;
 
         #endregion
 
@@ -40,7 +40,7 @@ namespace RoboFactory.General.Ui.Common
 
         protected virtual void Click()
         {
-            _audioController.PlayAudio(AudioClipType.ButtonClick);
+            _audioService.PlayAudio(AudioClipType.ButtonClick);
         }
     }
 }

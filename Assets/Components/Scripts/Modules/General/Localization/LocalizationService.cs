@@ -13,7 +13,7 @@ namespace RoboFactory.General.Localization
     [UsedImplicitly]
     public class LocalizationService : Service
     {
-        protected override string LoadingTextKey => string.Empty;
+        protected override string InitializeTextKey => string.Empty;
 
         [Inject] private readonly SettingsService _settingsService;
         [Inject] private readonly Settings _settings;

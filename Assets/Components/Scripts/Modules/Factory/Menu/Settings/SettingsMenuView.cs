@@ -16,8 +16,8 @@ namespace RoboFactory.Factory.Menu.Settings
     {
         private const int VolumeStep = 10;
         
-        [Inject] private readonly LocalizationService localizationController;
-        [Inject] private readonly AudioManager _audioManager;
+        [Inject] private readonly LocalizationService _localizationService;
+        [Inject] private readonly AudioService _audioService;
         [Inject] private readonly AuthService _authService;
         [Inject] private readonly SceneService _sceneService;
         [Inject] private readonly SettingsService _settingsService;
@@ -76,27 +76,27 @@ namespace RoboFactory.Factory.Menu.Settings
             else
                 _signOut.gameObject.SetActive(false);
             
-            _title.text = localizationController.GetLanguageValue(LocalizationKeys.SettingsMenuTitleKey);
+            _title.text = _localizationService.GetLanguageValue(LocalizationKeys.SettingsMenuTitleKey);
         }
 
-        private void OnSignOutClick()
+        private async void OnSignOutClick()
         {
             _authService.SignOut();
-            _sceneService.LoadScene(SceneName.Authentication);
+            await _sceneService.LoadScene(SceneName.Auth);
         }
         
         private void ChangeMusicSliderValue(float value)
         {
             var musicValue = value * VolumeStep;
             _musicSliderText.text = musicValue.ToString(CultureInfo.CurrentCulture);
-            _audioManager.ChangeMusicVolume(value);
+            _audioService.ChangeMusicVolume(value);
         }
         
         private void ChangeAudioSliderValue(float value)
         {
             var audioValue = value * VolumeStep;
             _audioSliderText.text = audioValue.ToString(CultureInfo.CurrentCulture);
-            _audioManager.ChangeAudioVolume(value);
+            _audioService.ChangeAudioVolume(value);
         }
         
         private void ChangeGraphicSliderValue(float value)
@@ -108,7 +108,7 @@ namespace RoboFactory.Factory.Menu.Settings
         
         private void OnLanguageClick()
         {
-            _title.text = localizationController.GetLanguageValue(LocalizationKeys.SettingsMenuTitleKey);
+            _title.text = _localizationService.GetLanguageValue(LocalizationKeys.SettingsMenuTitleKey);
         }
     }
 }

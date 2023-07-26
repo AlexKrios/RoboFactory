@@ -14,7 +14,7 @@ namespace RoboFactory.Battle
     [UsedImplicitly]
     public class BattleController
     {
-        [Inject] private readonly RawManager _rawManager;
+        [Inject] private readonly RawService _rawService;
 
         public Action OnBattleEnd { get; set; }
         
@@ -117,7 +117,7 @@ namespace RoboFactory.Battle
         
         public void CollectItems(List<PartObject> parts)
         {
-            parts.ForEach(x => _rawManager.GetRaw(x.Data.Key).IncrementCount(x.Count));
+            parts.ForEach(x => _rawService.GetRaw(x.Data.Key).IncrementCount(x.Count));
         }
     }
     

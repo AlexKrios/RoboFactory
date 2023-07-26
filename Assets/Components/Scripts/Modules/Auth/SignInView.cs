@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Text.RegularExpressions;
 using Firebase.Auth;
+using RoboFactory.Factory.Menu.Production;
 using RoboFactory.General.Localization;
 using TMPro;
 using UniRx;
@@ -17,16 +18,9 @@ namespace RoboFactory.Auth
         private const string EmailKey = "auth_email";
         private const string PasswordKey = "auth_password";
         
-        #region Zenject
-        
         [Inject] private readonly LocalizationService _localizationService;
-        [Inject] private readonly AuthService authService;
-
-        [Inject(Id = Constants.SignUpKey)] private readonly SignUpView _signUpForm;
-
-        #endregion
-
-        #region Components
+        [Inject] private readonly AuthFactory _authFactory;
+        [Inject] private readonly AuthService _authService;
         
         [SerializeField] private TMP_Text _headerText;
         
@@ -38,43 +32,34 @@ namespace RoboFactory.Auth
         
         [Space]
         [SerializeField] private Button _signInButton; 
+        [SerializeField] private Button _signInTestButton; 
         [SerializeField] private Button _signUpButton;
 
         [Header("Error")]
         [SerializeField] private GameObject _errorWrapper;
         [SerializeField] private TMP_Text _errorText;
-
-        #endregion
         
-        #region Variables
-
         private string _authCode;
         private string _email;
         private string _password;
 
         private bool _isError;
 
-        private HashSet<AuthError> _errors;
-        
+        private readonly HashSet<AuthError> _errors = new();
         private readonly CompositeDisposable _disposable = new();
-
-        #endregion
-
-        #region Unity Methods
 
         private void Awake()
         {
-            _errors = new HashSet<AuthError>();
-
             _signInButton.interactable = false;
             _errorWrapper.SetActive(false);
             
-            _signInButton.onClick.AddListener(OnLogInClick);
-            _signUpButton.onClick.AddListener(OnSignInClick);
+            _signInButton.onClick.AddListener(OnSignInClick);
+            _signInTestButton.onClick.AddListener(OnSignInTestClick);
+            _signUpButton.onClick.AddListener(OnSignUpClick);
             _emailField.onValueChanged.AddListener(ReadEmailField);
             _passwordField.onValueChanged.AddListener(ReadPasswordField);
-
-            authService.EventSignInError += AddError;
+            
+            _authService.ErrorCode.Subscribe(x => AddError(x, true)).AddTo(_disposable);
         }
 
         private void Start()
@@ -88,16 +73,17 @@ namespace RoboFactory.Auth
 
         private void OnDestroy()
         {
-            authService.EventSignInError -= AddError;
-            
             _disposable.Dispose();
         }
-
-        #endregion
         
-        private async void OnLogInClick()
+        private async void OnSignInClick()
         {
-            await authService.SignIn(_email, _password);
+            await _authService.SignIn(_email, _password);
+        }
+        
+        private async void OnSignInTestClick()
+        {
+            await _authService.SignIn(Constants.TestEmail, Constants.TestPassword);
         }
 
         private void ReadEmailField(string text)
@@ -119,7 +105,7 @@ namespace RoboFactory.Auth
                 RemoveError(AuthError.WeakPassword);
         }
 
-        private void OnSignInClick()
+        private void OnSignUpClick()
         {
             var auth = FirebaseAuth.DefaultInstance;
             if (auth.CurrentUser != null)
@@ -128,8 +114,8 @@ namespace RoboFactory.Auth
                 return;
             }
             
-            gameObject.SetActive(false);
-            _signUpForm.gameObject.SetActive(true);
+            Destroy(gameObject);
+            _authFactory.CreateSignUpForm();
         }
 
         private void ShowError()
@@ -142,12 +128,14 @@ namespace RoboFactory.Auth
             }
             
             _errorWrapper.SetActive(true);
-            var localKey = authService.GetErrorLocalizationKey(_errors.First());
+            var localKey = _authService.GetErrorLocalizationKey(_errors.First());
             _errorText.text = _localizationService.GetLanguageValue(localKey);
         }
 
         private void AddError(AuthError error, bool isError = false)
         {
+            if (error == AuthError.None) return;
+            
             _errors.Add(error);
             ShowError();
 

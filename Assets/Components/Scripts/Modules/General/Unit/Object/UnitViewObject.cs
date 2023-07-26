@@ -9,7 +9,7 @@ namespace RoboFactory.General.Unit
 {
     public class UnitViewObject : MonoBehaviour
     {
-        [Inject] private readonly ProductsManager _productsManager;
+        [Inject] private readonly ProductsService productsService;
 
         [SerializeField] private Animator _bodyAnimator;
         [SerializeField] private List<ProductViewData> _parts;
@@ -18,7 +18,7 @@ namespace RoboFactory.General.Unit
         {
             for (var i = 1; i <= Constants.ProductTypeCount; i++)
             {
-                SetEquipment(_productsManager.GetProduct(unit.Outfit[(ProductGroup) i]));
+                SetEquipment(productsService.GetProduct(unit.Outfit[(ProductGroup) i]));
             }
         }
 

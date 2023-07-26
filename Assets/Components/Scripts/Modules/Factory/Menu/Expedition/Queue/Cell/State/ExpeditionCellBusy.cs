@@ -12,8 +12,8 @@ namespace RoboFactory.Factory.Menu.Expedition
     public class ExpeditionCellBusy : IExpeditionCellState
     {
         [Inject] private readonly AddressableService _addressableService;
-        [Inject] private readonly LocationManager _locationManager;
-        [Inject] private readonly ExpeditionManager _expeditionManager;
+        [Inject] private readonly LocationsService locationsService;
+        [Inject] private readonly ExpeditionService expeditionService;
 
         private readonly ExpeditionCell _cell;
         
@@ -24,8 +24,8 @@ namespace RoboFactory.Factory.Menu.Expedition
 
         public async void Enter()
         {
-            var expedition = _expeditionManager.GetExpedition(_cell.Data.Id);
-            var location = _locationManager.GetLocation(expedition.Key);
+            var expedition = expeditionService.GetExpedition(_cell.Data.Id);
+            var location = locationsService.GetLocation(expedition.Key);
 
             var sprite = await _addressableService.LoadAssetAsync<Sprite>(location.IconRef);
             _cell.SetCellIcon(sprite);

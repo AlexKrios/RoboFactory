@@ -16,8 +16,8 @@ namespace RoboFactory.Factory.Menu.Expedition
     {
         [Inject] private readonly AddressableService _addressableService;
         [Inject] private readonly LocalizationService _localizationService;
-        [Inject] private readonly ProductsManager _productsManager;
-        [Inject] private readonly UnitsManager _unitsManager;
+        [Inject] private readonly ProductsService _productsService;
+        [Inject] private readonly UnitsService _unitsService;
         [Inject] private readonly ExpeditionMenuFactory _expeditionMenuFactory;
 
         [Space]
@@ -76,7 +76,7 @@ namespace RoboFactory.Factory.Menu.Expedition
             }
             
             var unitAttackType = _menu.Units.ActiveUnit.AttackTypes;
-            var unitsObject = _unitsManager.GetUnits()
+            var unitsObject = _unitsService.GetUnits()
                 .Where(x => unitAttackType.Contains(x.AttackType))
                 .Where(x => _menu.Units.GetUnitsWithData()
                     .All(y => x != y.Data))
@@ -112,7 +112,7 @@ namespace RoboFactory.Factory.Menu.Expedition
         
         private async void SetSidebarData()
         {
-            var unit = _unitsManager.GetUnit(ActiveUnit.Data.Key);
+            var unit = _unitsService.GetUnit(ActiveUnit.Data.Key);
             _sidebarTitle.text = _localizationService.GetLanguageValue(unit.Key);
             _sidebarIcon.sprite = await _addressableService.LoadAssetAsync<Sprite>(unit.IconRef);
             for (var i = 0; i < unit.Outfit.Count; i++)
@@ -121,7 +121,7 @@ namespace RoboFactory.Factory.Menu.Expedition
                 var specObject = new SpecObject();
                 foreach (var outfit in unit.Outfit)
                 {
-                    var item = _productsManager.GetProduct(outfit.Value).Recipe;
+                    var item = _productsService.GetProduct(outfit.Value).Recipe;
                     spec += item.Specs[i].Value;
                 }
 

@@ -6,8 +6,13 @@ using Firebase.Auth;
 using GooglePlayGames;
 using GooglePlayGames.BasicApi;
 using JetBrains.Annotations;
+using RoboFactory.General.Api;
+using RoboFactory.General.Profile;
 using RoboFactory.General.Services;
+using UniRx;
 using UnityEngine;
+using Zenject;
+using UserProfile = RoboFactory.General.User.UserProfile;
 
 namespace RoboFactory.Auth
 {
@@ -25,15 +30,18 @@ namespace RoboFactory.Auth
             + @"([a-zA-Z]+[\w-]+\.)+[a-zA-Z]{2,4})$";
         public const float MinPasswordLength = 6;
 
-        //[Inject] private readonly CommonProfile _commonProfile;
-
-        public Action EventSignInSuccess { get; set; }
-        public Action EventSignInFailure { get; set; }
-        public Action<AuthError, bool> EventSignInError { get; set; }
-        public Action EventSignUpSuccess { get; set; }
-        public Action<AuthError, bool> EventSignUpError { get; set; }
-        public Action<AuthError, bool> EventGooglePlayError { get; set; }
+        [Inject] private readonly CommonProfile _commonProfile;
+        [Inject] private readonly ApiService _apiService;
+        [Inject] private readonly UserProfile.Factory _userFactory;
         
+        public override ServiceTypeEnum ServiceType => ServiceTypeEnum.NeedAuth;
+
+        public IReactiveProperty<AuthError> ErrorCode { get; } 
+            = new ReactiveProperty<AuthError>(AuthError.None);
+        
+        public IReactiveProperty<AuthStatusEnum> AuthStatus { get; }
+            = new ReactiveProperty<AuthStatusEnum>(AuthStatusEnum.None);
+
         private readonly Dictionary<AuthError, string> _errorsList;
         private FirebaseUser _user;
 
@@ -54,39 +62,35 @@ namespace RoboFactory.Auth
 
         public string GetErrorLocalizationKey(AuthError error) => _errorsList[error];
 
-        protected override UniTask InitializeAsync()
+        protected override async UniTask InitializeAsync()
         {
             Auth.StateChanged += FirebaseAuthStateChanged;
             FirebaseAuthStateChanged(this, null);
             
-            return UniTask.CompletedTask;
-        }
-
-        protected override async UniTask LoadAsync()
-        {
 #if UNITY_EDITOR
-            await SignIn(Constants.TestEmail, Constants.TestPassword);
+            //await SignIn(Constants.TestEmail, Constants.TestPassword);
 #endif
-            
+            Debug.LogWarning(_user);
             if (_user == null)
             {
-                EventSignInFailure?.Invoke();
+                AuthStatus.Value = AuthStatusEnum.Failure;
+                await UniTask.WaitUntil(() => AuthStatus.Value == AuthStatusEnum.Success);
                 return;
             }
-
+            
             if (IsProviderUsed(PasswordProvider))
             {
                 if (!_user.IsEmailVerified && !_user.Email.Contains(Constants.TestEmail))
-                    EventSignInFailure?.Invoke();
+                    AuthStatus.Value = AuthStatusEnum.Failure;
                 else
-                    EventSignInSuccess?.Invoke();
+                    await SignInSuccess();
             }
             else if (IsProviderUsed(GooglePlayProvider))
             {
                 InitializeGooglePlay();
             }
         }
-        
+
         private void FirebaseAuthStateChanged(object sender, EventArgs eventArgs) 
         {
             _user = Auth.CurrentUser;
@@ -113,26 +117,20 @@ namespace RoboFactory.Auth
                     return;
 
                 Debug.LogWarning((AuthError)exception.ErrorCode);
-                EventSignInError?.Invoke((AuthError)exception.ErrorCode, true);
+                ErrorCode.Value = (AuthError)exception.ErrorCode;
                 return;
             }
             
-            if (!_user.IsEmailVerified)
+            if (!_user.IsEmailVerified && !_user.Email.Contains(Constants.TestEmail))
             {
-                EventSignInError?.Invoke(AuthError.UnverifiedEmail, true);
+                ErrorCode.Value = AuthError.UnverifiedEmail;
                 return;
             }
 
-            EventSignInSuccess?.Invoke();
+            await SignInSuccess();
             Debug.Log("User sign in successfully");
         }
-        
-        /*private async UniTask SignInFailure()
-        {
-            //_signInForm.gameObject.SetActive(true);
-            await UniTask.WaitUntil(() => _user != null);
-        }*/
-        
+
         public async void SignUp(string email, string password)
         {
             var task = Auth.CreateUserWithEmailAndPasswordAsync(email, password);
@@ -143,14 +141,13 @@ namespace RoboFactory.Auth
                     return;
 
                 Debug.LogWarning((AuthError)exception.ErrorCode);
-                EventSignUpError?.Invoke((AuthError)exception.ErrorCode, true);
+                ErrorCode.Value = (AuthError)exception.ErrorCode;
                 return;
             }
 
             Debug.Log("User sign up successfully");
             
             await EmailVerification();
-            EventSignUpSuccess?.Invoke();
         }
 
         public async UniTask EmailVerification()
@@ -163,7 +160,7 @@ namespace RoboFactory.Auth
                     return;
 
                 Debug.LogWarning((AuthError)exception.ErrorCode);
-                EventSignUpError?.Invoke((AuthError)exception.ErrorCode, true);
+                ErrorCode.Value = (AuthError)exception.ErrorCode;
                 return;
             }
             
@@ -198,17 +195,17 @@ namespace RoboFactory.Auth
 
                 case SignInStatus.Canceled:
                     Auth.SignOut();
-                    EventSignInFailure?.Invoke();
+                    AuthStatus.Value = AuthStatusEnum.Failure;
                     Debug.LogWarning("Cancel Google Play Sign In");
                     break;
 
                 case SignInStatus.InternalError:
-                    EventSignInFailure?.Invoke();
+                    AuthStatus.Value = AuthStatusEnum.Failure;
                     Debug.LogWarning("Internal Error Google Play Sign In");
                     break;
 
                 default:
-                    EventSignInFailure?.Invoke();
+                    AuthStatus.Value = AuthStatusEnum.Failure;
                     break;
             }
         }
@@ -220,9 +217,8 @@ namespace RoboFactory.Auth
         
         public void GooglePlaySignManually()
         {
-            PlayGamesPlatform.Instance.ManuallyAuthenticate(status =>
+            PlayGamesPlatform.Instance.ManuallyAuthenticate(_ =>
             {
-                Debug.LogWarning(status);
                 PlayGamesPlatform.Instance.RequestServerSideAccess(true, SignInWithCredential);
             });
         }
@@ -238,13 +234,27 @@ namespace RoboFactory.Auth
                     return;
 
                 Debug.LogWarning((AuthError)exception.ErrorCode);
-                EventGooglePlayError?.Invoke((AuthError)exception.ErrorCode, true);
+                ErrorCode.Value = (AuthError)exception.ErrorCode;
             }
-                        
-            EventSignInSuccess?.Invoke();
+
+            await SignInSuccess();
             Debug.LogWarning("Success Google Play Sign In");
         }
 
         #endregion
+
+        private async UniTask SignInSuccess()
+        {
+            var userProfile = await _apiService.GetUserProfile();
+            if (userProfile == null)
+            {
+                userProfile = _userFactory.Create().GetStartUserProfile();
+                await _apiService.SetStartUserProfile(userProfile);
+            }
+
+            _commonProfile.UserProfile = userProfile;
+            
+            AuthStatus.Value = AuthStatusEnum.Success;
+        }
     }
 }

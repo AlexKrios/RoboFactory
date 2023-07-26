@@ -18,14 +18,14 @@ namespace RoboFactory.Factory.Menu
 {
     public class MenuButtonsView : MonoBehaviour
     {
-        [Inject] private readonly AudioManager _audioController;
+        [Inject] private readonly AudioService _audioService;
         [Inject] private readonly IUiController _uiController;
-        [Inject] private readonly ProductionManager _productionManager;
+        [Inject] private readonly ProductionService productionService;
         [Inject] private readonly ProductionMenuFactory _productionMenuFactory;
         [Inject] private readonly StorageMenuFactory _storageMenuFactory;
         [Inject] private readonly ConversionMenuFactory _conversionMenuFactory;
         [Inject] private readonly UnitsMenuFactory _unitsMenuFactory;
-        [Inject] private readonly ExpeditionManager expeditionManager;
+        [Inject] private readonly ExpeditionService expeditionService;
         [Inject] private readonly ExpeditionMenuFactory _expeditionMenuFactory;
         [Inject] private readonly OrderMenuFactory _orderMenuFactory;
 
@@ -67,8 +67,8 @@ namespace RoboFactory.Factory.Menu
         
         private void ProductionClick()
         {
-            _audioController.PlayAudio(AudioClipType.ButtonClick);
-            if (_productionManager.IsHaveFreeCell())
+            _audioService.PlayAudio(AudioClipType.ButtonClick);
+            if (productionService.IsHaveFreeCell())
             {
                 _productionMenuFactory.CreateMenu();
             }
@@ -81,26 +81,26 @@ namespace RoboFactory.Factory.Menu
         
         private void StorageClick()
         {
-            _audioController.PlayAudio(AudioClipType.ButtonClick);
+            _audioService.PlayAudio(AudioClipType.ButtonClick);
             _storageMenuFactory.CreateMenu();
         }
         
         private void ConversionClick()
         {
-            _audioController.PlayAudio(AudioClipType.ButtonClick);
+            _audioService.PlayAudio(AudioClipType.ButtonClick);
             _conversionMenuFactory.CreateMenu();
         }
         
         private void UnitsClick()
         {
-            _audioController.PlayAudio(AudioClipType.ButtonClick);
+            _audioService.PlayAudio(AudioClipType.ButtonClick);
             _unitsMenuFactory.CreateMenu();
         }
         
         private void ExpeditionClick()
         {
-            _audioController.PlayAudio(AudioClipType.ButtonClick);
-            if (expeditionManager.IsHaveFreeCell())
+            _audioService.PlayAudio(AudioClipType.ButtonClick);
+            if (expeditionService.IsHaveFreeCell())
             {
                 _expeditionMenuFactory.CreateMenu();
             }
@@ -113,7 +113,7 @@ namespace RoboFactory.Factory.Menu
         
         private void OrderClick()
         {
-            _audioController.PlayAudio(AudioClipType.ButtonClick);
+            _audioService.PlayAudio(AudioClipType.ButtonClick);
             _orderMenuFactory.CreateMenu();
         }
     }

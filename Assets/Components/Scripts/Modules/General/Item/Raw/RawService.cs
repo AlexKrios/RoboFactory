@@ -4,39 +4,45 @@ using System.Linq;
 using Cysharp.Threading.Tasks;
 using JetBrains.Annotations;
 using RoboFactory.General.Api;
+using RoboFactory.General.Profile;
+using RoboFactory.General.Services;
 using UnityEngine;
 using Zenject;
 
 namespace RoboFactory.General.Item.Raw
 {
     [UsedImplicitly]
-    public class RawManager : IItemManager
+    public class RawService : Service, IItemManager
     {
-        [Inject] private readonly ApiService apiService;
-
         public ItemType ItemType { get; }
         
-        private readonly Dictionary<string, RawObject> _rawDictionary;
+        [Inject] private readonly Settings _settings;
+        [Inject] private readonly CommonProfile _commonProfile;
+        [Inject] private readonly ApiService _apiService;
+        
+        public override ServiceTypeEnum ServiceType => ServiceTypeEnum.NeedAuth;
+
+        private readonly Dictionary<string, RawObject> _rawDictionary = new();
 
         public Action OnRawSet { get; set; }
         
-        public RawManager(Settings settings)
+        public RawService(Settings settings)
         {
             ItemType = ItemType.Raw;
-            _rawDictionary = new Dictionary<string, RawObject>();
-            
-            foreach (var rawData in settings.Data)
-            {
-                var rawObj = new RawObject().SetInitData(rawData);
-                _rawDictionary.Add(rawObj.Key, rawObj);
-            }
         }
         
-        public void LoadData(Dictionary<string, RawDto> rawData)
+        protected override UniTask InitializeAsync()
         {
-            if (rawData == null)
-                return;
+            foreach (var data in _settings.Data)
+            {
+                var rawObj = new RawObject().SetInitData(data);
+                _rawDictionary.Add(rawObj.Key, rawObj);
+            }
             
+            var storeData = _commonProfile.UserProfile.StoresSection;
+            if (storeData == null) return UniTask.CompletedTask;
+
+            var rawData = storeData.Raw;
             foreach (var raw in rawData)
             {
                 _rawDictionary[raw.Key].Count = raw.Value.Count;
@@ -44,6 +50,8 @@ namespace RoboFactory.General.Item.Raw
             }
             
             OnRawSet?.Invoke();
+            
+            return UniTask.CompletedTask;
         }
 
         public List<RawObject> GetAllRaw() => _rawDictionary.Values.ToList();
@@ -61,7 +69,7 @@ namespace RoboFactory.General.Item.Raw
         {
             var raw = _rawDictionary[key];
             raw.IncrementCount(count);
-            await apiService.SetUserRawSingle(key, raw.ToDto());
+            await _apiService.SetUserRawSingle(key, raw.ToDto());
             
             OnRawSet?.Invoke();
         }
@@ -78,7 +86,7 @@ namespace RoboFactory.General.Item.Raw
         {
             var raw = _rawDictionary[key];
             raw.DecrementCount(count);
-            await apiService.SetUserRawSingle(key, raw.ToDto());
+            await _apiService.SetUserRawSingle(key, raw.ToDto());
             
             OnRawSet?.Invoke();
         }
@@ -86,7 +94,7 @@ namespace RoboFactory.General.Item.Raw
         private async UniTask SendRawOnServer()
         {
             var rawData = GetAllRawDto();
-            await apiService.SetUserRaw(rawData);
+            await _apiService.SetUserRaw(rawData);
         }
 
         public bool CheckIfRawStoreFull(string key)

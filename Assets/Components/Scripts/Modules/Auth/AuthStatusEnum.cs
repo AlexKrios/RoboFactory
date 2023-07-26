@@ -1,6 +1,6 @@
 ﻿namespace RoboFactory.Auth
 {
-    public enum AuthStatus
+    public enum AuthStatusEnum
     {
         None,
         Failure,

@@ -10,8 +10,8 @@ namespace RoboFactory.Factory.Menu.Units
     public class SelectButtonView : ButtonBase
     {
         [Inject] private readonly LocalizationService _localizationService;
-        [Inject] private readonly ProductsManager _productsManager;
-        [Inject] private readonly UnitsManager _unitsManager;
+        [Inject] private readonly ProductsService _productsService;
+        [Inject] private readonly UnitsService _unitsService;
         [Inject] private readonly IUiController _uiController;
         
         private UnitsMenuView _menu;
@@ -42,12 +42,12 @@ namespace RoboFactory.Factory.Menu.Units
         {
             base.Click();
 
-            await _unitsManager.SetEquipment(_menu.ActiveUnit.Key, Equipment.ProductGroup, Equipment.Key);
+            await _unitsService.SetEquipment(_menu.ActiveUnit.Key, Equipment.ProductGroup, Equipment.Key);
             _menu.Info.ActiveCell.SetEquipmentData(Equipment);
             _menu.Info.UnitModel.SetEquipment(Equipment);
             
             if (Equipment.ProductType != 0)
-                await _productsManager.RemoveItem(Equipment.Key);
+                await _productsService.RemoveItem(Equipment.Key);
             
             _selectionMenu.Close();
         }

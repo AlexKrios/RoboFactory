@@ -13,10 +13,10 @@ namespace RoboFactory.General.Ui.Admin
     {
         #region Zenject
 
-        [Inject] private readonly MoneyManager _moneyManager;
-        [Inject] private readonly LevelManager _levelManager;
-        [Inject] private readonly RawManager _rawManager;
-        [Inject] private readonly OrderManager _orderManager;
+        [Inject] private readonly MoneyService _moneyService;
+        [Inject] private readonly ExperienceService _experienceService;
+        [Inject] private readonly RawService _rawService;
+        [Inject] private readonly OrderService orderService;
 
         #endregion
         
@@ -67,37 +67,37 @@ namespace RoboFactory.General.Ui.Admin
         
         private void OnMoneyPlus()
         {
-            _moneyManager.PlusMoney(1000);
+            _moneyService.PlusMoney(1000);
         }
         
         private void OnBankrupt()
         {
-            _moneyManager.SetMoney(0);
+            _moneyService.SetMoney(0);
         }
         
         private void OnExperiencePlusDouble()
         {
-            _levelManager.SetExperience(1000);
+            _experienceService.SetExperience(1000);
         }
 
         private void OnExperiencePlus()
         {
-            _levelManager.SetExperience(50);
+            _experienceService.SetExperience(50);
         }
 
         private void OnRawMax()
         {
-            _rawManager.SetMaxRaw();
+            _rawService.SetMaxRaw();
         }
         
         private void OnRawMin()
         {
-            _rawManager.SetMinRaw();
+            _rawService.SetMinRaw();
         }
         
         private void OnResetOrder()
         {
-            _orderManager.RefreshOrdersForce();
+            orderService.RefreshOrdersForce();
         }
     }
 }

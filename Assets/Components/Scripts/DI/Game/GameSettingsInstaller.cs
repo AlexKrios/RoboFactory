@@ -1,3 +1,4 @@
+using RoboFactory.Factory.Menu.Production;
 using RoboFactory.General.Asset;
 using RoboFactory.General.Audio;
 using RoboFactory.General.Expedition;
@@ -20,21 +21,23 @@ namespace RoboFactory.DI
     {
         [SerializeField] private AddressableService.Settings _assets;
         [SerializeField] private SceneService.Settings _scene;
+        [SerializeField] private AuthFactory.Settings _auth;
         [SerializeField] private LocalizationService.Settings _localization;
-        [SerializeField] private AudioManager.Settings _audioData;
-        [SerializeField] private LevelManager.Settings _level;
-        [SerializeField] private RawManager.Settings _raw;
-        [SerializeField] private ProductsManager.Settings _products;
-        [SerializeField] private LocationManager.Settings _locations;
-        [SerializeField] private UnitsManager.Settings _units;
-        [SerializeField] private ExpeditionManager.Settings _expeditions;
-        [SerializeField] private ProductionManager.Settings _productions;
-        [SerializeField] private OrderManager.Settings _order;
+        [SerializeField] private AudioService.Settings _audioData;
+        [SerializeField] private ExperienceService.Settings _level;
+        [SerializeField] private RawService.Settings _raw;
+        [SerializeField] private ProductsService.Settings _products;
+        [SerializeField] private LocationsService.Settings _locations;
+        [SerializeField] private UnitsService.Settings _units;
+        [SerializeField] private ExpeditionService.Settings _expeditions;
+        [SerializeField] private ProductionService.Settings _productions;
+        [SerializeField] private OrderService.Settings _order;
 
         public override void InstallBindings()
         {
             Container.BindInstance(_assets);
             Container.BindInstance(_scene);
+            Container.BindInstance(_auth);
             Container.BindInstance(_localization);
             Container.BindInstance(_audioData);
             Container.BindInstance(_level);

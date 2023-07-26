@@ -5,7 +5,7 @@
         None = 0,
         Launcher = 1,
         Loader = 2,
-        Authentication = 3,
+        Auth = 3,
         Factory = 4,
         Battle = 5,
         

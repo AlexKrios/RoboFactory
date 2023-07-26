@@ -17,7 +17,7 @@ namespace RoboFactory.Factory.Menu.Units
         [Inject] private readonly AddressableService _addressableService;
         [Inject] private readonly LocalizationService _localizationService;
         [Inject] private readonly IUiController _uiController;
-        [Inject] private readonly ProductsManager _productsManager;
+        [Inject] private readonly ProductsService productsService;
         [Inject] private readonly UnitsMenuFactory _unitsMenuFactory;
 
         [Space]
@@ -75,7 +75,7 @@ namespace RoboFactory.Factory.Menu.Units
                 _cells.Clear();
             }
             
-            var equipments = _productsManager.GetAllProducts()
+            var equipments = productsService.GetAllProducts()
                 .Where(x => x.ProductGroup == _menu.ActiveEquipment.ProductGroup)
                 .Where(x => x.UnitType == _menu.ActiveUnit.UnitType)
                 .Where(x => x.IsProduct)
@@ -110,7 +110,7 @@ namespace RoboFactory.Factory.Menu.Units
         
         private async void SetSidebarData()
         {
-            var product = _productsManager.GetProduct(ActiveItem.Data.Key);
+            var product = productsService.GetProduct(ActiveItem.Data.Key);
             _sidebarTitle.text = _localizationService.GetLanguageValue(product.Key);
             _sidebarIcon.sprite = await _addressableService.LoadAssetAsync<Sprite>(product.IconRef);
             foreach (var specData in product.Recipe.Specs)
