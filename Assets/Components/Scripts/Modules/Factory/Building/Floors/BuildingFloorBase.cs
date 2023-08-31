@@ -45,14 +45,10 @@ namespace RoboFactory.Factory.Building
 
         #endregion
 
-        #region Unity Methods
-
         private void Awake()
         {
             _factoryCameraController.FloorsDictionary.Add(_floorNumber, this);
         }
-
-        #endregion
 
         public void SetFloorActive()
         {

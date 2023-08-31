@@ -8,6 +8,10 @@
 "initialize_2","Initialize 2","Инициализация 2"
 "initialize_launch","Launch","Запуск"
 "load_scene","Load Scene","Загрузка Сцены"
+/---------- Settings ----------/
+"settings_graphic_low","Low","Low"
+"settings_graphic_medium","Medium","Medium"
+"settings_graphic_high","High","High"
 /---------- Menu ----------/
 "settings_menu_title","Settings","Настройки"
 "production_menu_title","Production","Создание"

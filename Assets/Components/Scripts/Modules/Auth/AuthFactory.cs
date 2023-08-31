@@ -11,7 +11,7 @@ namespace RoboFactory.Factory.Menu.Production
     {
         [Inject] private readonly DiContainer _container;
         [Inject] private readonly Settings _settings;
-        [Inject(Id = Constants.PopupParentKey)] private readonly Transform _popupParent;
+        [Inject(Id = Constants.PopupsParentKey)] private readonly Transform _popupParent;
 
         public SignInView CreateSignInForm()
         {

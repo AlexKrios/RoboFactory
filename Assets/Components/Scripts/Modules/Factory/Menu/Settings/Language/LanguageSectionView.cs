@@ -8,7 +8,6 @@ using Zenject;
 
 namespace RoboFactory.Factory.Menu.Settings
 {
-    [AddComponentMenu("Scripts/Factory/Menu/Settings/Language Section View")]
     public class LanguageSectionView : MonoBehaviour
     {
         [Inject] private readonly SettingsService _settingsController;

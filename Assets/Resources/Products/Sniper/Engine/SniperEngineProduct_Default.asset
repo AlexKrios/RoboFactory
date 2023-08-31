@@ -15,12 +15,13 @@ MonoBehaviour:
   _itemType: 1
   _key: sniper_engine_product_default
   _iconRef:
-    m_AssetGUID: 
-    m_SubObjectName: 
-    m_SubObjectType: 
+    m_AssetGUID: 53be831e4b0faa043a3cfcf9af2b29d2
+    m_SubObjectName: SniperEngineProduct
+    m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
     m_EditorAssetChanged: 0
   _index: 0
-  _productName: 
+  _productName: Sniper Engine Product Default
   _star: 0
   _unitType: 4
   _productGroup: 3

@@ -1,7 +1,6 @@
 ﻿using System;
 using JetBrains.Annotations;
 using RoboFactory.General.Asset;
-using RoboFactory.General.Ui;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.UI;
@@ -14,8 +13,8 @@ namespace RoboFactory.Factory.Menu.Production
     {
         [Inject] private readonly DiContainer _container;
         [Inject] private readonly Settings _settings;
-        [Inject] private readonly AddressableService addressableService;
-        [Inject] private readonly IUiController _uiController;
+        [Inject] private readonly AddressableService _addressableService;
+        [Inject(Id = Constants.ScreensParentKey)] private readonly Transform _screensParent;
 
         public Button CreateButton(Transform parent)
         {
@@ -24,12 +23,9 @@ namespace RoboFactory.Factory.Menu.Production
         
         public async void CreateMenu()
         {
-            var canvasT = _uiController.GetCanvas(CanvasType.Ui).transform;
-            var menuOriginal = await addressableService.InstantiateAssetAsync(_settings.MenuReference, canvasT);
+            var menuOriginal = await _addressableService.InstantiateAssetAsync(_settings.MenuReference, _screensParent);
             var menu = _container.InjectGameObjectForComponent<ProductionMenuView>(menuOriginal);
             menu.Initialize();
-            
-            //addressableManager.ReleaseAsset(_settings.menuReference);
         }
         
         public ProductCellView CreateProduct(Transform parent)
@@ -39,14 +35,14 @@ namespace RoboFactory.Factory.Menu.Production
         
         public async void CreateUpgradePopup(Transform parent)
         {
-            var popupOriginal = await addressableService.InstantiateAssetAsync(_settings.UpgradeReference, parent);
+            var popupOriginal = await _addressableService.InstantiateAssetAsync(_settings.UpgradeReference, parent);
             var popup = _container.InjectGameObjectForComponent<UpgradePopupView>(popupOriginal);
             popup.Initialize();
         }
         
         public async void CreateUpgradeQueuePopup(Transform parent)
         {
-            var popupOriginal = await addressableService.InstantiateAssetAsync(_settings.QueueReference, parent);
+            var popupOriginal = await _addressableService.InstantiateAssetAsync(_settings.QueueReference, parent);
             var popup = _container.InjectGameObjectForComponent<UpgradeQueuePopupView>(popupOriginal);
             popup.Initialize();
         }

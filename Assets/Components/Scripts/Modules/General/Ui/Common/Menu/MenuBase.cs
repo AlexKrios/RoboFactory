@@ -14,15 +14,15 @@ namespace RoboFactory.General.Ui.Common
         
         [Inject] private readonly AudioService _audioService;
         [Inject] protected readonly IUiController UiController;
+        [Inject(Id = Constants.MainCameraKey)] private readonly Camera _camera;
 
         [SerializeField] private Button _close;
         
         private CanvasGroup _canvasGroup;
-        protected CompositeDisposable Disposable = new();
+        protected readonly CompositeDisposable Disposable = new();
 
         protected virtual void Awake()
         {
-            Disposable = new CompositeDisposable();
             _canvasGroup = GetComponent<CanvasGroup>();
             _close.OnClickAsObservable().Subscribe(_ => Close()).AddTo(Disposable);
         }
@@ -40,26 +40,27 @@ namespace RoboFactory.General.Ui.Common
         private void PlayFadeIn()
         {
             _canvasGroup.alpha = 0f;
-            _canvasGroup.DOFade(1, FadeTime).SetEase(Ease.InCubic);
-
-            UiController.SetCanvasActive(CanvasType.HUD, false);
+            _canvasGroup.DOFade(1, FadeTime)
+                .SetEase(Ease.InCubic)
+                .OnComplete(() => SetCameraActive(false));
         }
 
-        protected virtual void Release() { }
+        protected virtual void Release()
+        {
+            UiController.RemoveUi(this, gameObject);
+        }
         
         public virtual void Close()
         {
             _audioService.PlayAudio(AudioClipType.CloseClick);
+            SetCameraActive(true);
 
             _canvasGroup.alpha = 1f;
             _canvasGroup.DOFade(0, FadeTime)
                 .SetEase(Ease.OutCubic)
-                .OnComplete(() =>
-                {
-                    UiController.SetCanvasActive(CanvasType.HUD);
-                    UiController.RemoveUi(this, gameObject);
-                    Release();
-                });
+                .OnComplete(Release);
         }
+        
+        private void SetCameraActive(bool value) => _camera.gameObject.SetActive(value);
     }
 }

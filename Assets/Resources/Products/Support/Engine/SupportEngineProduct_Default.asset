@@ -15,12 +15,13 @@ MonoBehaviour:
   _itemType: 1
   _key: support_engine_product_default
   _iconRef:
-    m_AssetGUID: 
-    m_SubObjectName: 
-    m_SubObjectType: 
+    m_AssetGUID: b1701e2ecb08a21438321d9af2b7a663
+    m_SubObjectName: SupportEngineProduct
+    m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
     m_EditorAssetChanged: 0
   _index: 0
-  _productName: 
+  _productName: Support Engine Product Default
   _star: 0
   _unitType: 3
   _productGroup: 3

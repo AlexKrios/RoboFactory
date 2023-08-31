@@ -7,7 +7,6 @@ using Zenject;
 
 namespace RoboFactory.Battle.Ui
 {
-    [AddComponentMenu("Scripts/Battle/Ui/End Battle Item View")]
     public class EndBattleItemView : MonoBehaviour
     {
         #region Zenject

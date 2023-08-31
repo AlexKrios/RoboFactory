@@ -15,22 +15,31 @@ MonoBehaviour:
   _itemType: 1
   _key: defender_engine_product_default
   _iconRef:
-    m_AssetGUID: 
-    m_SubObjectName: 
-    m_SubObjectType: 
+    m_AssetGUID: b1701e2ecb08a21438321d9af2b7a663
+    m_SubObjectName: SupportEngineProduct
+    m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
     m_EditorAssetChanged: 0
   _index: 0
-  _productName: 
+  _productName: Defender Engine Product Default
   _star: 0
   _unitType: 2
   _productGroup: 3
   _productType: 0
   _isProduct: 0
-  _model: {fileID: 0}
+  _model: {fileID: 1814691801778414500, guid: b9758c773b51b564592840ce93636d16, type: 3}
   _recipe:
     _star: 0
     _parts: []
     _cost: 0
     _experience: 0
     _craftTime: 0
-    _specs: []
+    _specs:
+    - Type: 0
+      Value: 0
+    - Type: 1
+      Value: 0
+    - Type: 2
+      Value: 0
+    - Type: 3
+      Value: 0

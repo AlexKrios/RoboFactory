@@ -19,7 +19,6 @@ namespace RoboFactory.Factory.Menu
     public class MenuButtonsView : MonoBehaviour
     {
         [Inject] private readonly AudioService _audioService;
-        [Inject] private readonly IUiController _uiController;
         [Inject] private readonly ProductionService productionService;
         [Inject] private readonly ProductionMenuFactory _productionMenuFactory;
         [Inject] private readonly StorageMenuFactory _storageMenuFactory;
@@ -28,6 +27,7 @@ namespace RoboFactory.Factory.Menu
         [Inject] private readonly ExpeditionService expeditionService;
         [Inject] private readonly ExpeditionMenuFactory _expeditionMenuFactory;
         [Inject] private readonly OrderMenuFactory _orderMenuFactory;
+        [Inject(Id = Constants.PopupsParentKey)] private readonly Transform _popupsParent;
 
         private Dictionary<UiType, Button> _menuButtonsDictionary;
         private readonly CompositeDisposable _disposable = new();
@@ -74,8 +74,7 @@ namespace RoboFactory.Factory.Menu
             }
             else
             {
-                var parent = _uiController.GetCanvas(CanvasType.Ui);
-                _productionMenuFactory.CreateUpgradeQueuePopup(parent.transform);
+                _productionMenuFactory.CreateUpgradeQueuePopup(_popupsParent);
             }
         }
         
@@ -106,8 +105,7 @@ namespace RoboFactory.Factory.Menu
             }
             else
             {
-                var parent = _uiController.GetCanvas(CanvasType.Ui);
-                _expeditionMenuFactory.CreateUpgradeQueuePopup(parent.transform);
+                _expeditionMenuFactory.CreateUpgradeQueuePopup(_popupsParent);
             }
         }
         

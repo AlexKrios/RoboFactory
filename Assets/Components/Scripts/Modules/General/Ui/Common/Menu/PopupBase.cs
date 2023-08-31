@@ -12,31 +12,16 @@ namespace RoboFactory.General.Ui.Common
     {
         private const float FadeTime = 0.25f;
         
-        #region Zenject
-        
         [Inject] private readonly AudioService _audioService;
         [Inject] protected readonly IUiController UiController;
 
-        #endregion
-
-        #region Components
-        
         [SerializeField] private Button _close;
-
-        #endregion
         
-        #region Variables
-
         private CanvasGroup _canvasGroup;
-        protected CompositeDisposable Disposable;
-
-        #endregion
-
-        #region Unity Methods
+        protected readonly CompositeDisposable Disposable = new();
 
         protected virtual void Awake()
         {
-            Disposable = new CompositeDisposable();
             _canvasGroup = GetComponent<CanvasGroup>();
             _close.OnClickAsObservable().Subscribe(_ => Close()).AddTo(Disposable);
         }
@@ -45,8 +30,6 @@ namespace RoboFactory.General.Ui.Common
         {
             Disposable.Dispose();
         }
-
-        #endregion
         
         public virtual void Initialize()
         {
@@ -57,13 +40,10 @@ namespace RoboFactory.General.Ui.Common
         {
             _canvasGroup.alpha = 0f;
             _canvasGroup.DOFade(1, FadeTime).SetEase(Ease.InCubic);
-            
-            UiController.SetCanvasActive(CanvasType.HUD, false);
         }
 
         protected virtual void Release()
         {
-            UiController.SetCanvasActive(CanvasType.HUD);
             UiController.RemoveUi(this, gameObject);
         }
         

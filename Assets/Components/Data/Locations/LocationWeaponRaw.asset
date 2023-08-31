@@ -21,4 +21,7 @@ MonoBehaviour:
       Culture=neutral, PublicKeyToken=null
     m_EditorAssetChanged: 0
   _enemies: []
-  _reward: []
+  _reward:
+  - Data: {fileID: 11400000, guid: d93f5a32beae9f84081da35a39b1468f, type: 2}
+    Star: 1
+    Count: 10

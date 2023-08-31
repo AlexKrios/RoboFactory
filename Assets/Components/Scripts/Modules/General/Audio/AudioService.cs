@@ -38,8 +38,6 @@ namespace RoboFactory.General.Audio
             Debug.Log($"<color=#ffb3ff>Audio Manager: Playing sound {audioClip.name}</color>");
             _musicSource.volume = _settingsService.MusicVolume / 10;
             _musicSource.PlayOneShot(audioClip);
-            
-            _addressableService.ReleaseAsset(clipRef);
         }
         
         public async void PlayAudio(AudioClipType type)
@@ -48,8 +46,6 @@ namespace RoboFactory.General.Audio
             var audioClip = await _addressableService.LoadAssetAsync<AudioClip>(clipRef);
             
             AudioSource.PlayClipAtPoint(audioClip, Vector3.zero, _settingsService.AudioVolume / 10);
-            
-            _addressableService.ReleaseAsset(clipRef);
         }
         
         [Serializable]

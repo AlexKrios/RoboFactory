@@ -1,7 +1,6 @@
 ﻿using System;
 using JetBrains.Annotations;
 using RoboFactory.General.Asset;
-using RoboFactory.General.Ui;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.UI;
@@ -15,7 +14,7 @@ namespace RoboFactory.Factory.Menu.Conversion
         [Inject] private readonly DiContainer _container;
         [Inject] private readonly Settings _settings;
         [Inject] private readonly AddressableService _addressableService;
-        [Inject] private readonly IUiController _uiController;
+        [Inject(Id = Constants.ScreensParentKey)] private readonly Transform _screensParent;
 
         public Button CreateButton(Transform parent)
         {
@@ -25,8 +24,7 @@ namespace RoboFactory.Factory.Menu.Conversion
         public async void CreateMenu()
         {
             var menu = await _addressableService.LoadAssetAsync<GameObject>(_settings.MenuAsset);
-            var canvasT = _uiController.GetCanvas(CanvasType.Ui).transform;
-            _container.InstantiatePrefabForComponent<ConversionMenuView>(menu, canvasT);
+            _container.InstantiatePrefabForComponent<ConversionMenuView>(menu, _screensParent);
         }
 
         [Serializable]

@@ -35,6 +35,9 @@ namespace RoboFactory.General.Item.Products
         
         protected override UniTask InitializeAsync()
         {
+            if (_productsDictionary.Count != 0)
+                _productsDictionary.Clear();
+            
             foreach (var product in _settings.Items)
             {
                 var item = new ProductFactory().Create(product);

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using RoboFactory.General.Ui;
 using UnityEngine;
 using Zenject;
 
@@ -9,8 +8,8 @@ namespace RoboFactory.Factory.Menu.Expedition
 {
     public class UnitsSectionView : MonoBehaviour
     {
-        [Inject] private readonly IUiController _uiController;
         [Inject] private readonly ExpeditionMenuFactory _expeditionMenuFactory;
+        [Inject(Id = Constants.PopupsParentKey)] private readonly Transform _popupsParent;
         
         [SerializeField] private List<UnitCellView> _units;
 
@@ -42,7 +41,7 @@ namespace RoboFactory.Factory.Menu.Expedition
         private void OnUnitClick(UnitCellView cell)
         {
             ActiveUnit = cell;
-            _expeditionMenuFactory.CreateSelectionMenu(_uiController.GetCanvas(CanvasType.Ui).transform);
+            _expeditionMenuFactory.CreateSelectionMenu(_popupsParent);
         }
     }
 }

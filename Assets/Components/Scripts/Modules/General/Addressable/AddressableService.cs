@@ -23,7 +23,8 @@ namespace RoboFactory.General.Asset
         protected override string InitializeTextKey => "initialize_addressables";
         public override ServiceTypeEnum ServiceType => ServiceTypeEnum.NeedAuth;
 
-        private const string CoreLabel = "Core";
+        private const string CoreGameObjectLabel = "Core GameObject";
+        private const string CoreSpriteLabel = "Core Sprite";
         private const string MusicLabel = "Music";
         private const string AudioLabel = "Audio";
 
@@ -36,13 +37,25 @@ namespace RoboFactory.General.Asset
         {
             await Addressables.InitializeAsync();
 
+            await TryDownloadAsync(CoreGameObjectLabel);
+            await TryDownloadAsync(CoreSpriteLabel);
             await TryDownloadAsync(MusicLabel);
             await TryDownloadAsync(AudioLabel);
-            await TryDownloadAsync(CoreLabel);
 
-            await Addressables.LoadAssetsAsync<GameObject>(CoreLabel, null);
-            await Addressables.LoadAssetsAsync<Sprite>(CoreLabel, null);
+            /*var coreGameObjectKeys = await Addressables.LoadResourceLocationsAsync(CoreGameObjectLabel);
+            var coreSpriteRefs = _settings.Data.GetAllIconRef();
+            foreach (var key in coreGameObjectKeys)
+            {
+                await Addressables.LoadAssetAsync<GameObject>(key);
+            }
             
+            foreach (var iconRef in coreSpriteRefs)
+            {
+                await LoadAssetAsync<Sprite>(iconRef);
+            }*/
+
+            await Addressables.LoadAssetsAsync<GameObject>(CoreGameObjectLabel, null);
+            await Addressables.LoadAssetsAsync<Sprite>(CoreSpriteLabel, null);
             await Addressables.LoadAssetsAsync<AudioClip>(MusicLabel, null);
             await Addressables.LoadAssetsAsync<AudioClip>(AudioLabel, null);
         }

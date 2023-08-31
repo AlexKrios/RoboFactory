@@ -13,28 +13,18 @@ namespace RoboFactory.Factory.Menu.Conversion
 {
     [RequireComponent(typeof(Image))]
     [RequireComponent(typeof(Button))]
-    [AddComponentMenu("Scripts/Factory/Menu/Conversion/Convert Button View")]
     public class ConvertButtonView : ButtonBase
     {
-        #region Zenject
-
-        [Inject] private readonly LocalizationService localizationController;
+        [Inject] private readonly LocalizationService _localizationService;
         [Inject] private readonly IUiController _uiController;
         [Inject] private readonly RawService _rawService;
-        [Inject] private readonly ConvertRawService convertRawService;
+        [Inject] private readonly ConvertRawService _convertRawService;
         [Inject] private readonly PopupFactory _popupFactory;
-
-        #endregion
-
-        #region Variables
+        [Inject(Id = Constants.ScreensParentKey)] private readonly Transform _screensParent;
 
         public Action OnClickEvent { get; set; }
         
         private ConversionMenuView _menu;
-        
-        #endregion
-
-        #region Unity Methods
 
         protected override void Awake()
         {
@@ -42,7 +32,7 @@ namespace RoboFactory.Factory.Menu.Conversion
 
             _menu = _uiController.FindUi<ConversionMenuView>();
 
-            SetButtonText(localizationController.GetLanguageValue(LocalizationKeys.ConversionMenuButtonTitleKey));
+            SetButtonText(_localizationService.GetLanguageValue(LocalizationKeys.ConversionMenuButtonTitleKey));
         }
 
         private void OnDestroy()
@@ -50,11 +40,9 @@ namespace RoboFactory.Factory.Menu.Conversion
             OnClickEvent = null;
         }
 
-        #endregion
-
         public override void SetState()
         {
-            var isEnoughRaw = convertRawService.IsEnoughRaw(_menu.ActiveRaw.Key);
+            var isEnoughRaw = _convertRawService.IsEnoughRaw(_menu.ActiveRaw.Key);
             SetInteractable(isEnoughRaw);
         }
         
@@ -64,12 +52,11 @@ namespace RoboFactory.Factory.Menu.Conversion
             
             if (_rawService.CheckIfRawStoreFull(_menu.ActiveRaw.Key))
             {
-                var canvasT = _uiController.GetCanvas(CanvasType.HUD).transform;
-                _popupFactory.CreateSmallNotification(UiType.StorageFull, canvasT);
+                _popupFactory.CreateSmallNotification(UiType.StorageFull, _screensParent);
                 return;
             }
 
-            convertRawService.RemoveParts();
+            _convertRawService.RemoveParts();
 
             OnClickEvent?.Invoke();
         }

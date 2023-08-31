@@ -1,7 +1,7 @@
 ﻿using System;
 using JetBrains.Annotations;
 using RoboFactory.General.Asset;
-using RoboFactory.General.Ui;
+using UnityEngine;
 using UnityEngine.AddressableAssets;
 using Zenject;
 
@@ -13,12 +13,11 @@ namespace RoboFactory.Factory.Menu.Settings
         [Inject] private readonly DiContainer _container;
         [Inject] private readonly Settings _settings;
         [Inject] private readonly AddressableService _addressableService;
-        [Inject] private readonly IUiController _uiController;
+        [Inject(Id = Constants.PopupsParentKey)] private readonly Transform _popupsParent;
 
         public async void CreateMenu()
         {
-            var parent = _uiController.GetCanvas(CanvasType.Ui);
-            var menuOriginal = await _addressableService.InstantiateAssetAsync(_settings.MenuAsset, parent.transform);
+            var menuOriginal = await _addressableService.InstantiateAssetAsync(_settings.MenuAsset, _popupsParent);
             var menu = _container.InjectGameObjectForComponent<SettingsMenuView>(menuOriginal);
             menu.Initialize();
             

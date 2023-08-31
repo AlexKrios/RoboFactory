@@ -42,9 +42,9 @@ MonoBehaviour:
   m_overridePlayerVersion: 
   m_GroupAssets:
   - {fileID: 11400000, guid: 5694edded5e722045b07f3ff99d8fc25, type: 2}
+  - {fileID: 11400000, guid: b3108988cb308ff45b8eeb4a3d6bcc9a, type: 2}
   - {fileID: 11400000, guid: e2e58ebb10ce3314cb7d1522bbc439db, type: 2}
   - {fileID: 11400000, guid: 824115b72b715f349b10c02761d629fb, type: 2}
-  - {fileID: 11400000, guid: b3108988cb308ff45b8eeb4a3d6bcc9a, type: 2}
   - {fileID: 11400000, guid: 4f0706ce2924b6d46b4c391cfdf14712, type: 2}
   - {fileID: 11400000, guid: 2951931019df3bb4f8df91333c2dac17, type: 2}
   m_BuildSettings:
@@ -89,7 +89,8 @@ MonoBehaviour:
     m_LabelNames:
     - Music
     - Audio
-    - Core
+    - Core GameObject
+    - Core Sprite
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: 840dbda6ecb7c544a83f372c8722ad99, type: 2}

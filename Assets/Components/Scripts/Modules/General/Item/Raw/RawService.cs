@@ -33,6 +33,9 @@ namespace RoboFactory.General.Item.Raw
         
         protected override UniTask InitializeAsync()
         {
+            if (_rawDictionary.Count != 0)
+                _rawDictionary.Clear();
+            
             foreach (var data in _settings.Data)
             {
                 var rawObj = new RawObject().SetInitData(data);

@@ -16,7 +16,7 @@ namespace RoboFactory.General.Scene
 
         [Inject] private readonly DiContainer _container;
         [Inject] private readonly Settings _settings;
-        [Inject(Id = Constants.ScreenParentKey)] private readonly Transform _sceneParent;
+        [Inject(Id = Constants.ScreensParentKey)] private readonly Transform _screensParent;
         
         protected override string InitializeTextKey => "initialize_scenes";
 
@@ -26,7 +26,7 @@ namespace RoboFactory.General.Scene
 
         public GameObject InstantiateLoader()
         {
-            return _container.InstantiatePrefab(_settings.LoaderPrefab, _sceneParent);
+            return _container.InstantiatePrefab(_settings.LoaderPrefab, _screensParent);
         }
         
         public async UniTask LoadScene(SceneName scene)

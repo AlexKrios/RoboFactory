@@ -9,8 +9,7 @@ namespace RoboFactory.Factory.Menu.Storage
     public class ItemCellView : CellBase
     {
         [Space]
-        [SerializeField] private GameObject _countWrapper;
-        [SerializeField] private TMP_Text _countText;
+        [SerializeField] private TMP_Text _count;
         
         public Action<ItemCellView> OnTabClickEvent { get; set; }
 
@@ -33,8 +32,8 @@ namespace RoboFactory.Factory.Menu.Storage
 
         private void SetCount()
         {
-            _countWrapper.SetActive(Data.ProductType != 0);
-            _countText.text = $"x{Data.Count}";
+            _count.gameObject.SetActive(Data.ProductType != 0);
+            _count.text = $"x{Data.Count}";
         }
     }
 }

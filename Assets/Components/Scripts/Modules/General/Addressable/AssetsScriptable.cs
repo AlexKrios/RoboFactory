@@ -24,6 +24,18 @@ namespace RoboFactory.General.Asset
         public List<ProductGroupIconObject> ProductGroupIcons => _productGroupIcons;
         public List<SpecIconObject> SpecsIcons => _specsIcons;
 
+        public List<AssetReference> GetAllIconRef()
+        {
+            var iconsRef = new List<AssetReference>();
+            
+            iconsRef.AddRange(_rawIcons.Select(x => x.IconRef));
+            iconsRef.AddRange(_unitIcons.Select(x => x.IconRef));
+            iconsRef.AddRange(_productGroupIcons.Select(x => x.IconRef));
+            iconsRef.AddRange(_specsIcons.Select(x => x.IconRef));
+
+            return iconsRef;
+        }
+        
         public AssetReference GetRawIcon(RawType raw) => _rawIcons.First(x => x.Type == raw).IconRef;
 
         public AssetReference GetUnitIcon(UnitType type) => _unitIcons.First(x => x.Type == type).IconRef;

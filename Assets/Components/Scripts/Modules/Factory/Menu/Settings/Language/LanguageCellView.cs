@@ -8,13 +8,11 @@ using Zenject;
 
 namespace RoboFactory.Factory.Menu.Settings
 {
-    [AddComponentMenu("Scripts/Factory/Menu/Settings/Language Cell View")]
     public class LanguageCellView : MonoBehaviour
     {
         [Inject] private readonly AudioService _audioService;
         
         [SerializeField] private LanguageType _type;
-
         [Space]
         [SerializeField] private Image _active;
 

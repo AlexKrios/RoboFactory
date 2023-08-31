@@ -5,38 +5,21 @@ using Zenject;
 
 namespace RoboFactory.Factory.Menu.Conversion
 {
-    [AddComponentMenu("Scripts/Factory/Menu/Conversion/Parts Section View")]
     public class PartsSectionView : MonoBehaviour
     {
-        #region Zenject
-
         [Inject] private readonly IUiController _uiController;
         [Inject] private readonly RawService _rawService;
 
-        #endregion
-
-        #region Components
-        
         [SerializeField] private PartCellView _part1;
         [SerializeField] private PartCellView _part2;
         [SerializeField] private PartResultCellView _result;
 
-        #endregion
-
-        #region Variables
-
         private ConversionMenuView _menu;
-
-        #endregion
         
-        #region Unity Methods
-
         protected void Awake()
         {
             _menu = _uiController.FindUi<ConversionMenuView>();
         }
-
-        #endregion
 
         public void SetData()
         {

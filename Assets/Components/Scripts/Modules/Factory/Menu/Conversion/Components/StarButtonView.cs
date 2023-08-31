@@ -1,24 +1,16 @@
 ﻿using System;
 using RoboFactory.General.Ui;
 using RoboFactory.General.Ui.Common;
-using UnityEngine;
 using Zenject;
 
 namespace RoboFactory.Factory.Menu.Conversion
 {
-    [AddComponentMenu("Scripts/Factory/Menu/Conversion/Star Button View")]
     public class StarButtonView : StarButtonBase
     {
         private const int DefaultStar = 2;
         
-        #region Zenject
-        
         [Inject] private readonly IUiController _uiController;
         
-        #endregion
-        
-        #region Variables
-
         public Action OnClickEvent { get; set; }
 
         private ConversionMenuView _menu;
@@ -32,10 +24,7 @@ namespace RoboFactory.Factory.Menu.Conversion
             } 
         }
 
-        #endregion
         
-        #region Unity Methods
-
         protected override void Awake()
         {
             base.Awake();
@@ -49,8 +38,6 @@ namespace RoboFactory.Factory.Menu.Conversion
         {
             OnClickEvent = null;
         }
-
-        #endregion
 
         protected override void Click()
         {

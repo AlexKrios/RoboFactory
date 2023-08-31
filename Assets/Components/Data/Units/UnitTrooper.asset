@@ -17,8 +17,8 @@ MonoBehaviour:
   _attackType: 0
   _specType: 0
   _iconRef:
-    m_AssetGUID: 114d1c7c5dc27d0428359f3a678a6533
-    m_SubObjectName: CharachterTypeTrooper
+    m_AssetGUID: 659d7834c896cfe4780c037f1bc835da
+    m_SubObjectName: UnitTrooper
     m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
     m_EditorAssetChanged: 0

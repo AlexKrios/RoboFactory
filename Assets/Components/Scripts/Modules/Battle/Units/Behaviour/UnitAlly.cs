@@ -1,12 +1,10 @@
 ﻿using System.Linq;
 using RoboFactory.General.Unit;
 using RoboFactory.General.Unit.Battle;
-using UnityEngine;
 using UnityEngine.EventSystems;
 
 namespace RoboFactory.Battle.Units
 {
-    [AddComponentMenu("Scripts/Battle/Units/Unit Ally")]
     public class UnitAlly : UnitBehaviour
     {
         public override void StartTurn()

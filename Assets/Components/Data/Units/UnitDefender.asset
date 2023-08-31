@@ -17,12 +17,12 @@ MonoBehaviour:
   _attackType: 0
   _specType: 0
   _iconRef:
-    m_AssetGUID: 114d1c7c5dc27d0428359f3a678a6533
-    m_SubObjectName: CharachterTypeDefender
+    m_AssetGUID: ac2b7acd1cad51c40ba8e57f21843d07
+    m_SubObjectName: UnitDefender
     m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
     m_EditorAssetChanged: 0
-  _model: {fileID: 0}
+  _model: {fileID: 5538192371963980350, guid: ba810e3fb29a5fe4cb8d36f4abd6af0a, type: 3}
   _specs: 00000000000000000000000000000000
   _unlockCost: 0
   _unlockLevel: 0

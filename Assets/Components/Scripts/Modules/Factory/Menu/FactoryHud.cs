@@ -15,7 +15,7 @@ using Zenject;
 
 namespace RoboFactory.Factory.Menu
 {
-    public class FactoryUi : MonoBehaviour
+    public class FactoryHud : MonoBehaviour
     {
         [Inject] private readonly AudioService _audioService;
         [Inject] private readonly MoneyService _moneyService;

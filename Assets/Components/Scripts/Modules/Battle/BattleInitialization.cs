@@ -9,7 +9,6 @@ using Zenject;
 
 namespace RoboFactory.Battle
 {
-    [AddComponentMenu("Scripts/Battle/Battle Initialization", 1)]
     public class BattleInitialization : MonoBehaviour
     {
         [Inject] private readonly DiContainer _container;

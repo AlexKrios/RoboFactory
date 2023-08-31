@@ -31,7 +31,7 @@ namespace RoboFactory.General.Scene
             {
                 _progressText.gameObject.SetActive(x == AuthStatusEnum.Success);
                 _progressSlider.gameObject.SetActive(x == AuthStatusEnum.Success);
-            });
+            }).AddTo(_disposable);
             
             _sceneService.ProgressText
                 .Subscribe(x => _progressText.text = _localizationService.GetLanguageValue(x.ToString()))

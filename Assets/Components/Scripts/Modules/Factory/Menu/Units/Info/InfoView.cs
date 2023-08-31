@@ -15,6 +15,7 @@ namespace RoboFactory.Factory.Menu.Units
         [Inject] private readonly ProductsService _productsService;
         [Inject] private readonly UnitsService _unitsService;
         [Inject] private readonly UnitsMenuFactory _unitsMenuFactory;
+        [Inject(Id = Constants.PopupsParentKey)] private readonly Transform _popupsParent;
 
         [SerializeField] private List<EquipmentCellView> _equipment;
         [SerializeField] private Transform _modelParent;
@@ -68,7 +69,7 @@ namespace RoboFactory.Factory.Menu.Units
             {
                 ActiveCell = cell;
                 _menu.ActiveEquipment = cell.Data;
-                _unitsMenuFactory.CreateSelectionMenu(_uiController.GetCanvas(CanvasType.Ui).transform);
+                _unitsMenuFactory.CreateSelectionMenu(_popupsParent);
             }
         }
         

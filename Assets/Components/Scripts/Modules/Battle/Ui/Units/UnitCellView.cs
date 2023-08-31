@@ -7,7 +7,6 @@ using Zenject;
 
 namespace RoboFactory.Battle.Ui
 {
-    [AddComponentMenu("Scripts/Battle/Ui/Unit Cell View")]
     public class UnitCellView : MonoBehaviour
     {
         #region Zenject

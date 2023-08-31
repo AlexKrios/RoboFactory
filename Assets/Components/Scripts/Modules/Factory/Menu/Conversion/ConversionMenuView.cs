@@ -7,17 +7,10 @@ using Zenject;
 
 namespace RoboFactory.Factory.Menu.Conversion
 {
-    [AddComponentMenu("Scripts/Factory/Menu/Conversion/Conversion Menu View")]
     public class ConversionMenuView : MenuBase
     {
-        #region Zenject
+        [Inject] private readonly LocalizationService _localizationService;
 
-        [Inject] private readonly LocalizationService localizationController;
-
-        #endregion
-
-        #region Components
-        
         [SerializeField] private TMP_Text _title;
         [SerializeField] private StarButtonView _star;
         
@@ -28,17 +21,9 @@ namespace RoboFactory.Factory.Menu.Conversion
         
         public ConvertButtonView Convert => _convert;
 
-        #endregion
-
-        #region Variables
-
-        public RawObject ActiveRaw { get; set; }
+        public RawObject ActiveRaw { get;  set; }
         public int ActiveStar { get; set; }
-
-        #endregion
         
-        #region Unity Methods
-
         protected override void Awake()
         {
             base.Awake();
@@ -55,10 +40,6 @@ namespace RoboFactory.Factory.Menu.Conversion
             _parts.SetData();
             _convert.SetState();
         }
-
-        #endregion
-
-        #region Click Handlers
 
         private void OnTabClick()
         {
@@ -78,12 +59,10 @@ namespace RoboFactory.Factory.Menu.Conversion
             _parts.SetData();
             _parts.StartConvertAnimation();
         }
-
-        #endregion
         
         private void SetTitle()
         {
-            _title.text = localizationController.GetLanguageValue(LocalizationKeys.ConversionMenuTitleKey);
+            _title.text = _localizationService.GetLanguageValue(LocalizationKeys.ConversionMenuTitleKey);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using System.Collections.Generic;
+using System.Globalization;
 using RoboFactory.Auth;
 using RoboFactory.General.Audio;
 using RoboFactory.General.Localization;
@@ -40,13 +41,22 @@ namespace RoboFactory.Factory.Menu.Settings
         [Space]
         [SerializeField] private LanguageSectionView _language;
 
+        private Dictionary<GraphicsType, string> _graphicQualityKeys;
+
         protected override void Awake()
         {
             base.Awake();
+
+            _graphicQualityKeys = new Dictionary<GraphicsType, string>
+            {
+                [GraphicsType.Low] = "settings_graphic_low",
+                [GraphicsType.Medium] = "settings_graphic_medium",
+                [GraphicsType.High] = "settings_graphic_high"
+            };
             
-            _musicSlider.onValueChanged.AddListener(ChangeMusicSliderValue);
-            _audioSlider.onValueChanged.AddListener(ChangeAudioSliderValue);
-            _graphicSlider.onValueChanged.AddListener(ChangeGraphicSliderValue);
+            _musicSlider.onValueChanged.AddListener(UpdateMusicSliderValue);
+            _audioSlider.onValueChanged.AddListener(UpdateAudioSliderValue);
+            _graphicSlider.onValueChanged.AddListener(UpdateGraphicSliderValue);
 
             _language.OnClickEvent += OnLanguageClick;
         }
@@ -55,9 +65,9 @@ namespace RoboFactory.Factory.Menu.Settings
         {
             base.OnDestroy();
             
-            _musicSlider.onValueChanged.RemoveListener(ChangeMusicSliderValue);
-            _audioSlider.onValueChanged.RemoveListener(ChangeAudioSliderValue);
-            _graphicSlider.onValueChanged.RemoveListener(ChangeGraphicSliderValue);
+            _musicSlider.onValueChanged.RemoveListener(UpdateMusicSliderValue);
+            _audioSlider.onValueChanged.RemoveListener(UpdateAudioSliderValue);
+            _graphicSlider.onValueChanged.RemoveListener(UpdateGraphicSliderValue);
             
             _language.OnClickEvent -= OnLanguageClick;
         }
@@ -66,9 +76,11 @@ namespace RoboFactory.Factory.Menu.Settings
         {
             base.Initialize();
             
+            UiController.AddUi(this);
+            
             _musicSlider.value = _settingsService.MusicVolume;
             _audioSlider.value = _settingsService.AudioVolume;
-            _graphicSlider.value = (float)_settingsService.Graphics;
+            UpdateGraphicSliderValue((float)_settingsService.Graphics);
             _language.SetData();
             
             if (!_authService.IsGooglePlayConnected())
@@ -83,26 +95,27 @@ namespace RoboFactory.Factory.Menu.Settings
         {
             _authService.SignOut();
             await _sceneService.LoadScene(SceneName.Auth);
+            Close();
         }
         
-        private void ChangeMusicSliderValue(float value)
+        private void UpdateMusicSliderValue(float value)
         {
             var musicValue = value * VolumeStep;
             _musicSliderText.text = musicValue.ToString(CultureInfo.CurrentCulture);
             _audioService.ChangeMusicVolume(value);
         }
         
-        private void ChangeAudioSliderValue(float value)
+        private void UpdateAudioSliderValue(float value)
         {
             var audioValue = value * VolumeStep;
             _audioSliderText.text = audioValue.ToString(CultureInfo.CurrentCulture);
             _audioService.ChangeAudioVolume(value);
         }
         
-        private void ChangeGraphicSliderValue(float value)
+        private void UpdateGraphicSliderValue(float value)
         {
             var graphics = (GraphicsType) value;
-            _graphicSliderText.text = graphics.ToString();
+            _graphicSliderText.text = _localizationService.GetLanguageValue(_graphicQualityKeys[graphics]);
             _settingsService.SetGraphics(graphics);
         }
         

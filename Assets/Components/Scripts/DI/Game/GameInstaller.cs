@@ -30,14 +30,18 @@ namespace RoboFactory.DI
     public class GameInstaller : MonoInstaller
     {
         [SerializeField] private AudioSource _musicSource;
-        [SerializeField] private Transform _popupParent;
-        [SerializeField] private Transform _screenParent;
+        [SerializeField] private Camera _uiCamera;
+        [SerializeField] private Transform _hudParent;
+        [SerializeField] private Transform _popupsParent;
+        [SerializeField] private Transform _screensParent;
 
         public override void InstallBindings()
         {
             Container.Bind<AudioSource>().WithId(Constants.MusicSourceKey).FromInstance(_musicSource);
-            Container.Bind<Transform>().WithId(Constants.PopupParentKey).FromInstance(_popupParent);
-            Container.Bind<Transform>().WithId(Constants.ScreenParentKey).FromInstance(_screenParent);
+            Container.Bind<Camera>().WithId(Constants.UiCameraKey).FromInstance(_uiCamera);
+            Container.Bind<Transform>().WithId(Constants.HudParentKey).FromInstance(_hudParent);
+            Container.Bind<Transform>().WithId(Constants.PopupsParentKey).FromInstance(_popupsParent);
+            Container.Bind<Transform>().WithId(Constants.ScreensParentKey).FromInstance(_screensParent);
 
             InstallProfiles();
             

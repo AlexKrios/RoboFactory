@@ -13,6 +13,18 @@ MonoBehaviour:
   m_Name: ProductionQueueUpgradeData
   m_EditorClassIdentifier: 
   _data:
-  - _count: 0
-    _cost: 0
-    _level: 0
+  - _count: 1
+    _cost: 100
+    _level: 1
+  - _count: 2
+    _cost: 200
+    _level: 2
+  - _count: 3
+    _cost: 400
+    _level: 4
+  - _count: 4
+    _cost: 600
+    _level: 6
+  - _count: 5
+    _cost: 800
+    _level: 8

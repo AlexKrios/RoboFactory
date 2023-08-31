@@ -5,7 +5,6 @@ using Zenject;
 
 namespace RoboFactory.Battle.Ui
 {
-    [AddComponentMenu("Scripts/Battle/Ui/Units Section View")]
     public class UnitsSectionView : MonoBehaviour
     {
         #region Zenject

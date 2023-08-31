@@ -10,39 +10,22 @@ using Zenject;
 
 namespace RoboFactory.Factory.Menu.Conversion
 {
-    [AddComponentMenu("Scripts/Factory/Menu/Conversion/Part Result Cell View")]
     public class PartResultCellView : MonoBehaviour
     {
-        #region Zenject
-        
         [Inject] private readonly AddressableService _addressableService;
         [Inject] private readonly IUiController _uiController;
-        [Inject] private readonly ConvertRawService convertRawService;
+        [Inject] private readonly ConvertRawService _convertRawService;
 
-        #endregion
-
-        #region Components
-        
         [SerializeField] private Image _icon;
         [SerializeField] private TMP_Text _level;
         [SerializeField] private Image _progress;
 
-        #endregion
-
-        #region Variables
-
         private ConversionMenuView _menu;
-
-        #endregion
         
-        #region Unity Methods
-
         protected void Awake()
         {
             _menu = _uiController.FindUi<ConversionMenuView>();
         }
-
-        #endregion
 
         public async void SetResultData(AssetReference iconRef, int star)
         {
@@ -58,7 +41,7 @@ namespace RoboFactory.Factory.Menu.Conversion
                 _menu.Convert.SetState();
                 _progress.fillAmount = 0;
 
-                convertRawService.AddRaw();
+                _convertRawService.AddRaw();
             });
         }
     }

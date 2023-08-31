@@ -67,17 +67,13 @@ namespace RoboFactory.Auth
             Auth.StateChanged += FirebaseAuthStateChanged;
             FirebaseAuthStateChanged(this, null);
             
-#if UNITY_EDITOR
-            //await SignIn(Constants.TestEmail, Constants.TestPassword);
-#endif
-            Debug.LogWarning(_user);
             if (_user == null)
             {
                 AuthStatus.Value = AuthStatusEnum.Failure;
                 await UniTask.WaitUntil(() => AuthStatus.Value == AuthStatusEnum.Success);
                 return;
             }
-            
+
             if (IsProviderUsed(PasswordProvider))
             {
                 if (!_user.IsEmailVerified && !_user.Email.Contains(Constants.TestEmail))
@@ -169,6 +165,7 @@ namespace RoboFactory.Auth
 
         public void SignOut()
         {
+            AuthStatus.Value = AuthStatusEnum.None;
             Auth.SignOut();
         }
 

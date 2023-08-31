@@ -15,12 +15,13 @@ MonoBehaviour:
   _itemType: 1
   _key: support_battery_product_default
   _iconRef:
-    m_AssetGUID: 
-    m_SubObjectName: 
-    m_SubObjectType: 
+    m_AssetGUID: bbd01f80ca5ad5d40b956b3b93da6f77
+    m_SubObjectName: SupportBatteryProduct
+    m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
     m_EditorAssetChanged: 0
   _index: 0
-  _productName: 
+  _productName: Support Battery Product Default
   _star: 0
   _unitType: 3
   _productGroup: 4

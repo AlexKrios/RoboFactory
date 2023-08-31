@@ -15,12 +15,13 @@ MonoBehaviour:
   _itemType: 1
   _key: sniper_battery_product_default
   _iconRef:
-    m_AssetGUID: 
-    m_SubObjectName: 
-    m_SubObjectType: 
+    m_AssetGUID: b7377a7b96ea166428934145311b16b2
+    m_SubObjectName: SniperBatteryProduct
+    m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
     m_EditorAssetChanged: 0
   _index: 0
-  _productName: 
+  _productName: Sniper Battery Product Default
   _star: 0
   _unitType: 4
   _productGroup: 4

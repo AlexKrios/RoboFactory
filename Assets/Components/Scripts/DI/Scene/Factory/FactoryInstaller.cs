@@ -13,13 +13,18 @@ namespace RoboFactory.DI
 {
     public class FactoryInstaller : MonoInstaller
     {
-        [SerializeField] private FactoryUi _factoryUi;
+        [SerializeField] private Camera _mainCamera;
+        [SerializeField] private FactoryHud _factoryHud;
         [SerializeField] private MenuButtonsView _menuButtons;
+        [Inject(Id = Constants.HudParentKey)] private readonly Transform _hudParent;
 
         public override void InstallBindings()
         {
+            Container.Bind<Camera>().WithId(Constants.MainCameraKey).FromInstance(_mainCamera);
             Container.Bind<FactoryCameraController>().AsSingle().NonLazy();
-            Container.Bind<FactoryUi>().FromInstance(_factoryUi).AsSingle().NonLazy();
+            Container.Bind<FactoryHud>().FromInstance(_factoryHud).AsSingle().NonLazy();
+            _factoryHud.transform.SetParent(_hudParent);
+            
             Container.Bind<MenuButtonsView>().FromInstance(_menuButtons).AsSingle().NonLazy();
 
             InstallUiFactory();

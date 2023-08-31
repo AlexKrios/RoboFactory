@@ -5,7 +5,6 @@ using Zenject;
 
 namespace RoboFactory.General.Ui.Popup
 {
-    [AddComponentMenu("Scripts/General/Popup/Small Notification View")]
     public class SmallNotificationView : PopupBase
     {
         [Inject] private readonly LocalizationService localizationController;

@@ -55,10 +55,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7dc2d3acd6df4aeaa474fc5ed03e6d91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  background: {fileID: 513268267709326426}
-  icon: {fileID: 8295168234949117070}
-  activeImage: {fileID: 5183013276273224867}
-  locked: {fileID: 0}
+  _icon: {fileID: 8295168234949117070}
+  _active: {fileID: 5183013276273224867}
+  _locked: {fileID: 0}
 --- !u!222 &7684652971684369452
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -422,7 +421,7 @@ GameObject:
   - component: {fileID: 4519334537465845736}
   - component: {fileID: 8295168234949117070}
   m_Layer: 5
-  m_Name: UnitIcon
+  m_Name: Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

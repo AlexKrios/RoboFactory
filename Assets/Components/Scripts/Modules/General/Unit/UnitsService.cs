@@ -31,6 +31,9 @@ namespace RoboFactory.General.Unit
 
         protected override UniTask InitializeAsync()
         {
+            if (_allUnits.Count != 0)
+                _allUnits.Clear();
+            
             foreach (var data in _settings.Units)
             {
                 var unit = _unitFactory.Create().SetData(data);

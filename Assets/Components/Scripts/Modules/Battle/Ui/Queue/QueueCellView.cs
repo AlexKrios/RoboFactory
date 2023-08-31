@@ -6,7 +6,6 @@ using Zenject;
 
 namespace RoboFactory.Battle.Ui
 {
-    [AddComponentMenu("Scripts/Battle/Ui/Queue Cell View")]
     public class QueueCellView : MonoBehaviour
     {
         #region Zenject

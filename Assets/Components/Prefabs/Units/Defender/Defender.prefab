@@ -109,24 +109,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 101c4a7b993942d9ab6a51794cdf553c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bodyAnimator: {fileID: 6266733105593118251}
-  parts:
-  - group: 1
-    parent: {fileID: 5538192371387472716}
-    model: {fileID: 1327212648448449855}
-    animator: {fileID: 6724373286237532278}
-  - group: 2
-    parent: {fileID: 5538192372844707516}
-    model: {fileID: 1080797741648549284}
-    animator: {fileID: 6055852287309000751}
-  - group: 3
-    parent: {fileID: 4915345227765559746}
-    model: {fileID: 8441782678725185803}
-    animator: {fileID: 0}
-  - group: 0
-    parent: {fileID: 6661566875262723497}
-    model: {fileID: 2457962599768100634}
-    animator: {fileID: 0}
+  _bodyAnimator: {fileID: 6266733105593118251}
+  _parts:
+  - _group: 1
+    _parent: {fileID: 5538192371387472716}
+    _model: {fileID: 1327212648448449855}
+    _animator: {fileID: 6724373286237532278}
+  - _group: 2
+    _parent: {fileID: 5538192372844707516}
+    _model: {fileID: 1080797741648549284}
+    _animator: {fileID: 6055852287309000751}
+  - _group: 3
+    _parent: {fileID: 4915345227765559746}
+    _model: {fileID: 8441782678725185803}
+    _animator: {fileID: 0}
+  - _group: 4
+    _parent: {fileID: 6661566875262723497}
+    _model: {fileID: 2457962599768100634}
+    _animator: {fileID: 0}
 --- !u!1 &5538192372844707519
 GameObject:
   m_ObjectHideFlags: 0

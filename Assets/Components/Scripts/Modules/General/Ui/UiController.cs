@@ -9,40 +9,28 @@ namespace RoboFactory.General.Ui
     public class UiController : IUiController
     {
         [Inject] private readonly DiContainer _container;
-        
-        private readonly Dictionary<CanvasType, GameObject> _canvasDictionary;
+        [Inject(Id = Constants.HudParentKey)] private readonly Transform _hudParent;
 
-        public UiController()
-        {
-            _canvasDictionary = new Dictionary<CanvasType, GameObject>();
-        }
+        private readonly List<GameObject> _allScreens = new();
 
-        public void AddCanvas(CanvasType type, GameObject canvas)
+        private void SetHudActive(bool value)
         {
-            if (_canvasDictionary.ContainsKey(type))
-                _canvasDictionary[type] = canvas;
-            else
-                _canvasDictionary.Add(type, canvas);
-        }
-
-        public GameObject GetCanvas(CanvasType type)
-        {
-            return _canvasDictionary[type];
-        }
-
-        public void SetCanvasActive(CanvasType type, bool value = true)
-        {
-            _canvasDictionary[type].SetActive(value);
-        }
-
-        public void ClearCanvas()
-        {
-            if (_canvasDictionary.Count != 0)
-                _canvasDictionary.Clear();
+            switch (value)
+            {
+                case false when _hudParent.gameObject.activeSelf:
+                    _hudParent.gameObject.SetActive(false);
+                    break;
+                case true when _allScreens.Count == 0:
+                    _hudParent.gameObject.SetActive(true);
+                    break;
+            }
         }
         
         public void AddUi<T>(T element) where T : class
         {
+            _allScreens.Add(element as GameObject);
+            SetHudActive(false);
+            
             if (_container.TryResolve<T>() != null)
                 _container.Unbind<T>();
             
@@ -56,6 +44,9 @@ namespace RoboFactory.General.Ui
 
         public void RemoveUi<T>(T element, GameObject gameObject, float timeout = 0f)
         {
+            _allScreens.Remove(element as GameObject);
+            SetHudActive(true);
+            
             _container.Unbind<T>();
             Object.Destroy(gameObject, timeout);
         }

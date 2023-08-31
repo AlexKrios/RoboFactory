@@ -7,23 +7,14 @@ using Zenject;
 
 namespace RoboFactory.Factory.Menu.Conversion
 {
-    [AddComponentMenu("Scripts/Factory/Menu/Conversion/Part Cell View")]
     public class PartCellView : MonoBehaviour
     {
-        #region Zenject
-        
         [Inject] private readonly AddressableService _addressableService;
         [Inject] private readonly ManagersResolver _managersResolver;
 
-        #endregion
-
-        #region Components
-        
         [SerializeField] private Image _icon;
         [SerializeField] private TMP_Text _count;
         [SerializeField] private TMP_Text _level;
-
-        #endregion
 
         public async void SetPartData(PartObject part)
         {

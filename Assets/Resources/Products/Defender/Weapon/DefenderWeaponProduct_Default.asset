@@ -34,4 +34,12 @@ MonoBehaviour:
     _cost: 0
     _experience: 0
     _craftTime: 0
-    _specs: []
+    _specs:
+    - Type: 0
+      Value: 0
+    - Type: 1
+      Value: 0
+    - Type: 2
+      Value: 0
+    - Type: 3
+      Value: 0

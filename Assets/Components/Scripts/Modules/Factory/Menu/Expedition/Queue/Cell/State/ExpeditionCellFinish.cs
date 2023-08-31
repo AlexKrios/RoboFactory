@@ -1,6 +1,6 @@
 ﻿using JetBrains.Annotations;
 using RoboFactory.General.Localization;
-using RoboFactory.General.Ui;
+using UnityEngine;
 using Zenject;
 
 namespace RoboFactory.Factory.Menu.Expedition
@@ -8,8 +8,8 @@ namespace RoboFactory.Factory.Menu.Expedition
     public class ExpeditionCellFinish : IExpeditionCellState
     {
         [Inject] private readonly LocalizationService _localizationService;
-        [Inject] private readonly IUiController _uiController;
         [Inject] private readonly ExpeditionMenuFactory _expeditionMenuFactory;
+        [Inject(Id = Constants.PopupsParentKey)] private readonly Transform _popupsParent;
         
         private readonly ExpeditionCell _cell;
 
@@ -27,9 +27,7 @@ namespace RoboFactory.Factory.Menu.Expedition
         public void Click()
         {
             _cell.SetStateEmpty();
-            
-            var parent = _uiController.GetCanvas(CanvasType.Ui);
-            _expeditionMenuFactory.CreateResultPopup(parent.transform, _cell.Data);
+            _expeditionMenuFactory.CreateResultPopup(_popupsParent, _cell.Data);
         }
 
         public void Exit() { }

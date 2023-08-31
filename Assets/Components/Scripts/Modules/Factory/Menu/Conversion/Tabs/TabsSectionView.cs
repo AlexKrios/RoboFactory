@@ -7,22 +7,11 @@ using Zenject;
 
 namespace RoboFactory.Factory.Menu.Conversion
 {
-    [AddComponentMenu("Scripts/Factory/Menu/Conversion/Tabs Section View")]
     public class TabsSectionView : MonoBehaviour
     {
-        #region Zenject
-        
         [Inject] private readonly RawService _rawService;
         
-        #endregion
-        
-        #region Components
-        
         [SerializeField] private List<TabCellView> _tabs;
-
-        #endregion
-
-        #region Variables
 
         public Action OnClickEvent { get; set; }
 
@@ -40,17 +29,11 @@ namespace RoboFactory.Factory.Menu.Conversion
             }
         }
 
-        #endregion
-
-        #region Unity Methods
-
         private void Awake()
         {
             _tabs.ForEach(x => x.OnTabClick += OnTabClick);
         }
 
-        #endregion
-        
         private void OnTabClick(TabCellView tab)
         {
             if (ActiveTab == tab)

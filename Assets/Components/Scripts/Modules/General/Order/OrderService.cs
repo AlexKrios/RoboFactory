@@ -39,6 +39,9 @@ namespace RoboFactory.General.Order
         
         protected override UniTask InitializeAsync()
         {
+            if (_ordersDictionary.Count != 0)
+                _ordersDictionary.Clear();
+            
             foreach (var fileData in _settings.Orders)
             {
                 foreach (var data in fileData.Orders)

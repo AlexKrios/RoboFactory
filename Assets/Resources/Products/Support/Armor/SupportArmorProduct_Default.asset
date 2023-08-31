@@ -15,12 +15,13 @@ MonoBehaviour:
   _itemType: 1
   _key: support_armor_product_default
   _iconRef:
-    m_AssetGUID: 
-    m_SubObjectName: 
-    m_SubObjectType: 
+    m_AssetGUID: e5024f8a9c6569e4c89d0a043d827425
+    m_SubObjectName: SupportArmorProduct
+    m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
     m_EditorAssetChanged: 0
   _index: 0
-  _productName: 
+  _productName: Support Armor Product Default
   _star: 0
   _unitType: 3
   _productGroup: 2

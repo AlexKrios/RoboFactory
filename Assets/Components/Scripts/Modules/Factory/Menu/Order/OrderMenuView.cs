@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using RoboFactory.General.Localization;
 using RoboFactory.General.Order;
-using RoboFactory.General.Ui;
 using RoboFactory.General.Ui.Common;
 using RoboFactory.Utils;
 using TMPro;
@@ -21,14 +20,13 @@ namespace RoboFactory.Factory.Menu.Order
         [Inject] private readonly LocalizationService _localizationService;
         [Inject] private readonly OrderService orderService;
         [Inject] private readonly OrderMenuFactory _orderManagerFactory;
+        [Inject(Id = Constants.PopupsParentKey)] private readonly Transform _popupsParent;
         
         [SerializeField] private Button _upgrade;
-        
         [Space]
         [SerializeField] private TMP_Text _title;
         [SerializeField] private TMP_Text _timer; 
         [SerializeField] private List<ItemCellView> _orders;
-        
         [Space] 
         [SerializeField] private Transform _parent;
 
@@ -102,8 +100,7 @@ namespace RoboFactory.Factory.Menu.Order
         
         private void OnUpgradeClick()
         {
-            var canvasT = UiController.GetCanvas(CanvasType.Ui).transform;
-            _orderManagerFactory.CreateUpgradePopup(canvasT);
+            _orderManagerFactory.CreateUpgradePopup(_popupsParent);
         }
     }
 }

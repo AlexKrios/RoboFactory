@@ -15,22 +15,31 @@ MonoBehaviour:
   _itemType: 1
   _key: defender_armor_product_default
   _iconRef:
-    m_AssetGUID: 
-    m_SubObjectName: 
-    m_SubObjectType: 
+    m_AssetGUID: d8a3a2fb60f2b4b4dbbcf4acd38e4752
+    m_SubObjectName: DefenderArmorProduct
+    m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
     m_EditorAssetChanged: 0
   _index: 0
-  _productName: 
+  _productName: Defender Armor Product Default
   _star: 0
   _unitType: 2
   _productGroup: 2
   _productType: 0
   _isProduct: 0
-  _model: {fileID: 0}
+  _model: {fileID: 1800849513073398511, guid: d0dd29f2f49542f47bc5806ce8304962, type: 3}
   _recipe:
     _star: 0
     _parts: []
     _cost: 0
     _experience: 0
     _craftTime: 0
-    _specs: []
+    _specs:
+    - Type: 0
+      Value: 0
+    - Type: 1
+      Value: 0
+    - Type: 2
+      Value: 0
+    - Type: 3
+      Value: 0

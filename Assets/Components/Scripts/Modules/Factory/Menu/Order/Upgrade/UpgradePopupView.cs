@@ -54,10 +54,9 @@ namespace RoboFactory.Factory.Menu.Order
             if (_moneyService.Money.Value < _buyData.Cost || _experienceService.Level < _buyData.Level)
                 _acceptButton.interactable = false;
 
-            if (_experienceService.Level < _buyData.Level)
-                _acceptText.text = $"{_localizationService.GetLanguageValue(NeedLevelTextKey)} {_buyData.Level}";
-            else if (_moneyService.Money.Value < _buyData.Cost)
-                _acceptText.text = $"{NeedMoneyTextKey} {_buyData.Cost}";
+            _acceptText.text = _experienceService.Level < _buyData.Level 
+                ? $"{_localizationService.GetLanguageValue(NeedLevelTextKey)} {_buyData.Level}" 
+                : $"{NeedMoneyTextKey} {_buyData.Cost}";
         }
 
         private async void OnAcceptClick()

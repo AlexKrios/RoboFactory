@@ -22,6 +22,9 @@ namespace RoboFactory.General.Location
         
         protected override UniTask InitializeAsync()
         {
+            if (_locationDictionary.Count != 0)
+                _locationDictionary.Clear();
+            
             foreach (var data in _settings.Locations)
             {
                 var location = new LocationObject().SetStartData(data);

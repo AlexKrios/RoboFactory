@@ -31,10 +31,16 @@ namespace RoboFactory.Auth
                 await service.Initialize();
                 _sceneService.ProgressMainValue.Value++;
             }
+            
             await _sceneService.LoadScene(SceneName.Factory);
             Destroy(_loaderScreen);
         }
-        
+
+        private void OnDestroy()
+        {
+            _disposable.Dispose();
+        }
+
         private void AuthFormHandle(AuthStatusEnum status)
         {
             switch (status)

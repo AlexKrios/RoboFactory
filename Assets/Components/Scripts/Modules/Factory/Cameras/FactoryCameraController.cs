@@ -11,15 +11,9 @@ namespace RoboFactory.Factory.Cameras
     [UsedImplicitly]
     public class FactoryCameraController
     {
-        #region Zenject
-        
         [Inject(Id = "MainCameraParent")] private readonly Transform _mainCamera;
 
-        #endregion
-
-        #region Variables
-
-        public Dictionary<int, BuildingFloorBase> FloorsDictionary { get; }
+        public Dictionary<int, BuildingFloorBase> FloorsDictionary { get; } = new();
 
         private BuildingFloorBase _activeFloor;
         private BuildingFloorBase ActiveFloor
@@ -41,14 +35,7 @@ namespace RoboFactory.Factory.Cameras
         
         private Sequence _camAnim;
         private float _targetPosY;
-
-        #endregion
-
-        public FactoryCameraController()
-        {
-            FloorsDictionary = new Dictionary<int, BuildingFloorBase>();
-        }
-
+        
         public void Init()
         {
             FloorsDictionary.Values.ToList().ForEach(x => x.SetFloorVisible(false));

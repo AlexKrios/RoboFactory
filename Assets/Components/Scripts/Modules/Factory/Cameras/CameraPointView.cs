@@ -2,7 +2,6 @@
 
 namespace RoboFactory.Factory.Cameras
 {
-    [AddComponentMenu("Scripts/Factory/Cameras/Camera Point View")]
     public class CameraPointView : MonoBehaviour
     {
         private void OnDrawGizmos()

@@ -1,5 +1,4 @@
 ﻿using RoboFactory.General.Item.Products;
-using RoboFactory.General.Ui;
 using RoboFactory.General.Ui.Common;
 using RoboFactory.General.Unit;
 using UniRx;
@@ -11,16 +10,10 @@ namespace RoboFactory.Factory.Menu.Production
 {
     public class ProductionMenuView : MenuBase
     {
-        #region Zenject
-        
         [Inject] private readonly ProductionMenuFactory _productionMenuFactory;
-
-        #endregion
-
-        #region Components
+        [Inject(Id = Constants.ScreensParentKey)] private readonly Transform _screensParent;
 
         [SerializeField] private Button _upgrade;
-        
         [Space]
         [SerializeField] private HeaderView _header;
         [SerializeField] private StarButtonView _star;
@@ -30,24 +23,16 @@ namespace RoboFactory.Factory.Menu.Production
         [SerializeField] private SidebarView _sidebar;
         [SerializeField] private CreateButtonView _create;
 
-        #endregion
-
-        #region Variables
-
         public ProductGroup ActiveProductGroup { get; set; }
         public UnitType ActiveUnitType { get; set; }
         public int ActiveProductType { get; set; }
         public int ActiveStar { get; set; }
         public ProductObject ActiveProduct { get; set; }
-
-        #endregion
         
-        #region Unity Methods
-
         protected override void Awake()
         {
             base.Awake();
-
+            
             _upgrade.OnClickAsObservable().Subscribe(_ => OnUpgradeClick()).AddTo(Disposable);
 
             _header.OnTabClickEvent += OnGroupTabClick;
@@ -62,10 +47,6 @@ namespace RoboFactory.Factory.Menu.Production
             ActiveProductType = 1;
             ActiveStar = 1;
         }
-
-        #endregion
-
-        #region Click Handler
 
         private void OnGroupTabClick()
         {
@@ -117,8 +98,6 @@ namespace RoboFactory.Factory.Menu.Production
             _create.SetState();
         }
 
-        #endregion
-
         public override void Initialize()
         {
             base.Initialize();
@@ -136,8 +115,7 @@ namespace RoboFactory.Factory.Menu.Production
 
         private void OnUpgradeClick()
         {
-            var canvasT = UiController.GetCanvas(CanvasType.Ui).transform;
-            _productionMenuFactory.CreateUpgradePopup(canvasT);
+            _productionMenuFactory.CreateUpgradePopup(_screensParent);
         }
     }
 }

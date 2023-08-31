@@ -3,6 +3,7 @@ using RoboFactory.General.Level;
 using RoboFactory.General.Localization;
 using RoboFactory.General.Money;
 using RoboFactory.General.Scriptable;
+using RoboFactory.General.Ui;
 using RoboFactory.General.Ui.Common;
 using TMPro;
 using UniRx;
@@ -18,6 +19,7 @@ namespace RoboFactory.Factory.Menu.Production
         private const string NeedMoneyTextKey = "<sprite name=MoneyIcon>";
         
         [Inject] private readonly LocalizationService _localizationService;
+        [Inject] private readonly IUiController _uiController;
         [Inject] private readonly MoneyService _moneyService;
         [Inject] private readonly ExperienceService _experienceService;
         [Inject] private readonly ProductionService productionService;
@@ -39,6 +41,8 @@ namespace RoboFactory.Factory.Menu.Production
         {
             base.Initialize();
             
+            _uiController.AddUi(this);
+
             _acceptButton.OnClickAsObservable().Subscribe(_ => OnAcceptClick()).AddTo(Disposable);
             _buyData = productionService.GetUpgradeQualityData();
             
@@ -50,10 +54,9 @@ namespace RoboFactory.Factory.Menu.Production
             if (_moneyService.Money.Value < _buyData.Cost || _experienceService.Level < _buyData.Level)
                 _acceptButton.interactable = false;
 
-            if (_experienceService.Level < _buyData.Level)
-                _acceptText.text = $"{_localizationService.GetLanguageValue(NeedLevelTextKey)} {_buyData.Level}";
-            else if (_moneyService.Money.Value < _buyData.Cost)
-                _acceptText.text = $"{NeedMoneyTextKey} {_buyData.Cost}";
+            _acceptText.text = _experienceService.Level < _buyData.Level 
+                ? $"{_localizationService.GetLanguageValue(NeedLevelTextKey)} {_buyData.Level}" 
+                : $"{NeedMoneyTextKey} {_buyData.Cost}";
         }
 
         private async void OnAcceptClick()

@@ -1,14 +1,12 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Linq;
 using RoboFactory.General.Unit;
 using RoboFactory.General.Unit.Battle;
-using UnityEngine;
 using UnityEngine.EventSystems;
-using Random = System.Random;
 
 namespace RoboFactory.Battle.Units
 {
-    [AddComponentMenu("Scripts/Battle/Units/Unit Enemy")]
     public class UnitEnemy : UnitBehaviour
     {
         public override void StartTurn()

@@ -13,7 +13,6 @@ using Zenject;
 
 namespace RoboFactory.Factory.Menu.Production
 {
-    [AddComponentMenu("Scripts/Factory/Menu/Production/Parts Section View")]
     public class PartsSectionView : MonoBehaviour
     {
         [Inject] private readonly AddressableService _addressableService;
